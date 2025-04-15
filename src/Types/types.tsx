@@ -1,5 +1,5 @@
 export interface Property {
-  id: number;
+  id: string;
   imageUrl: string;
   type: string;
   price: number;
@@ -37,4 +37,20 @@ export interface UserGet {
 export interface Token {
   access_token: string;
   token_type: string;
+}
+
+export interface BookingCreate{
+  property_id: string;
+  end_date: string;
+  start_date: string;
+}
+
+export interface Booking{
+  id: string;
+  property_id: string;
+  end_date: string;
+  start_date: string;
+  user_id: string;
+  status: string;
+  created_at: string;
 }

@@ -2,7 +2,7 @@ import {
   clearAuthorizedUser,
   setAuthorizedUser,
 } from "../Store/slices/authorizedUserSlice";
-import { loginGetToken, loginGetUserByToken } from "../Api/auth";
+import { loginGetToken, loginGetUserByToken } from "../Api/apiAuth.tsx";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Token } from "../Types/types.tsx";
@@ -21,8 +21,6 @@ export default function useAuth() {
       const user: UserGet = await loginGetUserByToken(token);
       setItem("token", token);
       dispatch(setAuthorizedUser(user));
-
-      navigate("/home");
     } catch (error) {
       throw new Error(error.message || "Error logging in");
     }

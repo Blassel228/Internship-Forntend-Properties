@@ -1,4 +1,4 @@
-import baseApi from "./base.tsx";
+import baseApi from "./apiBase.tsx";
 import { Property } from "../Types/types.tsx";
 
 export const getProperties = async (): Promise<Property[]> => {

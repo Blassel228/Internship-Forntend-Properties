@@ -1,4 +1,4 @@
-import baseApi from "./base.tsx";
+import baseApi from "./apiBase.tsx";
 import { UserCreate, UserGet } from "../Types/types.tsx";
 
 export const createUser = async (user: UserCreate): Promise<UserGet> => {
