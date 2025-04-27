@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "./Input.tsx";
 import Label from "./Label.tsx";
-import {UserCreate} from "../Types/types.tsx";
+import { UserCreate } from "../Types/types.tsx";
+import { createUser } from "../Api/apiUser.tsx";
 
 const RegistrationForm: React.FC = () => {
   const {
@@ -15,8 +16,8 @@ const RegistrationForm: React.FC = () => {
 
   const [password, setPassword] = useState("");
 
-  const onSubmit = (data: UserCreate) => {
-    console.log("Registering with:", data);
+  const onSubmit = async (data: UserCreate) => {
+    await createUser(data);
     navigate("/home");
   };
 

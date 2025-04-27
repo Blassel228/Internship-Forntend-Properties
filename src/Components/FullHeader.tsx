@@ -29,7 +29,6 @@ const FullHeader = () => {
     if (subheaderRef.current) {
       const height = subheaderRef.current.offsetHeight;
       setSubheaderHeight(height);
-      console.log("HEIGHT", subheaderHeight);
     }
   }, []);
 

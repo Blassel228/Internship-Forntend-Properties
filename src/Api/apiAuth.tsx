@@ -1,4 +1,4 @@
-import baseApi from "./base.tsx";
+import baseApi from "./apiBase.tsx";
 import { Token, UserGet } from "../Types/types.tsx";
 
 export async function loginGetToken(
@@ -22,7 +22,7 @@ export async function loginGetToken(
 }
 
 export async function loginGetUserByToken(token: string): Promise<UserGet> {
-  const response = await baseApi.get("/auth/token/user/me", {
+  const response = await baseApi.get("/auth/user/me/", {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response.data;
