@@ -1,5 +1,7 @@
 import React from "react";
 
+//TODO: add total space to rooms in the backend and use here
+
 const TotalSpace = ({ property }) => {
   return (
     <div className="flex items-center gap-4 pb-4 border-b border-gray-200">

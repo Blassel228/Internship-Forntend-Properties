@@ -1,11 +1,11 @@
-import PropertyDetails from "../Components/PropertyDetails.tsx";
+import RoomDetails from "../Components/RoomDetails.tsx";
 import FullHeader from "../Components/FullHeader.tsx";
 
 const PropertyPage1 = ({ property }) => {
   return (
     <>
       <FullHeader />
-      <PropertyDetails property={property} />
+      <RoomDetails property={property} />
     </>
   );
 };

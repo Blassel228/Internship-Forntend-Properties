@@ -1,6 +1,6 @@
 import React from "react";
 
-const PropertyListHeader: React.FC = () => {
+const RoomListHeader: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center my-[10rem] bg-white">
       <div className="text-center space-y-2">
@@ -18,4 +18,4 @@ const PropertyListHeader: React.FC = () => {
   );
 };
 
-export default PropertyListHeader;
+export default RoomListHeader;

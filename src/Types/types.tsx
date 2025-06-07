@@ -1,18 +1,18 @@
-export interface Property {
+export interface Room {
   id: string;
-  imageUrl: string;
+  image: string;
   type: string;
   price: number;
-  address: string;
   bedrooms: number;
-  bathrooms: number;
+  beds: number;
+  bathes: number;
   area: string;
   floor: number;
-  parkingSpots: number;
-  totalSpace: string;
-  contractStatus: string;
-  paymentProcess: string;
-  safetyFeature: string;
+  hasSauna: boolean;
+  hasJacuzzi: boolean;
+  description: string;
+  totalSpace: number;
+  capacity: number;
 }
 
 export interface UserCreate {
@@ -39,15 +39,20 @@ export interface Token {
   token_type: string;
 }
 
+export interface RefreshTokenResponse {
+  accessToken: string;
+  refreshToken: string;
+}
+
 export interface BookingCreate{
-  property_id: string;
+  room_id: string;
   end_date: string;
   start_date: string;
 }
 
 export interface Booking{
   id: string;
-  property_id: string;
+  room_id: string;
   end_date: string;
   start_date: string;
   user_id: string;

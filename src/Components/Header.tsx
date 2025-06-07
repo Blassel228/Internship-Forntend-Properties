@@ -3,6 +3,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import Navlink from "./Navlink";
 import useAuth from "../Hooks/useAuth.tsx";
 import { getItem } from "../Utils/localStorage.tsx";
+import logo from "../Images/logo.png";
 
 const Header = ({ style }) => {
   const { logout } = useAuth();
@@ -10,12 +11,12 @@ const Header = ({ style }) => {
 
   return (
     <header
-      className="bg-white shadow-md w-full px-32 transition-all duration-300 ease-in-out"
+      className="bg-white shadow-md w-full px-32 transition-all duration-300 ease-in-out fixed"
       style={style}
     >
       <div className="container mx-auto px-4 py-6 flex justify-between items-center">
         <div>
-          <h1 className="text-4xl font-bold text-gray-800">VILLA</h1>
+          <h1 className="text-4xl font-bold text-gray-800">HOTEL ROOMS</h1>
         </div>
 
         <div className="flex items-center space-x-6 gap-8">
@@ -23,12 +24,6 @@ const Header = ({ style }) => {
             <ul className="flex items-center space-x-6 gap-8">
               <li>
                 <Navlink to="/home">Home</Navlink>
-              </li>
-              <li>
-                <Navlink to="/properties">Properties</Navlink>
-              </li>
-              <li>
-                <Navlink to="/property-details">Property Details</Navlink>
               </li>
               <li>
                 <Navlink to="/contact">Contact Us</Navlink>

@@ -4,9 +4,11 @@ import Header from "../Components/Header.tsx";
 
 const LoginPage = () => {
   return (
-    <div>
+    <div className="h-screen flex flex-col">
       <Header />
-      <LoginForm />
+      <div className="flex-1 flex items-center justify-center">
+        <LoginForm />
+      </div>
     </div>
   );
 };

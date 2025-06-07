@@ -4,10 +4,10 @@ import Payment from "./Payment.tsx";
 import Safety from "./Safety.tsx";
 import TotalSpace from "./TotalSpace.tsx";
 
-const KeyDetails = ({ property }) => {
+const KeyDetails = ({ room }) => {
   return (
     <div className="flex flex-col w-[20%] bg-white p-4 gap-6 rounded-lg shadow-md h-full">
-      <TotalSpace property={property} />
+      <TotalSpace property={room} />
       <Contract />
       <Payment />
       <Safety />

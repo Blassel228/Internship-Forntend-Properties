@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import NavigationArrow from "./NavigationArrow";
 
-import cabin1 from "../Images/cabin1.jpg";
-import cabin2 from "../Images/cabin2.jpg";
-import cabin3 from "../Images/cabin3.jpg";
+import hotel1 from "../Images/hotel1.jpg";
+import hotel2 from "../Images/hotel2.jpg";
+import hotel3 from "../Images/hotel3.jpg";
 
 const ImageSection = () => {
-  const images = [cabin1, cabin2, cabin3];
+  const images = [hotel1, hotel2, hotel3];
   const locations = ["Toronto, Canada", "Banff, Canada", "Vancouver, Canada"];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -37,18 +37,12 @@ const ImageSection = () => {
       </div>
 
       <div className="absolute inset-0 bg-opacity-50 flex flex-col items-center justify-center text-white z-10">
-        <div className="bg-white px-4 py-1 rounded-lg shadow-md mb-4">
-          <span className="text-sm font-bold text-black">
-            {locations[currentImageIndex]}
-          </span>
-        </div>
-
         <h1 className="text-4xl font-bold leading-tight text-center mb-4">
           HURRY!
           <br />
           GET THE BEST
           <br />
-          VILLA FOR YOU
+          HOTEL ROOM FOR YOU
         </h1>
       </div>
 

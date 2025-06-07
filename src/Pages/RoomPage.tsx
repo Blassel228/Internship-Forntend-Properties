@@ -1,16 +1,16 @@
-import PropertyDetails from "../Components/PropertyDetails.tsx";
+import RoomDetails from "../Components/RoomDetails.tsx";
 import FullHeader from "../Components/FullHeader.tsx";
 import { useLocation } from "react-router-dom";
-import { Property } from "../Types/types.tsx";
+import { Room } from "../Types/types.tsx";
 import BookingForm from "../Components/BookingForm.tsx";
 import React from "react";
 import ImageWrap from "../Components/ImageWrap.tsx";
 
-const PropertyPage = () => {
+const RoomPage = () => {
   const location = useLocation();
-  const property: Property = location.state?.property;
+  const room: Room = location.state?.room;
 
-  if (!property) {
+  if (!room) {
     return <div>Property not found</div>;
   }
 
@@ -20,12 +20,12 @@ const PropertyPage = () => {
       <div className="pt-40 h-[35rem]">
         <ImageWrap />
       </div>
-      <BookingForm property={property} />
+      <BookingForm room={room} />
       <div className="min-h-screen flex justify-center flex-col px-[10rem] pb-10">
-        <PropertyDetails property={property} />
+        <RoomDetails room={room} />
       </div>
     </>
   );
 };
 
-export default PropertyPage;
+export default RoomPage;

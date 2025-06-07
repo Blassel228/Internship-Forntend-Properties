@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { BookingCreate, Property } from "../Types/types.tsx";
+import { BookingCreate, Room } from "../Types/types.tsx";
 import { createBooking } from "../Api/apiBooking.tsx";
 import { useMutation } from "@tanstack/react-query";
 
 interface BookingFormProps {
-  property: Property;
+  room: Room;
 }
 
-const BookingForm: React.FC<BookingFormProps> = ({ property }) => {
+const BookingForm: React.FC<BookingFormProps> = ({ room }) => {
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -34,7 +34,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ property }) => {
     const booking: BookingCreate = {
       end_date: endDate,
       start_date: startDate,
-      property_id: property.id
+      room_id: room.id
     };
 
     console.log("DATES: ", startDate, endDate);
