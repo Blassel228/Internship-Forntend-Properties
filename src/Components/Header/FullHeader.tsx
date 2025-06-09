@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Subheader from "./Subheader.tsx";
+import Subheader from "../Subheader.tsx";
 import Header from "./Header.tsx";
 
 const FullHeader = () => {
@@ -9,19 +9,17 @@ const FullHeader = () => {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
-    console.log(lastScrollY);
 
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
         setIsSubheaderVisible(false);
-        console.log(window.scrollY);
       } else {
         setIsSubheaderVisible(true);
       }
       lastScrollY = window.scrollY;
     };
-    window.addEventListener("scroll", handleScroll);
 
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -33,7 +31,7 @@ const FullHeader = () => {
   }, []);
 
   return (
-    <div className="fixed w-full z-999 top-0">
+    <div className="fixed w-full z-999 top-0 sm:flex-col">
       <Subheader
         ref={subheaderRef}
         className={isSubheaderVisible ? "" : "opacity-0 -translate-y-full"}
