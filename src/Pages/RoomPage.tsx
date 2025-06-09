@@ -1,5 +1,5 @@
 import RoomDetails from "../Components/RoomDetails.tsx";
-import FullHeader from "../Components/FullHeader.tsx";
+import FullHeader from "../Components/Header/FullHeader.tsx";
 import { useLocation } from "react-router-dom";
 import { Room } from "../Types/types.tsx";
 import BookingForm from "../Components/BookingForm.tsx";

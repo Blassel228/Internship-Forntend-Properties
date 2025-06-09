@@ -4,11 +4,10 @@ import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import AuthButton from "./AuthButton.tsx";
 import Navlink from "../Navlink.tsx";
-import {getItem} from "../../Utils/localStorage.tsx";
+import AuthButtons from "./AuthButtons.tsx";
 
 const MobileMenu = ({ isOpen, onClose, style }) => {
   const { logout } = useAuth();
-  const token = getItem("token");
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -38,33 +37,7 @@ const MobileMenu = ({ isOpen, onClose, style }) => {
       </AuthButton>
 
       <ul className="flex flex-col space-y-4 mb-6 mt-4">
-        {token ? (
-        <div className="flex space-x-6">
-          <AuthButton
-            onClick={logout}
-            variant="danger"
-            to={"/home"}
-          >
-            Logout
-          </AuthButton>
-        </div>
-        ) : (
-          <>
-            <AuthButton
-              to="/login"
-              variant="primary"
-            >
-              Login
-            </AuthButton>
-            <Navlink
-              to="/register"
-              variant="success"
-            >
-              Register
-            </Navlink>
-          </>
-        )
-      }
+        <AuthButtons/>
       </ul>
     </div>
   );
