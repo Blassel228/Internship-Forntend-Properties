@@ -1,6 +1,6 @@
 import React from "react";
 import LoginForm from "../Components/LoginForm.tsx";
-import Header from "../Components/Header.tsx";
+import Header from "../Components/Header/Header.tsx";
 
 const LoginPage = () => {
   return (

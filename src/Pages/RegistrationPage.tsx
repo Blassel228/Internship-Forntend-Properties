@@ -1,6 +1,6 @@
 import React from "react";
 import RegistrationForm from "../Components/RegistrationForm.tsx";
-import Header from "../Components/Header.tsx";
+import Header from "../Components/Header/Header.tsx";
 
 const RegistrationPage = () => {
   return (

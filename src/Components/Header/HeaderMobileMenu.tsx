@@ -29,6 +29,7 @@ const MobileMenu = ({ isOpen, onClose, style }) => {
 
       <ul className="flex flex-col space-y-4 mb-6 mt-4">
         <li><Navlink to="/home" onClick={onClose}>Home</Navlink></li>
+        <li><Navlink to="/home" onClick={onClose}>Rooms</Navlink></li>
         <li><Navlink to="/contact" onClick={onClose}>Contact Us</Navlink></li>
       </ul>
 

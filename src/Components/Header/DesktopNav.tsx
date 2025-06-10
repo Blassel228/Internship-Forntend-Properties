@@ -1,8 +1,6 @@
 import React from "react";
 import Navlink from "../Navlink.tsx";
 import AuthButton from "./AuthButton.tsx";
-import useAuth from "../../Hooks/useAuth.tsx";
-import {getItem} from "../../Utils/localStorage.tsx";
 import AuthButtons from "./AuthButtons.tsx";
 
 const DesktopNav = () => {
@@ -10,6 +8,7 @@ const DesktopNav = () => {
     <nav className="hidden md:flex items-center gap-5 space-x-6">
       <ul className="flex space-x-6">
         <li><Navlink to="/home">Home</Navlink></li>
+        <li><Navlink to="/home">Rooms</Navlink></li>
         <li><Navlink to="/contact">Contact Us</Navlink></li>
       </ul>
 
