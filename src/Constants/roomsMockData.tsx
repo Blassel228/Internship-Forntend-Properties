@@ -1,4 +1,4 @@
-import { Property } from "../Types/types.tsx";
+import { Room } from "../Types/types.tsx";
 
 export const rooms = [
   {
@@ -121,9 +121,25 @@ export const rooms = [
     floor: 15,
     parkingSpots: 2,
   },
+  {
+    id: 1,
+    imageUrl: "https://via.placeholder.com/600x400?text=Property+1",
+    type: "Apartment",
+    price: 500000,
+    address: "24 New Street, Miami, FL 33101",
+    bedrooms: 3,
+    bathrooms: 2,
+    area: "Downtown Miami",
+    floor: 5,
+    parkingSpots: 1,
+    totalSpace: "1200 sq ft",
+    contractStatus: "Contract Ready",
+    paymentProcess: "Online Payment Available",
+    safetyFeature: "24/7 Security System",
+  }
 ];
 
-export const property: Property = {
+export const property: Room = {
   id: 1,
   imageUrl: "https://via.placeholder.com/600x400?text=Property+1",
   type: "Apartment",

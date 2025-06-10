@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProperties } from "../Api/apiProperty.tsx";
+import { getRooms } from "../Api/apiRoom.tsx";
 import {loginGetToken} from "../Api/apiAuth.tsx";
 
 export const useLogin = (username: string, password: string) => {

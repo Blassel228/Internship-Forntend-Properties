@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProperties } from "../Api/apiProperty.tsx";
+import { getRooms } from "../Api/apiRoom.tsx";
 
-export const usePropertiesQuery = () => {
+export const useRoomQuery = () => {
   return useQuery({
-    queryKey: ["gifts"],
-    queryFn: () => getProperties(),
+    queryKey: ["rooms"],
+    queryFn: () => getRooms(),
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     staleTime: 60000,

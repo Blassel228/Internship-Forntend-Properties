@@ -1,12 +1,14 @@
 import React from "react";
 import LoginForm from "../Components/LoginForm.tsx";
-import Header from "../Components/Header.tsx";
+import Header from "../Components/Header/Header.tsx";
 
 const LoginPage = () => {
   return (
-    <div>
+    <div className="h-screen flex flex-col">
       <Header />
-      <LoginForm />
+      <div className="flex-1 flex items-center justify-center">
+        <LoginForm />
+      </div>
     </div>
   );
 };

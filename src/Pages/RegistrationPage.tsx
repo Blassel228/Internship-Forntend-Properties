@@ -1,12 +1,14 @@
 import React from "react";
 import RegistrationForm from "../Components/RegistrationForm.tsx";
-import Header from "../Components/Header.tsx";
+import Header from "../Components/Header/Header.tsx";
 
 const RegistrationPage = () => {
   return (
-    <div className="flex items-center justify-center w-full flex-col">
+    <div className="flex w-full flex-col">
       <Header />
-      <RegistrationForm />
+      <div className="flex-1 flex items-center justify-center pt-20">
+        <RegistrationForm />
+      </div>
     </div>
   );
 };
