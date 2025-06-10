@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {Room} from "../Types/types.tsx";
 
-const RoomCard = ({ room }) => {
+const RoomCard = ({ room }:{room: Room}) => {
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(`/room/${room.id}`, { state: { room: room } });
   };
+
   return (
     <div
       key={room.id}
@@ -14,34 +16,25 @@ const RoomCard = ({ room }) => {
     >
       <img
         src={`data:image/png;base64,${room.image}`}
-        alt={room.address}
-        className="w-full h-64 object-cover"
+        className="w-full h-48 object-cover sm:h-64"
       />
 
-      <div className="p-4">
-        <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-sm font-medium mb-2">
+      <div className="p-3 space-y-1">
+        <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
           {room.type}
         </span>
 
-        <h2 className="text-xl font-bold mb-2 text-orange-600">
+        <h2 className="text-lg font-bold text-orange-600">
           ${room.price.toFixed(2)}
         </h2>
 
-        <p className="text-lg font-medium mb-2">{room.address}</p>
+        <p className="text-base font-medium line-clamp-1">{room.area}</p>
 
-        <div className="flex flex-wrap gap-2 text-gray-600 text-sm">
-          <span>
-            Bedrooms: <strong>{room.bedrooms}</strong>
-          </span>
-          <span>
-            Bathrooms: <strong>{room.bathrooms}</strong>
-          </span>
-          <span>
-            Area: <strong>{room.area}</strong>
-          </span>
-          <span>
-            Floor: <strong>{room.floor}</strong>
-          </span>
+        <div className="flex flex-wrap gap-1 text-gray-600 text-xs">
+          <span>Capacity: <strong>{room.capacity}</strong></span>
+          <span>Bathes: <strong>{room.bathes}</strong></span>
+          <span>Area: <strong>{room.area}</strong></span>
+          <span>Floor: <strong>{room.floor}</strong></span>
         </div>
       </div>
     </div>
