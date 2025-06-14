@@ -1,15 +1,17 @@
 import React from "react";
-import { Room } from "../Types/types.tsx";
 import RoomCard from "./RoomCard.tsx";
+import {useQueryClient} from "@tanstack/react-query";
+import {Room} from "../Types/types.tsx";
+import useSearchRoomsQuery from "../Hooks/useSearchRooms.tsx";
 
-interface HotelRoomListProps {
-  rooms: Room[] | undefined;
-}
 
-const RoomList: React.FC<HotelRoomListProps> = ({ rooms }) => {
+const RoomList = () => {
+  const queryClient = useQueryClient();
+   const { data: rooms, isLoading, isError } = useSearchRoomsQuery();
+
   return (
-    <div className="px-4 md:px-20 lg:px-[10rem]">
-      {rooms !== undefined ? (
+    <div className="px-4 md:px-20 lg:px-[10rem] pb-10">
+      {rooms !== null && rooms !== undefined ? (
         rooms.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {rooms.map((room) => (

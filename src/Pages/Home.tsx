@@ -7,13 +7,14 @@ import ExclusiveBenefits from "../Components/ExclusiveBenefits.tsx";
 import SpecialDeals from "../Components/SpecialDeals.tsx";
 import PopularRooms from "../Components/PopularRooms.tsx";
 import Footer from "../Components/Footer/Footer.tsx";
+import SearchForm from "../Components/SearchForm.tsx";
 
 const HomePage = () => {
   return (
     <>
       <FullHeader />
       <ImageSection />
-      <RoomSection />
+      <SearchForm />
       <div className="mx-auto p-6 lg:w-[70%] sm:w-[90%]">
         <PopularRooms />
         <CityCard />

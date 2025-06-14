@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getRooms } from "../Api/apiRoom.tsx";
 
-export const useRoomQuery = () => {
+const useRooms = () => {
   return useQuery({
     queryKey: ["rooms"],
     queryFn: () => getRooms(),
@@ -10,3 +10,5 @@ export const useRoomQuery = () => {
     staleTime: 60000,
   });
 };
+
+export default useRooms;

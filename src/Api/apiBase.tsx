@@ -1,8 +1,5 @@
-import {getItem, removeItem, setItem} from "../Utils/localStorage.tsx";
-
 import.meta.env;
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosError} from "axios";
-import { RefreshTokenResponse } from "../Types/types.tsx";
+import axios, { AxiosInstance} from "axios";;
 
 const baseApi: AxiosInstance = axios.create({
   baseURL: "http://localhost:8000/api",

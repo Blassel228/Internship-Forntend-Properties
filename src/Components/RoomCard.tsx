@@ -15,6 +15,7 @@ const RoomCard = ({ room }:{room: Room}) => {
       onClick={handleNavigate}
     >
       <img
+        alt="Room image"
         src={`data:image/png;base64,${room.image}`}
         className="w-full h-48 object-cover sm:h-64"
       />

@@ -4,15 +4,18 @@ import HomePage from "../Pages/Home.tsx";
 import RoomPage from "../Pages/RoomPage.tsx";
 import RegistrationPage from "../Pages/RegistrationPage.tsx";
 import LoginPage from "../Pages/LoginPage.tsx";
+import RoomsPage from "../Pages/RoomsPage.tsx";
+import routers from "../Constants/routers.tsx";
 
 export default function Routers(): JSX.Element {
   return (
     <Routes>
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/room/:id" element={<RoomPage />} />
-      <Route path="/register" element={<RegistrationPage />} />;
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="*" element={<Navigate to="/home" replace />} />
+      <Route path={routers.home} element={<HomePage />} />
+      <Route path={routers.room} element={<RoomPage />} />
+      <Route path={routers.register} element={<RegistrationPage />} />;
+      <Route path={routers.login} element={<LoginPage />} />
+      <Route path={routers.rooms} element={<RoomsPage />} />
+      <Route path={routers.notExisting} element={<Navigate to={routers.home} replace />} />
     </Routes>
   );
 }
