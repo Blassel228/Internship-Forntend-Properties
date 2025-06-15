@@ -8,10 +8,10 @@ export interface Room {
   bathes: number;
   area: string;
   floor: number;
-  hasSauna: boolean;
-  hasJacuzzi: boolean;
+  has_sauna: boolean;
+  has_jacuzzi: boolean;
   description: string;
-  totalSpace: number;
+  total_space: number;
   capacity: number;
 }
 
