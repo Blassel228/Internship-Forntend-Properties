@@ -2,11 +2,23 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {Room} from "../Types/types.tsx";
 
-const RoomCard = ({ room }:{room: Room}) => {
+const RoomCard = ({ room }:{ room: Room }) => {
   const navigate = useNavigate();
+  const searchParams = new URLSearchParams(window.location.search);
+  const start_date = searchParams.get("start_date") || "";
+  const end_date = searchParams.get("end_date") || "";
+  const capacity = searchParams.get("capacity") || "";
+
   const handleNavigate = () => {
-    navigate(`/room/${room.id}`, { state: { room: room } });
-  };
+
+      navigate(
+        {
+          pathname: `/room/${room.id}`,
+          search: `?start_date=${start_date}&end_date=${end_date}&capacity=${capacity}`
+        },
+        { state: { room } }
+      );
+    };
 
   return (
     <div

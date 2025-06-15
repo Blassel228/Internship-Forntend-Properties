@@ -2,7 +2,7 @@ import React from "react";
 
 const RoomListHeader: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center my-[10rem] bg-white">
+    <div className="flex flex-col items-center justify-center my-[4rem] bg-white">
       <div className="text-center space-y-2">
         <span className="text-red-500 font-bold">| ROOMS</span>
 

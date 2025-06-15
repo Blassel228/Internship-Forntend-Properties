@@ -30,7 +30,7 @@ const SearchForm = () => {
   );
   const [error, setError] = useState<string>('');
 
-  const isFormEmpty = !startDate || !endDate || capacity < 1;
+  const isFormEmpty = !startDate || !endDate || !capacity || capacity < 1;
 
   const { mutate } = useMutation({
     mutationFn: async () => {
@@ -70,7 +70,7 @@ const SearchForm = () => {
   }, [location.search]);
 
   return (
-    <div className="w-full mt-20 max-w-6xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-orange-200">
+    <div className="w-full mt-20 max-w-6xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-orange-200 mb-20">
       <form onSubmit={handleSubmit} className="flex flex-col md:flex-row md:items-end gap-4">
         <DatePickerInput
           label="Start Date"

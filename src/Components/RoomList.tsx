@@ -10,9 +10,9 @@ const RoomList = () => {
 
   const urlStartDate = params.get("start_date") || "";
   const urlEndDate = params.get("end_date") || "";
-  const urlCapacity = parseInt(params.get("capacity") || "1", 10);
+  const urlCapacity = parseInt(params.get("capacity") || "");
 
-  const isFormEmpty = !urlStartDate || !urlEndDate || urlCapacity < 1;
+  const isFormEmpty = !urlStartDate || !urlEndDate || !urlCapacity ||urlCapacity < 1;
 
   const { data: rooms = [], isLoading, isError } = useSearchRoomsQuery(
     urlStartDate,
@@ -22,7 +22,7 @@ const RoomList = () => {
 
   if(isFormEmpty){
     return (
-      <p className="text-center text-gray-500 text-lg mt-8">No rooms found</p>
+      <p className="text-center text-gray-500 text-lg my-8">No rooms found</p>
     )
   }
 
