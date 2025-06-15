@@ -10,3 +10,12 @@ export const getRooms = async (
   });
   return data;
 };
+
+export const getSearchRooms = async (
+  start_date: string,
+  end_date: string,
+  capacity: number
+): Promise<Room[]> => {
+  const { data }:{ data: Room[] } = await baseApi.get<Room[]>(`/room/search/${start_date}/${end_date}/${capacity}`)
+  return data;
+}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BookingCreate, Room } from "../Types/types.tsx";
 import { createBooking } from "../Api/apiBooking.tsx";
 import { useMutation } from "@tanstack/react-query";
+import {getSearchRooms} from "../Api/apiRoom.tsx";
 
 interface BookingFormProps {
   room: Room;
