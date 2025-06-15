@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import FullHeader from '../Components/Header/FullHeader';
 import RoomSection from '../Components/RoomSection';
 import SearchForm from '../Components/SearchForm';
-import {Room} from "../Types/types.tsx";
+import Footer from "../Components/Footer/Footer.tsx";
 
 const RoomsPage = () => {
   return (
@@ -12,6 +12,7 @@ const RoomsPage = () => {
         <SearchForm />
         <RoomSection />
       </div>
+      <Footer />
     </>
   );
 };

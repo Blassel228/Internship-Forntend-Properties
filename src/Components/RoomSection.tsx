@@ -6,7 +6,7 @@ const RoomSection: React.FC = () => {
   return (
     <>
       <RoomListHeader />
-      <RoomList />
+      <RoomList/>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DatePickerInput from './DatePickerInput';
 import CapacityInput from './CapacityInput';
-import {useMutation, useQueryClient} from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getSearchRooms } from '../Api/apiRoom';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -32,10 +32,10 @@ const SearchForm = () => {
 
   const isFormEmpty = !startDate || !endDate || capacity < 1;
 
-  const {mutate} = useMutation({
+  const { mutate } = useMutation({
     mutationFn: async () => {
       if (isFormEmpty) {
-        return await getSearchRooms('', '', 1);
+        return ;
       } else {
         return await getSearchRooms(
           startDate.toISOString().split('T')[0],

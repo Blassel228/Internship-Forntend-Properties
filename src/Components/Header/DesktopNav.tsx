@@ -8,7 +8,6 @@ const DesktopNav = () => {
     <nav className="hidden md:flex items-center gap-5 space-x-6">
       <ul className="flex space-x-6">
         <li><Navlink to="/home">Home</Navlink></li>
-        <li><Navlink to="/rooms">Rooms</Navlink></li>
         <li><Navlink to="/contact">Contact Us</Navlink></li>
       </ul>
 
