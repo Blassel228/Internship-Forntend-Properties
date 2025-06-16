@@ -1,8 +1,9 @@
 import React from "react";
-import { RoomDetailsContentSection } from "./RoomDetailsContentSection.tsx";
-import { UsefulLinks } from "./UsefulLinks.tsx";
+import RoomDetailsContentSection from "./RoomDetailsContentSection.tsx";
 import {useLocation} from "react-router-dom";
 import {Room} from "../Types/types.tsx";
+import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
+import AppButton from "./AppButton.tsx";
 
 export const RoomOverview = () => {
   const location = useLocation();
@@ -15,26 +16,19 @@ export const RoomOverview = () => {
         className="w-full h-96 object-cover rounded-lg shadow-md"
         alt="Room"
       />
-      <div className="flex flex-row gap-2">
-         <span className="bg-pink-200 w-fit text-pink-800 px-2 py-1 text-sm font-medium mt-4 flex justify-center items-center rounded-b-md">
-          {room.type}
-        </span>
-        <span className="bg-pink-200 w-fit text-pink-800 px-2 py-1 text-sm font-medium mt-4 flex justify-center items-center rounded-b-md">
-          Has {room.bedrooms} bedrooms
-        </span>
-        <span className="bg-pink-200 w-fit text-pink-800 px-2 py-1 text-sm font-medium mt-4 flex justify-center items-center rounded-b-md">
-          For {room.capacity} persons
-        </span>
-        {room.has_jacuzzi ? (
-          <span className="bg-pink-200 w-fit text-pink-800 px-2 py-1 text-sm font-medium mt-4 flex justify-center items-center rounded-b-md">
-            Jacuzzi available
-          </span>
-          ) :
-          ""
-        }
+      <div className="flex justify-between items-center w-full">
+        <div className="flex flex-row justify-center items-center gap-2">
+          <AdditionalRoomInfo>{room.type}</AdditionalRoomInfo>
+          <AdditionalRoomInfo>Has {room.bedrooms} bedrooms</AdditionalRoomInfo>
+          <AdditionalRoomInfo>For {room.capacity} persons</AdditionalRoomInfo>
+          {room.has_jacuzzi && <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>}
+        </div>
+
+        <div className="flex items-end mt-3">
+          <AppButton className="py-0">Make Booking</AppButton>
+        </div>
       </div>
       <RoomDetailsContentSection room={room}/>
-      <UsefulLinks />
     </div>
   );
 };
