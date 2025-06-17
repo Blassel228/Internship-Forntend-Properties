@@ -17,15 +17,20 @@ const SearchForm = () => {
   const urlEndDate = params.get('end_date');
   const urlCapacity = params.get('capacity');
 
+  const tomorrow = new Date();
+  const nextDayAfterTomorrow = new Date();
+
+  nextDayAfterTomorrow.setDate(nextDayAfterTomorrow.getDate() + 2);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
   const [startDate, setStartDate] = useState<Date>(
-    urlStartDate ? new Date(urlStartDate) : new Date()
+    urlStartDate ? new Date(urlStartDate) : tomorrow
   );
-  const [endDate, setEndDate] = useState<Date>(() => {
-    if (urlEndDate) return new Date(urlEndDate);
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow;
-  });
+
+  const [endDate, setEndDate] = useState<Date>(
+    urlEndDate ? new Date(urlEndDate) : nextDayAfterTomorrow
+  );
+
   const [capacity, setCapacity] = useState<number>(
     urlCapacity ? parseInt(urlCapacity, 10) : 1
   );
@@ -75,6 +80,7 @@ const SearchForm = () => {
       <form onSubmit={handleSubmit} className="flex flex-col md:flex-row md:items-end gap-4">
         <DatePickerInput
           label="Start Date"
+          min={startDate.toISOString().split('T')[0]}
           value={startDate.toISOString().split('T')[0]}
           onChange={(e) => {
             const dateStr = e.target.value;
@@ -84,7 +90,7 @@ const SearchForm = () => {
         />
         <DatePickerInput
           label="End Date"
-          min={startDate.toISOString().split('T')[0]}
+          min={nextDayAfterTomorrow.toISOString().split('T')[0]}
           value={endDate.toISOString().split('T')[0]}
           onChange={(e) => {
             const dateStr = e.target.value;

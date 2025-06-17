@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {Room} from "../Types/types.tsx";
+import routers from "../Constants/routers.tsx";
 
 const RoomCard = ({ room }:{ room: Room }) => {
   const navigate = useNavigate();
@@ -10,15 +11,14 @@ const RoomCard = ({ room }:{ room: Room }) => {
   const capacity = searchParams.get("capacity") || "";
 
   const handleNavigate = () => {
-
-      navigate(
-        {
-          pathname: `/room/${room.id}`,
-          search: `?start_date=${start_date}&end_date=${end_date}&capacity=${capacity}`
-        },
-        { state: { room } }
-      );
-    };
+    navigate(
+      {
+        pathname: `${routers.room}/${room.id}`,
+        search: `?start_date=${start_date}&end_date=${end_date}&capacity=${capacity}`
+      },
+      { state: { room } }
+    );
+  };
 
   return (
     <div
