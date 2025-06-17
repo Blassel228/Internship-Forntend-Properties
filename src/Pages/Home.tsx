@@ -1,6 +1,5 @@
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import ImageSection from "../Components/ImageSection.tsx";
-import RoomSection from "../Components/RoomSection.tsx";
 import React from "react";
 import CityCard from "../Components/CityCard.tsx";
 import ExclusiveBenefits from "../Components/ExclusiveBenefits.tsx";

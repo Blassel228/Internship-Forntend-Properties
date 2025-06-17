@@ -1,13 +1,28 @@
 import React from "react";
 import RoomDetailsContentSection from "./RoomDetailsContentSection.tsx";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {Room} from "../Types/types.tsx";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
 import AppButton from "./AppButton.tsx";
+import routers from "../Constants/routers.tsx";
+import useSearchParams from "../Hooks/useSearchParams.tsx";
 
 export const RoomOverview = () => {
   const location = useLocation();
   const room: Room = location.state?.room;
+
+  const navigate = useNavigate();
+  const { startDate, endDate, capacity} = useSearchParams()
+
+  const handleNavigate = () => {
+    navigate(
+      {
+        pathname: `${routers.book}/${room.id}`,
+        search: `?start_date=${startDate}&end_date=${endDate}&capacity=${capacity}`
+      },
+      { state: { room } }
+    );
+  };
 
   return (
     <div className="w-full md:w-1/2 flex flex-col">
@@ -25,7 +40,7 @@ export const RoomOverview = () => {
         </div>
 
         <div className="flex items-end mt-3">
-          <AppButton className="py-0">Make Booking</AppButton>
+          <AppButton className="py-0" onClick={handleNavigate}>Make Booking</AppButton>
         </div>
       </div>
       <RoomDetailsContentSection room={room}/>

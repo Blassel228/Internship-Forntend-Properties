@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getSearchRooms } from '../Api/apiRoom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import AppButton from "./AppButton.tsx";
+import useSearchParams from "../Hooks/useSearchParams.tsx";
 
 const SearchForm = () => {
   const queryClient = useQueryClient();
@@ -12,10 +13,7 @@ const SearchForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const params = new URLSearchParams(location.search);
-  const urlStartDate = params.get('start_date');
-  const urlEndDate = params.get('end_date');
-  const urlCapacity = params.get('capacity');
+  const { startDate: urlStartDate , endDate: urlEndDate, capacity: urlCapacity} = useSearchParams();
 
   const tomorrow = new Date();
   const nextDayAfterTomorrow = new Date();
@@ -26,11 +24,9 @@ const SearchForm = () => {
   const [startDate, setStartDate] = useState<Date>(
     urlStartDate ? new Date(urlStartDate) : tomorrow
   );
-
   const [endDate, setEndDate] = useState<Date>(
     urlEndDate ? new Date(urlEndDate) : nextDayAfterTomorrow
   );
-
   const [capacity, setCapacity] = useState<number>(
     urlCapacity ? parseInt(urlCapacity, 10) : 1
   );
