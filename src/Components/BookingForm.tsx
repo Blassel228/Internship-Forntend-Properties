@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BookingCreate, Room } from "../Types/types.tsx";
 import { createBooking } from "../Api/apiBooking.tsx";
 import { useMutation } from "@tanstack/react-query";
-import {getSearchRooms} from "../Api/apiRoom.tsx";
 
 interface BookingFormProps {
   room: Room;
@@ -13,7 +12,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ room }) => {
   const [endDate, setEndDate] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  const bookingMutation = useMutation({
+  const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: (booking: BookingCreate) => createBooking(booking),
     onSuccess: () => {
       setStartDate("");
@@ -39,7 +38,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ room }) => {
     };
 
     console.log("DATES: ", startDate, endDate);
-    bookingMutation.mutate(booking);
+    mutate(booking);
   };
 
   return (
@@ -53,7 +52,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ room }) => {
             setStartDate(e.target.value);
             setEndDate("");
           }}
-          disabled={bookingMutation.isPending}
+          disabled={isPending}
           className="border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:border-indigo-500 border-2 w-[15%]"
         />
         <input
@@ -62,20 +61,20 @@ const BookingForm: React.FC<BookingFormProps> = ({ room }) => {
           value={endDate}
           min={startDate}
           onChange={(e) => setEndDate(e.target.value)}
-          disabled={bookingMutation.isPending}
+          disabled={isPending}
           className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-indigo-500 w-[15%]"
         />
 
         <button
           onClick={handleBooking}
-          disabled={bookingMutation.isPending}
+          disabled={isPending}
           className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 transition h-10 w-auto"
         >
-          {bookingMutation.isPending ? "Booking..." : "Book Now"}
+          {isPending ? "Booking..." : "Book Now"}
         </button>
       </div>
       <div className="flex justify-center">
-         {bookingMutation.isSuccess && (
+         {isSuccess && (
             <p className="text-green-500">Booking successful!</p>
           )}
           <p className={`text-red-500 text-sm ${error ? "visible" : "invisible"}`}>

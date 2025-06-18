@@ -1,9 +1,10 @@
 const routers = {
   home: "/home",
-  room: "/room/:id",
+  room: "/room",
   register: "/register",
   login: "/login",
   rooms: "/rooms",
+  book: "/book",
   notExisting: "*"
 }
 

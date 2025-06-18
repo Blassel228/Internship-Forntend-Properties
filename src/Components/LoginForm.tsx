@@ -11,12 +11,12 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const loginMutation = useMutation({
+  const { mutate, error, status } = useMutation({
     mutationFn: (data) => login(data.username, data.password),
     onSuccess: () => navigate("/home"),
   });
 
-  const onSubmit = (data) => loginMutation.mutate(data);
+  const onSubmit = (data) => mutate(data);
 
   return (
       <div className="w-[30%] border border-gray-300 rounded-lg mt-10 mx-auto p-8 shadow-md justify-center ">
@@ -51,16 +51,16 @@ const LoginForm = () => {
             </p>
           </div>
 
-          <p className={`text-red-500 text-sm ${loginMutation.error ? "visible" : "invisible"}`}>
-            {loginMutation.error instanceof Error ? loginMutation.error.message : "\u00A0"}
+          <p className={`text-red-500 text-sm ${error ? "visible" : "invisible"}`}>
+            {error instanceof Error ? error.message : "\u00A0"}
           </p>
 
           <button
             type="submit"
-            disabled={loginMutation.status === "loading"}
+            disabled={status === "loading"}
             className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-400"
           >
-            {loginMutation.status === "loading" ? "Logging in..." : "Login"}
+            {status === "loading" ? "Logging in..." : "Login"}
           </button>
 
           <p className="text-center text-sm text-gray-600">

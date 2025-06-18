@@ -4,6 +4,8 @@ import CapacityInput from './CapacityInput';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getSearchRooms } from '../Api/apiRoom';
 import { useLocation, useNavigate } from 'react-router-dom';
+import AppButton from "./AppButton.tsx";
+import useSearchParams from "../Hooks/useSearchParams.tsx";
 
 const SearchForm = () => {
   const queryClient = useQueryClient();
@@ -11,20 +13,20 @@ const SearchForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const params = new URLSearchParams(location.search);
-  const urlStartDate = params.get('start_date');
-  const urlEndDate = params.get('end_date');
-  const urlCapacity = params.get('capacity');
+  const { startDate: urlStartDate , endDate: urlEndDate, capacity: urlCapacity} = useSearchParams();
+
+  const tomorrow = new Date();
+  const nextDayAfterTomorrow = new Date();
+
+  nextDayAfterTomorrow.setDate(nextDayAfterTomorrow.getDate() + 2);
+  tomorrow.setDate(tomorrow.getDate() + 1);
 
   const [startDate, setStartDate] = useState<Date>(
-    urlStartDate ? new Date(urlStartDate) : new Date()
+    urlStartDate ? new Date(urlStartDate) : tomorrow
   );
-  const [endDate, setEndDate] = useState<Date>(() => {
-    if (urlEndDate) return new Date(urlEndDate);
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow;
-  });
+  const [endDate, setEndDate] = useState<Date>(
+    urlEndDate ? new Date(urlEndDate) : nextDayAfterTomorrow
+  );
   const [capacity, setCapacity] = useState<number>(
     urlCapacity ? parseInt(urlCapacity, 10) : 1
   );
@@ -74,6 +76,7 @@ const SearchForm = () => {
       <form onSubmit={handleSubmit} className="flex flex-col md:flex-row md:items-end gap-4">
         <DatePickerInput
           label="Start Date"
+          min={startDate.toISOString().split('T')[0]}
           value={startDate.toISOString().split('T')[0]}
           onChange={(e) => {
             const dateStr = e.target.value;
@@ -83,7 +86,7 @@ const SearchForm = () => {
         />
         <DatePickerInput
           label="End Date"
-          min={startDate.toISOString().split('T')[0]}
+          min={nextDayAfterTomorrow.toISOString().split('T')[0]}
           value={endDate.toISOString().split('T')[0]}
           onChange={(e) => {
             const dateStr = e.target.value;
@@ -97,12 +100,11 @@ const SearchForm = () => {
           onChange={(e) => setCapacity(parseInt(e.target.value))}
           placeholder="Number of people"
         />
-        <button
+        <AppButton
           type="submit"
-          className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-md transition-colors duration-200 w-full md:w-auto"
         >
           SEARCH
-        </button>
+        </AppButton>
       </form>
 
       {error && <p className="text-red-500 mt-2">{error}</p>}
