@@ -1,7 +1,6 @@
 import React from "react";
 import RoomCard from "./RoomCard";
 import useSearchRoomsQuery from "../Hooks/useSearchRooms.tsx";
-import { useLocation } from "react-router-dom";
 import Spinner from "./Spinner.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
 

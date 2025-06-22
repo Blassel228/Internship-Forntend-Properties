@@ -45,9 +45,11 @@ export interface RefreshTokenResponse {
 }
 
 export interface BookingCreate{
+  price: number
   room_id: string;
   end_date: string;
   start_date: string;
+  special_requests: string;
 }
 
 export interface Booking{
@@ -57,5 +59,29 @@ export interface Booking{
   start_date: string;
   user_id: string;
   status: string;
+  specialRequests: string
   created_at: string;
+  guest: Guest
+}
+
+export interface GuestCreate {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  country?: string;
+  whether_send_confirmation: boolean;
+  is_booking_for_me: boolean;
+}
+
+export interface Guest {
+  id: string;
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  country?: string;
+  whether_send_confirmation: boolean;
+  is_booking_for_me: boolean;
+  booking_id: number;
 }

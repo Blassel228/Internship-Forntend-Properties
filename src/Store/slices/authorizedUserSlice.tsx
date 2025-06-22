@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserGet } from "../../Types/types.tsx";
 
-const initialState: { user: UserGet | null } = {
-  user: null,
+const initialState: { authorizedUser: UserGet | null } = {
+  authorizedUser: null,
 };
 
 const authorizedUserSlice = createSlice({
@@ -10,14 +10,14 @@ const authorizedUserSlice = createSlice({
   initialState,
   reducers: {
     setAuthorizedUser(state, action: PayloadAction<UserGet>) {
-      state.user = action.payload;
+      state.authorizedUser = action.payload;
     },
     clearAuthorizedUser(state) {
-      state.user = null;
+      state.authorizedUser = null;
     },
     setProfileImage(state, action: PayloadAction<string>) {
-      if (state.user) {
-        state.user.profileImage = action.payload;
+      if (state.authorizedUser) {
+        state.authorizedUser.profileImage = action.payload;
       }
     },
   },

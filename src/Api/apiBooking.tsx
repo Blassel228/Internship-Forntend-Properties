@@ -1,11 +1,8 @@
 import baseApi from "./apiBase.tsx";
-import {Booking, BookingCreate }from "../Types/types.tsx";
+import {Booking, BookingCreate, GuestCreate} from "../Types/types.tsx";
 import {getItem} from "../Utils/localStorage.tsx";
 
-export const createBooking = async (booking: BookingCreate): Promise<Booking> => {
-  const token = getItem('token');
-  const { data }: { data: Booking } = await baseApi.post<Booking>(`/booking`, booking, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+export const createBooking = async (booking: BookingCreate, guest: GuestCreate): Promise<Booking> => {
+  const { data }: { data: Booking } = await baseApi.post<Booking>(`/booking`, { booking, guest });
   return data;
 };

@@ -3,10 +3,10 @@ import { getSearchRooms } from "../Api/apiRoom.tsx";
 
 const useSearchRoomsQuery = (start_date: string, end_date: string, capacity: number) => {
   return useQuery({
-    queryKey: ["searchRooms", start_date, end_date, capacity],
+    queryKey: ["searchRooms"],
     queryFn: () => getSearchRooms(start_date, end_date, capacity),
     refetchOnWindowFocus: false,
-    refetchOnMount: false,
+    refetchOnMount: true,
     staleTime: 600000,
   });
 };

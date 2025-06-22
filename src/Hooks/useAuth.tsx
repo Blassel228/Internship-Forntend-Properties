@@ -3,16 +3,16 @@ import {
   setAuthorizedUser,
 } from "../Store/slices/authorizedUserSlice";
 import { loginGetToken, loginGetUserByToken } from "../Api/apiAuth.tsx";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Token } from "../Types/types.tsx";
 import { UserGet } from "../Types/types.tsx";
 import { removeItem, setItem } from "../Utils/localstorage.tsx";
+import {RootState} from "../Store/store.tsx";
 
 export default function useAuth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   async function login(username: string, password: string): Promise<void> {
     try {
       const response: Token = await loginGetToken(username, password);

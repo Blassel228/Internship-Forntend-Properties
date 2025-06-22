@@ -1,8 +1,11 @@
-const CustomCheckbox = ({ className }) => {
+import React from "react";
+
+const CustomCheckbox = ({ className = "", ...props }) => {
   return (
     <input
-      className={`h-6 w-6 ${className}`}
       type="checkbox"
+      className={`h-6 w-6 ${className}`}
+      {...props}
     />
   );
 };
