@@ -1,24 +1,78 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "./Input.tsx";
 import Label from "./Label.tsx";
 import { UserCreate } from "../Types/types.tsx";
-import { createUser } from "../Api/apiUser.tsx";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+import { isValidPhoneNumber } from 'libphonenumber-js';
+import useCreateUser from "../Hooks/useUserRegister.tsx";
+import routers from "../Constants/routers.tsx";
+import RegistrationFormError from "./RegistrationFormError.tsx";
 
 const RegistrationForm: React.FC = () => {
+  const { mutate: createUserMutation, error } = useCreateUser();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
+    clearErrors,
   } = useForm();
   const navigate = useNavigate();
 
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState<string>("");
+  const [country, setCountry] = useState<string>("GB");
 
-  const onSubmit = async (data: UserCreate) => {
-    await createUser(data);
-    navigate("/home");
+  useEffect(() => {
+    if (error && error.response?.data?.detail) {
+      const fieldErrors = error.response.data.detail;
+
+      Object.entries(fieldErrors).forEach(([field, message]) => {
+        setError(field as keyof UserCreate, {
+          type: "manual",
+          message: message as string,
+        });
+      });
+    }
+  }, [error, setError]);
+
+  const onSubmit = async (data: any) => {
+    clearErrors();
+
+    if (!isValidPhoneNumber(phone)) {
+      setError("phone_number", {
+        type: "manual",
+        message: "Please enter a valid phone number",
+      });
+      return;
+    }
+
+    const submitData: UserCreate = {
+      ...data,
+      phone_number: phone,
+      country: country,
+    };
+
+    try {
+      await createUserMutation(
+        { user: submitData },
+        {
+          onSuccess: () => {
+            navigate(routers.home);
+          },
+        }
+      );
+    } catch (err: any) {
+      if (!error) {
+        setError("root.serverError", {
+          type: "manual",
+          message: "Registration failed. Please try again.",
+        });
+      }
+    }
   };
 
   return (
@@ -33,13 +87,9 @@ const RegistrationForm: React.FC = () => {
             {...register("name", { required: "Full name is required" })}
             placeholder="Enter your full name"
           />
-          <p
-            className={`text-red-500 text-sm ${
-              errors.name ? "visible" : "invisible"
-            }`}
-          >
+          <RegistrationFormError error={errors.name}>
             {errors.name?.message || "\u00A0"}
-          </p>
+          </RegistrationFormError>
         </div>
 
         <div>
@@ -50,60 +100,40 @@ const RegistrationForm: React.FC = () => {
             {...register("surname", { required: "Surname is required" })}
             placeholder="Enter your surname"
           />
-          <p
-            className={`text-red-500 text-sm ${
-              errors.surname ? "visible" : "invisible"
-            }`}
-          >
+          <RegistrationFormError error={errors.surname}>
             {errors.surname?.message || "\u00A0"}
-          </p>
+          </RegistrationFormError>
         </div>
 
         <div>
-          <Label htmlFor="Username">Username</Label>
+          <Label htmlFor="username">Username</Label>
           <Input
             type="text"
             id="username"
             {...register("username", { required: "Username is required" })}
             placeholder="Enter your username"
           />
-          <p
-            className={`text-red-500 text-sm ${
-              errors.username ? "visible" : "invisible"
-            }`}
-          >
+          <RegistrationFormError error={errors.username}>
             {errors.username?.message || "\u00A0"}
-          </p>
+          </RegistrationFormError>
         </div>
 
         <div>
           <Label htmlFor="phone_number">Phone Number</Label>
-          <Input
-            type="tel"
-            id="phone_number"
-            {...register("phone_number", {
-              required: "Phone number is required",
-              pattern: {
-                value: /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/,
-                message: "Please enter a valid phone number",
-              },
-              validate: (value: string) => {
-                const digitsOnly = value.replace(/[^0-9]/g, "");
-                return (
-                  digitsOnly.length >= 7 ||
-                  "Phone number must have at least 7 digits"
-                );
-              },
-            })}
-            placeholder="Enter your phone number"
+          <PhoneInput
+            international
+            defaultCountry="GB"
+            value={phone}
+            onCountryChange={(country: string) => setCountry(country)}
+            onChange={(phone: string) => {
+              setPhone(phone);
+              clearErrors("phone_number");
+            }}
+            className={`w-full border ${errors.phone_number ? "border-red-500" : "border-gray-300"} rounded-md p-2`}
           />
-          <p
-            className={`text-red-500 text-sm ${
-              errors.phone_number ? "visible" : "invisible"
-            }`}
-          >
+          <RegistrationFormError error={errors.phone_number}>
             {errors.phone_number?.message || "\u00A0"}
-          </p>
+          </RegistrationFormError>
         </div>
 
         <div>
@@ -114,13 +144,9 @@ const RegistrationForm: React.FC = () => {
             {...register("email", { required: "Email is required" })}
             placeholder="Enter your email"
           />
-          <p
-            className={`text-red-500 text-sm ${
-              errors.email ? "visible" : "invisible"
-            }`}
-          >
+          <RegistrationFormError error={errors.email}>
             {errors.email?.message || "\u00A0"}
-          </p>
+          </RegistrationFormError>
         </div>
 
         <div>
@@ -138,13 +164,9 @@ const RegistrationForm: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
           />
-          <p
-            className={`text-red-500 text-sm ${
-              errors.password ? "visible" : "invisible"
-            }`}
-          >
+          <RegistrationFormError error={errors.password}>
             {errors.password?.message || "\u00A0"}
-          </p>
+          </RegistrationFormError>
         </div>
 
         <div>
@@ -159,14 +181,16 @@ const RegistrationForm: React.FC = () => {
             })}
             placeholder="Confirm your password"
           />
-          <p
-            className={`text-red-500 text-sm ${
-              errors.confirmPassword ? "visible" : "invisible"
-            }`}
-          >
+          <RegistrationFormError error={errors.confirmPassword}>
             {errors.confirmPassword?.message || "\u00A0"}
-          </p>
+          </RegistrationFormError>
         </div>
+
+        {errors.root?.serverError && (
+          <RegistrationFormError error={errors.root}>
+            {errors.root.serverError.message}
+          </RegistrationFormError>
+        )}
 
         <button
           type="submit"
@@ -177,10 +201,7 @@ const RegistrationForm: React.FC = () => {
 
         <p className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link
-            to="/"
-            className="font-medium text-indigo-600 hover:text-indigo-500"
-          >
+          <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500">
             Login here
           </Link>
         </p>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import DatePickerInput from './DatePickerInput';
 import CapacityInput from './CapacityInput';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -6,6 +6,7 @@ import { getSearchRooms } from '../Api/apiRoom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import AppButton from "./AppButton.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
+import routers from "../Constants/routers.tsx";
 
 const SearchForm = () => {
   const queryClient = useQueryClient();
@@ -28,7 +29,7 @@ const SearchForm = () => {
     urlEndDate ? new Date(urlEndDate) : nextDayAfterTomorrow
   );
   const [capacity, setCapacity] = useState<number>(
-    urlCapacity ? parseInt(urlCapacity, 10) : 1
+    urlCapacity ? Number(urlCapacity) : 1
   );
   const [error, setError] = useState<string>('');
 
@@ -46,8 +47,8 @@ const SearchForm = () => {
         );
       }
     },
-    onSuccess: (data) => {
-      queryClient.setQueryData(['searchRooms'], data);
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ["searchRooms"]});
       setError('');
     },
     onError: (err: Error) => {
@@ -57,30 +58,36 @@ const SearchForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isFormEmpty) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    if (startDate >= endDate) {
+      setError("Start date must be earlier than end date.");
+      return;
+    }
+
+    setError("");
+
     mutate();
 
     navigate({
-      pathname: '/rooms',
+      pathname: `${routers.rooms}`,
       search: `?start_date=${startDate.toISOString().split('T')[0]}&end_date=${endDate.toISOString().split('T')[0]}&capacity=${capacity}`
     });
   };
-
-  useEffect(() => {
-    if (urlStartDate) setStartDate(new Date(urlStartDate));
-    if (urlEndDate) setEndDate(new Date(urlEndDate));
-    if (urlCapacity) setCapacity(parseInt(urlCapacity, 10));
-  }, [location.search]);
-
   return (
     <div className="w-full mt-20 max-w-6xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-orange-200 mb-20">
       <form onSubmit={handleSubmit} className="flex flex-col md:flex-row md:items-end gap-4">
         <DatePickerInput
           label="Start Date"
-          min={startDate.toISOString().split('T')[0]}
+          min={tomorrow.toISOString().split('T')[0]}
           value={startDate.toISOString().split('T')[0]}
           onChange={(e) => {
             const dateStr = e.target.value;
-            setStartDate(dateStr ? new Date(dateStr) : null);
+            setStartDate(startDate ? new Date(dateStr) : null);
           }}
           placeholder="Select start date"
         />
@@ -97,7 +104,7 @@ const SearchForm = () => {
         <CapacityInput
           label="Capacity"
           value={capacity}
-          onChange={(e) => setCapacity(parseInt(e.target.value))}
+          onChange={(e) => setCapacity(Number(e.target.value))}
           placeholder="Number of people"
         />
         <AppButton

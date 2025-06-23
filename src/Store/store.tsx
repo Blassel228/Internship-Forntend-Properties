@@ -14,7 +14,7 @@ const persistRoomsReducer = persistReducer(persistConfig, roomSlice);
 
 const store = configureStore({
   reducer: {
-    user: persistedUserReducer,
+    authorizedUser: persistedUserReducer,
     rooms: persistRoomsReducer
   },
   middleware: (getDefaultMiddleware) =>
@@ -27,4 +27,5 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-export { store, persistor };
+type RootState = ReturnType<typeof store.getState>;
+export { store, persistor, RootState };
