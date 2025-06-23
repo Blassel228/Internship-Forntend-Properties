@@ -22,6 +22,7 @@ export interface UserCreate {
   phone_number: string;
   name: string;
   surname: string;
+  country: string
   money_balance?: number;
 }
 
