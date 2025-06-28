@@ -117,7 +117,6 @@ const BasicDetailsInputSection = ({ room }) => {
           </Column>
         </Row>
 
-        {/* Email */}
         <Column className="w-full md:w-[23rem] gap-1">
           <label htmlFor="email">
             Email Address
@@ -136,7 +135,6 @@ const BasicDetailsInputSection = ({ room }) => {
           )}
         </Column>
 
-        {/* Phone */}
         <Column className="w-full md:w-[23rem]">
           <label htmlFor="phone_number" className="mb-1">
             Phone
@@ -159,7 +157,6 @@ const BasicDetailsInputSection = ({ room }) => {
           </RegistrationFormError>
         </Column>
 
-        {/* Email confirmation checkbox */}
         <Row className="items-center gap-2">
           <CustomCheckbox {...register("wantsEmailConfirmation")} />
           <p className="text-xs content-center">

@@ -1,5 +1,3 @@
-// src/Components/BookingDetails.tsx
-
 import BookingDetailTitle from "./BookingDetailTitle.tsx";
 import BookingDetail from "./BookingDetail.tsx";
 import { toWords, toWordsOrdinal } from "number-to-words";
