@@ -1,6 +1,6 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
 import {useForm} from "react-hook-form";
@@ -11,11 +11,17 @@ import calculaterNights from "../Utils/calculateNights.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../Store/store.tsx";
 import RequiredStar from "./RequiredStar.tsx";
+import PhoneInput from "react-phone-number-input";
+import {isValidPhoneNumber} from "libphonenumber-js";
+import RegistrationFormError from "./RegistrationFormError.tsx";
 
 const BasicDetailsInputSection = ({ room }) => {
   const user = useSelector((state: RootState) => state.authorizedUser.authorizedUser);
 
-  const { register, handleSubmit } = useForm();
+  const [country, setCountry] = useState<string>(user.country || "");
+
+  const { register, handleSubmit, setError, formState: { errors }, clearErrors } = useForm();
+  const [phoneNumber, setPhoneNumber] = useState<string>(user?.phone_number || "");
   const { startDate, endDate} = useBookingParams();
   let nights = calculaterNights(startDate, endDate);
   const { mutate: bookingMutate } = useCreateBooking();
@@ -25,17 +31,27 @@ const BasicDetailsInputSection = ({ room }) => {
   })
 
   const onSubmit = (data) => {
+    if (!isValidPhoneNumber(data.phone_number)) {
+      setError("phone_number", {
+        type: "manual",
+        message: "Please enter a valid phone number",
+      });
+      return;
+    }
+
     const isMainGuest = data.mainGuest === "true";
 
     const guest: GuestCreate = {
       name: data.name,
       surname: data.surname,
       email: data.email,
-      phone: data.phone,
-      country: data.country,
+      phone: data.phone_number,
+      country: country,
       whether_send_confirmation: data.wantsEmailConfirmation,
       is_booking_for_me: isMainGuest
     };
+    console.log("GUEST" + guest);
+    console.log(country);
 
     const booking: BookingCreate = {
       price: nights * room.price,
@@ -96,25 +112,23 @@ const BasicDetailsInputSection = ({ room }) => {
         </Column>
         <Column className="w-[23rem]">
           <Row>
-            <label htmlFor="country">Country/region <RequiredStar /></label>
+            <label htmlFor="country">Phone<RequiredStar /></label>
           </Row>
-          <input
+          <PhoneInput
+            international
             className="border rounded pl-2 py-1 w-full"
-            type="text"
-            id="country"
-            {...register("country", { required: "Country is required" })}
+            defaultCountry={user.country || "GB"}
+            value={phoneNumber}
+            onCountryChange={(country: string) => setCountry(country)}
+            onChange={(phone: string) => {
+              setPhoneNumber(phone);
+              clearErrors("phone_number");
+            }}
+            {...register("phone_number", { required: "Phone is required" })}
           />
-        </Column>
-        <Column className="w-[23rem] gap-1">
-          <label htmlFor="phone">Phone (latin)<RequiredStar /></label>
-          <input
-            defaultValue={user?.phone_number || ""}
-            className="border rounded pl-2 py-1 w-full"
-            type="tel"
-            id="phone"
-            {...register("phone", { required: "Phone number is required" })}
-          />
-          <p className="text-xs">To confirm your booking and allow the accommodation team to contact you if needed.</p>
+         <RegistrationFormError error={errors.phone_number}>
+            {errors.phone_number?.message || "\u00A0"}
+          </RegistrationFormError>
         </Column>
         <Row>
           <CustomCheckbox {...register("wantsEmailConfirmation")} />

@@ -12,7 +12,7 @@ const BookPage = () => {
   return (
     <div className="w-full justify-center flex">
       <FullHeader />
-      <Row className="view gap-5 justify-center mt-36 mx-44">
+      <Row className="view gap-5 justify-center mt-36 mx-20">
         <BookingDetails room={room}/>
         <BasicDetailsInputSection room={room}/>
       </Row>
