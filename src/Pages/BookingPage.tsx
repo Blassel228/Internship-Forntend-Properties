@@ -6,7 +6,7 @@ import { Room } from "../Types/types.tsx";
 import BookingDetails from "../Components/BookingDetails.tsx";
 import BasicDetailsInputSection from "../Components/BasicDetailsInputSection.tsx";
 
-const BookPage = () => {
+const BookingPage = () => {
   const location = useLocation();
   const room: Room = location.state?.room;
   return (
@@ -20,4 +20,4 @@ const BookPage = () => {
   );
 };
 
-export default BookPage;
+export default BookingPage;

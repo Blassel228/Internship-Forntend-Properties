@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { Token } from "../Types/types.tsx";
 import { UserGet } from "../Types/types.tsx";
 import { removeItem, setItem } from "../Utils/localstorage.tsx";
-import {RootState} from "../Store/store.tsx";
 
 export default function useAuth() {
   const dispatch = useDispatch();

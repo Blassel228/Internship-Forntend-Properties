@@ -14,11 +14,12 @@ import RequiredStar from "./RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
 import {isValidPhoneNumber} from "libphonenumber-js";
 import RegistrationFormError from "./RegistrationFormError.tsx";
+import {getItem} from "../Utils/localStorage.tsx";
 
 const BasicDetailsInputSection = ({ room }) => {
   const user = useSelector((state: RootState) => state.authorizedUser.authorizedUser);
 
-  const [country, setCountry] = useState<string>(user.country || "");
+  const [country, setCountry] = useState<string>(user?.country || "");
 
   const { register, handleSubmit, setError, formState: { errors }, clearErrors } = useForm();
   const [phoneNumber, setPhoneNumber] = useState<string>(user?.phone_number || "");
@@ -39,6 +40,11 @@ const BasicDetailsInputSection = ({ room }) => {
       return;
     }
 
+    if (getItem("token") === null){
+      setError("unauthorized", {
+        message: "To make a booking you need to be authorized."
+      })
+    }
     const isMainGuest = data.mainGuest === "true";
 
     const guest: GuestCreate = {
@@ -117,7 +123,7 @@ const BasicDetailsInputSection = ({ room }) => {
           <PhoneInput
             international
             className="border rounded pl-2 py-1 w-full"
-            defaultCountry={user.country || "GB"}
+            defaultCountry={user?.country || "GB"}
             value={phoneNumber}
             onCountryChange={(country: string) => setCountry(country)}
             onChange={(phone: string) => {
@@ -178,6 +184,9 @@ const BasicDetailsInputSection = ({ room }) => {
           placeholder="Enter your special requests here..."
           {...register("specialRequests")}
         />
+        <RegistrationFormError error={ errors.unauthorized }>
+          {errors.unauthorized?.message || "\u00A0"}
+        </RegistrationFormError>
       </ContainerWithBorders>
       <div className="mt-4 w-full flex">
         <button

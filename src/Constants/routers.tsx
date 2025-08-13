@@ -4,7 +4,7 @@ const routers = {
   register: "/register",
   login: "/login",
   rooms: "/rooms",
-  book: "/book",
+  book: "/makeBooking",
   notExisting: "*"
 }
 
