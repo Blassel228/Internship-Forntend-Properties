@@ -9,4 +9,4 @@ const RoomDetailsContentSection = ({ room }: { room: any }) => {
   );
 };
 
-export default RoomDetailsContentSection ;
+export default RoomDetailsContentSection;

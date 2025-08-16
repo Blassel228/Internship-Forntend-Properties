@@ -1,17 +1,34 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createBooking } from "../Api/apiBooking.tsx";
-import { BookingCreate, GuestCreate } from "../Types/types.tsx";
+import {createBookingWithoutToken, createBookingWithToken} from "../Api/apiBooking.tsx";
+import { BookingCreateIn } from "../Types/Booking.tsx";
+import { GuestCreateIn } from "../Types/Guest.tsx";
 
-function useCreateBooking() {
+export function useCreateBookingWithToken() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ booking, guest }: { booking: BookingCreate; guest: GuestCreate }) =>
-      createBooking(booking, guest),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["userBookings"] });
-    },
-  });
+      mutationFn: ({
+        bookingIn,
+        guestIn,
+      }: {
+        bookingIn: BookingCreateIn;
+        guestIn: GuestCreateIn;
+      }) => createBookingWithToken(bookingIn, guestIn),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["userBookings"] });
+      },
+    }
+  );
 }
 
-export default useCreateBooking;
+export function useCreateBookingWithoutToken() {
+  return useMutation({
+    mutationFn: ({
+      bookingIn,
+      guestIn,
+    }: {
+      bookingIn: BookingCreateIn;
+      guestIn: GuestCreateIn;
+    }) => createBookingWithoutToken(bookingIn, guestIn)
+  });
+}

@@ -23,15 +23,25 @@ const Subheader = ({ className, ref }) => {
           </div>
           <div className="flex items-center justify-center mt-1 sm:mt-0">
             <FaMapMarkerAlt className="text-base sm:text-lg mr-1 sm:mr-2 text-gray-500" />
-            <span className="text-gray-700 text-center">Sunny Isles Beach, FL 33160</span>
+            <span className="text-gray-700 text-center">
+              Sunny Isles Beach, FL 33160
+            </span>
           </div>
         </div>
 
         <div className="flex space-x-2 sm:space-x-4 text-xl sm:text-2xl">
-          <Navlink to="#"><FaFacebook className="text-base sm:text-xl" /></Navlink>
-          <Navlink to="#"><FaTwitter className="text-base sm:text-xl" /></Navlink>
-          <Navlink to="#"><FaLinkedin className="text-base sm:text-xl" /></Navlink>
-          <Navlink to="#"><FaInstagram className="text-base sm:text-xl" /></Navlink>
+          <Navlink to="#">
+            <FaFacebook className="text-base sm:text-xl" />
+          </Navlink>
+          <Navlink to="#">
+            <FaTwitter className="text-base sm:text-xl" />
+          </Navlink>
+          <Navlink to="#">
+            <FaLinkedin className="text-base sm:text-xl" />
+          </Navlink>
+          <Navlink to="#">
+            <FaInstagram className="text-base sm:text-xl" />
+          </Navlink>
         </div>
       </div>
     </div>

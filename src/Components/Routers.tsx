@@ -1,4 +1,4 @@
-import {Navigate, Route, Routes} from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { JSX } from "react";
 import HomePage from "../Pages/Home.tsx";
 import RoomPage from "../Pages/RoomPage.tsx";
@@ -17,7 +17,10 @@ export default function Routers(): JSX.Element {
       <Route path={routers.login} element={<LoginPage />} />
       <Route path={routers.rooms} element={<RoomsPage />} />
       <Route path={`${routers.book}/:id`} element={<BookingPage />} />
-      <Route path={routers.notExisting} element={<Navigate to={routers.home} replace />} />
+      <Route
+        path={routers.notExisting}
+        element={<Navigate to={routers.home} replace />}
+      />
     </Routes>
   );
 }

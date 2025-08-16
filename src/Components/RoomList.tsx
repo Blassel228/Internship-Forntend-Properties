@@ -5,28 +5,34 @@ import Spinner from "./Spinner.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
 
 const RoomList = () => {
-  const {startDate, endDate, capacity} = useSearchParams();
+  const { startDate, endDate, capacity } = useSearchParams();
 
-  const isFormEmpty = !startDate || !endDate || !capacity ||capacity < 1;
+  const isFormEmpty = !startDate || !endDate || !capacity || capacity < 1;
 
-  const { data: rooms = [], isLoading, isError } = useSearchRoomsQuery(
-    startDate,
-    endDate,
-    Number(capacity)
-  );
+  const {
+    data: rooms = [],
+    isLoading,
+    isError,
+  } = useSearchRoomsQuery(startDate, endDate, Number(capacity));
 
-  if(isFormEmpty){
+  if (isFormEmpty) {
     return (
-      <p className="text-center text-gray-500 text-lg my-[4rem]">No rooms found</p>
-    )
+      <p className="text-center text-gray-500 text-lg my-[4rem]">
+        No rooms found
+      </p>
+    );
   }
 
   if (isLoading) {
-    return <Spinner/>
+    return <Spinner />;
   }
 
   if (isError) {
-    return <p className="text-center text-red-500 text-lg mt-8">Failed to load rooms</p>;
+    return (
+      <p className="text-center text-red-500 text-lg mt-8">
+        Failed to load rooms
+      </p>
+    );
   }
 
   return (

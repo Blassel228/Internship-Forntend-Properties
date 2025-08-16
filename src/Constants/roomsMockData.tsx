@@ -1,4 +1,4 @@
-import { Room } from "../Types/types.tsx";
+import { Room } from "../Types/Room.tsx";
 
 export const rooms = [
   {
@@ -136,7 +136,7 @@ export const rooms = [
     contractStatus: "Contract Ready",
     paymentProcess: "Online Payment Available",
     safetyFeature: "24/7 Security System",
-  }
+  },
 ];
 
 export const property: Room = {

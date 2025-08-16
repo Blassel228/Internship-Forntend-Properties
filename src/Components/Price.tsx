@@ -7,7 +7,7 @@ import KeyDetailDetails from "./KeyDetailDetails.tsx";
 const Price = ({ room }) => {
   return (
     <KeyDetailOverlay className="flex items-center gap-4 border-b border-gray-200 pb-4">
-      <IoPricetagOutline color="orange" size="30px"/>
+      <IoPricetagOutline color="orange" size="30px" />
       <div>
         <KeyDetailTitle>Price</KeyDetailTitle>
         <KeyDetailDetails>Price is ${room.price} for a day</KeyDetailDetails>

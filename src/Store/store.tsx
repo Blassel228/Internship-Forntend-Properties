@@ -15,7 +15,7 @@ const persistRoomsReducer = persistReducer(persistConfig, roomSlice);
 const store = configureStore({
   reducer: {
     authorizedUser: persistedUserReducer,
-    rooms: persistRoomsReducer
+    rooms: persistRoomsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

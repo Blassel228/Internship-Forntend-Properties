@@ -17,7 +17,12 @@ type AuthButtonProps = {
   children: React.ReactNode;
 };
 
-const AuthButton = ({ to, variant = "primary", onClick, children }: AuthButtonProps) => {
+const AuthButton = ({
+  to,
+  variant = "primary",
+  onClick,
+  children,
+}: AuthButtonProps) => {
   return (
     <Link
       to={to}

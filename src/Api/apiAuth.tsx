@@ -1,5 +1,6 @@
 import baseApi from "./apiBase.tsx";
-import { Token, UserGet } from "../Types/types.tsx";
+import { Token } from "../Types/Token.tsx";
+import { UserGet } from "../Types/User.tsx";
 
 export async function loginGetToken(
   username: string,

@@ -7,14 +7,18 @@ const DesktopNav = () => {
   return (
     <nav className="hidden md:flex items-center gap-5 space-x-6">
       <ul className="flex space-x-6">
-        <li><Navlink to="/home">Home</Navlink></li>
-        <li><Navlink to="/contact">Contact Us</Navlink></li>
+        <li>
+          <Navlink to="/home">Home</Navlink>
+        </li>
+        <li>
+          <Navlink to="/contact">Contact Us</Navlink>
+        </li>
       </ul>
 
       <AuthButton to="/schedule-visit" variant="secondary">
         <span>Schedule a visit</span>
       </AuthButton>
-      <AuthButtons/>
+      <AuthButtons />
     </nav>
   );
 };

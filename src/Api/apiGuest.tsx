@@ -1,7 +1,11 @@
 import baseApi from "./apiBase.tsx";
-import {Booking, Guest, GuestCreate} from "../Types/types.tsx";
+import { Booking } from "../Types/Booking.tsx";
+import { Guest, GuestCreateIn } from "../Types/Guest.tsx";
 
-export const createGuest = async (guest: GuestCreate): Promise<Guest> => {
-  const { data }: { data: Guest } = await baseApi.post<Booking>(`/guest`, guest);
+export const createGuest = async (guestIn: GuestCreateIn): Promise<Guest> => {
+  const { data }: { data: Guest } = await baseApi.post<Booking>(
+    `/guest`,
+    guestIn,
+  );
   return data;
 };

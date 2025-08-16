@@ -1,35 +1,47 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
-import {useForm} from "react-hook-form";
-import useCreateBooking from "../Hooks/useCreateBooking.tsx";
-import {BookingCreate, GuestCreate} from "../Types/types.tsx";
+import { useForm } from "react-hook-form";
+import { useCreateBookingWithToken, useCreateBookingWithoutToken } from "../Hooks/useCreateBooking.tsx";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
 import calculaterNights from "../Utils/calculateNights.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../Store/store.tsx";
 import RequiredStar from "./RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
-import {isValidPhoneNumber} from "libphonenumber-js";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import RegistrationFormError from "./RegistrationFormError.tsx";
-import {getItem} from "../Utils/localStorage.tsx";
+import { BookingCreateIn } from "../Types/Booking.tsx";
+import { GuestCreateIn } from "../Types/Guest.tsx";
+import { getItem } from "../Utils/localStorage.tsx";
 
 const BasicDetailsInputSection = ({ room }) => {
-  const user = useSelector((state: RootState) => state.authorizedUser.authorizedUser);
+  const user = useSelector(
+    (state: RootState) => state.authorizedUser.authorizedUser
+  ) || {};
 
-  const [country, setCountry] = useState<string>(user?.country || "");
+ const [country, setCountry] = useState<string>(user?.country ?? "");
 
-  const { register, handleSubmit, setError, formState: { errors }, clearErrors } = useForm();
-  const [phoneNumber, setPhoneNumber] = useState<string>(user?.phone_number || "");
-  const { startDate, endDate} = useBookingParams();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+    clearErrors,
+  } = useForm();
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    user?.phone_number || "",
+  );
+  const { startDate, endDate } = useBookingParams();
   let nights = calculaterNights(startDate, endDate);
-  const { mutate: bookingMutate } = useCreateBooking();
+  const { mutate: bookingWithTokenMutate } = useCreateBookingWithToken();
+  const { mutate: bookingWithoutTokenMutate } = useCreateBookingWithoutToken();
 
   useEffect(() => {
-    console.log(user)
-  })
+    console.log(user);
+  });
 
   const onSubmit = (data) => {
     if (!isValidPhoneNumber(data.phone_number)) {
@@ -40,49 +52,70 @@ const BasicDetailsInputSection = ({ room }) => {
       return;
     }
 
-    if (getItem("token") === null){
-      setError("unauthorized", {
-        message: "To make a booking you need to be authorized."
-      })
-    }
     const isMainGuest = data.mainGuest === "true";
 
-    const guest: GuestCreate = {
+    const guestIn: GuestCreateIn = {
       name: data.name,
       surname: data.surname,
       email: data.email,
       phone: data.phone_number,
       country: country,
       whether_send_confirmation: data.wantsEmailConfirmation,
-      is_booking_for_me: isMainGuest
+      is_booking_for_me: isMainGuest,
     };
-    console.log("GUEST" + guest);
+    console.log("GUEST", guestIn);
     console.log(country);
 
-    const booking: BookingCreate = {
+    const bookingIn: BookingCreateIn = {
       price: nights * room.price,
       start_date: startDate,
       end_date: endDate,
       room_id: room.id,
-      special_requests: data.specialRequests || ""
+      special_requests: data.specialRequests || "",
     };
+    console.log("BOOKING", bookingIn);
+    let token = getItem("token");
+    const mutateFn = token ? bookingWithTokenMutate : bookingWithoutTokenMutate;
 
-    bookingMutate({ booking, guest });
+    mutateFn(
+      { bookingIn, guestIn },
+      {
+        onError: (error: any) => {
+          const message =
+            error.response?.data?.detail ||
+            error.message ||
+            "Something went wrong. Please try again.";
+
+          setError("serverError", {
+            type: "server",
+            message,
+          });
+        },
+      }
+    );
   };
 
   return (
-    <form className="userInfoSection w-full h-full gap-5 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="userInfoSection w-full h-full gap-5 flex flex-col"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <ContainerWithBorders className="basicDataSection">
         <div>
           <h1 className="font-bold text-xl">Enter your data</h1>
           <p className="text-green-600 leading-7 text-[13px]">
-            Everything is almost done! All remains is entering your data.<br />
-            Please enter your data in Latin, so the administration could understand it.
+            Everything is almost done! All remains is entering your data.
+            <br />
+            Please enter your data in Latin, so the administration could
+            understand it.
           </p>
         </div>
         <Row className="w-full gap-5">
           <Column className="w-[23rem]">
-            <label htmlFor="name">Name (latin)<RequiredStar /></label>
+            <label htmlFor="name">
+              Name (latin)
+              <RequiredStar />
+            </label>
             <input
               defaultValue={user?.name || ""}
               className="border rounded pl-2 py-1 w-full"
@@ -94,7 +127,10 @@ const BasicDetailsInputSection = ({ room }) => {
           </Column>
 
           <Column className="w-[23rem]">
-            <label htmlFor="surname">Surname (latin)<RequiredStar /></label>
+            <label htmlFor="surname">
+              Surname (latin)
+              <RequiredStar />
+            </label>
             <input
               defaultValue={user?.surname || ""}
               className="border rounded pl-2 py-1 w-full"
@@ -106,7 +142,10 @@ const BasicDetailsInputSection = ({ room }) => {
           </Column>
         </Row>
         <Column className="w-[23rem] gap-1">
-          <label htmlFor="email" >Email Address<RequiredStar /></label>
+          <label htmlFor="email">
+            Email Address
+            <RequiredStar />
+          </label>
           <input
             defaultValue={user?.email || ""}
             className="border rounded pl-2 py-1 w-full"
@@ -118,7 +157,10 @@ const BasicDetailsInputSection = ({ room }) => {
         </Column>
         <Column className="w-[23rem]">
           <Row>
-            <label htmlFor="country">Phone<RequiredStar /></label>
+            <label htmlFor="country">
+              Phone
+              <RequiredStar />
+            </label>
           </Row>
           <PhoneInput
             international
@@ -132,13 +174,15 @@ const BasicDetailsInputSection = ({ room }) => {
             }}
             {...register("phone_number", { required: "Phone is required" })}
           />
-         <RegistrationFormError error={errors.phone_number}>
+          <RegistrationFormError error={errors.phone_number}>
             {errors.phone_number?.message || "\u00A0"}
           </RegistrationFormError>
         </Column>
         <Row>
           <CustomCheckbox {...register("wantsEmailConfirmation")} />
-          <p className="text-xs ml-2 content-center">Yes, I want to get an electronic confirmation to my Email address.</p>
+          <p className="text-xs ml-2 content-center">
+            Yes, I want to get an electronic confirmation to my Email address.
+          </p>
         </Row>
         <Column className="gap-2">
           <h1 className="font-bold">Who are you booking for?</h1>
@@ -159,24 +203,30 @@ const BasicDetailsInputSection = ({ room }) => {
               className="h-6 w-6"
               value="false"
             />
-            <p className="text-xs content-center ml-2">This booking is not for me</p>
+            <p className="text-xs content-center ml-2">
+              This booking is not for me
+            </p>
           </Row>
         </Column>
       </ContainerWithBorders>
       <ContainerWithBorders>
         <h1 className="font-bold text-xl">Useful to know</h1>
         <p className="leading-7">
-          Keep yourself free: you can cancel booking for free before 17th of July,
-          so make a booking for this wonderful price now!
+          Keep yourself free: you can cancel booking for free before 17th of
+          July, so make a booking for this wonderful price now!
         </p>
       </ContainerWithBorders>
       <ContainerWithBorders>
         <h1 className="font-bold text-xl">Write your special requests</h1>
         <p className="leading-7">
-          Fulfillment of special requests is not guaranteed, but the accommodation administration will do everything possible to meet your needs. You can always submit a request or special request after completing the booking!
+          Fulfillment of special requests is not guaranteed, but the
+          accommodation administration will do everything possible to meet your
+          needs. You can always submit a request or special request after
+          completing the booking!
         </p>
         <label htmlFor="specialRequests">
-          Please write your request in English or these languages: Korean (optional).
+          Please write your request in English or these languages: Korean
+          (optional).
         </label>
         <textarea
           id="specialRequests"
@@ -184,9 +234,6 @@ const BasicDetailsInputSection = ({ room }) => {
           placeholder="Enter your special requests here..."
           {...register("specialRequests")}
         />
-        <RegistrationFormError error={ errors.unauthorized }>
-          {errors.unauthorized?.message || "\u00A0"}
-        </RegistrationFormError>
       </ContainerWithBorders>
       <div className="mt-4 w-full flex">
         <button
@@ -196,6 +243,9 @@ const BasicDetailsInputSection = ({ room }) => {
           Next: Finalize details
         </button>
       </div>
+      <RegistrationFormError error={errors.serverError}>
+        {errors.serverError?.message || "\u00A0"}
+      </RegistrationFormError>
     </form>
   );
 };

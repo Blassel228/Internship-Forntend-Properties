@@ -5,7 +5,7 @@ const routers = {
   login: "/login",
   rooms: "/rooms",
   book: "/makeBooking",
-  notExisting: "*"
-}
+  notExisting: "*",
+};
 
 export default routers;

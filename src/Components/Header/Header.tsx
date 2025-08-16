@@ -7,7 +7,10 @@ const Header = ({ style }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-md w-full px-32 transition-all duration-300 ease-in-out fixed" style={style}>
+    <header
+      className="bg-white shadow-md w-full px-32 transition-all duration-300 ease-in-out fixed"
+      style={style}
+    >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-800 mr-5">HOTEL ROOMS</h1>
         <DesktopNav />
@@ -19,7 +22,11 @@ const Header = ({ style }) => {
         </button>
       </div>
 
-      <HeaderMobileMenu style={style} isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <HeaderMobileMenu
+        style={style}
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
     </header>
   );
 };
