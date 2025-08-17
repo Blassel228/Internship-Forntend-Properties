@@ -14,12 +14,7 @@ const RoomPage = () => {
         <ImageWrap />
       </div>
       <SearchForm />
-      <div className="min-h-screen flex justify-center flex-col px-[10rem] pb-10">
-        <div className="flex flex-row items-stretch justify-center gap-16 h-full ">
-          <RoomOverview />
-          <KeyDetails />
-        </div>
-      </div>
+      <RoomOverview />
       <Footer />
     </>
   );

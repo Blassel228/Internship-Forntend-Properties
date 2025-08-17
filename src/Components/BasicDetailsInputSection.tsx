@@ -4,7 +4,10 @@ import React, { useEffect, useState } from "react";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
 import { useForm } from "react-hook-form";
-import { useCreateBookingWithToken, useCreateBookingWithoutToken } from "../Hooks/useCreateBooking.tsx";
+import {
+  useCreateBookingWithToken,
+  useCreateBookingWithoutToken,
+} from "../Hooks/useCreateBooking.tsx";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
 import calculaterNights from "../Utils/calculateNights.tsx";
 import { useSelector } from "react-redux";
@@ -18,11 +21,11 @@ import { GuestCreateIn } from "../Types/Guest.tsx";
 import { getItem } from "../Utils/localStorage.tsx";
 
 const BasicDetailsInputSection = ({ room }) => {
-  const user = useSelector(
-    (state: RootState) => state.authorizedUser.authorizedUser
-  ) || {};
+  const user =
+    useSelector((state: RootState) => state.authorizedUser.authorizedUser) ||
+    {};
 
- const [country, setCountry] = useState<string>(user?.country ?? "");
+  const [country, setCountry] = useState<string>(user?.country ?? "");
 
   const {
     register,
@@ -91,7 +94,7 @@ const BasicDetailsInputSection = ({ room }) => {
             message,
           });
         },
-      }
+      },
     );
   };
 

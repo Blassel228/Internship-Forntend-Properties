@@ -21,7 +21,11 @@ const HeaderButtons = () => {
         </li>
       </ul>
 
-      <AuthButton to="/schedule-visit" variant="secondary">
+      <AuthButton
+        to="/schedule-visit"
+        variant="secondary"
+        className="font-medium"
+      >
         <span>Schedule a visit</span>
       </AuthButton>
 

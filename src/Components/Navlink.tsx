@@ -8,7 +8,10 @@ type NavLinkProps = {
 
 const NavLink = ({ to, children }: NavLinkProps) => {
   return (
-    <Link to={to} className="text-gray-700 hover:text-gray-900 font-bold">
+    <Link
+      to={to}
+      className="text-black font-sans text-sm font-medium hover:text-gray-900"
+    >
       {children}
     </Link>
   );

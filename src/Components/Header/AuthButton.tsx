@@ -22,11 +22,12 @@ const AuthButton = ({
   variant = "primary",
   onClick,
   children,
+  className,
 }: AuthButtonProps) => {
   return (
     <Link
       to={to}
-      className={`${variantStyles[variant]} text-gray-700 font-bold px-4 py-2 rounded-full transition-colors text-center flex items-center justify-center space-x-2`}
+      className={`${variantStyles[variant]} text-gray-700 px-4 py-2 rounded-full transition-colors text-center flex items-center justify-center space-x-2 ${className}`}
       onClick={onClick}
     >
       {children}

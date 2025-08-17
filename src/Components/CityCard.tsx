@@ -18,7 +18,7 @@ const CityCard = () => {
             San Francisco: The Heartbeat of Innovation
           </h1>
 
-          <p className="text-base sm:text-lg text-gray-600">
+          <p className="text-base sm:text-lg text-gray-600 font-sans font-medium">
             Discover a city where creativity meets technology. Walk across the
             iconic Golden Gate Bridge, explore the vibrant streets of
             Fisherman’s Wharf, and dive into the rich culture of Silicon Valley.

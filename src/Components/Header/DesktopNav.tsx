@@ -5,7 +5,7 @@ import AuthButtons from "./AuthButtons.tsx";
 
 const DesktopNav = () => {
   return (
-    <nav className="hidden md:flex items-center gap-5 space-x-6">
+    <nav className="hidden md:flex items-center gap-3 space-x-6 font-sans">
       <ul className="flex space-x-6">
         <li>
           <Navlink to="/home">Home</Navlink>
