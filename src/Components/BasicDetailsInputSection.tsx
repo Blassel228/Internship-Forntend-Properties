@@ -19,11 +19,12 @@ import RegistrationFormError from "./RegistrationFormError.tsx";
 import { BookingCreateIn } from "../Types/Booking.tsx";
 import { GuestCreateIn } from "../Types/Guest.tsx";
 import { getItem } from "../Utils/localStorage.tsx";
+import { UserGet } from "../Types/User.tsx";
 
 const BasicDetailsInputSection = ({ room }) => {
-  const user =
-    useSelector((state: RootState) => state.authorizedUser.authorizedUser) ||
-    {};
+  const user: UserGet | null = useSelector(
+    (state: RootState) => state.authorizedUser.authorizedUser,
+  );
 
   const [country, setCountry] = useState<string>(user?.country ?? "");
 

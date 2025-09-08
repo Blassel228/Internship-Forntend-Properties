@@ -5,6 +5,7 @@ const routers = {
   login: "/login",
   rooms: "/rooms",
   book: "/makeBooking",
+  personalData: "/mysettings/personaldata",
   notExisting: "*",
 };
 

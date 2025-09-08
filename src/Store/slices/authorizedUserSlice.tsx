@@ -2,7 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { UserGet } from "../../Types/User.tsx";
 
-const initialState: { authorizedUser: UserGet | null } = {
+interface AuthorizedUserState {
+  authorizedUser: UserGet | null;
+}
+
+const initialState: AuthorizedUserState = {
   authorizedUser: null,
 };
 
