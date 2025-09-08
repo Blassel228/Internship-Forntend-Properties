@@ -12,8 +12,22 @@ export interface UserCreate {
 export interface UserGet {
   username: string;
   email: string;
-  phone_number: string;
   name: string;
   surname: string;
+  phone_number: string;
+  country: string;
   money_balance: number;
+  sex: number;
+  birthdate: string;
+}
+
+export interface UserUpdate {
+  username: string;
+  email: string;
+  name: string;
+  surname: string;
+  phone_number: string;
+  country: string;
+  sex: number;
+  birthdate: string;
 }

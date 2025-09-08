@@ -28,7 +28,7 @@ export const RoomOverview = () => {
   };
 
   return (
-    <Row className="gap-16 px-[20rem] pb-10">
+    <Row className="gap-16 px-56 pb-10">
       <Column>
         <img
           src={`data:image/png;base64,${room.image}`}
