@@ -1,5 +1,5 @@
 import React from "react";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import routers from "../Constants/routers.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
@@ -20,49 +20,48 @@ const RoomCard = ({ room }: { room: Room }) => {
   };
 
   return (
-      <motion.div
-        key={room.id}
-        className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
-        onClick={handleNavigate}
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9}}
+    <motion.div
+      key={room.id}
+      className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+      onClick={handleNavigate}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
+      <img
+        alt="Room image"
+        src={`data:image/png;base64,${room.image}`}
+        className="w-full h-48 object-cover sm:h-64"
+      />
 
-        transition={{ duration: 0.2, ease: "easeOut" }}
-      >
-        <img
-          alt="Room image"
-          src={`data:image/png;base64,${room.image}`}
-          className="w-full h-48 object-cover sm:h-64"
-        />
+      <div className="p-3 space-y-1">
+        <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
+          {room.type}
+        </span>
 
-        <div className="p-3 space-y-1">
-          <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
-            {room.type}
+        <h2 className="text-lg font-bold text-orange-600">
+          ${room.price.toFixed(2)}
+        </h2>
+
+        <p className="text-base font-medium line-clamp-1">{room.area}</p>
+
+        <div className="flex flex-wrap gap-1 text-gray-600 text-xs">
+          <span>
+            Capacity: <strong>{room.capacity}</strong>
           </span>
-
-          <h2 className="text-lg font-bold text-orange-600">
-            ${room.price.toFixed(2)}
-          </h2>
-
-          <p className="text-base font-medium line-clamp-1">{room.area}</p>
-
-          <div className="flex flex-wrap gap-1 text-gray-600 text-xs">
-            <span>
-              Capacity: <strong>{room.capacity}</strong>
-            </span>
-            <span>
-              Bathes: <strong>{room.bathes}</strong>
-            </span>
-            <span>
-              Area: <strong>{room.area}</strong>
-            </span>
-            <span>
-              Floor: <strong>{room.floor}</strong>
-            </span>
-          </div>
+          <span>
+            Bathes: <strong>{room.bathes}</strong>
+          </span>
+          <span>
+            Area: <strong>{room.area}</strong>
+          </span>
+          <span>
+            Floor: <strong>{room.floor}</strong>
+          </span>
         </div>
-      </motion.div>
+      </div>
+    </motion.div>
   );
 };
 
