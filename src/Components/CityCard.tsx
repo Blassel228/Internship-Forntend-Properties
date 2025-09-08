@@ -18,8 +18,12 @@ const CityCard = () => {
             San Francisco: The Heartbeat of Innovation
           </h1>
 
-          <p className="text-base sm:text-lg text-gray-600">
-            Discover a city where creativity meets technology. Walk across the iconic Golden Gate Bridge, explore the vibrant streets of Fisherman’s Wharf, and dive into the rich culture of Silicon Valley. Enjoy fresh seafood, breathtaking views, and let San Francisco inspire you with its progressive spirit and diverse energy.
+          <p className="text-base sm:text-lg text-gray-600 font-sans font-medium">
+            Discover a city where creativity meets technology. Walk across the
+            iconic Golden Gate Bridge, explore the vibrant streets of
+            Fisherman’s Wharf, and dive into the rich culture of Silicon Valley.
+            Enjoy fresh seafood, breathtaking views, and let San Francisco
+            inspire you with its progressive spirit and diverse energy.
           </p>
 
           <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 sm:py-3 rounded-full font-semibold text-lg w-full sm:w-auto">

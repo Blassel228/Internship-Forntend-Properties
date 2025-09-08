@@ -3,12 +3,11 @@ import {
   setAuthorizedUser,
 } from "../Store/slices/authorizedUserSlice";
 import { loginGetToken, loginGetUserByToken } from "../Api/apiAuth.tsx";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Token } from "../Types/types.tsx";
-import { UserGet } from "../Types/types.tsx";
 import { removeItem, setItem } from "../Utils/localstorage.tsx";
-import {RootState} from "../Store/store.tsx";
+import { Token } from "../Types/Token.tsx";
+import { UserGet } from "../Types/User.tsx";
 
 export default function useAuth() {
   const dispatch = useDispatch();

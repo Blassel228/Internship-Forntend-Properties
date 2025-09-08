@@ -4,8 +4,9 @@ const routers = {
   register: "/register",
   login: "/login",
   rooms: "/rooms",
-  book: "/book",
-  notExisting: "*"
-}
+  book: "/makeBooking",
+  personalData: "/mysettings/personaldata",
+  notExisting: "*",
+};
 
 export default routers;

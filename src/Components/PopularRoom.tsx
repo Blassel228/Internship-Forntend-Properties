@@ -1,5 +1,6 @@
 import React from "react";
-import { Room } from "../Types/types";
+
+import { Room } from "../Types/Room.tsx";
 
 const PopularRoom = ({ room, text }: { room: Room; text: string }) => {
   return (

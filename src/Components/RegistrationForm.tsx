@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "./Input.tsx";
 import Label from "./Label.tsx";
-import { UserCreate } from "../Types/types.tsx";
-import PhoneInput from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
-import { isValidPhoneNumber } from 'libphonenumber-js';
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import useCreateUser from "../Hooks/useUserRegister.tsx";
 import routers from "../Constants/routers.tsx";
 import RegistrationFormError from "./RegistrationFormError.tsx";
+import { UserCreate } from "../Types/User.tsx";
 
 const RegistrationForm: React.FC = () => {
   const { mutate: createUserMutation, error } = useCreateUser();
@@ -63,7 +63,7 @@ const RegistrationForm: React.FC = () => {
           onSuccess: () => {
             navigate(routers.home);
           },
-        }
+        },
       );
     } catch (err: any) {
       if (!error) {
@@ -201,7 +201,10 @@ const RegistrationForm: React.FC = () => {
 
         <p className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500">
+          <Link
+            to="/"
+            className="font-medium text-indigo-600 hover:text-indigo-500"
+          >
             Login here
           </Link>
         </p>

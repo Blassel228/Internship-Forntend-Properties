@@ -19,7 +19,10 @@ const MobileMenu = ({ isOpen, onClose, style }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="md:hidden bg-white shadow-lg absolute text-center w-full flex flex-col items-center justify-center left-0 top-full pt-4 pb-6 px-4 border-t border-gray-200 z-40" style={style}>
+    <div
+      className="md:hidden bg-white shadow-lg absolute text-center w-full flex flex-col items-center justify-center left-0 top-full pt-4 pb-6 px-4 border-t border-gray-200 z-40"
+      style={style}
+    >
       <button
         className="absolute top-4 right-4 text-gray-700"
         onClick={onClose}
@@ -28,9 +31,21 @@ const MobileMenu = ({ isOpen, onClose, style }) => {
       </button>
 
       <ul className="flex flex-col space-y-4 mb-6 mt-4">
-        <li><Navlink to="/home" onClick={onClose}>Home</Navlink></li>
-        <li><Navlink to="/rooms" onClick={onClose}>Rooms</Navlink></li>
-        <li><Navlink to="/contact" onClick={onClose}>Contact Us</Navlink></li>
+        <li>
+          <Navlink to="/home" onClick={onClose}>
+            Home
+          </Navlink>
+        </li>
+        <li>
+          <Navlink to="/rooms" onClick={onClose}>
+            Rooms
+          </Navlink>
+        </li>
+        <li>
+          <Navlink to="/contact" onClick={onClose}>
+            Contact Us
+          </Navlink>
+        </li>
       </ul>
 
       <AuthButton to="/schedule-visit" variant="secondary" onClick={onClose}>
@@ -38,7 +53,7 @@ const MobileMenu = ({ isOpen, onClose, style }) => {
       </AuthButton>
 
       <ul className="flex flex-col space-y-4 mb-6 mt-4">
-        <AuthButtons/>
+        <AuthButtons />
       </ul>
     </div>
   );

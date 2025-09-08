@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./Store/store.tsx";
 import { Provider } from "react-redux";
+import { AnimatePresence } from "framer-motion";
 
 const queryClient = new QueryClient();
 

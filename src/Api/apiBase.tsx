@@ -1,5 +1,5 @@
 import.meta.env;
-import axios, { AxiosInstance} from "axios";;
+import axios, { AxiosInstance } from "axios";
 
 const baseApi: AxiosInstance = axios.create({
   baseURL: "http://localhost:8000/api",
@@ -44,7 +44,7 @@ baseApi.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // baseApi.interceptors.response.use(

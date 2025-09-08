@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import {loginGetToken} from "../Api/apiAuth.tsx";
+import { loginGetToken } from "../Api/apiAuth.tsx";
 
 export const useLogin = (username: string, password: string) => {
   return useQuery({

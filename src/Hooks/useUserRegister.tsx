@@ -1,8 +1,8 @@
-import {useMutation} from "@tanstack/react-query";
-import {UserCreate} from "../Types/types.tsx";
-import {createUser} from "../Api/apiUser.tsx";
+import { useMutation } from "@tanstack/react-query";
+import { createUser } from "../Api/apiUser.tsx";
+import { UserCreate } from "../Types/User.tsx";
 
-function useCreateUser(){
+function useCreateUser() {
   return useMutation({
     mutationFn: ({ user }: { user: UserCreate }) => createUser(user),
     onError: (error: any, _, context) => {
@@ -17,7 +17,7 @@ function useCreateUser(){
         generalError: "An unexpected error occurred",
       };
     },
-  })
+  });
 }
 
 export default useCreateUser;

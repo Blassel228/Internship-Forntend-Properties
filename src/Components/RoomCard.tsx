@@ -1,28 +1,33 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import {Room} from "../Types/types.tsx";
 import routers from "../Constants/routers.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
+import { Room } from "../Types/Room.tsx";
 
-const RoomCard = ({ room }:{ room: Room }) => {
+const RoomCard = ({ room }: { room: Room }) => {
   const navigate = useNavigate();
-  const {startDate, endDate, capacity} = useSearchParams();
+  const { startDate, endDate, capacity } = useSearchParams();
 
   const handleNavigate = () => {
     navigate(
       {
         pathname: `${routers.room}/${room.id}`,
-        search: `?start_date=${startDate}&end_date=${endDate}&capacity=${capacity}`
+        search: `?start_date=${startDate}&end_date=${endDate}&capacity=${capacity}`,
       },
-      { state: { room } }
+      { state: { room } },
     );
   };
 
   return (
-    <div
+    <motion.div
       key={room.id}
       className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
       onClick={handleNavigate}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
     >
       <img
         alt="Room image"
@@ -42,13 +47,21 @@ const RoomCard = ({ room }:{ room: Room }) => {
         <p className="text-base font-medium line-clamp-1">{room.area}</p>
 
         <div className="flex flex-wrap gap-1 text-gray-600 text-xs">
-          <span>Capacity: <strong>{room.capacity}</strong></span>
-          <span>Bathes: <strong>{room.bathes}</strong></span>
-          <span>Area: <strong>{room.area}</strong></span>
-          <span>Floor: <strong>{room.floor}</strong></span>
+          <span>
+            Capacity: <strong>{room.capacity}</strong>
+          </span>
+          <span>
+            Bathes: <strong>{room.bathes}</strong>
+          </span>
+          <span>
+            Area: <strong>{room.area}</strong>
+          </span>
+          <span>
+            Floor: <strong>{room.floor}</strong>
+          </span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

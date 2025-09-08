@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const CapacityInput = ({ label, value, onChange, placeholder }) => {
   return (
