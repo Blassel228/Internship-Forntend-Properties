@@ -18,6 +18,7 @@ export interface UserGet {
   country: string;
   money_balance: number;
   sex: number;
+  image: string;
   birthdate: string;
 }
 

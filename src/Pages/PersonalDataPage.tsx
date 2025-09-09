@@ -1,4 +1,3 @@
-// src/features/personalData/PersonalDataPage.tsx
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -39,8 +38,7 @@ export default function PersonalDataPage() {
       <FullHeader />
       <Row className="settings-layout mt-36 justify-center content-center w-full">
         <Column className="user-settings w-2/4">
-          <PersonalDataHeader />
-
+          <PersonalDataHeader username={user?.username} image={user?.image}/>
           <FormProvider {...form}>
             <PersonalDataForm
               user={user}
