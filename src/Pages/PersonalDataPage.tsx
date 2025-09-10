@@ -38,7 +38,7 @@ export default function PersonalDataPage() {
       <FullHeader />
       <Row className="settings-layout mt-36 justify-center content-center w-full">
         <Column className="user-settings w-2/4">
-          <PersonalDataHeader username={user?.username} image={user?.image}/>
+          <PersonalDataHeader username={user?.username} image_data={user?.image_data}/>
           <FormProvider {...form}>
             <PersonalDataForm
               user={user}

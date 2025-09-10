@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { UserGet } from "../../Types/User.tsx";
+import {ImageUpdate} from "../../Types/Image.tsx";
 
 interface AuthorizedUserState {
   authorizedUser: UserGet | null;
@@ -20,14 +21,14 @@ const authorizedUserSlice = createSlice({
     clearAuthorizedUser(state) {
       state.authorizedUser = null;
     },
-    setProfileImage(state, action: PayloadAction<string>) {
+    setAuthorizedUserImage(state, action: PayloadAction<ImageUpdate>) {
       if (state.authorizedUser) {
-        state.authorizedUser.profileImage = action.payload;
+        state.authorizedUser.image_data = action.payload.image_data;
       }
     },
   },
 });
 
-export const { setAuthorizedUser, clearAuthorizedUser, setProfileImage } =
+export const { setAuthorizedUser, clearAuthorizedUser, setAuthorizedUserImage } =
   authorizedUserSlice.actions;
 export default authorizedUserSlice.reducer;

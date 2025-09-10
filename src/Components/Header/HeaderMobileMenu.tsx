@@ -7,15 +7,6 @@ import Navlink from "../Navlink.tsx";
 import AuthButtons from "./AuthButtons.tsx";
 
 const MobileMenu = ({ isOpen, onClose, style }) => {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/home");
-    onClose();
-  };
-
   if (!isOpen) return null;
 
   return (

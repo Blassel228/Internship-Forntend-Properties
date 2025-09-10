@@ -1,18 +1,17 @@
 import Row from "./Row.tsx";
 import stringToColor from "../Utils/stringToColor.tsx";
 import AvatarUploadModal from "./AvatarUploadForm.tsx";
-import useNavigation from "../Utils/navigate.tsx";
+import * as Avatar from "@radix-ui/react-avatar";
 
 export default function PersonalDataHeader({
   username,
-  image,
-  userId,
+  image_data,
 }: {
   username: string;
-  image?: string | null;
-  userId: string;
+  image_data?: string | null;
 }) {
   const bgColor = stringToColor(username);
+  const avatarUrl = image_data ? `data:image/jpeg;base64,${image_data}` : undefined;
 
   return (
     <Row className="flex user-setting mb-6 justify-between w-full items-center">
@@ -24,28 +23,25 @@ export default function PersonalDataHeader({
       </div>
 
       <AvatarUploadModal
-        currentAvatarBase64={image || null}
-        image={image}
-        userId={userId}
+        currentAvatarBase64={image_data || null}
+        image={image_data}
         trigger={
-          <div>
-            {image ? (
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-200 hover:border-orange-300 transition-colors">
-                <img
-                  src={`image/jpeg;base64,${image}`}
-                  alt="Current avatar"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          <Avatar.Root className="w-16 h-16 rounded-full overflow-hidden cursor-pointer border-2 border-gray-200 hover:border-orange-300 transition-colors">
+            {avatarUrl ? (
+              <Avatar.Image
+                src={avatarUrl}
+                alt={username}
+                className="w-full h-full object-cover"
+              />
             ) : (
-              <div
-                className="w-16 h-16 rounded-full flex items-center justify-center text-white text-lg font-medium cursor-pointer border-2 border-gray-200 hover:border-orange-300 transition-colors"
+              <Avatar.Fallback
+                className="w-full h-full flex items-center justify-center text-white text-lg font-medium"
                 style={{ backgroundColor: bgColor }}
               >
                 {username?.charAt(0).toUpperCase() || "?"}
-              </div>
+              </Avatar.Fallback>
             )}
-          </div>
+          </Avatar.Root>
         }
       />
     </Row>

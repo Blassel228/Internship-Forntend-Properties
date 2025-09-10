@@ -31,7 +31,7 @@ const FullHeader = () => {
   }, []);
 
   return (
-    <div className="fixed w-full z-999 top-0 sm:flex-col">
+    <div className="fixed w-full z-99 top-0 sm:flex-col">
       <Subheader
         ref={subheaderRef}
         className={isSubheaderVisible ? "" : "opacity-0 -translate-y-full"}

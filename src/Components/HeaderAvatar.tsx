@@ -16,8 +16,8 @@ export default function HeaderAvatar({
 
   if (!user) return null;
 
-  const avatarUrl = user.image
-    ? `data:image/jpeg;base64,${user.image}`
+  const avatarUrl = user.image_data
+    ? `data:image/jpeg;base64,${user.image_data}`
     : undefined;
 
   const initial = user.username?.charAt(0).toUpperCase() || "?";
@@ -46,7 +46,6 @@ export default function HeaderAvatar({
           className="w-full h-full object-cover"
         />
         <Avatar.Fallback
-          delayMs={600}
           className="w-full h-full flex items-center justify-center text-white font-medium"
           style={{ backgroundColor: bgColor }}
         >
