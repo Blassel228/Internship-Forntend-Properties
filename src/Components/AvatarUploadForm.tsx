@@ -138,9 +138,7 @@ export default function AvatarUploadModal({
             w-full py-3 px-4 mb-4
             bg-orange-500 hover:bg-orange-600
             text-white font-medium rounded-lg
-            transition-colors duration-200
-            flex items-center justify-center gap-2
-          `}
+            transition-colors duration-200 cursor-pointer`}
           disabled={isImageChanging}
         >
           {isImageChanging ? (
@@ -162,8 +160,7 @@ export default function AvatarUploadModal({
             bg-orange-600 hover:bg-orange-700
             disabled:bg-gray-300 disabled:cursor-not-allowed
             text-white font-medium rounded-lg
-            transition-colors duration-200
-          `}
+            transition-colors duration-200 cursor-pointer`}
         >
           Save Photo
         </button>
@@ -174,8 +171,7 @@ export default function AvatarUploadModal({
               w-full py-2 px-4
               bg-gray-200 hover:bg-gray-300
               text-gray-700 font-medium rounded-lg
-              transition-colors duration-200
-            `}
+              transition-colors duration-200 cursor-pointer`}
           >
             Close
           </button>

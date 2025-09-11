@@ -14,5 +14,6 @@ export const updateUser = async (
   const { data }: { data: UserGet } = await baseApi.put<UserGet>("/user", {
     ...userUpdate,
   });
+  console.log(data)
   return data;
 };
