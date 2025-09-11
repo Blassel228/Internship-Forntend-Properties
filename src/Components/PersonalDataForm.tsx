@@ -6,6 +6,8 @@ import EmailField from "./EmailField.tsx";
 import PhoneField from "./PhoneField.tsx";
 import BirthdateField from "./BirthdateField.tsx";
 import SexField from "./SexField.tsx";
+import {getImage} from "../Api/apiImage.tsx";
+import {ImageGet} from "../Types/Image.tsx";
 
 interface PersonalDataFormProps {
   user: UserGet | null;
@@ -24,19 +26,21 @@ export default function PersonalDataForm({
 }: PersonalDataFormProps) {
   const { handleSubmit, getValues } = useFormContext();
 
-  const handleSave = (data: any) => {
+  const handleSave = async (data: any) => {
     if (data.day && data.month && data.year) {
       const dateStr = `${data.year}-${String(data.month).padStart(2, "0")}-${String(data.day).padStart(2, "0")}`;
       const isValid = !isNaN(new Date(dateStr).getTime());
       if (isValid) {
         data.birthdate = dateStr;
       }
-    }
 
+    }
+    const image: ImageGet = await getImage();
     const payload = {
       ...data,
+      image_data: image ? image.image_data : null
     };
-
+    console.log("PAYLOAD", payload);
     updateUser(payload);
     setEditingField(null);
   };

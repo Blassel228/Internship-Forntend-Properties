@@ -28,6 +28,7 @@ export interface UserUpdate {
   name: string;
   surname: string;
   phone_number: string;
+  image_data: string;
   country: string;
   sex: number;
   birthdate: string;

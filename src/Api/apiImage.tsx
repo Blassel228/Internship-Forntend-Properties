@@ -1,8 +1,9 @@
 import baseApi from "./apiBase.tsx";
 import {ImageGet} from "../Types/Image.tsx";
 
-export const getImage = async (image_id: number): Promise<ImageGet> => {
-    return await baseApi.get("/image/", {image_id: image_id})
+export const getImage = async (): Promise<ImageGet> => {
+    const response = await baseApi.get("/image/");
+    return response.data;
 }
 
 export const createImage = async (file: File): Promise<ImageGet> => {
