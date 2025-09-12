@@ -1,32 +1,42 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
 import { useForm } from "react-hook-form";
-import {
-  useCreateBookingWithToken,
-  useCreateBookingWithoutToken,
-} from "../Hooks/useCreateBooking.tsx";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
-import calculaterNights from "../Utils/calculateNights.tsx";
+import calculateNights from "../Utils/calculateNights.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../Store/store.tsx";
 import RequiredStar from "./RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import RegistrationFormError from "./RegistrationFormError.tsx";
-import { BookingCreateIn } from "../Types/Booking.tsx";
 import { GuestCreateIn } from "../Types/Guest.tsx";
 import { getItem } from "../Utils/localStorage.tsx";
 import { UserGet } from "../Types/User.tsx";
+import { CreateCheckoutSessionRequest } from "../Types/Payment.tsx";
+import {
+  useCreateCheckoutSessionWithoutToken,
+  useCreateCheckoutSessionWithToken,
+} from "../Hooks/useCreateCheckoutSession.tsx";
 
-const BasicDetailsInputSection = ({ room }) => {
+interface BasicDetailsInputSectionProps {
+  room: {
+    id: string;
+    price: number;
+    type: string;
+  };
+}
+
+const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
+  room,
+}) => {
   const user: UserGet | null = useSelector(
-    (state: RootState) => state.authorizedUser.authorizedUser,
+    (state: RootState) => state.authorizedUser.authorizedUser
   );
 
-  const [country, setCountry] = useState<string>(user?.country ?? "");
+  const [country, setCountry] = useState<string>(user?.country || "GB");
 
   const {
     register,
@@ -35,17 +45,22 @@ const BasicDetailsInputSection = ({ room }) => {
     formState: { errors },
     clearErrors,
   } = useForm();
-  const [phoneNumber, setPhoneNumber] = useState<string>(
-    user?.phone_number || "",
-  );
-  const { startDate, endDate } = useBookingParams();
-  let nights = calculaterNights(startDate, endDate);
-  const { mutate: bookingWithTokenMutate } = useCreateBookingWithToken();
-  const { mutate: bookingWithoutTokenMutate } = useCreateBookingWithoutToken();
 
-  useEffect(() => {
-    console.log(user);
-  });
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    user?.phone_number || ""
+  );
+
+  const { startDate, endDate } = useBookingParams();
+  const nights = calculateNights(startDate, endDate);
+
+  const { mutate: createCheckoutWithToken, isPending: isWithTokenLoading } =
+    useCreateCheckoutSessionWithToken();
+  const {
+    mutate: createCheckoutWithoutToken,
+    isPending: isWithoutTokenLoading,
+  } = useCreateCheckoutSessionWithoutToken();
+
+  const isBookingCreating = isWithTokenLoading || isWithoutTokenLoading;
 
   const onSubmit = (data) => {
     if (!isValidPhoneNumber(data.phone_number)) {
@@ -59,44 +74,45 @@ const BasicDetailsInputSection = ({ room }) => {
     const isMainGuest = data.mainGuest === "true";
 
     const guestIn: GuestCreateIn = {
-      name: data.name,
-      surname: data.surname,
-      email: data.email,
+      name: data.name.trim(),
+      surname: data.surname.trim(),
+      email: data.email.trim(),
       phone: data.phone_number,
       country: country,
-      whether_send_confirmation: data.wantsEmailConfirmation,
+      whether_send_confirmation: !!data.wantsEmailConfirmation,
       is_booking_for_me: isMainGuest,
     };
-    console.log("GUEST", guestIn);
-    console.log(country);
 
-    const bookingIn: BookingCreateIn = {
+    const request: CreateCheckoutSessionRequest = {
+      room_id: room.id,
       price: nights * room.price,
       start_date: startDate,
       end_date: endDate,
-      room_id: room.id,
-      special_requests: data.specialRequests || "",
+      currency: "usd",
+      special_requests: data.specialRequests?.trim() || null,
+      guest_data: guestIn,
     };
-    console.log("BOOKING", bookingIn);
-    let token = getItem("token");
-    const mutateFn = token ? bookingWithTokenMutate : bookingWithoutTokenMutate;
 
-    mutateFn(
-      { bookingIn, guestIn },
-      {
-        onError: (error: any) => {
-          const message =
-            error.response?.data?.detail ||
-            error.message ||
-            "Something went wrong. Please try again.";
+    const token = getItem("token");
+    const mutateFn = token
+      ? createCheckoutWithToken
+      : createCheckoutWithoutToken;
 
-          setError("serverError", {
-            type: "server",
-            message,
-          });
-        },
+    mutateFn(request, {
+      onSuccess: (response) => {
+        window.location.href = response.url;
       },
-    );
+      onError: (error: any) => {
+        const message =
+          error.response?.data?.detail ||
+          error.message ||
+          "Something went wrong. Please try again.";
+        setError("serverError", {
+          type: "server",
+          message,
+        });
+      },
+    });
   };
 
   return (
@@ -114,6 +130,7 @@ const BasicDetailsInputSection = ({ room }) => {
             understand it.
           </p>
         </div>
+
         <Row className="w-full gap-5">
           <Column className="w-[23rem]">
             <label htmlFor="name">
@@ -145,6 +162,7 @@ const BasicDetailsInputSection = ({ room }) => {
             />
           </Column>
         </Row>
+
         <Column className="w-[23rem] gap-1">
           <label htmlFor="email">
             Email Address
@@ -157,11 +175,14 @@ const BasicDetailsInputSection = ({ room }) => {
             id="email"
             {...register("email", { required: "Email is required" })}
           />
-          <p className="text-xs">Booking confirmation will be sent to here.</p>
+          <p className="text-xs">
+            Booking confirmation will be sent to here.
+          </p>
         </Column>
+
         <Column className="w-[23rem]">
           <Row>
-            <label htmlFor="country">
+            <label htmlFor="phone">
               Phone
               <RequiredStar />
             </label>
@@ -171,23 +192,26 @@ const BasicDetailsInputSection = ({ room }) => {
             className="border rounded pl-2 py-1 w-full"
             defaultCountry={user?.country || "GB"}
             value={phoneNumber}
-            onCountryChange={(country: string) => setCountry(country)}
-            onChange={(phone: string) => {
-              setPhoneNumber(phone);
+            onCountryChange={(countryCode: string) => setCountry(countryCode)}
+            onChange={(phone: string | undefined) => {
+              setPhoneNumber(phone || "");
               clearErrors("phone_number");
             }}
+            inputComponent="input"
             {...register("phone_number", { required: "Phone is required" })}
           />
           <RegistrationFormError error={errors.phone_number}>
             {errors.phone_number?.message || "\u00A0"}
           </RegistrationFormError>
         </Column>
+
         <Row>
           <CustomCheckbox {...register("wantsEmailConfirmation")} />
           <p className="text-xs ml-2 content-center">
             Yes, I want to get an electronic confirmation to my Email address.
           </p>
         </Row>
+
         <Column className="gap-2">
           <h1 className="font-bold">Who are you booking for?</h1>
           <Row>
@@ -213,6 +237,7 @@ const BasicDetailsInputSection = ({ room }) => {
           </Row>
         </Column>
       </ContainerWithBorders>
+
       <ContainerWithBorders>
         <h1 className="font-bold text-xl">Useful to know</h1>
         <p className="leading-7">
@@ -220,6 +245,7 @@ const BasicDetailsInputSection = ({ room }) => {
           July, so make a booking for this wonderful price now!
         </p>
       </ContainerWithBorders>
+
       <ContainerWithBorders>
         <h1 className="font-bold text-xl">Write your special requests</h1>
         <p className="leading-7">
@@ -239,14 +265,19 @@ const BasicDetailsInputSection = ({ room }) => {
           {...register("specialRequests")}
         />
       </ContainerWithBorders>
+
       <div className="mt-4 w-full flex">
         <button
           type="submit"
-          className="bg-blue-500 ml-auto mb-10 text-white px-6 py-4 rounded-md font-medium text-lg hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          disabled={isBookingCreating}
+          className="bg-blue-500 ml-auto mb-10 text-white px-6 py-4 rounded-md font-medium text-lg hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Next: Finalize details
+          {isBookingCreating
+            ? "Redirecting to Payment..."
+            : "Pay Now via Stripe"}
         </button>
       </div>
+
       <RegistrationFormError error={errors.serverError}>
         {errors.serverError?.message || "\u00A0"}
       </RegistrationFormError>
