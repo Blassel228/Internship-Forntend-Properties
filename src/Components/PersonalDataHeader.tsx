@@ -26,7 +26,7 @@ export default function PersonalDataHeader({
         currentAvatarBase64={image_data || null}
         image={image_data}
         trigger={
-          <Avatar.Root className="w-16 h-16 rounded-full overflow-hidden cursor-pointer border-2 border-gray-200 hover:border-orange-300 transition-colors">
+          <Avatar.Root className="w-20 h-20 rounded-full overflow-hidden cursor-pointer border-2 border-gray-200 hover:border-orange-300 transition-colors">
             {avatarUrl ? (
               <Avatar.Image
                 src={avatarUrl}
