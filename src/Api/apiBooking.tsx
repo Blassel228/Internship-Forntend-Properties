@@ -1,6 +1,7 @@
 import baseApi from "./apiBase.tsx";
-import { Booking, BookingCreateIn } from "../Types/Booking.tsx";
-import { GuestCreateIn } from "../Types/Guest.tsx";
+import {Booking, BookingCreateIn} from "../Types/Booking.tsx";
+import {GuestCreateIn} from "../Types/Guest.tsx";
+import {Room} from "../Types/Room.tsx";
 
 export const createBookingWithToken = async (
   bookingIn: BookingCreateIn,
@@ -25,3 +26,9 @@ export const createBookingWithoutToken = async (
 
   return data;
 };
+
+export const getBookingsForOneUser = async (): Promise<Booking[]> => {
+  const { data } : { data: Booking[] }  = await baseApi.get('/booking/get_bookings_for_one_user');
+  console.log(data);
+  return data;
+}

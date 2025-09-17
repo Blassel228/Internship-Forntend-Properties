@@ -1,7 +1,5 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
-import useAuth from "../../Hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 import AuthButton from "./AuthButton.tsx";
 import Navlink from "../Navlink.tsx";
 import AuthButtons from "./AuthButtons.tsx";
