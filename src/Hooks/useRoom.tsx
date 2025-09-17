@@ -1,14 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
-import { getRooms } from "../Api/apiRoom.tsx";
+import {useMutation, useQuery} from "@tanstack/react-query";
+import {getRoom} from "../Api/apiRoom.tsx";
 
-const useRooms = () => {
-  return useQuery({
-    queryKey: ["rooms"],
-    queryFn: () => getRooms(),
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    staleTime: 60000,
+const useRoom = (room_id: string) => {
+  const { data: room, isLoading, error } = useQuery({
+    queryKey: ["room", room_id],
+    queryFn: () => {
+      return getRoom(room_id);
+    },
+    enabled: !!room_id,
+    staleTime: 5 * 60 * 1000,
   });
+
+  return { room, isLoading, error };
 };
 
-export default useRooms;
+export default useRoom;

@@ -24,7 +24,7 @@ export default function NameField({
   const { register, formState: { errors } } = useFormContext();
 
   return (
-    <Row className="gap-4 w-full border-gray-200 border-t pt-4 pb-4 pr-2 pl-2">
+    <Row className="gap-4 w-full border-gray-200 border-t align-center pt-4 pb-4 pr-2 pl-2">
       <div className="w-30 flex-shrink-0 grow-0 flex">
         <label className="font-medium">Name</label>
       </div>

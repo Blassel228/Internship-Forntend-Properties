@@ -1,6 +1,6 @@
 import baseApi from "./apiBase.tsx";
 
-import { Room } from "../Types/Room.tsx";
+import {Room} from "../Types/Room.tsx";
 
 export const getRooms = async (
   offset?: number,
@@ -20,5 +20,10 @@ export const getSearchRooms = async (
   const { data }: { data: Room[] } = await baseApi.get<Room[]>(
     `/room/search/${start_date}/${end_date}/${capacity}`,
   );
+  return data;
+};
+
+export const getRoom = async (room_id: string): Promise<Room> => {
+  const { data } = await baseApi.get<Room>(`/room/get_one/${room_id}`);
   return data;
 };
