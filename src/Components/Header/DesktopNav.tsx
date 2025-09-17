@@ -1,13 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import Navlink from "../Navlink.tsx";
 import AuthButton from "./AuthButton.tsx";
 import AuthButtons from "./AuthButtons.tsx";
 import HeaderAvatar from "../HeaderAvatar.tsx";
 import useNavigation from "../../Utils/navigate.tsx"
 import routers from "../../Constants/routers.tsx";
+import UserDropdownMenu from "../UserDropdownMenu.tsx";
 
 const DesktopNav = () => {
-  const { goTo } = useNavigation();
+  const [open, setOpen] = useState(false);
 
   return (
     <nav className="hidden md:flex items-center gap-3 space-x-6 font-sans">
@@ -24,7 +25,9 @@ const DesktopNav = () => {
         <span>Schedule a visit</span>
       </AuthButton>
       <AuthButtons />
-      <HeaderAvatar className="lg" onClick={() => goTo(routers.personalData)}/>
+      <UserDropdownMenu open={open} setOpen={setOpen}>
+        <HeaderAvatar className="lg"/>
+      </UserDropdownMenu>
     </nav>
   );
 };
