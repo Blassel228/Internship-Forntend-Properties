@@ -14,6 +14,7 @@ export interface Booking {
   user_id: string;
   room_id: string;
   status: string;
+  price: number;
   specialRequests: string;
   end_date: string;
   start_date: string;

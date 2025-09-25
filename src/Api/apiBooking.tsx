@@ -1,5 +1,5 @@
 import baseApi from "./apiBase.tsx";
-import {Booking, BookingCreateIn} from "../Types/Booking.tsx";
+import {Booking} from "../Types/Booking.tsx";
 
 export const getBookingsForOneUser = async (): Promise<Booking[]> => {
   const { data } : { data: Booking[] }  = await baseApi.get('/booking/get_bookings_for_one_user');

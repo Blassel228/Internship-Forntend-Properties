@@ -1,12 +1,12 @@
 import { Booking } from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
-import { AlertTriangle, Image as ImageIcon, Loader2 } from "lucide-react";
+import { AlertTriangle, Image as ImageIcon } from "lucide-react";
 
 interface BookedRoomCardProps {
   booking: Booking;
 }
 
-const CurrentBookedRoomCard = ({ booking }: BookedRoomCardProps) => {
+const CurrentBookedRoomCard = ({ booking, handleNavigate }: BookedRoomCardProps) => {
   const formatDate = (dateString: string): string => {
     const d = new Date(dateString);
     return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
@@ -14,7 +14,6 @@ const CurrentBookedRoomCard = ({ booking }: BookedRoomCardProps) => {
 
   const { room, isLoading, error } = useRoom(booking.room_id);
 
-  // 🌀 Лоадер — більший, під стиль картки
   if (isLoading) {
     return (
       <div className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition">
@@ -27,7 +26,6 @@ const CurrentBookedRoomCard = ({ booking }: BookedRoomCardProps) => {
     );
   }
 
-  // ❗ Помилка або немає room_id
   if (error || !booking.room_id) {
     return (
       <div className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-red-200">
@@ -44,7 +42,6 @@ const CurrentBookedRoomCard = ({ booking }: BookedRoomCardProps) => {
     );
   }
 
-  // 🟡 Кімнату не знайдено
   if (!room) {
     return (
       <div className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-yellow-200">
@@ -59,14 +56,14 @@ const CurrentBookedRoomCard = ({ booking }: BookedRoomCardProps) => {
     );
   }
 
-  // 🖼️ Формування зображення
   const image = room.image
     ? `data:image/jpeg;base64,${room.image}`
     : undefined;
 
   return (
-    <div className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all duration-300">
-      {/* 📷 Верхня частина — фото на всю ширину */}
+    <div className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all duration-300"
+         onClick={() => handleNavigate(booking, room)
+    }>
       <div className="h-48 w-full bg-gray-100 relative">
         {image ? (
           <img
@@ -92,7 +89,6 @@ const CurrentBookedRoomCard = ({ booking }: BookedRoomCardProps) => {
         )}
       </div>
 
-      {/* 📝 Нижня частина — тип кімнати + дати */}
       <div className="p-5">
         <h3 className="font-bold text-lg text-gray-800 mb-2">
           {room.type || "Без назви"}

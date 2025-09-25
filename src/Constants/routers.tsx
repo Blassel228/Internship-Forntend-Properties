@@ -7,7 +7,8 @@ const routers = {
   book: "/makeBooking",
   mySettings: "/mysettings",
   personalData: "/mysettings/personaldata",
-  personalBookings:"/test",
+  myBookings:"/mysettings/mybookings",
+  bookingDetails: "/mysetings/mybookings/bookingdetails",
   notExisting: "*",
 };
 

@@ -1,5 +1,9 @@
-import.meta.env;
-import axios, { AxiosInstance } from "axios";
+import { getItem, removeItem, setItem } from "../Utils/localStorage.tsx";
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import routers from "../Constants/routers.tsx";
+import useAuth from "../Hooks/useAuth.tsx";
+import {href} from "react-router-dom";
+import {refreshToken} from "./apiAuth.tsx";
 
 const baseApi: AxiosInstance = axios.create({
   baseURL: "http://localhost:8000/api",
@@ -12,78 +16,46 @@ const baseApi: AxiosInstance = axios.create({
 
 baseApi.interceptors.request.use(
   (config) => {
-    console.log("Request Sent:", config);
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  },
-);
-
-baseApi.interceptors.response.use(
-  (response) => {
-    console.log("Response Received:", response);
-    return response;
-  },
-  (error) => {
-    console.error("API Error:", error);
-    return Promise.reject(error);
-  },
-);
-
-baseApi.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token");
-
+    console.log("📤 Request Sent:", config.method?.toUpperCase(), config.url);
+    const token = getItem("token");
     if (token) {
       config.headers = config.headers || {};
       config.headers["Authorization"] = `Bearer ${token}`;
     }
-
     return config;
   },
   (error) => {
+    console.error("❌ Request Error:", error);
     return Promise.reject(error);
-  },
+  }
 );
 
-// baseApi.interceptors.response.use(
-//   response => response,
-//   async (error: AxiosError) => {
-//     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
-//
-//     if (error.response?.status === 401 && !originalRequest._retry) {
-//       originalRequest._retry = true;
-//
-//       try {
-//         const refreshToken = getItem('refreshToken');
-//
-//         if (!refreshToken) {
-//           removeItem('token');
-//           return Promise.reject(new Error('No refresh token available'));
-//         }
-//
-//         const res: RefreshTokenResponse = await baseApi.post('/auth/token/refresh', { refreshToken });
-//
-//         const { accessToken, refreshToken: newRefreshToken } = res;
-//
-//         setItem('token', accessToken);
-//         setItem('refreshToken', newRefreshToken);
-//
-//         originalRequest.headers = originalRequest.headers || {};
-//         originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
-//
-//         return baseApi(originalRequest);
-//
-//       } catch (refreshError) {
-//         removeItem('token');
-//         removeItem('refreshToken');
-//         return Promise.reject(refreshError);
-//       }
-//     }
-//
-//     return Promise.reject(error);
-//   },
-// );
+
+baseApi.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response?.status === 401) {
+      if (error.config?.url?.includes("/auth/refresh")) {
+        console.error("💀 Refresh endpoint failed — logging out");
+        removeItem("token");
+        window.location.href = routers.home;
+        return Promise.reject(error);
+      }
+
+      try {
+        const data = await refreshToken();
+        const newToken = data.access_token;
+        setItem("token", newToken);
+
+      } catch (refreshError) {
+        console.error("💀 Refresh failed — clearing session", refreshError);
+        removeItem("token");
+        window.location.href = routers.home;
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export default baseApi;

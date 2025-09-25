@@ -9,6 +9,8 @@ import routers from "../Constants/routers.tsx";
 import BookingPage from "../Pages/BookingPage.tsx";
 import PersonalDataPage from "../Pages/PersonalDataPage.tsx";
 import UserBookingsPage from "../Pages/BookedRoomsPage.tsx";
+import BookingDetailsPage from "../Pages/BookingDetailsPage.tsx";
+import CancelBookingPage from "../Pages/CancelBookingPage.tsx";
 
 export default function Routers(): JSX.Element {
   return (
@@ -20,7 +22,9 @@ export default function Routers(): JSX.Element {
       <Route path={routers.rooms} element={<RoomsPage />} />
       <Route path={`${routers.book}/:id`} element={<BookingPage />} />
       <Route path={routers.personalData} element={<PersonalDataPage />} />
-       <Route path={routers.personalBookings} element={<UserBookingsPage />} />
+      <Route path={routers.myBookings} element={<UserBookingsPage />} />
+      <Route path={routers.bookingDetails} element={<BookingDetailsPage />} />
+      <Route path="/test" element={<CancelBookingPage />} />
       <Route
         path={routers.notExisting}
         element={<Navigate to={routers.home} replace />}

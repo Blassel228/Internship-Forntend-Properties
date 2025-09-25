@@ -9,3 +9,8 @@ export interface CreateCheckoutSessionRequest {
   special_requests?: string | null;
   guest_data: GuestCreateIn;
 }
+
+export interface CreateRefundRequest{
+  booking_id: string;
+  refund_reason: string;
+}

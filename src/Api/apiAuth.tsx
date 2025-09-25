@@ -28,3 +28,8 @@ export async function loginGetUserByToken(token: string): Promise<UserGet> {
   });
   return response.data;
 }
+
+export async function refreshToken(){
+  const { data } = await baseApi.post('/auth/refresh');
+  return data;
+}

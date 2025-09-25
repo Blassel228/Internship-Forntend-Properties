@@ -3,17 +3,14 @@ import Column from "./Column.tsx";
 import { Booking } from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
 import { AlertTriangle, Image as ImageIcon } from "lucide-react";
+import formatDate from "../Utils/formatDate.tsx";
 
 interface BookedRoomCardProps {
   booking: Booking;
+  handleNavigate: void;
 }
 
-const PastBookedRoomCard = ({ booking }: BookedRoomCardProps) => {
-  const formatDate = (dateString: string): string => {
-    const d = new Date(dateString);
-    return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
-  };
-
+const BookedRoomMinorCard = ({ booking, handleNavigate }: BookedRoomCardProps) => {
   const { room, isLoading, error } = useRoom(booking.room_id);
 
   if (isLoading) {
@@ -59,8 +56,8 @@ const PastBookedRoomCard = ({ booking }: BookedRoomCardProps) => {
     : undefined;
 
   return (
-    <Row className="gap-4 p-4 border border-gray-200 rounded-lg shadow hover:shadow-md transition-all duration-200 bg-white">
-      <div className="roomImage flex-shrink-0">
+    <Row className="gap-4 p-4 border border-gray-200 rounded-lg shadow hover:shadow-md transition-all duration-200 bg-white cursor-pointer">
+      <div className="roomImage flex-shrink-0" onClick={() => handleNavigate(booking, room)}>
         {image ? (
           <img
             alt="Room"
@@ -94,4 +91,4 @@ const PastBookedRoomCard = ({ booking }: BookedRoomCardProps) => {
   );
 };
 
-export default PastBookedRoomCard;
+export default BookedRoomMinorCard;

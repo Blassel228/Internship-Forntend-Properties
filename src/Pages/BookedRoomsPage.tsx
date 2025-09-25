@@ -3,36 +3,76 @@ import useBookings from "../Hooks/useBookings.tsx";
 import Row from "../Components/Row.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import { AlertCircle, Loader2, Globe, Bed } from "lucide-react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import routers from "../Constants/routers.tsx";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { Booking } from "../Types/Booking.tsx";
-import PastBookedRoomCard from "../Components/PastBookedRoomCard.tsx";
+import BookedRoomMinorCard from "../Components/BookedRoomMinorCard.tsx";
+import {Room} from "../Types/Room.tsx";
+import useNavigation from "../Utils/navigate.tsx";
+import bookingStatus from "../Enums/bookingStatus.tsx";
+import Column from "../Components/Column.tsx";
 
 const UserBookingsPage = () => {
-  const { bookings, isLoading: areBookingsLoading, error } = useBookings();
+  const { goTo } = useNavigation();
+
+  const [showTimeoutError, setShowTimeoutError] = useState(false);
+
+  const { bookings, isLoading: areBookingsLoading, error }: { bookings: Booking[] } = useBookings();
   const [activeTab, setActiveTab] = useState<"past" | "cancelled">("past");
+
+  const hasError = !!error || showTimeoutError;
+  const errorMessage = showTimeoutError
+    ? "We couldn’t load your bookings in time. Please check your connection and try again."
+    : error?.message || "Unknown error";
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   const currentBookings = bookings?.filter(booking => {
     const endDate = new Date(booking.end_date);
-    return endDate >= today;
+    return endDate >= today && booking.status === bookingStatus.CONFIRMED;
   }) || [];
 
   const pastBookings = bookings?.filter(booking => {
     const endDate = new Date(booking.end_date);
-    return endDate < today;
+    return endDate < today && booking.status === bookingStatus.CONFIRMED;
   }) || [];
 
-  const cancelledBookings: Booking[] = [];
+   const cancelledBookings = bookings?.filter(booking => {
+    return booking.status === bookingStatus.CANCELLED || booking.status === bookingStatus.REFUNDED;
+  }) || [];
+
+  const handleNavigate = (booking: Booking, room: Room) => {
+    goTo(
+        routers.bookingDetails,
+        { state: { room, booking } },
+      );
+  };
 
   pastBookings.sort((a, b) => {
+    return new Date(b.start_date).getTime() - new Date(a.start_date).getTime();
+  });
+
+  cancelledBookings.sort((a, b) => {
     return new Date(b.end_date).getTime() - new Date(a.end_date).getTime();
   });
 
-  if (areBookingsLoading) {
+  useEffect(() => {
+    let timeoutId;
+
+    if (areBookingsLoading) {
+      timeoutId = setTimeout(() => {
+        setShowTimeoutError(true);
+      }, 10_000);
+    }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [areBookingsLoading]);
+
+  if (areBookingsLoading && !showTimeoutError) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-8">
         <Loader2 className="animate-spin text-blue-500" size={48} />
@@ -41,12 +81,22 @@ const UserBookingsPage = () => {
     );
   }
 
-  if (error) {
+  if (hasError) {
     return (
-      <div className="p-8 text-center">
-        <AlertCircle className="mx-auto text-red-500" size={48} />
-        <h3 className="mt-4 text-lg font-medium text-red-700">Could't load bookings.</h3>
-        <p className="text-red-500">{error.message}</p>
+      <div className="flex min-h-screen items-center justify-center p-4">
+        <Column className="p-8 text-center max-w-md w-full">
+          <AlertCircle className="mx-auto text-red-500" size={48} />
+          <h3 className="mt-4 text-lg font-medium text-red-700">Couldn't load bookings.</h3>
+          <p className="text-red-500 mt-2">{errorMessage}</p>
+          <div className="mt-6">
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 w-36 bg-red-600 text-white rounded hover:bg-red-700 transition mx-auto"
+            >
+              Try Again
+            </button>
+          </div>
+        </Column>
       </div>
     );
   }
@@ -88,7 +138,7 @@ const UserBookingsPage = () => {
         <h1 className="text-2xl text-center font-bold mb-8">My bookings</h1>
 
        <section className="mb-12">
-  <h2 className="text-xl font-bold text-gray-800 mb-4">Current bookings</h2>
+        <h2 className="text-xl font-bold text-gray-800 mb-4">Current bookings</h2>
 
           {currentBookings.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl border border-orange-200">
@@ -110,6 +160,7 @@ const UserBookingsPage = () => {
                   key={`current-${booking.id}`}
                   booking={booking}
                   className="w-full sm:w-[300px]"
+                  handleNavigate={handleNavigate}
                 />
               ))}
             </Row>
@@ -134,7 +185,7 @@ const UserBookingsPage = () => {
                 activeTab === "cancelled"
                   ? "bg-orange-500 text-white shadow-md hover:bg-orange-600"
                   : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-200"
-              } ${cancelledBookings.length === 0 ? "opacity-60 cursor-not-allowed" : "cursor-pointer"}`}
+              } ${cancelledBookings.length === 0 ? "opacity-60" : "cursor-pointer"}`}
               disabled={cancelledBookings.length === 0}
               title={cancelledBookings.length === 0 ? "No cancelled bookings yet" : ""}
             >
@@ -147,22 +198,18 @@ const UserBookingsPage = () => {
           {activeBookings.length > 0 ? (
             <Row className="gap-4 flex-wrap justify-center">
               {activeBookings.map((booking) => (
-                <PastBookedRoomCard
+                <BookedRoomMinorCard
                   key={`${activeTab}-${booking.id}`}
                   booking={booking}
                   className="w-full sm:w-[300px]"
+                  handleNavigate={handleNavigate}
                 />
               ))}
             </Row>
           ) : (
-            <div className="text-center py-8">
-              <div className="inline-block p-4 bg-gray-50 rounded-xl">
-                <p className="text-gray-500">
-                  {activeTab === "past"
-                    ? "No past bookings yet"
-                    : "No cancelled bookings yet"}
-                </p>
-              </div>
+            <div className="flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl border border-orange-200">
+              <h3 className="mt-6 text-xl font-bold text-gray-800">You haven’t completed any stays yet. Your first adventure is waiting!</h3>
+              <p className="mt-2 text-gray-600">No bookings have been made.</p>
             </div>
           )}
         </section>

@@ -36,7 +36,7 @@ const UserDropdownMenu = ({ open, setOpen, children }: UserDropdownMenuProps) =>
             className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 rounded-md hover:bg-gray-100 focus:bg-gray-100 outline-none cursor-pointer transition"
             onSelect={(e) => {
               e.preventDefault();
-              goTo("/test");
+              goTo(routers.myBookings);
             }}
           >
             <Calendar size={16} />

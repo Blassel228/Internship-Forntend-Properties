@@ -3,6 +3,7 @@ import { RootState } from "../Types/RootState.tsx";
 import { UserGet } from "../Types/User.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
 import stringToColor from "../Utils/stringToColor.tsx";
+import {getItem} from "../Utils/localStorage.tsx";
 
 interface HeaderAvatarProps {
   className?: string;
@@ -16,7 +17,7 @@ export default function HeaderAvatar({
 
   if (!user) return null;
 
-  const avatarUrl = user.image_data
+  const avatarUrl = (user.image_data && getItem("token"))
     ? `data:image/jpeg;base64,${user.image_data}`
     : undefined;
 
