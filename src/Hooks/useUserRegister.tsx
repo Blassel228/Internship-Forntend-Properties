@@ -1,6 +1,6 @@
-import { useMutation } from "@tanstack/react-query";
-import { createUser } from "../Api/apiUser.tsx";
-import { UserCreate } from "../Types/User.tsx";
+import {useMutation} from "@tanstack/react-query";
+import {createUser} from "../Api/apiUser.tsx";
+import {UserCreate} from "../Types/User.tsx";
 
 function useCreateUser() {
   return useMutation({

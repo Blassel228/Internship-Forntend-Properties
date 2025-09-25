@@ -2,7 +2,7 @@ import AuthButton from "./AuthButton.tsx";
 import Navlink from "../Navlink.tsx";
 import React from "react";
 import useAuth from "../../Hooks/useAuth.tsx";
-import { getItem } from "../../Utils/localStorage.tsx";
+import {getItem} from "../../Utils/localStorage.tsx";
 
 const AuthButtons = () => {
   const { logout } = useAuth();

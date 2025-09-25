@@ -1,9 +1,9 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import {motion} from "framer-motion";
+import {useNavigate} from "react-router-dom";
 import routers from "../Constants/routers.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
-import { Room } from "../Types/Room.tsx";
+import {Room} from "../Types/Room.tsx";
 
 const RoomCard = ({ room }: { room: Room }) => {
   const navigate = useNavigate();

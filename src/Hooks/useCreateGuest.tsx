@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
-import { createGuest } from "../Api/apiGuest.tsx";
+import {useMutation} from "@tanstack/react-query";
+import {createGuest} from "../Api/apiGuest.tsx";
 
-import { GuestCreateIn } from "../Types/Guest.tsx";
+import {GuestCreateIn} from "../Types/Guest.tsx";
 
 function useCreateGuest() {
   return useMutation({

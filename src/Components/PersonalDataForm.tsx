@@ -1,5 +1,5 @@
-import { useFormContext } from "react-hook-form";
-import { UserGet } from "../Types/User.tsx";
+import {useFormContext} from "react-hook-form";
+import {UserGet} from "../Types/User.tsx";
 import NameField from "./NameField.tsx";
 import UsernameField from "./UsernameField.tsx";
 import EmailField from "./EmailField.tsx";

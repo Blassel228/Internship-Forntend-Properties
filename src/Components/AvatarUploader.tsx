@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import {useRef, useState} from "react";
 import * as Avatar from "@radix-ui/react-avatar";
 import {useSelector} from "react-redux";
 import {RootState} from "../Types/RootState.tsx";

@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../Types/RootState.tsx";
-import { UserGet } from "../Types/User.tsx";
+import {useSelector} from "react-redux";
+import {RootState} from "../Types/RootState.tsx";
+import {UserGet} from "../Types/User.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
 import stringToColor from "../Utils/stringToColor.tsx";
 import {getItem} from "../Utils/localStorage.tsx";

@@ -1,4 +1,4 @@
-import { Guest } from "./Guest.tsx";
+import {Guest} from "./Guest.tsx";
 
 export interface BookingCreateIn {
   room_id: string;

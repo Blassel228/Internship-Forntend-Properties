@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { RootState } from "../Types/RootState.tsx";
+import {useState} from "react";
+import {FormProvider, useForm} from "react-hook-form";
+import {useSelector} from "react-redux";
+import {RootState} from "../Types/RootState.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import Row from "../Components/Row.tsx";
 import Column from "../Components/Column.tsx";
@@ -9,7 +9,7 @@ import useUpdateUser from "../Hooks/useUpdateUser.tsx";
 import PersonalDataHeader from "../Components/PersonalDataHeader.tsx";
 import PersonalDataForm from "../Components/PersonalDataForm.tsx";
 import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
-import { UserGet } from "../Types/User.tsx";
+import {UserGet} from "../Types/User.tsx";
 
 export default function PersonalDataPage() {
   const { mutate: updateUser, isPending, isError: isUpdatingError } = useUpdateUser();

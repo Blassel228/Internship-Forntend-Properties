@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {Link, useNavigate} from "react-router-dom";
 import Input from "./Input.tsx";
 import Label from "./Label.tsx";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import { isValidPhoneNumber } from "libphonenumber-js";
+import {isValidPhoneNumber} from "libphonenumber-js";
 import useCreateUser from "../Hooks/useUserRegister.tsx";
 import routers from "../Constants/routers.tsx";
 import RegistrationFormError from "./RegistrationFormError.tsx";
-import { UserCreate } from "../Types/User.tsx";
+import {UserCreate} from "../Types/User.tsx";
 
 const RegistrationForm: React.FC = () => {
   const { mutate: createUserMutation, error } = useCreateUser();

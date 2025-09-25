@@ -1,16 +1,10 @@
-import React, { useState, useRef } from "react";
-import { useSelector } from "react-redux";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogOverlay,
-  DialogClose,
-} from "@radix-ui/react-dialog";
+import React, {useRef, useState} from "react";
+import {useSelector} from "react-redux";
+import {Dialog, DialogClose, DialogContent, DialogOverlay, DialogTrigger,} from "@radix-ui/react-dialog";
 import * as Avatar from "@radix-ui/react-avatar";
 import stringToColor from "../Utils/stringToColor.tsx";
-import { RootState } from "../Types/RootState.tsx";
-import { UserGet } from "../Types/User.tsx";
+import {RootState} from "../Types/RootState.tsx";
+import {UserGet} from "../Types/User.tsx";
 import useUpdateImage from "../Hooks/useUpdateImage.tsx";
 import useCreateImage from "../Hooks/useCreateImage.tsx";
 

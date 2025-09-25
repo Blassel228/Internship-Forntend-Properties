@@ -1,6 +1,6 @@
-import { Booking } from "../Types/Booking.tsx";
+import {Booking} from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
-import { AlertTriangle, Image as ImageIcon } from "lucide-react";
+import {AlertTriangle, Image as ImageIcon} from "lucide-react";
 
 interface BookedRoomCardProps {
   booking: Booking;

@@ -1,5 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { Settings, Calendar, LogOut } from "lucide-react";
+import {Calendar, LogOut, Settings} from "lucide-react";
 import {useEffect} from "react";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";

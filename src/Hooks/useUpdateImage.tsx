@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import {useMutation} from "@tanstack/react-query";
 
 import {updateImage} from "../Api/apiImage.tsx";
 import {ImageGet, ImageUpdate} from "../Types/Image.tsx"

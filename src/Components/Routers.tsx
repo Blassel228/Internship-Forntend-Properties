@@ -1,5 +1,5 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { JSX } from "react";
+import {Navigate, Route, Routes} from "react-router-dom";
+import {JSX} from "react";
 import HomePage from "../Pages/Home.tsx";
 import RoomPage from "../Pages/RoomPage.tsx";
 import RegistrationPage from "../Pages/RegistrationPage.tsx";

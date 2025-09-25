@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import { getBookingsForOneUser } from "../Api/apiBooking.tsx";
-import { Booking } from "../Types/Booking.tsx";
+import {useQuery} from "@tanstack/react-query";
+import {getBookingsForOneUser} from "../Api/apiBooking.tsx";
+import {Booking} from "../Types/Booking.tsx";
 
 const useBookings = () => {
   const {data: bookings, isLoading, error} = useQuery<Booking[], Error>({

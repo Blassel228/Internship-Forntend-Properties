@@ -1,7 +1,7 @@
-import { useLocation } from "react-router-dom";
-import { Room } from "../Types/Room.tsx";
-import { Booking } from "../Types/Booking.tsx";
-import {CheckIcon, CalendarArrowDownIcon, MenuIcon, AlertTriangle, XIcon} from "lucide-react";
+import {useLocation} from "react-router-dom";
+import {Room} from "../Types/Room.tsx";
+import {Booking} from "../Types/Booking.tsx";
+import {AlertTriangle, CalendarArrowDownIcon, CheckIcon, MenuIcon, XIcon} from "lucide-react";
 import {useSelector} from "react-redux";
 import {RootState} from "../Store/store.tsx";
 import {UserGet} from "../Types/User.tsx";

@@ -1,6 +1,6 @@
 import BookingDetailTitle from "./BookingDetailTitle.tsx";
 import BookingDetail from "./BookingDetail.tsx";
-import { toWords, toWordsOrdinal } from "number-to-words";
+import {toWords, toWordsOrdinal} from "number-to-words";
 import React from "react";
 import capitalize from "../Utils/capitalize.tsx";
 import calculaterNights from "../Utils/calculateNights.tsx";

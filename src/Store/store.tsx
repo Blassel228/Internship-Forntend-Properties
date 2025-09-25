@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
+import {configureStore} from "@reduxjs/toolkit";
+import {persistReducer, persistStore} from "redux-persist";
 import authorizedUserSlice from "./slices/authorizedUserSlice";
 import storage from "redux-persist/lib/storage";
 import roomSlice from "./slices/roomSlice.tsx";

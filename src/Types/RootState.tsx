@@ -1,4 +1,4 @@
-import { UserGet } from "./User";
+import {UserGet} from "./User";
 
 export interface RootState {
   authorizedUser: {

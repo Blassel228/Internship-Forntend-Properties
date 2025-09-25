@@ -1,8 +1,8 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import { Booking } from "../Types/Booking.tsx";
+import {Booking} from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
-import { AlertTriangle, Image as ImageIcon } from "lucide-react";
+import {AlertTriangle, Image as ImageIcon} from "lucide-react";
 import formatDate from "../Utils/formatDate.tsx";
 
 interface BookedRoomCardProps {

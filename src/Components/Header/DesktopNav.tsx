@@ -3,8 +3,6 @@ import Navlink from "../Navlink.tsx";
 import AuthButton from "./AuthButton.tsx";
 import AuthButtons from "./AuthButtons.tsx";
 import HeaderAvatar from "../HeaderAvatar.tsx";
-import useNavigation from "../../Utils/navigate.tsx"
-import routers from "../../Constants/routers.tsx";
 import UserDropdownMenu from "../UserDropdownMenu.tsx";
 
 const DesktopNav = () => {

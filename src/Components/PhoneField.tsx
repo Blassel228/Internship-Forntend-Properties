@@ -1,11 +1,11 @@
-import { useFormContext, Controller } from "react-hook-form";
+import {Controller, useFormContext} from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import SettingsCancelButton from "./SettingsCancelButton.tsx";
 import SettingsSaveButton from "./SettingsSaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import PhoneInput from "react-phone-number-input";
-import { UserGet } from "../Types/User.tsx";
+import {UserGet} from "../Types/User.tsx";
 
 interface PhoneFieldProps {
   user: UserGet | null;
