@@ -24,7 +24,7 @@ export default function PersonalDataForm({
   updateUser,
   isPending,
 }: PersonalDataFormProps) {
-  const { handleSubmit, getValues } = useFormContext();
+  const { handleSubmit } = useFormContext();
 
   const handleSave = async (data: any) => {
     if (data.day && data.month && data.year) {

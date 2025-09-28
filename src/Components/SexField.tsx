@@ -1,10 +1,11 @@
 import {useFormContext} from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
-import SettingsCancelButton from "./SettingsCancelButton.tsx";
-import SettingsSaveButton from "./SettingsSaveButton.tsx";
+import CancelButton from "./CancelButton.tsx";
+import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import {UserGet} from "../Types/User.tsx";
+import FieldError from "./FieldError.tsx";
 
 interface SexFieldProps {
   user: UserGet | null;
@@ -57,10 +58,10 @@ export default function SexField({
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
-            <SettingsCancelButton onClick={onCancel}>Cancel</SettingsCancelButton>
-            <SettingsSaveButton type="submit" disabled={isPending}>
+            <CancelButton onClick={onCancel}>Cancel</CancelButton>
+            <SaveButton type="submit" disabled={isPending}>
               {isPending ? "Saving..." : "Save"}
-            </SettingsSaveButton>
+            </SaveButton>
           </Column>
         </>
       ) : (
@@ -76,6 +77,3 @@ export default function SexField({
     </Row>
   );
 }
-
-const FieldError = ({ message }: { message?: string }) =>
-  message ? <p className="text-red-500 text-xs mt-1">{message}</p> : null;

@@ -1,10 +1,12 @@
 import {useFormContext} from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
-import SettingsCancelButton from "./SettingsCancelButton.tsx";
-import SettingsSaveButton from "./SettingsSaveButton.tsx";
+import CancelButton from "./CancelButton.tsx";
+import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import {UserGet} from "../Types/User.tsx";
+import EditInput from "./EditInput.tsx";
+import FieldError from "./FieldError.tsx";
 
 interface NameFieldProps {
   user: UserGet | null;
@@ -35,11 +37,9 @@ export default function NameField({
             <label className="block font-bold mb-1">
               Name<span className="text-red-600">*</span>
             </label>
-            <input
+            <EditInput
               type="text"
               {...register("name", { required: "Name is required" })}
-              className={inputClass(errors.name)}
-              autoFocus
             />
             {errors.name && <FieldError message={errors.name.message as string} />}
           </Column>
@@ -48,19 +48,18 @@ export default function NameField({
             <label className="block font-bold mb-1">
               Surname<span className="text-red-600">*</span>
             </label>
-            <input
+            <EditInput
               type="text"
               {...register("surname", { required: "Surname is required" })}
-              className={inputClass(errors.surname)}
             />
             {errors.surname && <FieldError message={errors.surname.message as string} />}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center min-w-[80px]">
-            <SettingsCancelButton onClick={onCancel}>Cancel</SettingsCancelButton>
-            <SettingsSaveButton type="submit" disabled={isPending}>
+            <CancelButton onClick={onCancel}>Cancel</CancelButton>
+            <SaveButton type="submit" disabled={isPending}>
               {isPending ? "Saving..." : "Save"}
-            </SettingsSaveButton>
+            </SaveButton>
           </Column>
         </>
       ) : (
@@ -79,13 +78,3 @@ export default function NameField({
     </Row>
   );
 }
-
-const inputClass = (hasError?: any) =>
-  `w-full border rounded px-3 py-1 h-8 text-sm focus:outline-none focus:ring-1 ${
-    hasError
-      ? "border-red-500 focus:ring-red-500"
-      : "border-gray-300 focus:ring-blue-500"
-  }`;
-
-const FieldError = ({ message }: { message?: string }) =>
-  message ? <p className="text-red-500 text-xs mt-1">{message}</p> : null;

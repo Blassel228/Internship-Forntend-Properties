@@ -1,10 +1,12 @@
 import {useFormContext} from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
-import SettingsCancelButton from "./SettingsCancelButton.tsx";
-import SettingsSaveButton from "./SettingsSaveButton.tsx";
+import CancelButton from "./CancelButton.tsx";
+import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import {UserGet} from "../Types/User.tsx";
+import EditInput from "./EditInput.tsx";
+import FieldError from "./FieldError.tsx";
 
 interface BirthdateFieldProps {
   user: UserGet | null;
@@ -40,7 +42,7 @@ export default function BirthdateField({
               Birthdate<span className="text-red-600">*</span>
             </label>
             <Row className="gap-2">
-              <input
+              <EditInput
                 type="number"
                 placeholder="DD"
                 {...register("day", {
@@ -48,9 +50,8 @@ export default function BirthdateField({
                   min: { value: 1, message: "Min 1" },
                   max: { value: 31, message: "Max 31" },
                 })}
-                className={inputClass(errors.day)}
               />
-              <input
+              <EditInput
                 type="number"
                 placeholder="MM"
                 {...register("month", {
@@ -58,9 +59,8 @@ export default function BirthdateField({
                   min: { value: 1, message: "Min 1" },
                   max: { value: 12, message: "Max 12" },
                 })}
-                className={inputClass(errors.month)}
               />
-              <input
+              <EditInput
                 type="number"
                 placeholder="YYYY"
                 {...register("year", {
@@ -68,7 +68,6 @@ export default function BirthdateField({
                   min: { value: 1900, message: "Invalid year" },
                   max: { value: new Date().getFullYear(), message: "Future date" },
                 })}
-                className={inputClass(errors.year)}
               />
             </Row>
             {(errors.day || errors.month || errors.year) && (
@@ -83,10 +82,10 @@ export default function BirthdateField({
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
-            <SettingsCancelButton onClick={onCancel}>Cancel</SettingsCancelButton>
-            <SettingsSaveButton type="submit" disabled={isPending}>
+            <CancelButton onClick={onCancel}>Cancel</CancelButton>
+            <SaveButton type="submit" disabled={isPending}>
               {isPending ? "Saving..." : "Save"}
-            </SettingsSaveButton>
+            </SaveButton>
           </Column>
         </>
       ) : (
@@ -102,13 +101,3 @@ export default function BirthdateField({
     </Row>
   );
 }
-
-const inputClass = (hasError?: any) =>
-  `w-full border rounded px-3 py-1 h-8 text-sm focus:outline-none focus:ring-1 ${
-    hasError
-      ? "border-red-500 focus:ring-red-500"
-      : "border-gray-300 focus:ring-blue-500"
-  }`;
-
-const FieldError = ({ message }: { message?: string }) =>
-  message ? <p className="text-red-500 text-xs mt-1">{message}</p> : null;

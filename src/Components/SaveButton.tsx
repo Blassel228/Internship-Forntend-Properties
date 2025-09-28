@@ -1,6 +1,6 @@
 import React from "react";
 
-const SettingsCancelButton = ({ onClick, disabled, children }) => {
+const SaveButton = ({ onClick, disabled, children }) => {
   return (
     <button
       disabled={disabled}
@@ -13,4 +13,4 @@ const SettingsCancelButton = ({ onClick, disabled, children }) => {
   );
 };
 
-export default SettingsCancelButton;
+export default SaveButton;

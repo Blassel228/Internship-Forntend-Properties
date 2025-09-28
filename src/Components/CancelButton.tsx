@@ -4,7 +4,7 @@ type SettingsCancelButtonProps = {
   onClick: () => void;
 };
 
-const SettingsCancelButton: React.FC<SettingsCancelButtonProps> = ({
+const CancelButton: React.FC<SettingsCancelButtonProps> = ({
   onClick,
   children,
 }) => {
@@ -19,4 +19,4 @@ const SettingsCancelButton: React.FC<SettingsCancelButtonProps> = ({
   );
 };
 
-export default SettingsCancelButton;
+export default CancelButton;

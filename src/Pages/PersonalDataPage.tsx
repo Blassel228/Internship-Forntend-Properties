@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FormProvider, useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
 import {RootState} from "../Types/RootState.tsx";
@@ -12,7 +12,7 @@ import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
 import {UserGet} from "../Types/User.tsx";
 
 export default function PersonalDataPage() {
-  const { mutate: updateUser, isPending, isError: isUpdatingError } = useUpdateUser();
+  const { mutate: updateUser, isPending, isError: isUpdatingError, error } = useUpdateUser();
   const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as UserGet | null;
 
   const [editingField, setEditingField] = useState<string | null>(null);
@@ -33,12 +33,16 @@ export default function PersonalDataPage() {
     },
   });
 
+  useEffect(() => {
+    console.log(error, isUpdatingError)
+  }, [error, isUpdatingError]
+  )
   return (
     <>
       <FullHeader />
       <Row className="settings-layout mt-36 justify-center content-center w-full">
         <Column className="user-settings w-2/4">
-          <PersonalDataHeader username={user?.username} image_data={user?.image_data}/>
+          <PersonalDataHeader username={user?.username} image_data={user?.image_data ? user?.image_data : undefined}/>
           <FormProvider {...form}>
             <PersonalDataForm
               user={user}
@@ -48,10 +52,9 @@ export default function PersonalDataPage() {
               isPending={isPending}
             />
           </FormProvider>
-
-          <PersonalDataFooter isUpdatingError={isUpdatingError} />
         </Column>
       </Row>
+      {isUpdatingError && <PersonalDataFooter />}
     </>
   );
 }

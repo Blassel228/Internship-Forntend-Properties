@@ -22,9 +22,10 @@ const authorizedUserSlice = createSlice({
       state.authorizedUser = null;
     },
     setAuthorizedUserImage(state, action: PayloadAction<ImageUpdate>) {
-      if (state.authorizedUser) {
+      if (state.authorizedUser?.image_data)
         state.authorizedUser.image_data = action.payload.image_data;
-      }
+      else
+        state.authorizedUser.image_data = null;
     },
   },
 });
