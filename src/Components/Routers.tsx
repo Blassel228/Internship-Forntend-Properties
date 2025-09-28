@@ -11,6 +11,7 @@ import PersonalDataPage from "../Pages/PersonalDataPage.tsx";
 import UserBookingsPage from "../Pages/BookedRoomsPage.tsx";
 import BookingDetailsPage from "../Pages/BookingDetailsPage.tsx";
 import CancelBookingPage from "../Pages/CancelBookingPage.tsx";
+import AdminRoomsPage from "../Pages/AdminRoomsPage.tsx";
 
 export default function Routers(): JSX.Element {
   return (
@@ -24,7 +25,8 @@ export default function Routers(): JSX.Element {
       <Route path={routers.personalData} element={<PersonalDataPage />} />
       <Route path={routers.myBookings} element={<UserBookingsPage />} />
       <Route path={routers.bookingDetails} element={<BookingDetailsPage />} />
-      <Route path="/test" element={<CancelBookingPage />} />
+      <Route path={routers.cancelBooking} element={<CancelBookingPage />} />
+      <Route path={routers.adminRooms} element={<AdminRoomsPage />} />
       <Route
         path={routers.notExisting}
         element={<Navigate to={routers.home} replace />}

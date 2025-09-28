@@ -5,8 +5,7 @@ export interface UserCreate {
   phone_number: string;
   name: string;
   surname: string;
-  country: string;
-  money_balance?: number;
+  country?: string;
 }
 
 export interface UserGet {
@@ -15,11 +14,11 @@ export interface UserGet {
   name: string;
   surname: string;
   phone_number: string;
-  country: string;
-  money_balance: number;
-  sex: number;
-  image_data: string;
-  birthdate: string;
+  country?: string;
+  is_admin: boolean;
+  sex?: number;
+  image_data?: string;
+  birthdate?: string;
 }
 
 export interface UserUpdate {
@@ -27,6 +26,7 @@ export interface UserUpdate {
   email: string;
   name: string;
   surname: string;
+  is_admin: boolean;
   phone_number: string;
   image_data: string;
   country: string;

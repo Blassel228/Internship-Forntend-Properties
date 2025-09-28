@@ -14,3 +14,14 @@ export interface Room {
   total_space: number;
   capacity: number;
 }
+
+
+export interface RoomFilters{
+  type: string;
+  lowest_price: number;
+  greatest_price: number;
+  capacity: number;
+  area: string;
+  bedrooms: number;
+  bathes: number;
+}

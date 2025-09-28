@@ -1,5 +1,5 @@
 import CurrentBookedRoomCard from "../Components/CurrentBookedRoomCard.tsx";
-import useBookings from "../Hooks/useBookings.tsx";
+import {useBookings} from "../Hooks/useBooking.tsx";
 import Row from "../Components/Row.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import {AlertCircle, Bed, Globe, Loader2} from "lucide-react";

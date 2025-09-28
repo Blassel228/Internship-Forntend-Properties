@@ -1,8 +1,8 @@
 import {useQuery} from "@tanstack/react-query";
-import {getBookingsForOneUser} from "../Api/apiBooking.tsx";
+import {getBooking, getBookingsForOneUser} from "../Api/apiBooking.tsx";
 import {Booking} from "../Types/Booking.tsx";
 
-const useBookings = () => {
+export const useBookings = () => {
   const {data: bookings, isLoading, error} = useQuery<Booking[], Error>({
     queryKey: ["userBookings"],
     queryFn: getBookingsForOneUser,
@@ -13,4 +13,17 @@ const useBookings = () => {
   return { bookings, isLoading, error };
 };
 
-export default useBookings;
+
+export function useBooking(bookingId) {
+  const {
+    isLoading,
+    data: booking,
+    error,
+  } = useQuery({
+    queryKey: ["booking", bookingId],
+    queryFn: () => getBooking(bookingId),
+    retry: false,
+  });
+
+  return { isLoading, error, booking };
+}

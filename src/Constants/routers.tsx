@@ -9,6 +9,10 @@ const routers = {
   personalData: "/mysettings/personaldata",
   myBookings:"/mysettings/mybookings",
   bookingDetails: "/mysetings/mybookings/bookingdetails",
+  cancelBooking: "/mysetings/mybookings/bookingdetails/cancelBooking",
+  adminRooms: "/adminrooms",
+  adminEditRoom:"/admineditroom",
+  adminBookings: "/adminbookings",
   notExisting: "*",
 };
 

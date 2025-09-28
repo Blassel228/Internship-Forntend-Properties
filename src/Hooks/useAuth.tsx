@@ -22,12 +22,10 @@ export default function useAuth() {
 
       const image: ImageGet = await getImage();
       console.log("IMAGE:", image);
-      console.log("IMAGE_DATA", image.image_data);
+      console.log("IMAGE_DATA", image?.image_data && image?.image_data);
 
-      if (image && image.image_data) {
-        dispatch(setAuthorizedUserImage({image_data: image.image_data} as ImageUpdate));
-      } else {
-        dispatch(setAuthorizedUserImage(null));
+      if (image?.image_data) {
+        dispatch(setAuthorizedUserImage({ image_data: image.image_data }));
       }
     } catch (error) {
       console.error("Login error:", error);

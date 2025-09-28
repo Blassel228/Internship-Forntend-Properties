@@ -10,6 +10,8 @@ import Column from "../Components/Column.tsx";
 import formatDate from "../Utils/formatDate.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import useNavigation from "../Utils/navigate.tsx";
+import {router} from "next/client";
+import routers from "../Constants/routers.tsx";
 
 const BookingDetailsPage = () => {
   const location = useLocation();
@@ -111,7 +113,7 @@ const BookingDetailsPage = () => {
             </div>
 
             <Column className="border border-gray-300 px-4 pb-4">
-              <Row className="gap-4 bg-blue-50 p-4 -mx-4" onClick={() => goTo("/test", { state: { room, booking } })}>
+              <Row className="gap-4 bg-blue-50 p-4 -mx-4" onClick={() => goTo(routers.cancelBooking, { state: { room, booking } })}>
                 <XIcon />
                 <p className="font-bold">Cancel your booking</p>
               </Row>
