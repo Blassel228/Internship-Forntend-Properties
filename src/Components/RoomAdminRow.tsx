@@ -21,7 +21,7 @@ const RoomAdminRow = ({ room }: RoomAdminRowProps) => {
       className="border-b border-orange-100 hover:bg-orange-50 transition-colors"
     >
       <td className="p-3">
-        <div className="w-16 h-12 bg-orange-50 rounded overflow-hidden flex items-center justify-center">
+        <div className="w-16 h-12 bg-orange-50 overflow-hidden flex items-center justify-center">
           {avatarUrl ? (
             <img
               src={avatarUrl}
@@ -33,7 +33,7 @@ const RoomAdminRow = ({ room }: RoomAdminRowProps) => {
           )}
         </div>
       </td>
-      <td className="p-3 font-medium rounded-full text-gray-800">{room.type}</td>
+      <td className="p-3 font-medium text-gray-800">{room.type}</td>
       <td className="p-3 text-gray-700">
         {room.capacity} {room.capacity === 1 ? "person" : "people"}
       </td>
