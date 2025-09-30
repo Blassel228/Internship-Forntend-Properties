@@ -6,12 +6,13 @@ import HeaderAvatar from "../HeaderAvatar.tsx";
 import UserDropdownMenu from "../UserDropdownMenu.tsx";
 import {useSelector} from "react-redux";
 import {RootState} from "../../Types/RootState.tsx";
-import {UserGet} from "../../Types/User.tsx";
 import routers from "../../Constants/routers.tsx";
 
 const DesktopNav = () => {
   const [open, setOpen] = useState(false);
-  let { is_admin } = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as UserGet | null;
+  const { is_admin } = useSelector(
+  (root: RootState) => root.authorizedUser.authorizedUser
+) ?? { is_admin: false };
 
   return (
     <nav className="hidden md:flex items-center gap-3 space-x-6 font-sans">

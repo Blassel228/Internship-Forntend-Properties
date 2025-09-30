@@ -1,6 +1,6 @@
 import baseApi from "./apiBase.tsx";
 
-import {Room, RoomFilters} from "../Types/Room.tsx";
+import {Room, RoomFilters, RoomUpdate} from "../Types/Room.tsx";
 
 export const getRooms = async (
   offset?: number,
@@ -32,5 +32,11 @@ export const getRoomsWithFilter = async (filters: RoomFilters): Promise<Room[]> 
   const { data } = await baseApi.get<Room[]>("room/get_with_filters", {
     params: filters,
   });
+  return data;
+};
+
+
+export const updateRoom = async (room_id: string, room: RoomUpdate): Promise<Room> => {
+  const { data } = await baseApi.put<Room>(`room/${room_id}`, { ...room });
   return data;
 };

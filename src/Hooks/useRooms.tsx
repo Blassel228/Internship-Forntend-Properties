@@ -17,7 +17,7 @@ export const useRooms = () => {
 export const useRoomsWithFilters = (filters: RoomFilters) => {
   const {data: roomsWithFilters, isLoading, error, isError} = useQuery<Booking[], Error>({
     queryKey: ["rooms", "filtered", filters],
-    queryFn: () => getRoomsWithFilter(filters),
+    queryFn: async () => await getRoomsWithFilter(filters),
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     staleTime: 60000,

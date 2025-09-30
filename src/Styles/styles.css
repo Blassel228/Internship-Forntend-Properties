@@ -17,3 +17,8 @@ body {
     margin: 0;
   }
 }
+
+[data-scroll-locked][data-scroll-locked] {
+  overflow-y: scroll !important;
+  margin-right: 0 !important;
+}

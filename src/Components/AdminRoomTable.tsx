@@ -1,5 +1,7 @@
-import { Room } from "../Types/Room.tsx";
-import RoomAdminRow from "./RoomAdminRow.tsx";
+import {useEffect, useState} from "react";
+import { Room } from "../Types/Room";
+import RoomAdminRow from "./RoomAdminRow";
+import RoomEditModal from "./RoomEditModal";
 import { AlertCircle, Loader2 } from "lucide-react";
 
 interface RoomAdminTableProps {
@@ -9,6 +11,20 @@ interface RoomAdminTableProps {
 }
 
 const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
+  const [editingRoom, setEditingRoom] = useState<Room | null>(null);
+
+  const handleEdit = (room: Room) => {
+    setEditingRoom(room);
+  };
+
+  const handleCloseModal = () => {
+    setEditingRoom(null);
+  };
+
+  useEffect(() => {
+    console.log("ROOM IN TABLE: ", editingRoom)
+  }, [editingRoom])
+
   if (error) {
     return (
       <div className="flex items-center justify-center p-8 border border-orange-200 rounded-lg mb-4 w-[60rem]">
@@ -38,27 +54,39 @@ const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
     );
   }
 
-  // 4. Нормальний вивід
   return (
-    <div className="w-[60rem] border border-orange-200 rounded-lg mb-4">
-      <table className="w-full min-w-full">
-        <thead>
-          <tr className="bg-orange-50 text-orange-800 text-sm font-semibold">
-            <th className="p-3 text-left">Image</th>
-            <th className="p-3 text-left">Type</th>
-            <th className="p-3 text-left">Capacity</th>
-            <th className="p-3 text-left">Area</th>
-            <th className="p-3 text-left">Price</th>
-            <th className="p-3 text-left">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rooms.map((room) => (
-            <RoomAdminRow key={room.id} room={room} />
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <>
+      <div className="w-[60rem] border border-orange-200 rounded-lg mb-4">
+        <table className="w-full min-w-full table-fixed">
+          <thead>
+            <tr className="bg-orange-50 text-orange-800 text-sm font-semibold">
+              <th className="w-30 p-3 text-left">Image</th>
+              <th className="w-30 p-3 text-left">Type</th>
+              <th className="w-20 p-3 text-left">Beds</th>
+              <th className="w-30 p-3 text-left">Capacity</th>
+              <th className="w-40 p-3 text-left">Area</th>
+              <th className="w-30 p-3 text-left">Price</th>
+              <th className="w-30 p-3 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rooms.map((room) => (
+              <RoomAdminRow
+                key={room.id}
+                room={room}
+                onEdit={handleEdit}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <RoomEditModal
+        room={editingRoom}
+        isOpen={!!editingRoom}
+        onClose={handleCloseModal}
+      />
+    </>
   );
 };
 

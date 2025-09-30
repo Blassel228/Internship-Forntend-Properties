@@ -1,3 +1,5 @@
+import RoomType from "../Enums/roomType.tsx";
+
 export interface Room {
   id: string;
   image: string;
@@ -15,6 +17,13 @@ export interface Room {
   capacity: number;
 }
 
+
+export interface RoomUpdate{
+    price?: number;
+    beds?: number
+    type?: RoomType;
+    capacity?: number;
+}
 
 export interface RoomFilters{
   type: string;
