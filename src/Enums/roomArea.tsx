@@ -1,4 +1,4 @@
-enum areaType{
+enum roomArea{
     SIDE_VIEW = "Side View",
     STREET_VIEW = "Street View",
     CITY_VIEW = "City View",
@@ -9,4 +9,4 @@ enum areaType{
     PARK_VIEW = "Park View",
 }
 
-export default areaType;
+export default roomArea;

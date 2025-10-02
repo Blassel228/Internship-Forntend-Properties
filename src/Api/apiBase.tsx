@@ -14,7 +14,7 @@ const baseApi: AxiosInstance = axios.create({
 
 baseApi.interceptors.request.use(
   (config) => {
-    console.log("📤 Request Sent:", config.method?.toUpperCase(), config.url);
+    console.log("Request Sent:", config);
     const token = getItem("token");
     if (token) {
       config.headers = config.headers || {};
@@ -23,15 +23,18 @@ baseApi.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error("❌ Request Error:", error);
     return Promise.reject(error);
   }
 );
 
 
 baseApi.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log("Response Received:", response);
+    return response;
+  },
   async (error) => {
+    console.error("❌ Request Error:", error);
     if (error.response?.status === 401) {
       if (error.config?.url?.includes("/auth/refresh")) {
         console.error("💀 Refresh endpoint failed — logging out");

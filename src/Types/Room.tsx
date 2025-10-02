@@ -1,4 +1,5 @@
 import RoomType from "../Enums/roomType.tsx";
+import RoomArea from "../Enums/roomArea.tsx";
 
 export interface Room {
   id: string;
@@ -19,10 +20,26 @@ export interface Room {
 
 
 export interface RoomUpdate{
+    image?: string;
     price?: number;
     beds?: number
     type?: RoomType;
     capacity?: number;
+}
+
+export interface RoomCreate {
+    type: RoomType;
+    price: number;
+    beds: number;
+    bedrooms: number;
+    bathes: number;
+    floor: number;
+    area: RoomArea;
+    capacity: number;
+    description: string;
+    total_space: number;
+    has_sauna: boolean;
+    has_jacuzzi: boolean;
 }
 
 export interface RoomFilters{

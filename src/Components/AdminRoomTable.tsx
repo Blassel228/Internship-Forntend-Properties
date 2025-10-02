@@ -3,6 +3,7 @@ import { Room } from "../Types/Room";
 import RoomAdminRow from "./RoomAdminRow";
 import RoomEditModal from "./RoomEditModal";
 import { AlertCircle, Loader2 } from "lucide-react";
+import RoomDeleteModal from "./RoomDeleteModal.tsx";
 
 interface RoomAdminTableProps {
   rooms: Room[];
@@ -12,13 +13,22 @@ interface RoomAdminTableProps {
 
 const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
   const [editingRoom, setEditingRoom] = useState<Room | null>(null);
+  const [deletingRoom, setDeletingRoom] = useState<Room, null>(null);
 
   const handleEdit = (room: Room) => {
     setEditingRoom(room);
   };
 
-  const handleCloseModal = () => {
+  const handleDelete = (room: Room) => {
+    setDeletingRoom(room);
+  }
+
+  const handleCloseEditingModal = () => {
     setEditingRoom(null);
+  };
+
+  const handleCloseDeletingModal = () => {
+    setDeletingRoom(null);
   };
 
   useEffect(() => {
@@ -66,7 +76,7 @@ const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
               <th className="w-30 p-3 text-left">Capacity</th>
               <th className="w-40 p-3 text-left">Area</th>
               <th className="w-30 p-3 text-left">Price</th>
-              <th className="w-30 p-3 text-left">Actions</th>
+              <th className="w-40 p-3 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -75,6 +85,7 @@ const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
                 key={room.id}
                 room={room}
                 onEdit={handleEdit}
+                onDelete={handleDelete}
               />
             ))}
           </tbody>
@@ -84,7 +95,13 @@ const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
       <RoomEditModal
         room={editingRoom}
         isOpen={!!editingRoom}
-        onClose={handleCloseModal}
+        onClose={handleCloseEditingModal}
+      />
+
+       <RoomDeleteModal
+        room={deletingRoom}
+        isOpen={!!deletingRoom}
+        onClose={handleCloseDeletingModal}
       />
     </>
   );
