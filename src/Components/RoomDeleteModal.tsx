@@ -67,6 +67,9 @@ const RoomDeleteModal = ({ room, isOpen, onClose }: RoomDeleteModalProps) => {
                     Cancel
                   </button>
                 </Row>
+                {deletionError && (
+                    <p className="text-red-500 text-sm">Something went wrong while deleting</p>
+                  )}
               </Dialog.Panel>
             </Transition.Child>
           </div>
