@@ -1,24 +1,26 @@
 import { Room } from "../Types/Room";
-import { getItem } from "../Utils/localStorage";
+import AdminTablDataCell from "./AdminTablDataCell.tsx";
+import AdminTableRow from "./AdminTableRow.tsx";
+import Row from "./Row.tsx";
 
 interface RoomAdminRowProps {
   room: Room;
   onEdit: (room: Room) => void;
 }
 
-const RoomAdminRow = ({ room, onEdit }: RoomAdminRowProps) => {
-  const avatarUrl =
-    room.image && getItem("token")
+const RoomAdminRow = ({ room, onEdit, onDelete }: RoomAdminRowProps) => {
+  const roomUrl =
+       room.image
       ? `data:image/jpeg;base64,${room.image}`
       : null;
 
   return (
-    <tr className="border-b border-orange-100 hover:bg-orange-50 transition-colors">
+    <AdminTableRow>
       <td className="p-3">
         <div className="w-16 h-12 bg-orange-50 overflow-hidden flex items-center justify-center">
-          {avatarUrl ? (
+          {roomUrl ? (
             <img
-              src={avatarUrl}
+              src={roomUrl}
               alt={room.type}
               className="w-full h-full object-cover"
             />
@@ -27,22 +29,30 @@ const RoomAdminRow = ({ room, onEdit }: RoomAdminRowProps) => {
           )}
         </div>
       </td>
-      <td className="p-3 font-medium text-gray-800">{room.type}</td>
-      <td className="p-3 font-medium text-gray-800">{room.beds}</td>
-      <td className="p-3 text-gray-700">
+      <AdminTablDataCell>{room.type}</AdminTablDataCell>
+      <AdminTablDataCell>{room.beds}</AdminTablDataCell>
+      <AdminTablDataCell>
         {room.capacity} {room.capacity === 1 ? "person" : "people"}
-      </td>
-      <td className="p-3 text-gray-700">{room.area}</td>
-      <td className="p-3 font-semibold text-gray-900">${room.price}</td>
-      <td className="p-3">
-        <button
-          onClick={() => onEdit(room)}
-          className="px-8 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded transition-colors"
-        >
-          Edit
-        </button>
-      </td>
-    </tr>
+      </AdminTablDataCell>
+      <AdminTablDataCell>{room.area}</AdminTablDataCell>
+      <AdminTablDataCell>${room.price}</AdminTablDataCell>
+      <AdminTablDataCell>
+        <Row className="gap-4">
+          <button
+            onClick={() => onEdit(room)}
+            className="flex-1 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded transition-colors"
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => onDelete(room)}
+            className="flex-1 py-2 bg-red-600 hover:bg-red-800 text-white text-sm font-medium rounded transition-colors"
+          >
+            Delete
+          </button>
+        </Row>
+      </AdminTablDataCell>
+    </AdminTableRow>
   );
 };
 

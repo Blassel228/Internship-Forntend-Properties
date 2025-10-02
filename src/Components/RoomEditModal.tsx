@@ -1,10 +1,11 @@
-import { Fragment, useEffect } from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Room, RoomUpdate } from "../Types/Room";
 import useUpdateRoom from "../Hooks/useUpdateRoom";
 import RoomEditModalField from "./RoomEditModalField";
 import { useForm } from "react-hook-form";
 import roomType from "../Enums/roomType.tsx";
+import * as Avatar from "@radix-ui/react-avatar";
 
 interface RoomEditModalProps {
   room: Room | null;
@@ -14,12 +15,14 @@ interface RoomEditModalProps {
 
 const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
   const { updateRoom, isRoomUpdating } = useUpdateRoom();
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { isSubmitting, errors },
+    setValue
   } = useForm<RoomUpdate>({
     defaultValues: {
       type: room?.type || "",
@@ -40,6 +43,24 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
     }
   }, [room, reset]);
 
+   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target?.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      const base64StringRequest = (reader.result as string).split(",")[1];
+      setImagePreview(base64String);
+      setValue("image", base64StringRequest, { shouldValidate: true });
+    };
+    reader.readAsDataURL(file);
+  };
+
   const onSubmit = (data: RoomUpdate) => {
     if (!room) return;
     updateRoom(
@@ -54,7 +75,7 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-999" onClose={onClose}>
+      <Dialog as="div" className="relative z-999" onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -112,6 +133,42 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
                   {errors.beds && (
                     <p className="text-red-500 text-sm">{errors.beds.message}</p>
                   )}
+
+                  <div className="flex flex-col items-center">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Image Preview
+                    </label>
+                    <div className="w-32 h-32  overflow-hidden border-4 border-orange-100 bg-gray-100 flex items-center justify-center">
+                      <Avatar.Root className="w-full h-full">
+                        {imagePreview ? (
+                          <Avatar.Image
+                            src={imagePreview}
+                            alt="Room preview"
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <Avatar.Fallback
+                            className="w-full h-full flex items-center justify-center text-gray-400 text-sm bg-gray-100"
+                            delayMs={0}
+                          >
+                            No image
+                          </Avatar.Fallback>
+                        )}
+                      </Avatar.Root>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Upload Image
+                    </label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={onFileChange}
+                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100"
+                    />
+                  </div>
 
                   <RoomEditModalField
                     label="Capacity (people)"
