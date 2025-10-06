@@ -9,11 +9,11 @@ import useUpdateUser from "../Hooks/useUpdateUser.tsx";
 import PersonalDataHeader from "../Components/PersonalDataHeader.tsx";
 import PersonalDataForm from "../Components/PersonalDataForm.tsx";
 import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
 
-export default function PersonalDataPage() {
+export default function PersonalData() {
   const { mutate: updateUser, isPending, isError: isUpdatingError, error } = useUpdateUser();
-  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as UserGet | null;
+  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as User | null;
 
   const [editingField, setEditingField] = useState<string | null>(null);
 

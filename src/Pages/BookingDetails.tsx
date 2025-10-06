@@ -4,20 +4,19 @@ import {Booking} from "../Types/Booking.tsx";
 import {AlertTriangle, CalendarArrowDownIcon, CheckIcon, MenuIcon, XIcon} from "lucide-react";
 import {useSelector} from "react-redux";
 import {RootState} from "../Store/store.tsx";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
 import Row from "../Components/Row.tsx";
 import Column from "../Components/Column.tsx";
-import formatDate from "../Utils/formatDate.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import useNavigation from "../Utils/navigate.tsx";
-import {router} from "next/client";
 import routers from "../Constants/routers.tsx";
+import {formatDate} from "../Utils/helpers.tsx";
 
-const BookingDetailsPage = () => {
+const BookingDetails = () => {
   const location = useLocation();
   const { goTo } = useNavigation();
 
-  const { email } = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as UserGet | null;
+  const { email } = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as User | null;
   const { state } = location;
 
   const booking = state?.booking as Booking | undefined;
@@ -135,4 +134,4 @@ const BookingDetailsPage = () => {
   );
 };
 
-export default BookingDetailsPage;
+export default BookingDetails;

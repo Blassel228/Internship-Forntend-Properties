@@ -2,7 +2,7 @@ import React from "react";
 import LoginForm from "../Components/LoginForm.tsx";
 import Header from "../Components/Header/Header.tsx";
 
-const LoginPage = () => {
+const Login = () => {
   return (
     <div className="h-screen flex flex-col">
       <Header />
@@ -13,4 +13,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;

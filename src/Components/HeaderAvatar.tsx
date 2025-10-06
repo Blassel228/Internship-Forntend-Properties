@@ -1,9 +1,9 @@
 import {useSelector} from "react-redux";
 import {RootState} from "../Types/RootState.tsx";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
-import stringToColor from "../Utils/stringToColor.tsx";
 import {getItem} from "../Utils/localStorage.tsx";
+import {stringToColor} from "../Utils/helpers.tsx";
 
 interface HeaderAvatarProps {
   className?: string;
@@ -13,7 +13,7 @@ export default function HeaderAvatar({
   className = "",
   onClick = ""
 }: HeaderAvatarProps) {
-  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as UserGet | null;
+  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as User | null;
 
   if (!user) return null;
 

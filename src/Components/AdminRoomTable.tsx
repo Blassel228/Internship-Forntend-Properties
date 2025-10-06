@@ -51,7 +51,7 @@ const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
     return (
       <div className="flex flex-col items-center justify-center p-12 border border-orange-200 rounded-lg mb-4 w-[60rem]">
         <Loader2 className="animate-spin text-blue-500" size={48} />
-        <p className="mt-4 text-gray-600">Завантажуємо кімнати...</p>
+        <p className="mt-4 text-gray-600">Loading rooms...</p>
       </div>
     );
   }

@@ -1,8 +1,8 @@
-import {UserGet} from "./User";
+import {User} from "./User";
 
 export interface RootState {
   authorizedUser: {
-    authorizedUser: UserGet | null;
+    authorizedUser: User | null;
   };
   rooms: any;
 }

@@ -1,36 +1,40 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 import {JSX} from "react";
 import HomePage from "../Pages/Home.tsx";
-import RoomPage from "../Pages/RoomPage.tsx";
-import RegistrationPage from "../Pages/RegistrationPage.tsx";
-import LoginPage from "../Pages/LoginPage.tsx";
-import RoomsPage from "../Pages/RoomsPage.tsx";
+import Room from "../Pages/Room.tsx";
+import Registration from "../Pages/Registration.tsx";
+import Login from "../Pages/Login.tsx";
+import Rooms from "../Pages/Rooms.tsx";
 import routers from "../Constants/routers.tsx";
-import BookingPage from "../Pages/BookingPage.tsx";
-import PersonalDataPage from "../Pages/PersonalDataPage.tsx";
-import UserBookingsPage from "../Pages/BookedRoomsPage.tsx";
-import BookingDetailsPage from "../Pages/BookingDetailsPage.tsx";
-import CancelBookingPage from "../Pages/CancelBookingPage.tsx";
-import AdminRoomsPage from "../Pages/AdminRoomsPage.tsx";
+import Booking from "../Pages/Booking.tsx";
+import PersonalData from "../Pages/PersonalData.tsx";
+import UserBookingsPage from "../Pages/BookedRooms.tsx";
+import BookingDetails from "../Pages/BookingDetails.tsx";
+import CancelBooking from "../Pages/CancelBooking.tsx";
+import AdminRooms from "../Pages/AdminRooms.tsx";
+import MyReviews from "../Pages/MyReviews.tsx";
+import MakeReview from "../Pages/MakeReview.tsx";
 
 export default function Routers(): JSX.Element {
   return (
     <Routes>
-      <Route path={routers.home} element={<HomePage />} />
-      <Route path={`${routers.room}/:id`} element={<RoomPage />} />
-      <Route path={routers.register} element={<RegistrationPage />} />;
-      <Route path={routers.login} element={<LoginPage />} />
-      <Route path={routers.rooms} element={<RoomsPage />} />
-      <Route path={`${routers.book}/:id`} element={<BookingPage />} />
-      <Route path={routers.personalData} element={<PersonalDataPage />} />
-      <Route path={routers.myBookings} element={<UserBookingsPage />} />
-      <Route path={routers.bookingDetails} element={<BookingDetailsPage />} />
-      <Route path={routers.cancelBooking} element={<CancelBookingPage />} />
-      <Route path={routers.adminRooms} element={<AdminRoomsPage />} />
-      <Route
-        path={routers.notExisting}
-        element={<Navigate to={routers.home} replace />}
-      />
+        <Route path={routers.home} element={<HomePage />} />
+        <Route path={`${routers.room}/:id`} element={<Room />} />
+        <Route path={routers.register} element={<Registration />} />;
+        <Route path={routers.login} element={<Login />} />
+        <Route path={routers.rooms} element={<Rooms />} />
+        <Route path={`${routers.book}/:id`} element={<Booking />} />
+        <Route path={routers.personalData} element={<PersonalData />} />
+        <Route path={routers.myBookings} element={<UserBookingsPage />} />
+        <Route path={routers.bookingDetails} element={<BookingDetails />} />
+        <Route path={routers.cancelBooking} element={<CancelBooking />} />
+        <Route path={routers.adminRooms} element={<AdminRooms />} />
+        <Route path={routers.reviews} element={<MyReviews />} />
+        <Route path={routers.makeReview} element={<MakeReview />} />
+    <Route
+    path={routers.notExisting}
+    element={<Navigate to={routers.home} replace />}
+    />
     </Routes>
   );
 }

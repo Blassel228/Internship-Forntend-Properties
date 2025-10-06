@@ -7,7 +7,6 @@ import hotel3 from "../Images/hotel3.jpg";
 
 const ImageSection = () => {
   const images = [hotel1, hotel2, hotel3];
-  const locations = ["Toronto, Canada", "Banff, Canada", "Vancouver, Canada"];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

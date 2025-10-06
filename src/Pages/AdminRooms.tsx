@@ -8,7 +8,7 @@ import AdminRoomFilter from "../Components/AdminRoomFilter.tsx";
 import { RoomFilters } from "../types/Room.tsx";
 import Row from "../Components/Row.tsx";
 
-const AdminRoomsPage = () => {
+const AdminRooms = () => {
   const [filters, setFilters] = useState<RoomFilters | null>(null);
   const { roomsWithFilters: rooms, isLoading, error, isError} = useRoomsWithFilters(filters);
 
@@ -46,4 +46,4 @@ const AdminRoomsPage = () => {
   );
 };
 
-export default AdminRoomsPage;
+export default AdminRooms;

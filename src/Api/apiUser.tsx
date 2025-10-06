@@ -1,8 +1,8 @@
 import baseApi from "./apiBase.tsx";
-import {UserCreate, UserGet, UserUpdate} from "../Types/User.tsx";
+import {UserCreate, User, UserUpdate} from "../Types/User.tsx";
 
-export const createUser = async (user: UserCreate): Promise<UserGet> => {
-  const { data }: { data: UserGet } = await baseApi.post<UserGet>(`/user`, {
+export const createUser = async (user: UserCreate): Promise<User> => {
+  const { data }: { data: User } = await baseApi.post<User>(`/user`, {
     ...user,
   });
   return data;
@@ -10,8 +10,8 @@ export const createUser = async (user: UserCreate): Promise<UserGet> => {
 
 export const updateUser = async (
   userUpdate: Partial<UserUpdate>,
-): Promise<UserGet> => {
-  const { data }: { data: UserGet } = await baseApi.put<UserGet>("/user", {
+): Promise<User> => {
+  const { data }: { data: User } = await baseApi.put<User>("/user", {
     ...userUpdate,
   });
   console.log(data)

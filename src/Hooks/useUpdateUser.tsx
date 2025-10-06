@@ -2,7 +2,7 @@ import {useMutation} from "@tanstack/react-query";
 import {updateUser} from "../Api/apiUser.tsx";
 import {useDispatch} from "react-redux";
 import {setAuthorizedUser, setAuthorizedUserImage} from "../Store/slices/authorizedUserSlice.tsx";
-import {UserGet, UserUpdate} from "../Types/User.tsx";
+import {User, UserUpdate} from "../Types/User.tsx";
 import {getImage} from "../Api/apiImage.tsx";
 import {ImageGet} from "../Types/Image.tsx";
 
@@ -14,7 +14,7 @@ function useUpdateUser() {
       return await updateUser(userUpdate);
 
     },
-    onSuccess: async (user: UserGet) => {
+    onSuccess: async (user: User) => {
       dispatch(setAuthorizedUser(user));
       const image:ImageGet = await getImage();
       dispatch(setAuthorizedUserImage(image))

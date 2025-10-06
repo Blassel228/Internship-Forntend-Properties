@@ -5,7 +5,7 @@ import SearchForm from "../Components/SearchForm.tsx";
 import {RoomOverview} from "../Components/RoomOverview.tsx";
 import Footer from "../Components/Footer/Footer.tsx";
 
-const RoomPage = () => {
+const Room = () => {
   return (
     <>
       <FullHeader />
@@ -19,4 +19,4 @@ const RoomPage = () => {
   );
 };
 
-export default RoomPage;
+export default Room;

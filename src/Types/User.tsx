@@ -1,14 +1,4 @@
-export interface UserCreate {
-  username: string;
-  password: string;
-  email: string;
-  phone_number: string;
-  name: string;
-  surname: string;
-  country?: string;
-}
-
-export interface UserGet {
+export interface User {
   username: string;
   email: string;
   name: string;
@@ -19,6 +9,16 @@ export interface UserGet {
   sex?: number;
   image_data?: string;
   birthdate?: string;
+}
+
+export interface UserCreate {
+  username: string;
+  password: string;
+  email: string;
+  phone_number: string;
+  name: string;
+  surname: string;
+  country?: string;
 }
 
 export interface UserUpdate {

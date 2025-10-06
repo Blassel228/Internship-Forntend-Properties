@@ -1,11 +1,11 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Subheader from "../Subheader.tsx";
 import Header from "./Header.tsx";
 
-const FullHeader = () => {
+const FullHeader = React.forwardRef<HTMLDivElement>((_, ref) => {
   const [isSubheaderVisible, setIsSubheaderVisible] = useState(true);
   const [subheaderHeight, setSubheaderHeight] = useState(0);
-  const subheaderRef = useRef(null);
+  const subheaderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -25,16 +25,17 @@ const FullHeader = () => {
 
   useEffect(() => {
     if (subheaderRef.current) {
-      const height = subheaderRef.current.offsetHeight;
-      setSubheaderHeight(height);
+      setSubheaderHeight(subheaderRef.current.offsetHeight);
     }
   }, []);
 
   return (
-    <div className="fixed w-full z-99 top-0 sm:flex-col">
+    <div ref={ref} className="fixed w-full z-50 top-0 bg-white">
       <Subheader
         ref={subheaderRef}
-        className={isSubheaderVisible ? "" : "opacity-0 -translate-y-full"}
+        className={`transition-all duration-300 ${
+          isSubheaderVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+        }`}
       />
       <Header
         style={{
@@ -43,6 +44,6 @@ const FullHeader = () => {
       />
     </div>
   );
-};
+});
 
 export default FullHeader;

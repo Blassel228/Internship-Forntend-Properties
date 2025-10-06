@@ -2,7 +2,8 @@ import {useRef, useState} from "react";
 import * as Avatar from "@radix-ui/react-avatar";
 import {useSelector} from "react-redux";
 import {RootState} from "../Types/RootState.tsx";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
+import {stringToColor} from "../Utils/helpers.tsx";
 
 interface AvatarUploaderProps {
   currentAvatarBase64?: string | null;
@@ -16,21 +17,13 @@ export default function AvatarUploader({
   className = "",
 }: AvatarUploaderProps) {
   const [preview, setPreview] = useState<string | null>(null);
-  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as UserGet | null;
+  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as User | null;
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const stringToColor = (str: string) => {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    return `hsl(${hash % 360}, 60%, 60%)`;
-  };
 
   const bgColor = stringToColor(user?.username);
   const initial = user?.username.charAt(0).toUpperCase();
 
-  const currentAvatarUrl = user?.image
+  const currentAvatarUrl = user?.image_data
     ? `image/jpeg;base64,${currentAvatarBase64}`
     : undefined;
 

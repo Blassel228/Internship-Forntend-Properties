@@ -56,3 +56,8 @@ export const deleteRoom = async (room_id: string): Promise<boolean> => {
   const { data } = await baseApi.delete<boolean>(`room/${room_id}`);
   return data;
 };
+
+export const getRoomsBookedNotRatedByUser = async (): Promise<Room[]> => {
+  const { data } = await baseApi.get<Room[]>("/room/get_rooms_booked_not_rated_by_user");
+  return data;
+}

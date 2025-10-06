@@ -16,6 +16,7 @@ export interface Room {
   description: string;
   total_space: number;
   capacity: number;
+  average_rating: number;
 }
 
 

@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {removeItem, setItem} from "../Utils/localstorage.tsx";
 import {Token} from "../Types/Token.tsx";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
 import {getImage} from "../Api/apiImage.tsx";
 import {ImageGet, ImageUpdate} from "../Types/Image.tsx";
 
@@ -16,7 +16,7 @@ export default function useAuth() {
       const response: Token = await loginGetToken(username, password);
       const token = response.access_token;
 
-      const user: UserGet = await loginGetUserByToken(token);
+      const user: User = await loginGetUserByToken(token);
       setItem("token", token);
       dispatch(setAuthorizedUser(user));
 

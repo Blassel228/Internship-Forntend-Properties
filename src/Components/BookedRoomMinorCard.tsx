@@ -3,7 +3,7 @@ import Column from "./Column.tsx";
 import {Booking} from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
 import {AlertTriangle, Image as ImageIcon} from "lucide-react";
-import formatDate from "../Utils/formatDate.tsx";
+import {formatDate} from "../Utils/helpers.tsx";
 
 interface BookedRoomCardProps {
   booking: Booking;

@@ -3,12 +3,12 @@ import {Link, useLocation} from "react-router-dom";
 import {Booking} from "../Types/Booking.tsx";
 import {Room} from "../Types/Room.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
-import formatDate from "../Utils/formatDate.tsx";
 import useRefund from "../Hooks/useRefund.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
+import {formatDate} from "../Utils/helpers.tsx";
 
-const CancelBookingPage = () => {
+const CancelBooking = () => {
   const location = useLocation();
   const { goBack, goTo } = useNavigation();
   const { createRefund, isPending, isError } = useRefund();
@@ -218,4 +218,4 @@ const CancelBookingPage = () => {
   );
 };
 
-export default CancelBookingPage;
+export default CancelBooking;

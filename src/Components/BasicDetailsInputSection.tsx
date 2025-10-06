@@ -5,7 +5,7 @@ import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
 import {useForm} from "react-hook-form";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
-import calculateNights from "../Utils/calculateNights.tsx";
+import {calculateNights} from "../Utils/helpers.tsx";
 import {useSelector} from "react-redux";
 import {RootState} from "../Store/store.tsx";
 import RequiredStar from "./RequiredStar.tsx";
@@ -14,7 +14,7 @@ import {isValidPhoneNumber} from "libphonenumber-js";
 import RegistrationFormError from "./RegistrationFormError.tsx";
 import {GuestCreateIn} from "../Types/Guest.tsx";
 import {getItem} from "../Utils/localStorage.tsx";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
 import {CreateCheckoutSessionRequest} from "../Types/Payment.tsx";
 import {
   useCreateCheckoutSessionWithoutToken,
@@ -32,7 +32,7 @@ interface BasicDetailsInputSectionProps {
 const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
   room,
 }) => {
-  const user: UserGet | null = useSelector(
+  const user: User | null = useSelector(
     (state: RootState) => state.authorizedUser.authorizedUser
   );
 

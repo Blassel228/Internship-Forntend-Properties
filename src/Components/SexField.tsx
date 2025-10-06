@@ -4,11 +4,11 @@ import Row from "./Row.tsx";
 import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
 import FieldError from "./FieldError.tsx";
 
 interface SexFieldProps {
-  user: UserGet | null;
+  user: User | null;
   isEditing: boolean;
   onStartEdit: () => void;
   onCancel: () => void;

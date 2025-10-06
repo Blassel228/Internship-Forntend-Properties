@@ -5,12 +5,12 @@ import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import PhoneInput from "react-phone-number-input";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
 import FieldError from "./FieldError.tsx";
 import EditInput from "./EditInput.tsx";
 
 interface PhoneFieldProps {
-  user: UserGet | null;
+  user: User | null;
   isEditing: boolean;
   onStartEdit: () => void;
   onCancel: () => void;

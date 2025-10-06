@@ -1,12 +1,5 @@
 import {Guest} from "./Guest.tsx";
-
-export interface BookingCreateIn {
-  room_id: string;
-  price: number;
-  special_requests: string;
-  start_date: string;
-  end_date: string;
-}
+import {Room} from "./Room.tsx";
 
 export interface Booking {
   id: string;
@@ -20,4 +13,5 @@ export interface Booking {
   start_date: string;
   created_at: string;
   guest: Guest;
+  room: Room;
 }

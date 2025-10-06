@@ -1,5 +1,5 @@
 import {useFormContext} from "react-hook-form";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
 import NameField from "./NameField.tsx";
 import UsernameField from "./UsernameField.tsx";
 import EmailField from "./EmailField.tsx";
@@ -10,7 +10,7 @@ import {getImage} from "../Api/apiImage.tsx";
 import {ImageGet} from "../Types/Image.tsx";
 
 interface PersonalDataFormProps {
-  user: UserGet | null;
+  user: User | null;
   editingField: string | null;
   setEditingField: (field: string | null) => void;
   updateUser: (data: any) => void;

@@ -2,17 +2,16 @@ import BookingDetailTitle from "./BookingDetailTitle.tsx";
 import BookingDetail from "./BookingDetail.tsx";
 import {toWords, toWordsOrdinal} from "number-to-words";
 import React from "react";
-import capitalize from "../Utils/capitalize.tsx";
-import calculaterNights from "../Utils/calculateNights.tsx";
+import {calculateNights} from "../Utils/helpers.tsx";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import Column from "./Column.tsx";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
-import substituteDaysAndFormatDate from "../Utils/substituteDaysAndFormatDate.tsx";
+import {capitalize, substituteDaysAndFormatDate} from "../Utils/helpers.tsx";
 
 const BookingDetails = ({ room }) => {
   const { startDate, endDate, capacity } = useBookingParams();
-  let nights = calculaterNights(startDate, endDate);
+  let nights = calculateNights(startDate, endDate);
 
   return (
     <Column className="bookingDetails gap-5">

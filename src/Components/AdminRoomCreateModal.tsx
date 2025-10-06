@@ -6,7 +6,7 @@ import RoomEditModalField from "./RoomEditModalField";
 import { useForm } from "react-hook-form";
 import roomType from "../Enums/roomType";
 import roomArea from "../Enums/roomArea";
-import * as Avatar from "@radix-ui/react-avatar";
+import AvatarImage from "./AvatarImage.tsx";
 
 interface AdminRoomCreateModalProps {
   isOpen: boolean;
@@ -255,22 +255,11 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       Image Preview
                     </label>
                     <div className="w-32 h-32  overflow-hidden border-4 border-orange-100 bg-gray-100 flex items-center justify-center">
-                      <Avatar.Root className="w-full h-full">
-                        {imagePreview ? (
-                          <Avatar.Image
-                            src={imagePreview}
-                            alt="Room preview"
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <Avatar.Fallback
-                            className="w-full h-full flex items-center justify-center text-gray-400 text-sm bg-gray-100"
-                            delayMs={0}
-                          >
-                            No image
-                          </Avatar.Fallback>
-                        )}
-                      </Avatar.Root>
+                      <AvatarImage
+                          src={imagePreview}
+                          imageClassName="w-full h-full object-cover"
+                          fallbackClassName="w-full h-full flex items-center justify-center text-gray-400 text-sm bg-gray-100"
+                        />
                     </div>
                   </div>
 

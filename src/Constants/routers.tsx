@@ -13,6 +13,8 @@ const routers = {
   adminRooms: "/adminrooms",
   adminEditRoom:"/admineditroom",
   adminBookings: "/adminbookings",
+  reviews:"/reviews",
+  makeReview: "/reviews/makereview",
   notExisting: "*",
 };
 

@@ -1,5 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import {Calendar, LogOut, Settings} from "lucide-react";
+import {Calendar, LogOut, Settings, MessageSquare} from "lucide-react";
 import {useEffect} from "react";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
@@ -40,7 +40,18 @@ const UserDropdownMenu = ({ open, setOpen, children }: UserDropdownMenuProps) =>
             }}
           >
             <Calendar size={16} />
-            Бронювання й поїздки
+            Bookings
+          </DropdownMenu.Item>
+
+          <DropdownMenu.Item
+            className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 rounded-md hover:bg-gray-100 focus:bg-gray-100 outline-none cursor-pointer transition"
+            onSelect={(e) => {
+              e.preventDefault();
+              goTo(routers.reviews);
+            }}
+          >
+            <MessageSquare size={16}/>
+            Reviews
           </DropdownMenu.Item>
 
           <DropdownMenu.Item
@@ -51,7 +62,7 @@ const UserDropdownMenu = ({ open, setOpen, children }: UserDropdownMenuProps) =>
             }}
           >
             <Settings size={16} />
-            Налаштування
+            Settings
           </DropdownMenu.Item>
 
           <DropdownMenu.Separator className="h-px bg-gray-200 my-1" />
@@ -64,7 +75,7 @@ const UserDropdownMenu = ({ open, setOpen, children }: UserDropdownMenuProps) =>
             }}
           >
             <LogOut size={16} />
-            Вийти
+            Logout
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>

@@ -2,11 +2,11 @@ import React, {useRef, useState} from "react";
 import {useSelector} from "react-redux";
 import {Dialog, DialogClose, DialogContent, DialogOverlay, DialogTrigger,} from "@radix-ui/react-dialog";
 import * as Avatar from "@radix-ui/react-avatar";
-import stringToColor from "../Utils/stringToColor.tsx";
 import {RootState} from "../Types/RootState.tsx";
-import {UserGet} from "../Types/User.tsx";
+import {User} from "../Types/User.tsx";
 import useUpdateImage from "../Hooks/useUpdateImage.tsx";
 import useCreateImage from "../Hooks/useCreateImage.tsx";
+import {stringToColor} from "../Utils/helpers.tsx";
 
 interface AvatarUploadModalProps {
   trigger: React.ReactNode;
@@ -17,7 +17,7 @@ export default function AvatarUploadModal({
   image,
   trigger,
 }: AvatarUploadModalProps) {
-  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as UserGet | null;
+  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as User | null;
 
   const [preview, setPreview] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);

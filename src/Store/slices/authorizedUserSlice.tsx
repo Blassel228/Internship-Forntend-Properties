@@ -1,10 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {UserGet} from "../../Types/User.tsx";
+import {User} from "../../Types/User.tsx";
 import {ImageUpdate} from "../../Types/Image.tsx";
 
 interface AuthorizedUserState {
-  authorizedUser: UserGet | null;
+  authorizedUser: User | null;
 }
 
 const initialState: AuthorizedUserState = {
@@ -15,7 +15,7 @@ const authorizedUserSlice = createSlice({
   name: "authorizedUser",
   initialState,
   reducers: {
-    setAuthorizedUser(state, action: PayloadAction<UserGet>) {
+    setAuthorizedUser(state, action: PayloadAction<User>) {
       state.authorizedUser = action.payload;
     },
     clearAuthorizedUser(state) {
