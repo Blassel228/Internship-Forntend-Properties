@@ -23,9 +23,9 @@ const AvatarImage = ({
   fallbackClassName = "",
   bgColor,
   fallbackProps = {},
-  rootProps = {}
+  rootProps = {},
 }: AvatarImageProps) => {
-  const fallbackContent = fallbackText || alt?.charAt(0)?.toUpperCase() || '?';
+  const fallbackContent = fallbackText || alt?.charAt(0)?.toUpperCase() || "?";
 
   return (
     <Avatar.Root
@@ -33,13 +33,7 @@ const AvatarImage = ({
       style={bgColor ? { backgroundColor: bgColor } : undefined}
       {...rootProps}
     >
-      {src && (
-        <Avatar.Image
-          src={src}
-          alt={alt}
-          className={imageClassName}
-        />
-      )}
+      {src && <Avatar.Image src={src} alt={alt} className={imageClassName} />}
       <Avatar.Fallback
         className={fallbackClassName}
         delayMs={0}

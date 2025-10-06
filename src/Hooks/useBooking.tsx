@@ -1,10 +1,18 @@
-import {useQuery} from "@tanstack/react-query";
-import {getBooking, getBookingsForOneUser, getBookingsNotRatedByUser} from "../Api/apiBooking.tsx";
-import {Booking} from "../Types/Booking.tsx";
-import {getRoomsBookedNotRatedByUser} from "../Api/apiRoom.tsx";
+import { useQuery } from "@tanstack/react-query";
+import {
+  getBooking,
+  getBookingsForOneUser,
+  getBookingsNotRatedByUser,
+} from "../Api/apiBooking.tsx";
+import { Booking } from "../Types/Booking.tsx";
+import { getRoomsBookedNotRatedByUser } from "../Api/apiRoom.tsx";
 
 export const useBookings = () => {
-  const {data: bookings, isLoading, error}:{bookings: Booking[]} = useQuery<Booking[], Error>({
+  const {
+    data: bookings,
+    isLoading,
+    error,
+  }: { bookings: Booking[] } = useQuery<Booking[], Error>({
     queryKey: ["userBookings"],
     queryFn: getBookingsForOneUser,
     refetchOnWindowFocus: false,
@@ -15,7 +23,11 @@ export const useBookings = () => {
 };
 
 export const useGetBookingsForRoomsNotRatedByUser = () => {
-  const {data: notRatedBookings, isLoading: areNotRatedBookingsLoading, error: notRatedBookingsError} = useQuery<Booking[], Error>({
+  const {
+    data: notRatedBookings,
+    isLoading: areNotRatedBookingsLoading,
+    error: notRatedBookingsError,
+  } = useQuery<Booking[], Error>({
     queryKey: ["notRatedRoomsBookings"],
     queryFn: async () => await getBookingsNotRatedByUser(),
     refetchOnWindowFocus: false,
@@ -23,5 +35,9 @@ export const useGetBookingsForRoomsNotRatedByUser = () => {
     staleTime: 60000,
     cacheTime: 0,
   });
-  return{ notRatedBookings: notRatedBookings ?? [], areNotRatedBookingsLoading, notRatedBookingsError };
+  return {
+    notRatedBookings: notRatedBookings ?? [],
+    areNotRatedBookingsLoading,
+    notRatedBookingsError,
+  };
 };

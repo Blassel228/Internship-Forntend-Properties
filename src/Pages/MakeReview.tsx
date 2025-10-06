@@ -6,6 +6,7 @@ import { Booking } from "../Types/Booking.tsx";
 
 interface ReviewFormInputs {
   rating: number;
+  staffRating: number;
   cleanlinessRating: number;
   title: string;
   comment: string;
@@ -14,7 +15,10 @@ interface ReviewFormInputs {
 }
 
 const MakeReview = () => {
-  const [roomData, setRoomData] = useState<{ image: string; type: string } | null>(null);
+  const [roomData, setRoomData] = useState<{
+    image: string;
+    type: string;
+  } | null>(null);
 
   useEffect(() => {
     const saved = sessionStorage.getItem("reviewBooking");
@@ -32,7 +36,9 @@ const MakeReview = () => {
     }
   }, []);
 
-  const image = roomData?.image ? `data:image/jpeg;base64,${roomData.image}` : undefined;
+  const image = roomData?.image
+    ? `image/jpeg;base64,${roomData.image}`
+    : undefined;
   const type = roomData?.type || "this property";
 
   const {
@@ -44,6 +50,7 @@ const MakeReview = () => {
   } = useForm<ReviewFormInputs>({
     defaultValues: {
       rating: 0,
+      staffRating: 0,
       cleanlinessRating: 0,
       title: "",
       comment: "",
@@ -61,12 +68,13 @@ const MakeReview = () => {
   };
 
   const currentCleanliness = watch("cleanlinessRating");
+  const currentStaff = watch("staffRating");
 
   if (!roomData) {
     return (
       <>
         <FullHeader />
-        <div className="pt-40 pb-20 min-h-screen flex justify-center bg-gray-50">
+        <div className="pt-40 pb-20 min-h-screen flex justify-center">
           <div className="text-center">
             <p className="text-gray-600">Loading your stay details...</p>
           </div>
@@ -80,8 +88,8 @@ const MakeReview = () => {
     <>
       <FullHeader />
 
-      <div className="pt-40 pb-20 min-h-screen flex justify-center bg-gray-50">
-        <div className="w-full max-w-3xl bg-white rounded shadow-lg overflow-hidden">
+      <div className="pt-40 pb-20 min-h-screen flex justify-center">
+        <div className="w-full max-w-3xl bg-white rounded-xl shadow-md overflow-hidden">
           <div className="h-64 w-full">
             <img
               alt="Room"
@@ -100,7 +108,10 @@ const MakeReview = () => {
 
             {/* Заголовок відгуку */}
             <div className="mb-6">
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="title"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Give your review a title
               </label>
               <input
@@ -112,6 +123,7 @@ const MakeReview = () => {
               />
             </div>
 
+            {/* Загальний рейтинг (1–10) */}
             <div className="mb-8">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Overall rating
@@ -137,20 +149,110 @@ const MakeReview = () => {
                 ))}
               </div>
               {errors.rating && (
-                <p className="mt-1 text-sm text-red-600">Please select an overall rating.</p>
+                <p className="mt-1 text-sm text-red-600">
+                  Please select an overall rating.
+                </p>
               )}
             </div>
 
+            {/* Рейтинг персоналу — у стилі чистоти ✨ */}
+            <div className="mb-8">
+              <h3 className="font-medium text-gray-800 mb-3">
+                How would you rate our staff?
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  {
+                    value: 5,
+                    label: "Outstanding!",
+                    emoji: "😊",
+                    desc: "Friendly, helpful, and professional",
+                  },
+                  {
+                    value: 4,
+                    label: "Good service",
+                    emoji: "🙂",
+                    desc: "Polite and responsive",
+                  },
+                  {
+                    value: 2,
+                    label: "Just okay",
+                    emoji: "😐",
+                    desc: "Did the job, but nothing special",
+                  },
+                  {
+                    value: 1,
+                    label: "Poor experience",
+                    emoji: "😞",
+                    desc: "Unfriendly or unhelpful",
+                  },
+                ].map((opt) => (
+                  <button
+                    key={`staff-${opt.value}`}
+                    type="button"
+                    onClick={() =>
+                      setValue("staffRating", opt.value, {
+                        shouldValidate: true,
+                        shouldDirty: true,
+                      })
+                    }
+                    className={`p-4 text-left rounded-lg border transition-all ${
+                      currentStaff === opt.value
+                        ? "border-orange-500 bg-orange-50 ring-2 ring-orange-100"
+                        : "border-gray-200 hover:bg-gray-50"
+                    }`}
+                  >
+                    <div className="flex items-start">
+                      <span className="text-2xl mr-3">{opt.emoji}</span>
+                      <div>
+                        <div className="font-medium text-gray-800">
+                          {opt.label}
+                        </div>
+                        <div className="text-sm text-gray-600 mt-1">
+                          {opt.desc}
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+              {/* Опціонально: помилка */}
+              {/* {errors.staffRating && (
+                <p className="mt-2 text-sm text-red-600">Please rate our staff.</p>
+              )} */}
+            </div>
+
+            {/* Чистота */}
             <div className="mb-8">
               <h3 className="font-medium text-gray-800 mb-3">
                 How would you describe the cleanliness?
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  { value: 5, label: "Spotless!", emoji: "🧼", desc: "Everything sparkles!" },
-                  { value: 4, label: "Clean & tidy", emoji: "👍", desc: "Fresh and well-maintained." },
-                  { value: 2, label: "Could be cleaner", emoji: "😕", desc: "Noticeable dust or stains." },
-                  { value: 1, label: "Unacceptable", emoji: "🚫", desc: "Serious hygiene issues." },
+                  {
+                    value: 5,
+                    label: "Spotless!",
+                    emoji: "🧼",
+                    desc: "Everything sparkles!",
+                  },
+                  {
+                    value: 4,
+                    label: "Clean & tidy",
+                    emoji: "👍",
+                    desc: "Fresh and well-maintained.",
+                  },
+                  {
+                    value: 2,
+                    label: "Could be cleaner",
+                    emoji: "😕",
+                    desc: "Noticeable dust or stains.",
+                  },
+                  {
+                    value: 1,
+                    label: "Unacceptable",
+                    emoji: "🚫",
+                    desc: "Serious hygiene issues.",
+                  },
                 ].map((opt) => (
                   <button
                     key={opt.value}
@@ -170,18 +272,25 @@ const MakeReview = () => {
                     <div className="flex items-start">
                       <span className="text-2xl mr-3">{opt.emoji}</span>
                       <div>
-                        <div className="font-medium text-gray-800">{opt.label}</div>
-                        <div className="text-sm text-gray-600 mt-1">{opt.desc}</div>
+                        <div className="font-medium text-gray-800">
+                          {opt.label}
+                        </div>
+                        <div className="text-sm text-gray-600 mt-1">
+                          {opt.desc}
+                        </div>
                       </div>
                     </div>
                   </button>
                 ))}
               </div>
               {errors.cleanlinessRating && (
-                <p className="mt-2 text-sm text-red-600">Please select a cleanliness level.</p>
+                <p className="mt-2 text-sm text-red-600">
+                  Please select a cleanliness level.
+                </p>
               )}
             </div>
 
+            {/* Так/Ні питання */}
             <div className="space-y-4 mb-6">
               <div className="flex items-start">
                 <input
@@ -190,7 +299,10 @@ const MakeReview = () => {
                   {...register("recommend")}
                   className="mt-1 h-4 w-4 text-orange-600 rounded focus:ring-orange-500"
                 />
-                <label htmlFor="recommend" className="ml-3 block text-sm text-gray-700">
+                <label
+                  htmlFor="recommend"
+                  className="ml-3 block text-sm text-gray-700"
+                >
                   Would you recommend this property to a friend?
                 </label>
               </div>
@@ -202,14 +314,21 @@ const MakeReview = () => {
                   {...register("returnAgain")}
                   className="mt-1 h-4 w-4 text-orange-600 rounded focus:ring-orange-500"
                 />
-                <label htmlFor="returnAgain" className="ml-3 block text-sm text-gray-700">
+                <label
+                  htmlFor="returnAgain"
+                  className="ml-3 block text-sm text-gray-700"
+                >
                   Would you stay here again?
                 </label>
               </div>
             </div>
 
+            {/* Коментар */}
             <div className="mt-6">
-              <label htmlFor="comment" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="comment"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Share your experience (optional)
               </label>
               <textarea
@@ -221,6 +340,7 @@ const MakeReview = () => {
               />
             </div>
 
+            {/* Кнопка */}
             <button
               type="submit"
               onClick={handleSubmit(onSubmit)}

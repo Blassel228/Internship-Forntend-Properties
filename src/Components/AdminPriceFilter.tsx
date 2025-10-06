@@ -1,8 +1,8 @@
-import {Range} from "react-range";
+import { Range } from "react-range";
 
 const AdminPriceFilter = ({ priceRange, setPriceRange }) => {
-  return(
-     <div className="px-2">
+  return (
+    <div className="px-2">
       <Range
         step={1}
         min={0}
@@ -46,7 +46,7 @@ const AdminPriceFilter = ({ priceRange, setPriceRange }) => {
         }}
       />
     </div>
-  )
-}
+  );
+};
 
 export default AdminPriceFilter;

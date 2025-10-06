@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { Room } from "../Types/Room";
 import RoomAdminRow from "./RoomAdminRow";
 import RoomEditModal from "./RoomEditModal";
@@ -21,7 +21,7 @@ const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
 
   const handleDelete = (room: Room) => {
     setDeletingRoom(room);
-  }
+  };
 
   const handleCloseEditingModal = () => {
     setEditingRoom(null);
@@ -32,15 +32,17 @@ const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
   };
 
   useEffect(() => {
-    console.log("ROOM IN TABLE: ", editingRoom)
-  }, [editingRoom])
+    console.log("ROOM IN TABLE: ", editingRoom);
+  }, [editingRoom]);
 
   if (error) {
     return (
       <div className="flex items-center justify-center p-8 border border-orange-200 rounded-lg mb-4 w-[60rem]">
         <div className="text-center">
           <AlertCircle className="mx-auto text-red-500" size={48} />
-          <h3 className="mt-4 text-lg font-medium text-red-700">Couldn't load rooms.</h3>
+          <h3 className="mt-4 text-lg font-medium text-red-700">
+            Couldn't load rooms.
+          </h3>
           <p className="text-red-500 mt-2">Something went wrong</p>
         </div>
       </div>
@@ -98,7 +100,7 @@ const AdminRoomTable = ({ rooms, isLoading, error }: RoomAdminTableProps) => {
         onClose={handleCloseEditingModal}
       />
 
-       <RoomDeleteModal
+      <RoomDeleteModal
         room={deletingRoom}
         isOpen={!!deletingRoom}
         onClose={handleCloseDeletingModal}

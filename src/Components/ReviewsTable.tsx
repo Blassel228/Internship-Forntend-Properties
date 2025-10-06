@@ -7,7 +7,12 @@ interface ReviewsTableProps {
   isSelected: number;
 }
 
-const ReviewsTable = ({ isSelected, displayedBookings, areBookingsLoading, error }: ReviewsTableProps) => {
+const ReviewsTable = ({
+  isSelected,
+  displayedBookings,
+  areBookingsLoading,
+  error,
+}: ReviewsTableProps) => {
   if (areBookingsLoading) {
     return (
       <Column className="w-7/12">
@@ -21,14 +26,17 @@ const ReviewsTable = ({ isSelected, displayedBookings, areBookingsLoading, error
   if (error) {
     return (
       <Column className="w-7/12">
-        <p className="text-red-500 text-center">Failed to load data. Please try again later.</p>
+        <p className="text-red-500 text-center">
+          Failed to load data. Please try again later.
+        </p>
       </Column>
     );
   }
 
   if (displayedBookings.length === 0) {
     let message = "";
-    if (isSelected === 1) message = "You don’t have any past confirmed bookings.";
+    if (isSelected === 1)
+      message = "You don’t have any past confirmed bookings.";
     else if (isSelected === 2) message = "You haven’t left any reviews yet.";
     else if (isSelected === 3) message = "All your stays have been reviewed!";
 

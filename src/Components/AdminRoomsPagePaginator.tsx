@@ -4,7 +4,11 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-const AdminRoomsPagePaginator = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
+const AdminRoomsPagePaginator = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: PaginationProps) => {
   if (totalPages <= 1) return null;
 
   return (

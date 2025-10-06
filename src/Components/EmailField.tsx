@@ -1,10 +1,10 @@
-import {useFormContext} from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
-import {User} from "../Types/User.tsx";
+import { User } from "../Types/User.tsx";
 import EditInput from "./EditInput.tsx";
 import FieldError from "./FieldError.tsx";
 
@@ -23,7 +23,10 @@ export default function EmailField({
   onCancel,
   isPending,
 }: EmailFieldProps) {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <Row className="gap-4 w-full border-gray-200 border-t pt-4 pb-4 pr-2 pl-2">
@@ -41,7 +44,9 @@ export default function EmailField({
               type="email"
               {...register("email", { required: "Email is required" })}
             />
-            {errors.email && <FieldError message={errors.email.message as string} />}
+            {errors.email && (
+              <FieldError message={errors.email.message as string} />
+            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
@@ -60,7 +65,9 @@ export default function EmailField({
             </p>
           </Column>
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
-            <SettingsChangeButton onClick={onStartEdit}>Change</SettingsChangeButton>
+            <SettingsChangeButton onClick={onStartEdit}>
+              Change
+            </SettingsChangeButton>
           </Column>
         </>
       )}

@@ -1,8 +1,12 @@
-import {useQuery} from "@tanstack/react-query";
-import {getRoom} from "../Api/apiRoom.tsx";
+import { useQuery } from "@tanstack/react-query";
+import { getRoom } from "../Api/apiRoom.tsx";
 
 const useRoom = (room_id: string) => {
-  const { data: room, isLoading, error } = useQuery({
+  const {
+    data: room,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["room", room_id],
     queryFn: () => {
       return getRoom(room_id);

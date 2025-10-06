@@ -15,10 +15,7 @@ interface AdminRoomFilterProps {
 }
 
 const AdminRoomFilter = ({ onFilterSubmit }: AdminRoomFilterProps) => {
-  const {
-    register,
-    handleSubmit,
-  } = useForm<RoomFilters>();
+  const { register, handleSubmit } = useForm<RoomFilters>();
 
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -108,18 +105,25 @@ const AdminRoomFilter = ({ onFilterSubmit }: AdminRoomFilterProps) => {
               <span className="text-xs text-gray-500 mb-1">From</span>
               <div className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-orange-200 flex items-center gap-1">
                 <span className="text-orange-500 font-bold text-sm">$</span>
-                <span className="text-gray-800 font-semibold">{priceRange[0]}</span>
+                <span className="text-gray-800 font-semibold">
+                  {priceRange[0]}
+                </span>
               </div>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-xs text-gray-500 mb-1">To</span>
               <div className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-orange-200 flex items-center gap-1">
                 <span className="text-orange-500 font-bold text-sm">$</span>
-                <span className="text-gray-800 font-semibold">{priceRange[1]}</span>
+                <span className="text-gray-800 font-semibold">
+                  {priceRange[1]}
+                </span>
               </div>
             </div>
           </div>
-          <AdminPriceFilter setPriceRange={setPriceRange} priceRange={priceRange} />
+          <AdminPriceFilter
+            setPriceRange={setPriceRange}
+            priceRange={priceRange}
+          />
 
           <button
             type="submit"

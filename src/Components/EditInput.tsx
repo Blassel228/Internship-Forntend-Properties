@@ -13,7 +13,7 @@ const EditInput = React.forwardRef<HTMLInputElement, EditInputProps>(
     } ${className || ""}`;
 
     return <input className={classes} autoFocus ref={ref} {...rest} />;
-  }
+  },
 );
 
 EditInput.displayName = "EditInput";

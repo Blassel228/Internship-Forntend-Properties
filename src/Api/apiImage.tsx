@@ -1,10 +1,10 @@
 import baseApi from "./apiBase.tsx";
-import {ImageGet} from "../Types/Image.tsx";
+import { ImageGet } from "../Types/Image.tsx";
 
 export const getImage = async (): Promise<ImageGet> => {
-    const response = await baseApi.get("/image/");
-    return response.data;
-}
+  const response = await baseApi.get("/image/");
+  return response.data;
+};
 
 export const createImage = async (file: File): Promise<ImageGet> => {
   const formData = new FormData();

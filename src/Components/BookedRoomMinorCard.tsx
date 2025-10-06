@@ -1,16 +1,19 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import {Booking} from "../Types/Booking.tsx";
+import { Booking } from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
-import {AlertTriangle, Image as ImageIcon} from "lucide-react";
-import {formatDate} from "../Utils/helpers.tsx";
+import { AlertTriangle, Image as ImageIcon } from "lucide-react";
+import { formatDate } from "../Utils/helpers.tsx";
 
 interface BookedRoomCardProps {
   booking: Booking;
   handleNavigate: void;
 }
 
-const BookedRoomMinorCard = ({ booking, handleNavigate }: BookedRoomCardProps) => {
+const BookedRoomMinorCard = ({
+  booking,
+  handleNavigate,
+}: BookedRoomCardProps) => {
   const { room, isLoading, error } = useRoom(booking.room_id);
 
   if (isLoading) {
@@ -51,13 +54,14 @@ const BookedRoomMinorCard = ({ booking, handleNavigate }: BookedRoomCardProps) =
     );
   }
 
-  const image = room.image
-    ? `data:image/jpeg;base64,${room.image}`
-    : undefined;
+  const image = room.image ? `data:image/jpeg;base64,${room.image}` : undefined;
 
   return (
     <Row className="gap-4 p-4 border border-gray-200 rounded-lg shadow hover:shadow-md transition-all duration-200 bg-white cursor-pointer">
-      <div className="roomImage flex-shrink-0" onClick={() => handleNavigate(booking, room)}>
+      <div
+        className="roomImage flex-shrink-0"
+        onClick={() => handleNavigate(booking, room)}
+      >
         {image ? (
           <img
             alt="Room"
@@ -82,7 +86,9 @@ const BookedRoomMinorCard = ({ booking, handleNavigate }: BookedRoomCardProps) =
         )}
       </div>
       <Column className="roomInfo justify-center">
-        <div className="font-semibold text-gray-800">{room.type || "Без назви"}</div>
+        <div className="font-semibold text-gray-800">
+          {room.type || "Без назви"}
+        </div>
         <div className="text-sm text-gray-600">
           {formatDate(booking.start_date)} — {formatDate(booking.end_date)}
         </div>

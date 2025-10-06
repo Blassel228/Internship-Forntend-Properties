@@ -13,7 +13,10 @@ interface AdminRoomCreateModalProps {
   onClose: () => void;
 }
 
-const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) => {
+const AdminRoomCreateModal = ({
+  isOpen,
+  onClose,
+}: AdminRoomCreateModalProps) => {
   const { createRoom, isRoomCreating } = useCreateRoom();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File, null>(null);
@@ -71,7 +74,7 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
           setImageFile(null);
           onClose();
         },
-      }
+      },
     );
   };
 
@@ -113,7 +116,9 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                     </label>
                     <select
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 appearance-none"
-                      {...register("type", { required: "Room type is required" })}
+                      {...register("type", {
+                        required: "Room type is required",
+                      })}
                     >
                       {Object.values(roomType).map((type) => (
                         <option value={type} key={type}>
@@ -122,7 +127,9 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       ))}
                     </select>
                     {errors.type && (
-                      <p className="text-red-500 text-sm mt-1">{errors.type.message}</p>
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.type.message}
+                      </p>
                     )}
                   </div>
 
@@ -141,7 +148,9 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       ))}
                     </select>
                     {errors.area && (
-                      <p className="text-red-500 text-sm mt-1">{errors.area.message}</p>
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.area.message}
+                      </p>
                     )}
                   </div>
 
@@ -156,7 +165,11 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       min: { value: 1, message: "At least 1 bed" },
                     })}
                   />
-                  {errors.beds && <p className="text-red-500 text-sm">{errors.beds.message}</p>}
+                  {errors.beds && (
+                    <p className="text-red-500 text-sm">
+                      {errors.beds.message}
+                    </p>
+                  )}
 
                   <RoomEditModalField
                     label="Bedrooms"
@@ -169,7 +182,11 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       min: { value: 1, message: "At least 1 bedroom" },
                     })}
                   />
-                  {errors.bedrooms && <p className="text-red-500 text-sm">{errors.bedrooms.message}</p>}
+                  {errors.bedrooms && (
+                    <p className="text-red-500 text-sm">
+                      {errors.bedrooms.message}
+                    </p>
+                  )}
 
                   <RoomEditModalField
                     label="Bathes"
@@ -182,7 +199,11 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       min: { value: 1, message: "At least 1 bath" },
                     })}
                   />
-                  {errors.bathes && <p className="text-red-500 text-sm">{errors.bathes.message}</p>}
+                  {errors.bathes && (
+                    <p className="text-red-500 text-sm">
+                      {errors.bathes.message}
+                    </p>
+                  )}
 
                   <RoomEditModalField
                     label="Capacity (people)"
@@ -195,7 +216,11 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       min: { value: 1, message: "At least 1 person" },
                     })}
                   />
-                  {errors.capacity && <p className="text-red-500 text-sm">{errors.capacity.message}</p>}
+                  {errors.capacity && (
+                    <p className="text-red-500 text-sm">
+                      {errors.capacity.message}
+                    </p>
+                  )}
 
                   <RoomEditModalField
                     label="Price ($)"
@@ -210,7 +235,11 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       max: { value: 1000, message: "Max price is $1000" },
                     })}
                   />
-                  {errors.price && <p className="text-red-500 text-sm">{errors.price.message}</p>}
+                  {errors.price && (
+                    <p className="text-red-500 text-sm">
+                      {errors.price.message}
+                    </p>
+                  )}
 
                   <RoomEditModalField
                     label="Floor"
@@ -223,7 +252,11 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       min: { value: 1, message: "Floor must be at least 1" },
                     })}
                   />
-                  {errors.floor && <p className="text-red-500 text-sm">{errors.floor.message}</p>}
+                  {errors.floor && (
+                    <p className="text-red-500 text-sm">
+                      {errors.floor.message}
+                    </p>
+                  )}
 
                   <RoomEditModalField
                     label="Total Space (m²)"
@@ -236,18 +269,28 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                       min: { value: 10, message: "At least 10 m²" },
                     })}
                   />
-                  {errors.total_space && <p className="text-red-500 text-sm">{errors.total_space.message}</p>}
+                  {errors.total_space && (
+                    <p className="text-red-500 text-sm">
+                      {errors.total_space.message}
+                    </p>
+                  )}
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Description
                     </label>
                     <textarea
-                      {...register("description", { required: "Description is required" })}
+                      {...register("description", {
+                        required: "Description is required",
+                      })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                       rows={3}
                     />
-                    {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+                    {errors.description && (
+                      <p className="text-red-500 text-sm">
+                        {errors.description.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex flex-col items-center">
@@ -256,10 +299,10 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                     </label>
                     <div className="w-32 h-32  overflow-hidden border-4 border-orange-100 bg-gray-100 flex items-center justify-center">
                       <AvatarImage
-                          src={imagePreview}
-                          imageClassName="w-full h-full object-cover"
-                          fallbackClassName="w-full h-full flex items-center justify-center text-gray-400 text-sm bg-gray-100"
-                        />
+                        src={imagePreview}
+                        imageClassName="w-full h-full object-cover"
+                        fallbackClassName="w-full h-full flex items-center justify-center text-gray-400 text-sm bg-gray-100"
+                      />
                     </div>
                   </div>
 
@@ -276,7 +319,9 @@ const AdminRoomCreateModal = ({ isOpen, onClose }: AdminRoomCreateModalProps) =>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700">Amenities</label>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Amenities
+                    </label>
                     <label className="flex items-center space-x-2">
                       <input
                         type="checkbox"

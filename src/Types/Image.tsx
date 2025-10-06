@@ -5,6 +5,6 @@ export interface ImageGet {
   file_name: string;
 }
 
-export interface ImageUpdate{
+export interface ImageUpdate {
   image_data: string;
 }

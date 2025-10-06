@@ -19,31 +19,30 @@ export interface Room {
   average_rating: number;
 }
 
-
-export interface RoomUpdate{
-    image?: string;
-    price?: number;
-    beds?: number
-    type?: RoomType;
-    capacity?: number;
+export interface RoomUpdate {
+  image?: string;
+  price?: number;
+  beds?: number;
+  type?: RoomType;
+  capacity?: number;
 }
 
 export interface RoomCreate {
-    type: RoomType;
-    price: number;
-    beds: number;
-    bedrooms: number;
-    bathes: number;
-    floor: number;
-    area: RoomArea;
-    capacity: number;
-    description: string;
-    total_space: number;
-    has_sauna: boolean;
-    has_jacuzzi: boolean;
+  type: RoomType;
+  price: number;
+  beds: number;
+  bedrooms: number;
+  bathes: number;
+  floor: number;
+  area: RoomArea;
+  capacity: number;
+  description: string;
+  total_space: number;
+  has_sauna: boolean;
+  has_jacuzzi: boolean;
 }
 
-export interface RoomFilters{
+export interface RoomFilters {
   type: string;
   lowest_price: number;
   greatest_price: number;

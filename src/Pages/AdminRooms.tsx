@@ -10,7 +10,12 @@ import Row from "../Components/Row.tsx";
 
 const AdminRooms = () => {
   const [filters, setFilters] = useState<RoomFilters | null>(null);
-  const { roomsWithFilters: rooms, isLoading, error, isError} = useRoomsWithFilters(filters);
+  const {
+    roomsWithFilters: rooms,
+    isLoading,
+    error,
+    isError,
+  } = useRoomsWithFilters(filters);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -33,14 +38,18 @@ const AdminRooms = () => {
       <FullHeader />
       <Row className="mt-36 justify-center px-16 w-full gap-8">
         <Column className="gap-4">
-          <AdminRoomTable rooms={paginatedRooms} isLoading={isLoading} error={error} />
+          <AdminRoomTable
+            rooms={paginatedRooms}
+            isLoading={isLoading}
+            error={error}
+          />
           <AdminRoomsPagePaginator
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={setCurrentPage}
           />
         </Column>
-       <AdminRoomFilter onFilterSubmit={handleFilterSubmit} />
+        <AdminRoomFilter onFilterSubmit={handleFilterSubmit} />
       </Row>
     </>
   );

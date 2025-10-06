@@ -1,7 +1,7 @@
-import {getItem, removeItem, setItem} from "../Utils/localStorage.tsx";
-import axios, {AxiosInstance} from "axios";
+import { getItem, removeItem, setItem } from "../Utils/localStorage.tsx";
+import axios, { AxiosInstance } from "axios";
 import routers from "../Constants/routers.tsx";
-import {refreshToken} from "./apiAuth.tsx";
+import { refreshToken } from "./apiAuth.tsx";
 
 const baseApi: AxiosInstance = axios.create({
   baseURL: "http://localhost:8000/api",
@@ -24,9 +24,8 @@ baseApi.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
-
 
 baseApi.interceptors.response.use(
   (response) => {
@@ -47,7 +46,6 @@ baseApi.interceptors.response.use(
         const data = await refreshToken();
         const newToken = data.access_token;
         setItem("token", newToken);
-
       } catch (refreshError) {
         console.error("💀 Refresh failed — clearing session", refreshError);
         removeItem("token");
@@ -56,7 +54,7 @@ baseApi.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default baseApi;

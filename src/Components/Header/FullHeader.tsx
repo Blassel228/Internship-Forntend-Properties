@@ -34,7 +34,9 @@ const FullHeader = React.forwardRef<HTMLDivElement>((_, ref) => {
       <Subheader
         ref={subheaderRef}
         className={`transition-all duration-300 ${
-          isSubheaderVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+          isSubheaderVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-full"
         }`}
       />
       <Header

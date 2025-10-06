@@ -1,13 +1,13 @@
-import {useFormContext} from "react-hook-form";
-import {User} from "../Types/User.tsx";
+import { useFormContext } from "react-hook-form";
+import { User } from "../Types/User.tsx";
 import NameField from "./NameField.tsx";
 import UsernameField from "./UsernameField.tsx";
 import EmailField from "./EmailField.tsx";
 import PhoneField from "./PhoneField.tsx";
 import BirthdateField from "./BirthdateField.tsx";
 import SexField from "./SexField.tsx";
-import {getImage} from "../Api/apiImage.tsx";
-import {ImageGet} from "../Types/Image.tsx";
+import { getImage } from "../Api/apiImage.tsx";
+import { ImageGet } from "../Types/Image.tsx";
 
 interface PersonalDataFormProps {
   user: User | null;
@@ -33,12 +33,11 @@ export default function PersonalDataForm({
       if (isValid) {
         data.birthdate = dateStr;
       }
-
     }
     const image: ImageGet = await getImage();
     const payload = {
       ...data,
-      image_data: image ? image.image_data : null
+      image_data: image ? image.image_data : null,
     };
     console.log("PAYLOAD", payload);
     updateUser(payload);

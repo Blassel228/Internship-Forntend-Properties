@@ -1,10 +1,10 @@
-import {useFormContext} from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
-import {User} from "../Types/User.tsx";
+import { User } from "../Types/User.tsx";
 import EditInput from "./EditInput.tsx";
 import FieldError from "./FieldError.tsx";
 
@@ -23,7 +23,10 @@ export default function BirthdateField({
   onCancel,
   isPending,
 }: BirthdateFieldProps) {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   const birthdateDisplay = user?.birthdate
     ? new Date(user.birthdate).toLocaleDateString("en-GB")
@@ -66,7 +69,10 @@ export default function BirthdateField({
                 {...register("year", {
                   required: "Year is required",
                   min: { value: 1900, message: "Invalid year" },
-                  max: { value: new Date().getFullYear(), message: "Future date" },
+                  max: {
+                    value: new Date().getFullYear(),
+                    message: "Future date",
+                  },
                 })}
               />
             </Row>
@@ -74,8 +80,8 @@ export default function BirthdateField({
               <FieldError
                 message={
                   (errors.day?.message ||
-                   errors.month?.message ||
-                   errors.year?.message) as string
+                    errors.month?.message ||
+                    errors.year?.message) as string
                 }
               />
             )}
@@ -94,7 +100,9 @@ export default function BirthdateField({
             <p className="text-gray-600 text-sm">{birthdateDisplay}</p>
           </Column>
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
-            <SettingsChangeButton onClick={onStartEdit}>Change</SettingsChangeButton>
+            <SettingsChangeButton onClick={onStartEdit}>
+              Change
+            </SettingsChangeButton>
           </Column>
         </>
       )}

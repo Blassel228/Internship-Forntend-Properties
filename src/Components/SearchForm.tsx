@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import DatePickerInput from "./DatePickerInput";
 import CapacityInput from "./CapacityInput";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {getSearchRooms} from "../Api/apiRoom";
-import { useNavigate} from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { getSearchRooms } from "../Api/apiRoom";
+import { useNavigate } from "react-router-dom";
 import AppButton from "./AppButton.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
 import routers from "../Constants/routers.tsx";

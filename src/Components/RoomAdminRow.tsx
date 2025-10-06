@@ -9,10 +9,7 @@ interface RoomAdminRowProps {
 }
 
 const RoomAdminRow = ({ room, onEdit, onDelete }: RoomAdminRowProps) => {
-  const roomUrl =
-       room.image
-      ? `data:image/jpeg;base64,${room.image}`
-      : null;
+  const roomUrl = room.image ? `data:image/jpeg;base64,${room.image}` : null;
 
   return (
     <AdminTableRow>

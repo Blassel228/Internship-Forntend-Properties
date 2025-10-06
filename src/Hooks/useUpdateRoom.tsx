@@ -11,7 +11,11 @@ interface UpdateRoomParams {
 function useUpdateRoom() {
   const queryClient = useQueryClient();
 
-  const { mutate: updateRoom, isPending: isRoomUpdating, error } = useMutation({
+  const {
+    mutate: updateRoom,
+    isPending: isRoomUpdating,
+    error,
+  } = useMutation({
     mutationFn: ({ roomId, updatedData }: UpdateRoomParams) =>
       updateRoomApi(roomId, updatedData),
     onSuccess: () => {

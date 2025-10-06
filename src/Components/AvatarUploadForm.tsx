@@ -1,12 +1,18 @@
-import React, {useRef, useState} from "react";
-import {useSelector} from "react-redux";
-import {Dialog, DialogClose, DialogContent, DialogOverlay, DialogTrigger,} from "@radix-ui/react-dialog";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogOverlay,
+  DialogTrigger,
+} from "@radix-ui/react-dialog";
 import * as Avatar from "@radix-ui/react-avatar";
-import {RootState} from "../Types/RootState.tsx";
-import {User} from "../Types/User.tsx";
+import { RootState } from "../Types/RootState.tsx";
+import { User } from "../Types/User.tsx";
 import useUpdateImage from "../Hooks/useUpdateImage.tsx";
 import useCreateImage from "../Hooks/useCreateImage.tsx";
-import {stringToColor} from "../Utils/helpers.tsx";
+import { stringToColor } from "../Utils/helpers.tsx";
 
 interface AvatarUploadModalProps {
   trigger: React.ReactNode;
@@ -17,7 +23,9 @@ export default function AvatarUploadModal({
   image,
   trigger,
 }: AvatarUploadModalProps) {
-  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as User | null;
+  const user = useSelector(
+    (root: RootState) => root.authorizedUser.authorizedUser,
+  ) as User | null;
 
   const [preview, setPreview] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -27,18 +35,20 @@ export default function AvatarUploadModal({
 
   const { mutate: updateImage, isPending: isImageUpdating } = useUpdateImage();
   const { mutate: createImage, isPending: isImageCreating } = useCreateImage();
-  
+
   const mutate = user?.image_data ? updateImage : createImage;
   const isImageChanging = isImageUpdating || isImageCreating;
 
   const bgColor = user?.username ? stringToColor(user.username) : "#ccc";
   const initial = user?.username?.charAt(0).toUpperCase() || "?";
-  const currentAvatarUrl = image ? `data:image/jpeg;base64,${image}` : undefined;
+  const currentAvatarUrl = image
+    ? `data:image/jpeg;base64,${image}`
+    : undefined;
   const displayUrl = preview || currentAvatarUrl;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log("file", file)
+    console.log("file", file);
     if (!file) return;
 
     if (!file.type.startsWith("image/")) {
@@ -74,13 +84,16 @@ export default function AvatarUploadModal({
   };
 
   return (
-    <Dialog open={open} onOpenChange={(isOpen) => {
-      setOpen(isOpen);
-      if (!isOpen) {
-        setPreview(null);
-        setSelectedFile(null);
-      }
-    }}>
+    <Dialog
+      open={open}
+      onOpenChange={(isOpen) => {
+        setOpen(isOpen);
+        if (!isOpen) {
+          setPreview(null);
+          setSelectedFile(null);
+        }
+      }}
+    >
       <DialogTrigger asChild>{trigger}</DialogTrigger>
 
       <DialogOverlay className="fixed inset-0 bg-opacity-30 backdrop-blur-sm z-999" />

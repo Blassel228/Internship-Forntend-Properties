@@ -1,9 +1,9 @@
-import {useSelector} from "react-redux";
-import {RootState} from "../Types/RootState.tsx";
-import {User} from "../Types/User.tsx";
+import { useSelector } from "react-redux";
+import { RootState } from "../Types/RootState.tsx";
+import { User } from "../Types/User.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
-import {getItem} from "../Utils/localStorage.tsx";
-import {stringToColor} from "../Utils/helpers.tsx";
+import { getItem } from "../Utils/localStorage.tsx";
+import { stringToColor } from "../Utils/helpers.tsx";
 
 interface HeaderAvatarProps {
   className?: string;
@@ -11,15 +11,18 @@ interface HeaderAvatarProps {
 
 export default function HeaderAvatar({
   className = "",
-  onClick = ""
+  onClick = "",
 }: HeaderAvatarProps) {
-  const user = useSelector((root: RootState) => root.authorizedUser.authorizedUser) as User | null;
+  const user = useSelector(
+    (root: RootState) => root.authorizedUser.authorizedUser,
+  ) as User | null;
 
   if (!user) return null;
 
-  const avatarUrl = (user.image_data && getItem("token"))
-    ? `data:image/jpeg;base64,${user.image_data}`
-    : undefined;
+  const avatarUrl =
+    user.image_data && getItem("token")
+      ? `data:image/jpeg;base64,${user.image_data}`
+      : undefined;
 
   const initial = user.username?.charAt(0).toUpperCase() || "?";
 
@@ -38,9 +41,7 @@ export default function HeaderAvatar({
       `}
       aria-label={`Avatar for ${user.username}`}
     >
-      <Avatar.Root
-        className="w-full h-full rounded-full overflow-hidden"
-      >
+      <Avatar.Root className="w-full h-full rounded-full overflow-hidden">
         <Avatar.Image
           src={avatarUrl}
           alt={user.username}

@@ -1,10 +1,10 @@
-import {useFormContext} from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
-import {User} from "../Types/User.tsx";
+import { User } from "../Types/User.tsx";
 import FieldError from "./FieldError.tsx";
 
 interface SexFieldProps {
@@ -22,14 +22,21 @@ export default function SexField({
   onCancel,
   isPending,
 }: SexFieldProps) {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   const sexDisplay = (() => {
     switch (user?.sex) {
-      case 1: return "Male";
-      case 2: return "Female";
-      case 9: return "Prefer not to say";
-      default: return "Not set";
+      case 1:
+        return "Male";
+      case 2:
+        return "Female";
+      case 9:
+        return "Prefer not to say";
+      default:
+        return "Not set";
     }
   })();
 
@@ -54,7 +61,9 @@ export default function SexField({
               <option value={2}>I am a female</option>
               <option value={9}>I prefer not to answer</option>
             </select>
-            {errors.sex && <FieldError message={errors.sex.message as string} />}
+            {errors.sex && (
+              <FieldError message={errors.sex.message as string} />
+            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
@@ -70,7 +79,9 @@ export default function SexField({
             <p className="text-gray-600 text-sm">{sexDisplay}</p>
           </Column>
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
-            <SettingsChangeButton onClick={onStartEdit}>Change</SettingsChangeButton>
+            <SettingsChangeButton onClick={onStartEdit}>
+              Change
+            </SettingsChangeButton>
           </Column>
         </>
       )}

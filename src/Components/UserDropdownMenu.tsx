@@ -1,6 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import {Calendar, LogOut, Settings, MessageSquare} from "lucide-react";
-import {useEffect} from "react";
+import { Calendar, LogOut, Settings, MessageSquare } from "lucide-react";
+import { useEffect } from "react";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
 import useAuth from "../Hooks/useAuth.tsx";
@@ -10,20 +10,22 @@ interface UserDropdownMenuProps {
   setOpen: (open: boolean) => void;
 }
 
-const UserDropdownMenu = ({ open, setOpen, children }: UserDropdownMenuProps) => {
+const UserDropdownMenu = ({
+  open,
+  setOpen,
+  children,
+}: UserDropdownMenuProps) => {
   const { goTo } = useNavigation();
   const { logout } = useAuth();
 
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
   }, [open]);
   return (
     <DropdownMenu.Root open={open} onOpenChange={setOpen} modal={false}>
-      <DropdownMenu.Trigger>
-        {children}
-      </DropdownMenu.Trigger>
+      <DropdownMenu.Trigger>{children}</DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content
@@ -50,7 +52,7 @@ const UserDropdownMenu = ({ open, setOpen, children }: UserDropdownMenuProps) =>
               goTo(routers.reviews);
             }}
           >
-            <MessageSquare size={16}/>
+            <MessageSquare size={16} />
             Reviews
           </DropdownMenu.Item>
 

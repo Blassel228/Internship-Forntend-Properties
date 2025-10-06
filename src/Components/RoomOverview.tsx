@@ -1,11 +1,11 @@
 import React from "react";
 import RoomDescription from "./RoomDetailsContentSection.tsx";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
 import AppButton from "./AppButton.tsx";
 import routers from "../Constants/routers.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
-import {Room} from "../Types/Room.tsx";
+import { Room } from "../Types/Room.tsx";
 import KeyDetails from "./KeyDetails.tsx";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";

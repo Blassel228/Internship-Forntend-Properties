@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Room, RoomUpdate } from "../Types/Room";
 import useUpdateRoom from "../Hooks/useUpdateRoom";
@@ -22,7 +22,7 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
     handleSubmit,
     reset,
     formState: { isSubmitting, errors },
-    setValue
+    setValue,
   } = useForm<RoomUpdate>({
     defaultValues: {
       type: room?.type || "",
@@ -43,7 +43,7 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
     }
   }, [room, reset]);
 
-   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target?.files?.[0];
     if (!file) return;
 
@@ -67,7 +67,7 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
       { roomId: room.id, updatedData: data },
       {
         onSuccess: () => onClose(),
-      }
+      },
     );
   };
 
@@ -116,7 +116,9 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
                     ))}
                   </select>
                   {errors.type && (
-                    <p className="text-red-500 text-sm">{errors.type.message}</p>
+                    <p className="text-red-500 text-sm">
+                      {errors.type.message}
+                    </p>
                   )}
 
                   <RoomEditModalField
@@ -131,7 +133,9 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
                     })}
                   />
                   {errors.beds && (
-                    <p className="text-red-500 text-sm">{errors.beds.message}</p>
+                    <p className="text-red-500 text-sm">
+                      {errors.beds.message}
+                    </p>
                   )}
 
                   <div className="flex flex-col items-center">
@@ -210,7 +214,9 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
                     })}
                   />
                   {errors.price && (
-                    <p className="text-red-500 text-sm">{errors.price.message}</p>
+                    <p className="text-red-500 text-sm">
+                      {errors.price.message}
+                    </p>
                   )}
 
                   <div className="flex justify-end gap-3 pt-4">

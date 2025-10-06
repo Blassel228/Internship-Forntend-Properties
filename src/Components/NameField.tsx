@@ -1,10 +1,10 @@
-import {useFormContext} from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
-import {User} from "../Types/User.tsx";
+import { User } from "../Types/User.tsx";
 import EditInput from "./EditInput.tsx";
 import FieldError from "./FieldError.tsx";
 
@@ -23,7 +23,10 @@ export default function NameField({
   onCancel,
   isPending,
 }: NameFieldProps) {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <Row className="gap-4 w-full border-gray-200 border-t align-center pt-4 pb-4 pr-2 pl-2">
@@ -41,7 +44,9 @@ export default function NameField({
               type="text"
               {...register("name", { required: "Name is required" })}
             />
-            {errors.name && <FieldError message={errors.name.message as string} />}
+            {errors.name && (
+              <FieldError message={errors.name.message as string} />
+            )}
           </Column>
 
           <Column className="w-full">
@@ -52,7 +57,9 @@ export default function NameField({
               type="text"
               {...register("surname", { required: "Surname is required" })}
             />
-            {errors.surname && <FieldError message={errors.surname.message as string} />}
+            {errors.surname && (
+              <FieldError message={errors.surname.message as string} />
+            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center min-w-[80px]">
@@ -68,10 +75,14 @@ export default function NameField({
             <p className="text-gray-600 text-sm">{user?.name || "Not set"}</p>
           </Column>
           <Column className="w-full">
-            <p className="text-gray-600 text-sm">{user?.surname || "Not set"}</p>
+            <p className="text-gray-600 text-sm">
+              {user?.surname || "Not set"}
+            </p>
           </Column>
           <Column className="w-16 gap-4 content-center items-center min-w-[80px]">
-            <SettingsChangeButton onClick={onStartEdit}>Change</SettingsChangeButton>
+            <SettingsChangeButton onClick={onStartEdit}>
+              Change
+            </SettingsChangeButton>
           </Column>
         </>
       )}

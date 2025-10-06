@@ -1,10 +1,14 @@
 import { InputHTMLAttributes } from "react";
 
-interface RoomEditModalFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+interface RoomEditModalFieldProps
+  extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-const RoomEditModalField = ({ label, ...inputProps }: RoomEditModalFieldProps) => {
+const RoomEditModalField = ({
+  label,
+  ...inputProps
+}: RoomEditModalFieldProps) => {
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">

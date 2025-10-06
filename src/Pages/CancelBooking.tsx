@@ -1,12 +1,12 @@
-import {useState} from "react";
-import {Link, useLocation} from "react-router-dom";
-import {Booking} from "../Types/Booking.tsx";
-import {Room} from "../Types/Room.tsx";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Booking } from "../Types/Booking.tsx";
+import { Room } from "../Types/Room.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import useRefund from "../Hooks/useRefund.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
-import {formatDate} from "../Utils/helpers.tsx";
+import { formatDate } from "../Utils/helpers.tsx";
 
 const CancelBooking = () => {
   const location = useLocation();
@@ -99,11 +99,14 @@ const CancelBooking = () => {
             <div className="lg:col-span-2">
               <h1 className="text-2xl font-bold mb-4">Reason for cancelling</h1>
               <p className="text-gray-600 mb-6">
-                We can help you find alternative solutions if you need to make changes to your booking.
+                We can help you find alternative solutions if you need to make
+                changes to your booking.
               </p>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-4">Reason</label>
+                <label className="block text-sm font-medium text-gray-700 mb-4">
+                  Reason
+                </label>
                 <select
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
@@ -135,9 +138,25 @@ const CancelBooking = () => {
                 >
                   {isPending ? (
                     <span className="flex items-center gap-2">
-                      <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Processing Refund...
                     </span>
@@ -165,7 +184,8 @@ const CancelBooking = () => {
                   <div>
                     <h3 className="font-bold text-lg">{room.type}</h3>
                     <p className="text-gray-500 mt-1">
-                      {formatDate(booking.start_date)} – {formatDate(booking.end_date)}
+                      {formatDate(booking.start_date)} –{" "}
+                      {formatDate(booking.end_date)}
                     </p>
                   </div>
                 </div>
@@ -174,17 +194,27 @@ const CancelBooking = () => {
               <div className="bg-white p-6 rounded-xl border-gray-300 border">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Original amount</span>
-                    <span className="font-medium">{formatCurrency(booking.price)}</span>
+                    <span className="text-sm text-gray-600">
+                      Original amount
+                    </span>
+                    <span className="font-medium">
+                      {formatCurrency(booking.price)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Refund amount</span>
-                    <span className="text-green-600 font-medium">{formatCurrency(refundAmount)}</span>
+                    <span className="text-green-600 font-medium">
+                      {formatCurrency(refundAmount)}
+                    </span>
                   </div>
                   <div className="border-t pt-3 mt-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-lg font-semibold text-gray-800">Cancellation fee</span>
-                      <span className="text-red-600 text-lg font-bold">{formatCurrency(cancellationFee)}</span>
+                      <span className="text-lg font-semibold text-gray-800">
+                        Cancellation fee
+                      </span>
+                      <span className="text-red-600 text-lg font-bold">
+                        {formatCurrency(cancellationFee)}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -194,20 +224,25 @@ const CancelBooking = () => {
                 <h3 className="font-bold text-lg mb-3">Cancellation Policy</h3>
                 <ul className="text-gray-600 text-sm space-y-2 list-disc list-inside leading-relaxed">
                   <li>
-                    <strong>More than 12 days before check-in:</strong> Full refund — cancel without any fees.
+                    <strong>More than 12 days before check-in:</strong> Full
+                    refund — cancel without any fees.
                   </li>
                   <li>
-                    <strong>10 to 12 days before check-in:</strong> 70% refund — we’ll return most of your payment.
+                    <strong>10 to 12 days before check-in:</strong> 70% refund —
+                    we’ll return most of your payment.
                   </li>
                   <li>
-                    <strong>7 to 9 days before check-in:</strong> 50% refund — half of your payment will be returned.
+                    <strong>7 to 9 days before check-in:</strong> 50% refund —
+                    half of your payment will be returned.
                   </li>
                   <li>
-                    <strong>Less than 7 days before check-in:</strong> 35% refund — a partial refund to cover our costs.
+                    <strong>Less than 7 days before check-in:</strong> 35%
+                    refund — a partial refund to cover our costs.
                   </li>
                 </ul>
                 <p className="text-xs text-gray-500 mt-3">
-                  Refunds are processed immediately and may take 5–10 business days to appear in your account.
+                  Refunds are processed immediately and may take 5–10 business
+                  days to appear in your account.
                 </p>
               </div>
             </div>

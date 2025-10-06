@@ -29,7 +29,8 @@ export const formatDate = (dateString: string): string => {
   return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
 };
 
-export const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
+export const capitalize = (text) =>
+  text.charAt(0).toUpperCase() + text.slice(1);
 
 export const calculateNights = (start_date, end_date) => {
   const startDate = new Date(start_date);

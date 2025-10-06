@@ -1,11 +1,11 @@
-import {Controller, useFormContext} from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import PhoneInput from "react-phone-number-input";
-import {User} from "../Types/User.tsx";
+import { User } from "../Types/User.tsx";
 import FieldError from "./FieldError.tsx";
 import EditInput from "./EditInput.tsx";
 
@@ -24,7 +24,10 @@ export default function PhoneField({
   onCancel,
   isPending,
 }: PhoneFieldProps) {
-  const { control, formState: { errors } } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <Row className="gap-4 w-full border-gray-200 border-t pt-4 pb-4 pr-2 pl-2">
@@ -48,15 +51,13 @@ export default function PhoneField({
                   defaultCountry="GB"
                   value={field.value}
                   onChange={field.onChange}
-                  inputComponent={(props) => (
-                    <EditInput
-                      {...props}
-                    />
-                  )}
+                  inputComponent={(props) => <EditInput {...props} />}
                 />
               )}
             />
-            {errors.phone_number && <FieldError message={errors.phone_number.message as string} />}
+            {errors.phone_number && (
+              <FieldError message={errors.phone_number.message as string} />
+            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
@@ -69,13 +70,17 @@ export default function PhoneField({
       ) : (
         <>
           <Column className="flex-1">
-            <p className="text-gray-600 text-sm">{user?.phone_number || "Not set"}</p>
+            <p className="text-gray-600 text-sm">
+              {user?.phone_number || "Not set"}
+            </p>
             <p className="text-xs text-gray-500 mt-1">
               Staff will contact you via this number.
             </p>
           </Column>
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
-            <SettingsChangeButton onClick={onStartEdit}>Change</SettingsChangeButton>
+            <SettingsChangeButton onClick={onStartEdit}>
+              Change
+            </SettingsChangeButton>
           </Column>
         </>
       )}

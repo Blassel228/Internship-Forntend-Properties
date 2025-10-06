@@ -1,10 +1,10 @@
-import {useFormContext} from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
-import {User} from "../Types/User.tsx";
+import { User } from "../Types/User.tsx";
 import EditInput from "./EditInput.tsx";
 import FieldError from "./FieldError.tsx";
 
@@ -23,7 +23,10 @@ export default function UsernameField({
   onCancel,
   isPending,
 }: UsernameFieldProps) {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <Row className="gap-4 w-full border-gray-200 border-t pt-4 pb-4 pr-2 pl-2">
@@ -41,7 +44,9 @@ export default function UsernameField({
               type="text"
               {...register("username", { required: "Username is required" })}
             />
-            {errors.username && <FieldError message={errors.username.message as string} />}
+            {errors.username && (
+              <FieldError message={errors.username.message as string} />
+            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
@@ -54,10 +59,14 @@ export default function UsernameField({
       ) : (
         <>
           <Column className="flex-1">
-            <p className="text-gray-600 text-sm">{user?.username || "Not set"}</p>
+            <p className="text-gray-600 text-sm">
+              {user?.username || "Not set"}
+            </p>
           </Column>
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
-            <SettingsChangeButton onClick={onStartEdit}>Change</SettingsChangeButton>
+            <SettingsChangeButton onClick={onStartEdit}>
+              Change
+            </SettingsChangeButton>
           </Column>
         </>
       )}

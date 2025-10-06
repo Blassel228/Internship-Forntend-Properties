@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Room } from "../Types/Room";
 import * as Avatar from "@radix-ui/react-avatar";
@@ -16,10 +16,9 @@ const RoomDeleteModal = ({ room, isOpen, onClose }: RoomDeleteModalProps) => {
 
   const handleDeleteRoom = async (id: string) => {
     return deleteRoom(id);
-  }
+  };
 
-  if(!room)
-    return
+  if (!room) return;
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -39,7 +38,7 @@ const RoomDeleteModal = ({ room, isOpen, onClose }: RoomDeleteModalProps) => {
                 <Dialog.Title className="text-lg font-medium text-gray-900 mb-4">
                   Delete Room: {room.type}
                 </Dialog.Title>
-               <Avatar.Root className="w-full h-full">
+                <Avatar.Root className="w-full h-full">
                   {room?.image ? (
                     <Avatar.Image
                       src={`data:image/png;base64,${room.image}`}
@@ -54,11 +53,20 @@ const RoomDeleteModal = ({ room, isOpen, onClose }: RoomDeleteModalProps) => {
                       No image
                     </Avatar.Fallback>
                   )}
-               </Avatar.Root>
-                <p className="font-bold ">Are you sure you wanna <span className="text-red-600">delete</span> room from the database?</p>
+                </Avatar.Root>
+                <p className="font-bold ">
+                  Are you sure you wanna{" "}
+                  <span className="text-red-600">delete</span> room from the
+                  database?
+                </p>
                 <Row className="gap-4">
-                  <button className="bg-red-600 cursor-pointer rounded px-4 py-2 text-white font-bold transition-colors hover:bg-red-700" onClick={() => room?.id && handleDeleteRoom(room.id)}>{isRoomDeleting ? "Deleting..." : "Delete"}</button>
-                   <button
+                  <button
+                    className="bg-red-600 cursor-pointer rounded px-4 py-2 text-white font-bold transition-colors hover:bg-red-700"
+                    onClick={() => room?.id && handleDeleteRoom(room.id)}
+                  >
+                    {isRoomDeleting ? "Deleting..." : "Delete"}
+                  </button>
+                  <button
                     type="button"
                     onClick={onClose}
                     className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
@@ -68,8 +76,10 @@ const RoomDeleteModal = ({ room, isOpen, onClose }: RoomDeleteModalProps) => {
                   </button>
                 </Row>
                 {deletionError && (
-                    <p className="text-red-500 text-sm">Something went wrong while deleting</p>
-                  )}
+                  <p className="text-red-500 text-sm">
+                    Something went wrong while deleting
+                  </p>
+                )}
               </Dialog.Panel>
             </Transition.Child>
           </div>

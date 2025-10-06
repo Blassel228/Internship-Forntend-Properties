@@ -1,7 +1,7 @@
 import Row from "./Row.tsx";
 import AvatarUploadModal from "./AvatarUploadForm.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
-import {stringToColor} from "../Utils/helpers.tsx";
+import { stringToColor } from "../Utils/helpers.tsx";
 
 export default function PersonalDataHeader({
   username,
@@ -11,7 +11,9 @@ export default function PersonalDataHeader({
   image_data?: string | null;
 }) {
   const bgColor = stringToColor(username);
-  const avatarUrl = image_data ? `data:image/jpeg;base64,${image_data}` : undefined;
+  const avatarUrl = image_data
+    ? `data:image/jpeg;base64,${image_data}`
+    : undefined;
 
   return (
     <Row className="flex user-setting mb-6 justify-between w-full items-center">

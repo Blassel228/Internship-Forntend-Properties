@@ -1,14 +1,14 @@
 import CurrentBookedRoomCard from "../Components/CurrentBookedRoomCard.tsx";
-import {useBookings} from "../Hooks/useBooking.tsx";
+import { useBookings } from "../Hooks/useBooking.tsx";
 import Row from "../Components/Row.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
-import {AlertCircle, Bed, Globe, Loader2} from "lucide-react";
-import {Link} from "react-router-dom";
+import { AlertCircle, Bed, Globe, Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import routers from "../Constants/routers.tsx";
-import {useEffect, useState} from "react";
-import {Booking} from "../Types/Booking.tsx";
+import { useEffect, useState } from "react";
+import { Booking } from "../Types/Booking.tsx";
 import BookedRoomMinorCard from "../Components/BookedRoomMinorCard.tsx";
-import {Room} from "../Types/Room.tsx";
+import { Room } from "../Types/Room.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
 import Column from "../Components/Column.tsx";
@@ -18,7 +18,11 @@ const UserBookingsPage = () => {
 
   const [showTimeoutError, setShowTimeoutError] = useState(false);
 
-  const { bookings, isLoading: areBookingsLoading, error }: { bookings: Booking[] } = useBookings();
+  const {
+    bookings,
+    isLoading: areBookingsLoading,
+    error,
+  }: { bookings: Booking[] } = useBookings();
   const [activeTab, setActiveTab] = useState<"past" | "cancelled">("past");
 
   const hasError = !!error || showTimeoutError;
@@ -29,25 +33,28 @@ const UserBookingsPage = () => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const currentBookings = bookings?.filter(booking => {
-    const endDate = new Date(booking.end_date);
-    return endDate >= today && booking.status === bookingStatus.CONFIRMED;
-  }) || [];
+  const currentBookings =
+    bookings?.filter((booking) => {
+      const endDate = new Date(booking.end_date);
+      return endDate >= today && booking.status === bookingStatus.CONFIRMED;
+    }) || [];
 
-  const pastBookings = bookings?.filter(booking => {
-    const endDate = new Date(booking.end_date);
-    return endDate < today && booking.status === bookingStatus.CONFIRMED;
-  }) || [];
+  const pastBookings =
+    bookings?.filter((booking) => {
+      const endDate = new Date(booking.end_date);
+      return endDate < today && booking.status === bookingStatus.CONFIRMED;
+    }) || [];
 
-   const cancelledBookings = bookings?.filter(booking => {
-    return booking.status === bookingStatus.CANCELLED || booking.status === bookingStatus.REFUNDED;
-  }) || [];
+  const cancelledBookings =
+    bookings?.filter((booking) => {
+      return (
+        booking.status === bookingStatus.CANCELLED ||
+        booking.status === bookingStatus.REFUNDED
+      );
+    }) || [];
 
   const handleNavigate = (booking: Booking, room: Room) => {
-    goTo(
-        routers.bookingDetails,
-        { state: { room, booking } },
-      );
+    goTo(routers.bookingDetails, { state: { room, booking } });
   };
 
   pastBookings.sort((a, b) => {
@@ -86,7 +93,9 @@ const UserBookingsPage = () => {
       <div className="flex min-h-screen items-center justify-center p-4">
         <Column className="p-8 text-center max-w-md w-full">
           <AlertCircle className="mx-auto text-red-500" size={48} />
-          <h3 className="mt-4 text-lg font-medium text-red-700">Couldn't load bookings.</h3>
+          <h3 className="mt-4 text-lg font-medium text-red-700">
+            Couldn't load bookings.
+          </h3>
           <p className="text-red-500 mt-2">{errorMessage}</p>
           <div className="mt-6">
             <button
@@ -108,12 +117,17 @@ const UserBookingsPage = () => {
         <div className="container mx-auto px-4 py-8 mt-36 lg:w-[70%]">
           <div className="flex flex-col items-center justify-center py-16 px-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-lg">
             <div className="text-center">
-              <Globe className="mx-auto text-indigo-500" size={120} strokeWidth={1} />
+              <Globe
+                className="mx-auto text-indigo-500"
+                size={120}
+                strokeWidth={1}
+              />
               <h2 className="mt-8 text-3xl font-extrabold text-gray-800">
                 Where are we going?
               </h2>
               <p className="mt-4 text-lg text-gray-600 max-w-md">
-                You haven’t booked any rooms yet. Explore our catalog and find the perfect place for your next adventure.
+                You haven’t booked any rooms yet. Explore our catalog and find
+                the perfect place for your next adventure.
               </p>
               <Link
                 to={routers.home}
@@ -129,7 +143,8 @@ const UserBookingsPage = () => {
     );
   }
 
-  const activeBookings = activeTab === "past" ? pastBookings : cancelledBookings;
+  const activeBookings =
+    activeTab === "past" ? pastBookings : cancelledBookings;
 
   return (
     <>
@@ -137,14 +152,24 @@ const UserBookingsPage = () => {
       <div className="container mx-auto px-4 py-8 mt-36 lg:w-[70%]">
         <h1 className="text-2xl text-center font-bold mb-8">My bookings</h1>
 
-       <section className="mb-12">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">Current bookings</h2>
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">
+            Current bookings
+          </h2>
 
           {currentBookings.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl border border-orange-200">
-              <Globe className="mx-auto text-orange-500" size={80} strokeWidth={1} />
-              <h3 className="mt-6 text-xl font-bold text-gray-800">No upcoming trips</h3>
-              <p className="mt-2 text-gray-600">Looks like you don’t have any current bookings.</p>
+              <Globe
+                className="mx-auto text-orange-500"
+                size={80}
+                strokeWidth={1}
+              />
+              <h3 className="mt-6 text-xl font-bold text-gray-800">
+                No upcoming trips
+              </h3>
+              <p className="mt-2 text-gray-600">
+                Looks like you don’t have any current bookings.
+              </p>
               <Link
                 to={routers.home}
                 className="mt-6 inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-5 rounded-lg shadow transition"
@@ -187,7 +212,11 @@ const UserBookingsPage = () => {
                   : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-200"
               } ${cancelledBookings.length === 0 ? "opacity-60" : "cursor-pointer"}`}
               disabled={cancelledBookings.length === 0}
-              title={cancelledBookings.length === 0 ? "No cancelled bookings yet" : ""}
+              title={
+                cancelledBookings.length === 0
+                  ? "No cancelled bookings yet"
+                  : ""
+              }
             >
               Cancelled
             </button>
@@ -208,7 +237,10 @@ const UserBookingsPage = () => {
             </Row>
           ) : (
             <div className="flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl border border-orange-200">
-              <h3 className="mt-6 text-xl font-bold text-gray-800">You haven’t completed any stays yet. Your first adventure is waiting!</h3>
+              <h3 className="mt-6 text-xl font-bold text-gray-800">
+                You haven’t completed any stays yet. Your first adventure is
+                waiting!
+              </h3>
               <p className="mt-2 text-gray-600">No bookings have been made.</p>
             </div>
           )}

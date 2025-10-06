@@ -1,21 +1,21 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
-import {calculateNights} from "../Utils/helpers.tsx";
-import {useSelector} from "react-redux";
-import {RootState} from "../Store/store.tsx";
+import { calculateNights } from "../Utils/helpers.tsx";
+import { useSelector } from "react-redux";
+import { RootState } from "../Store/store.tsx";
 import RequiredStar from "./RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
-import {isValidPhoneNumber} from "libphonenumber-js";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import RegistrationFormError from "./RegistrationFormError.tsx";
-import {GuestCreateIn} from "../Types/Guest.tsx";
-import {getItem} from "../Utils/localStorage.tsx";
-import {User} from "../Types/User.tsx";
-import {CreateCheckoutSessionRequest} from "../Types/Payment.tsx";
+import { GuestCreateIn } from "../Types/Guest.tsx";
+import { getItem } from "../Utils/localStorage.tsx";
+import { User } from "../Types/User.tsx";
+import { CreateCheckoutSessionRequest } from "../Types/Payment.tsx";
 import {
   useCreateCheckoutSessionWithoutToken,
   useCreateCheckoutSessionWithToken,
@@ -33,7 +33,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
   room,
 }) => {
   const user: User | null = useSelector(
-    (state: RootState) => state.authorizedUser.authorizedUser
+    (state: RootState) => state.authorizedUser.authorizedUser,
   );
 
   const [country, setCountry] = useState<string>(user?.country || "GB");
@@ -47,7 +47,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
   } = useForm();
 
   const [phoneNumber, setPhoneNumber] = useState<string>(
-    user?.phone_number || ""
+    user?.phone_number || "",
   );
 
   const { startDate, endDate } = useBookingParams();
@@ -175,9 +175,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
             id="email"
             {...register("email", { required: "Email is required" })}
           />
-          <p className="text-xs">
-            Booking confirmation will be sent to here.
-          </p>
+          <p className="text-xs">Booking confirmation will be sent to here.</p>
         </Column>
 
         <Column className="w-[23rem]">

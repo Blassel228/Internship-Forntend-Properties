@@ -1,4 +1,4 @@
-import {GuestCreateIn} from "./Guest.tsx";
+import { GuestCreateIn } from "./Guest.tsx";
 
 export interface CreateCheckoutSessionRequest {
   room_id: string;
@@ -10,7 +10,7 @@ export interface CreateCheckoutSessionRequest {
   guest_data: GuestCreateIn;
 }
 
-export interface CreateRefundRequest{
+export interface CreateRefundRequest {
   booking_id: string;
   refund_reason: string;
 }

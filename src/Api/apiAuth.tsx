@@ -1,6 +1,6 @@
 import baseApi from "./apiBase.tsx";
-import {Token} from "../Types/Token.tsx";
-import {User} from "../Types/User.tsx";
+import { Token } from "../Types/Token.tsx";
+import { User } from "../Types/User.tsx";
 
 export async function loginGetToken(
   username: string,
@@ -29,7 +29,7 @@ export async function loginGetUserByToken(token: string): Promise<User> {
   return response.data;
 }
 
-export async function refreshToken(){
-  const { data } = await baseApi.post('/auth/refresh');
+export async function refreshToken() {
+  const { data } = await baseApi.post("/auth/refresh");
   return data;
 }

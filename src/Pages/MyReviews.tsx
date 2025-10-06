@@ -3,17 +3,28 @@ import Row from "../Components/Row.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import ReviewsPanel from "../Components/ReviewsPanel.tsx";
 import { useState, useMemo } from "react";
-import { useBookings, useGetBookingsForRoomsNotRatedByUser } from "../Hooks/useBooking.tsx";
+import {
+  useBookings,
+  useGetBookingsForRoomsNotRatedByUser,
+} from "../Hooks/useBooking.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
 
 const MyReviews = () => {
   const [isSelected, setIsSelected] = useState<number>(1);
 
-  const { bookings, isLoading: bookingsLoading, error: bookingsError } = useBookings();
-  const { notRatedBookings, isLoading: notRatedLoading, error: notRatedError } = useGetBookingsForRoomsNotRatedByUser();
+  const {
+    bookings,
+    isLoading: bookingsLoading,
+    error: bookingsError,
+  } = useBookings();
+  const {
+    notRatedBookings,
+    isLoading: notRatedLoading,
+    error: notRatedError,
+  } = useGetBookingsForRoomsNotRatedByUser();
 
   const pastBookings = useMemo(() => {
-    return (bookings || []).filter(booking => {
+    return (bookings || []).filter((booking) => {
       const today = new Date();
       const endDate = new Date(booking.end_date);
       return endDate < today && booking.status === bookingStatus.CONFIRMED;
@@ -21,11 +32,13 @@ const MyReviews = () => {
   }, [bookings]);
 
   const notRatedBookingIds = useMemo(() => {
-    return new Set(notRatedBookings?.map(b => b.id));
+    return new Set(notRatedBookings?.map((b) => b.id));
   }, [notRatedBookings]);
 
   const ratedBookings = useMemo(() => {
-    return pastBookings.filter(booking => !notRatedBookingIds.has(booking.id));
+    return pastBookings.filter(
+      (booking) => !notRatedBookingIds.has(booking.id),
+    );
   }, [pastBookings, notRatedBookingIds]);
 
   let displayedBookings = pastBookings;
@@ -38,7 +51,7 @@ const MyReviews = () => {
     displayedBookings = notRatedBookings;
     areBookingsLoading = notRatedLoading;
     error = notRatedError;
-    console.log("Unrated bookings", displayedBookings)
+    console.log("Unrated bookings", displayedBookings);
   }
 
   const handleSetSelected = (value: number) => {
