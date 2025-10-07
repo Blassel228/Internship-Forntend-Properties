@@ -14,7 +14,7 @@ const baseApi: AxiosInstance = axios.create({
 
 baseApi.interceptors.request.use(
   (config) => {
-    console.log("Request Sent:", config);
+    console.log("📤 Request Sent:", config);
     const token = getItem("token");
     if (token) {
       config.headers = config.headers || {};
@@ -23,19 +23,25 @@ baseApi.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.error("⚠️ Request Error:", error);
     return Promise.reject(error);
   },
 );
 
 baseApi.interceptors.response.use(
   (response) => {
-    console.log("Response Received:", response);
+    console.log("📥 Response Received:", response);
     return response;
   },
   async (error) => {
-    console.error("❌ Request Error:", error);
-    if (error.response?.status === 401) {
-      if (error.config?.url?.includes("/auth/refresh")) {
+    console.error("❌ Response Error:", error);
+
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      if (originalRequest.url?.includes("/auth/refresh")) {
         console.error("💀 Refresh endpoint failed — logging out");
         removeItem("token");
         window.location.href = routers.home;
@@ -43,13 +49,21 @@ baseApi.interceptors.response.use(
       }
 
       try {
+        console.log("🔄 Trying to refresh token...");
         const data = await refreshToken();
         const newToken = data.access_token;
+
+        console.log("✅ Token refreshed successfully");
         setItem("token", newToken);
+
+        originalRequest.headers["Authorization"] = `Bearer ${newToken}`;
+
+        return baseApi(originalRequest);
       } catch (refreshError) {
         console.error("💀 Refresh failed — clearing session", refreshError);
         removeItem("token");
         window.location.href = routers.home;
+        return Promise.reject(refreshError);
       }
     }
 

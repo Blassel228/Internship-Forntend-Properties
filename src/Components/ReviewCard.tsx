@@ -20,8 +20,8 @@ const ReviewCard = ({ booking }: ReviewCardProps) => {
   const daysLeft = Math.max(0, 90 - diffDays);
 
   const handleReview = () => {
-    sessionStorage.setItem("reviewBooking", JSON.stringify(booking));
-    goTo(routers.makeReview);
+    console.log(room.id)
+    goTo(routers.makeReview, { state: { roomId: room.id }});
   };
 
   return (
