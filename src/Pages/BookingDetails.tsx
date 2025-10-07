@@ -36,11 +36,10 @@ const BookingDetails = () => {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         <h2 className="text-xl font-bold text-red-600">
-          Дані бронювання відсутні
+          Booking data is absent
         </h2>
         <p className="mt-2 text-gray-600">
-          Схоже, ви перейшли сюди безпосередньо. Поверніться до списку
-          бронювань.
+          Please go back to booking list
         </p>
       </div>
     );

@@ -1,18 +1,21 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createRating as createRatingApi } from "../Api/apiRating.tsx";
+import {RatingCreateRequest} from "../Types/Rating.tsx";
 
 export const useCreateRating = () => {
   const queryClient = useQueryClient();
   const {
     mutate: createRating,
-    isPending: isRatingLoading,
+    isPending: isRatingCreating,
     error: errorWhileCreatingRating,
   } = useMutation({
-    mutationFn: async (room_id: string) => await createRatingApi(room_id),
+    mutationFn: async (rating: RatingCreateRequest) => await createRatingApi(rating),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["searchRooms"] });
+      queryClient.invalidateQueries({ queryKey: ["notRatedRoomsBookings"] });
+      queryClient.invalidateQueries({ queryKey: ["userBookings"] });
+      queryClient.refetchQueries({ queryKey: ["notRatedRoomsBookings"] });
     },
   });
 
-  return { createRating, isRatingLoading, errorWhileCreatingRating };
+  return { createRating, isRatingCreating, errorWhileCreatingRating };
 };
