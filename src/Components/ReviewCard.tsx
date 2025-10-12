@@ -25,7 +25,7 @@ const ReviewCard = ({ booking }: ReviewCardProps) => {
   };
 
   return (
-    <Row className="shadow px-4 py-4 gap-8 w-[50rem] items-start">
+    <Row className="shadow bg-white px-4 py-4 gap-8 w-[50rem] items-start">
       <AvatarImage
         src={`data:image/png;base64,${room.image}`}
         imageClassName="w-24 h-20 rounded object-cover"

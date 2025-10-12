@@ -28,10 +28,6 @@ const DesktopNav = () => {
           </Navlink>
         </li>
       </ul>
-
-      <AuthButton to="/schedule-visit" variant="secondary">
-        <span>Schedule a visit</span>
-      </AuthButton>
       <AuthButtons />
       <UserDropdownMenu open={open} setOpen={setOpen}>
         <HeaderAvatar className="lg" />

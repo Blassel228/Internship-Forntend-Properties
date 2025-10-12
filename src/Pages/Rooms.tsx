@@ -4,12 +4,15 @@ import SearchForm from "../Components/SearchForm";
 import Footer from "../Components/Footer/Footer.tsx";
 import RoomListHeader from "../Components/RoomListHeader.tsx";
 import RoomList from "../Components/RoomList.tsx";
+import ImageWrap from "../Components/ImageWrap.tsx";
+import image from "../Images/moreno.jpg";
 
 const Rooms = () => {
   return (
     <>
       <FullHeader />
-      <div className="container mx-auto mt-36 px-4 py-6">
+      <ImageWrap image={image}/>
+      <div className="container mx-auto px-4 py-6">
         <SearchForm />
         <RoomListHeader />
         <RoomList />

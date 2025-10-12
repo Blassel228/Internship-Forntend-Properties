@@ -83,7 +83,7 @@ const UserBookingsPage = () => {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-8">
         <Loader2 className="animate-spin text-blue-500" size={48} />
-        <p className="mt-4 text-gray-600">Завантажуємо ваші бронювання...</p>
+        <p className="mt-4 text-gray-600">We are loading your bookings...</p>
       </div>
     );
   }

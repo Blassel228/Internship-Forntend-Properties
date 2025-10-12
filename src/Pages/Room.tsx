@@ -4,14 +4,13 @@ import ImageWrap from "../Components/ImageWrap.tsx";
 import SearchForm from "../Components/SearchForm.tsx";
 import {RoomOverview} from "../Components/RoomOverview.tsx";
 import Footer from "../Components/Footer/Footer.tsx";
+import image from "../Images/villa.jpg";
 
 const Room = () => {
   return (
     <>
       <FullHeader />
-      <div className="pt-40 h-[35rem]">
-        <ImageWrap />
-      </div>
+      <ImageWrap image={image}/>
       <SearchForm />
       <RoomOverview />
       <Footer />

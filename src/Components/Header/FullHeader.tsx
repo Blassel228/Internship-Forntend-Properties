@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import Subheader from "../Subheader.tsx";
+import Subheader from "./Subheader.tsx";
 import Header from "./Header.tsx";
 
 const FullHeader = React.forwardRef<HTMLDivElement>((_, ref) => {
@@ -31,17 +31,9 @@ const FullHeader = React.forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref} className="fixed w-full z-50 top-0 bg-white">
-      <Subheader
-        ref={subheaderRef}
-        className={`transition-all duration-300 ${
-          isSubheaderVisible
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 -translate-y-full"
-        }`}
-      />
       <Header
         style={{
-          marginTop: isSubheaderVisible ? "0" : `-${subheaderHeight}px`,
+          marginTop: isSubheaderVisible ? "0" : `-${0}px`,
         }}
       />
     </div>

@@ -82,7 +82,7 @@ const SearchForm = () => {
     });
   };
   return (
-    <div className="w-full mt-20 max-w-6xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-orange-200 mb-20">
+    <div className="w-full mt-20 max-w-6xl mx-auto p-6 bg-white rounded-xl shadow-lg  mb-20">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col md:flex-row md:items-end gap-4"

@@ -2,7 +2,7 @@ import React from "react";
 
 const ExclusiveBenefits = () => {
   return (
-    <div className="bg-white py-8">
+    <div className="py-8">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <h2 className="text-2xl font-bold">Enjoy the exclusive benefits</h2>

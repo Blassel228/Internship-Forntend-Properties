@@ -26,7 +26,7 @@ const ReviewsPanel = ({
   const image = image_data ? `data:image/jpeg;base64,${image_data}` : undefined;
 
   return (
-    <Column className="shadow pt-4 w-96">
+    <Column className="shadow pt-4 w-96 bg-white">
       <Row className="gap-4 pl-4 pb-4">
         <AvatarImage
           fallbackText={initial}

@@ -9,12 +9,8 @@ import {useEffect} from "react";
 const MakeReview = () => {
   const location = useLocation();
   const roomId = location.state?.roomId;
-  console.log("ROOM ID", roomId);
   const { room, isRoomLoading, isError } = useGetRoom(roomId || "");
   useEffect(() => {
-    console.log("LOCATION STATE:", location.state);
-    console.log("ROOM ID:", roomId);
-    console.log("ROOM:", room);
   }, [roomId, room, location.state]);
 
   if (!roomId || isRoomLoading) {

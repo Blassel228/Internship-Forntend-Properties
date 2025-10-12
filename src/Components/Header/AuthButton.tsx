@@ -27,7 +27,7 @@ const AuthButton = ({
   return (
     <Link
       to={to}
-      className={`${variantStyles[variant]} text-gray-700 px-4 py-2 rounded-full transition-colors text-center flex items-center justify-center space-x-2 ${className}`}
+      className={`${variantStyles[variant]}   text-white px-4 py-2 rounded-full transition-colors text-center flex items-center justify-center space-x-2 ${className}`}
       onClick={onClick}
     >
       {children}

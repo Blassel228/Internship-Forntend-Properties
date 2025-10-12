@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import NavigationArrow from "./NavigationArrow";
 
-import hotel1 from "../Images/hotel1.jpg";
-import hotel2 from "../Images/hotel2.jpg";
-import hotel3 from "../Images/hotel3.jpg";
+import hotel1 from "../Images/hotel2.1.jpg";
+import hotel2 from "../Images/hotel2.2.jpg";
+import hotel3 from "../Images/hotel2.3.jpg";
 
 const ImageSection = () => {
   const images = [hotel1, hotel2, hotel3];
@@ -21,7 +21,7 @@ const ImageSection = () => {
   };
 
   return (
-    <section className="relative w-full h-[600px] overflow-hidden mt-36">
+    <section className="relative w-full h-[600px] overflow-hidden">
       <div className="w-full h-full relative">
         {images.map((image, index) => (
           <img

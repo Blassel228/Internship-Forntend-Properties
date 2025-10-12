@@ -11,7 +11,6 @@ import SearchForm from "../Components/SearchForm.tsx";
 const HomePage = () => {
   return (
     <>
-      <FullHeader />
       <ImageSection />
       <SearchForm />
       <div className="mx-auto p-6 lg:w-[70%] sm:w-[90%]">
@@ -20,7 +19,6 @@ const HomePage = () => {
         <ExclusiveBenefits />
         <SpecialDeals />
       </div>
-      <Footer />
     </>
   );
 };
