@@ -1,22 +1,16 @@
-import { useLocation } from "react-router-dom";
-import { Room } from "../Types/Room.tsx";
-import { Booking } from "../Types/Booking.tsx";
-import {
-  AlertTriangle,
-  CalendarArrowDownIcon,
-  CheckIcon,
-  MenuIcon,
-  XIcon,
-} from "lucide-react";
-import { useSelector } from "react-redux";
-import { RootState } from "../Store/store.tsx";
-import { User } from "../Types/User.tsx";
+import {useLocation} from "react-router-dom";
+import {Room} from "../Types/Room.tsx";
+import {Booking} from "../Types/Booking.tsx";
+import {AlertTriangle, CalendarArrowDownIcon, CheckIcon, MenuIcon, XIcon,} from "lucide-react";
+import {useSelector} from "react-redux";
+import {RootState} from "../Store/store.tsx";
+import {User} from "../Types/User.tsx";
 import Row from "../Components/Row.tsx";
 import Column from "../Components/Column.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
-import { formatDate } from "../Utils/helpers.tsx";
+import {formatDate} from "../Utils/helpers.tsx";
 
 const BookingDetails = () => {
   const location = useLocation();
@@ -38,9 +32,7 @@ const BookingDetails = () => {
         <h2 className="text-xl font-bold text-red-600">
           Booking data is absent
         </h2>
-        <p className="mt-2 text-gray-600">
-          Please go back to booking list
-        </p>
+        <p className="mt-2 text-gray-600">Please go back to booking list</p>
       </div>
     );
   }

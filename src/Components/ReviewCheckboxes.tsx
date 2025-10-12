@@ -7,7 +7,10 @@ const ReviewCheckboxes = ({ register }: any) => (
         {...register("recommend")}
         className="mt-1 h-4 w-4 text-orange-600 cursor-pointer rounded focus:ring-orange-500"
       />
-      <label htmlFor="recommend" className="ml-3 text-sm text-gray-700 cursor-pointer">
+      <label
+        htmlFor="recommend"
+        className="ml-3 text-sm text-gray-700 cursor-pointer"
+      >
         Would you recommend this property to a friend?
       </label>
     </div>
@@ -19,7 +22,10 @@ const ReviewCheckboxes = ({ register }: any) => (
         {...register("returnAgain")}
         className="mt-1 h-4 w-4 text-orange-600 cursor-pointer rounded focus:ring-orange-500"
       />
-      <label htmlFor="returnAgain" className="ml-3 text-sm text-gray-700 cursor-pointer">
+      <label
+        htmlFor="returnAgain"
+        className="ml-3 text-sm text-gray-700 cursor-pointer"
+      >
         Would you stay here again?
       </label>
     </div>

@@ -1,7 +1,7 @@
 import Row from "./Row.tsx";
 import AvatarUploadModal from "./AvatarUploadForm.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
-import { stringToColor } from "../Utils/helpers.tsx";
+import {stringToColor} from "../Utils/helpers.tsx";
 
 export default function PersonalDataHeader({
   username,

@@ -1,8 +1,5 @@
 import React from "react";
-import useNavigation from "../Utils/navigate.tsx";
-import { ThemeProvider } from "@material-tailwind/react";
-import children = ThemeProvider.propTypes.children;
-import routers from "../Constants/routers.tsx";
+import {ThemeProvider} from "@material-tailwind/react";
 
 interface SidebarMenuItemProps {
   sectionName: string;

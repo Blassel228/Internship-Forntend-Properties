@@ -1,4 +1,11 @@
-const ReviewCategory = ({ label, options, currentValue, setValue, name, error }: any) => (
+const ReviewCategory = ({
+  label,
+  options,
+  currentValue,
+  setValue,
+  name,
+  error,
+}: any) => (
   <div className="mb-8">
     <h3 className="font-medium text-gray-800 mb-3">{label}</h3>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -7,7 +14,10 @@ const ReviewCategory = ({ label, options, currentValue, setValue, name, error }:
           key={opt.value}
           type="button"
           onClick={() =>
-            setValue(name, opt.value, { shouldValidate: true, shouldDirty: true })
+            setValue(name, opt.value, {
+              shouldValidate: true,
+              shouldDirty: true,
+            })
           }
           className={`p-4 text-left rounded-lg border cursor-pointer transition-all ${
             currentValue === opt.value
@@ -25,7 +35,9 @@ const ReviewCategory = ({ label, options, currentValue, setValue, name, error }:
         </button>
       ))}
     </div>
-    {error && <p className="mt-2 text-sm text-red-600">Please make a selection.</p>}
+    {error && (
+      <p className="mt-2 text-sm text-red-600">Please make a selection.</p>
+    )}
   </div>
 );
 

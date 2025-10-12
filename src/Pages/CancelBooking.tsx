@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Booking } from "../Types/Booking.tsx";
-import { Room } from "../Types/Room.tsx";
+import {useState} from "react";
+import {Link, useLocation} from "react-router-dom";
+import {Booking} from "../Types/Booking.tsx";
+import {Room} from "../Types/Room.tsx";
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import useRefund from "../Hooks/useRefund.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
-import { formatDate } from "../Utils/helpers.tsx";
+import {formatDate} from "../Utils/helpers.tsx";
 
 const CancelBooking = () => {
   const location = useLocation();

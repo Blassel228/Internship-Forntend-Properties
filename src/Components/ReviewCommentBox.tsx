@@ -1,6 +1,9 @@
 const ReviewCommentBox = ({ register }: any) => (
   <div className="mt-6">
-    <label htmlFor="comment" className="block text-sm font-medium text-gray-700 mb-2">
+    <label
+      htmlFor="comment"
+      className="block text-sm font-medium text-gray-700 mb-2"
+    >
       Share your experience (optional)
     </label>
     <textarea

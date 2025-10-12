@@ -1,21 +1,21 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
-import { calculateNights } from "../Utils/helpers.tsx";
-import { useSelector } from "react-redux";
-import { RootState } from "../Store/store.tsx";
+import {calculateNights} from "../Utils/helpers.tsx";
+import {useSelector} from "react-redux";
+import {RootState} from "../Store/store.tsx";
 import RequiredStar from "./RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
-import { isValidPhoneNumber } from "libphonenumber-js";
+import {isValidPhoneNumber} from "libphonenumber-js";
 import RegistrationFormError from "./RegistrationFormError.tsx";
-import { GuestCreateIn } from "../Types/Guest.tsx";
-import { getItem } from "../Utils/localStorage.tsx";
-import { User } from "../Types/User.tsx";
-import { CreateCheckoutSessionRequest } from "../Types/Payment.tsx";
+import {GuestCreateIn} from "../Types/Guest.tsx";
+import {getItem} from "../Utils/localStorage.tsx";
+import {User} from "../Types/User.tsx";
+import {CreateCheckoutSessionRequest} from "../Types/Payment.tsx";
 import {
   useCreateCheckoutSessionWithoutToken,
   useCreateCheckoutSessionWithToken,

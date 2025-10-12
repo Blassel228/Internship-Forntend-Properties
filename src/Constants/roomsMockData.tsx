@@ -1,4 +1,4 @@
-import { Room } from "../Types/Room.tsx";
+import {Room} from "../Types/Room.tsx";
 
 export const rooms = [
   {

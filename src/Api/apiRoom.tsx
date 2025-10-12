@@ -1,6 +1,6 @@
 import baseApi from "./apiBase.tsx";
 
-import { Room, RoomFilters, RoomUpdate, RoomCreate } from "../Types/Room.tsx";
+import {Room, RoomCreate, RoomFilters, RoomUpdate} from "../Types/Room.tsx";
 
 export const createRoom = async (
   room: RoomCreate,

@@ -1,9 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
+import {useMutation} from "@tanstack/react-query";
 
-import { createImage } from "../Api/apiImage.tsx";
-import { useDispatch } from "react-redux";
-import { setAuthorizedUserImage } from "../Store/slices/authorizedUserSlice.tsx";
-import { ImageGet, ImageUpdate } from "../Types/Image.tsx";
+import {createImage} from "../Api/apiImage.tsx";
+import {useDispatch} from "react-redux";
+import {setAuthorizedUserImage} from "../Store/slices/authorizedUserSlice.tsx";
+import {ImageGet, ImageUpdate} from "../Types/Image.tsx";
 
 function useCreateImage() {
   const dispatch = useDispatch();

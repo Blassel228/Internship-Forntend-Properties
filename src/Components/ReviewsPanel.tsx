@@ -1,12 +1,12 @@
 import Column from "./Column.tsx";
 import AvatarImage from "./AvatarImage.tsx";
-import { useSelector } from "react-redux";
-import { RootState } from "../Store/store.tsx";
+import {useSelector} from "react-redux";
+import {RootState} from "../Store/store.tsx";
 import Row from "./Row.tsx";
 import routers from "../Constants/routers.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import SidebarMenuItem from "./SidebarMenuItem.tsx";
-import { stringToColor } from "../Utils/helpers.tsx";
+import {stringToColor} from "../Utils/helpers.tsx";
 
 const ReviewsPanel = ({
   handleSetSelected,

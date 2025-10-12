@@ -1,13 +1,12 @@
 import BookingDetailTitle from "./BookingDetailTitle.tsx";
 import BookingDetail from "./BookingDetail.tsx";
-import { toWords, toWordsOrdinal } from "number-to-words";
+import {toWords, toWordsOrdinal} from "number-to-words";
 import React from "react";
-import { calculateNights } from "../Utils/helpers.tsx";
+import {calculateNights, capitalize, substituteDaysAndFormatDate} from "../Utils/helpers.tsx";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import Column from "./Column.tsx";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
-import { capitalize, substituteDaysAndFormatDate } from "../Utils/helpers.tsx";
 
 const BookingDetails = ({ room }) => {
   const { startDate, endDate, capacity } = useBookingParams();

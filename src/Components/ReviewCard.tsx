@@ -1,7 +1,7 @@
 import Row from "./Row.tsx";
 import AvatarImage from "./AvatarImage.tsx";
 import Column from "./Column.tsx";
-import { Booking } from "../Types/Booking.tsx";
+import {Booking} from "../Types/Booking.tsx";
 import routers from "../Constants/routers.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 
@@ -20,8 +20,8 @@ const ReviewCard = ({ booking }: ReviewCardProps) => {
   const daysLeft = Math.max(0, 90 - diffDays);
 
   const handleReview = () => {
-    console.log(room.id)
-    goTo(routers.makeReview, { state: { roomId: room.id }});
+    console.log(room.id);
+    goTo(routers.makeReview, { state: { roomId: room.id } });
   };
 
   return (

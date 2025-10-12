@@ -1,8 +1,8 @@
-enum RatingFilters{
+enum RatingFilters {
   RECENT = "recent",
   OLDEST = "oldest",
   BEST = "best",
-  WORST = "worst"
+  WORST = "worst",
 }
 
-export default RatingFilters
+export default RatingFilters;

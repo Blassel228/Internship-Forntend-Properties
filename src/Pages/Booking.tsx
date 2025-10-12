@@ -1,10 +1,10 @@
 import FullHeader from "../Components/Header/FullHeader.tsx";
 import Row from "../Components/Row.tsx";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import BookingDetails from "../Components/BookingDetails.tsx";
 import BasicDetailsInputSection from "../Components/BasicDetailsInputSection.tsx";
-import { Room } from "../Types/Room.tsx";
+import {Room} from "../Types/Room.tsx";
 
 const Booking = () => {
   const location = useLocation();

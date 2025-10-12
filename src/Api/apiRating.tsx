@@ -1,5 +1,5 @@
 import baseApi from "./apiBase.tsx";
-import { Rating, RatingCreateRequest } from "../Types/Rating.tsx";
+import {Rating, RatingCreateRequest} from "../Types/Rating.tsx";
 
 export const createRating = (rating: RatingCreateRequest): Promise<Rating> => {
   const { data } = baseApi.post("/rating/", rating);

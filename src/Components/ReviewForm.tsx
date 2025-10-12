@@ -1,5 +1,5 @@
-import { useForm } from "react-hook-form";
-import { useCreateRating } from "../Hooks/useRating.tsx";
+import {useForm} from "react-hook-form";
+import {useCreateRating} from "../Hooks/useRating.tsx";
 import Column from "./Column.tsx";
 import ReviewImage from "./ReviewImage.tsx";
 import ReviewHeader from "./ReviewHeader.tsx";
@@ -7,7 +7,7 @@ import ReviewRatingSection from "./ReviewRatingSection.tsx";
 import ReviewCategory from "./ReviewCategory.tsx";
 import ReviewCheckboxes from "./ReviewCheckboxes.tsx";
 import ReviewCommentBox from "./ReviewCommentBox.tsx";
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import useGetRoom from "../Hooks/useGetRoom.tsx";
 import routers from "../Constants/routers.tsx";
 import useNavigation from "../Utils/navigate.tsx";
@@ -69,7 +69,9 @@ const ReviewForm = () => {
 
   const currentCleanliness = watch("cleanlinessRating");
   const currentStaff = watch("staffRating");
-  const image = room?.image ? `data:image/jpeg;base64,${room.image}` : undefined;
+  const image = room?.image
+    ? `data:image/jpeg;base64,${room.image}`
+    : undefined;
 
   return (
     <Column className="w-full max-w-3xl bg-white rounded-xl shadow-md overflow-hidden">
@@ -85,10 +87,30 @@ const ReviewForm = () => {
           label="How would you rate our staff?"
           name="staffRating"
           options={[
-            { value: 4, label: "Outstanding!", emoji: "😊", desc: "Friendly, helpful, and professional" },
-            { value: 3, label: "Good service", emoji: "🙂", desc: "Polite and responsive" },
-            { value: 2, label: "Just okay", emoji: "😐", desc: "Did the job, but nothing special" },
-            { value: 1, label: "Poor experience", emoji: "😞", desc: "Unfriendly or unhelpful" },
+            {
+              value: 4,
+              label: "Outstanding!",
+              emoji: "😊",
+              desc: "Friendly, helpful, and professional",
+            },
+            {
+              value: 3,
+              label: "Good service",
+              emoji: "🙂",
+              desc: "Polite and responsive",
+            },
+            {
+              value: 2,
+              label: "Just okay",
+              emoji: "😐",
+              desc: "Did the job, but nothing special",
+            },
+            {
+              value: 1,
+              label: "Poor experience",
+              emoji: "😞",
+              desc: "Unfriendly or unhelpful",
+            },
           ]}
           currentValue={currentStaff}
           setValue={setValue}
@@ -97,10 +119,30 @@ const ReviewForm = () => {
           label="How would you describe the cleanliness?"
           name="cleanlinessRating"
           options={[
-            { value: 4, label: "Spotless!", emoji: "🧼", desc: "Everything sparkles!" },
-            { value: 3, label: "Clean & tidy", emoji: "👍", desc: "Fresh and well-maintained." },
-            { value: 2, label: "Could be cleaner", emoji: "😕", desc: "Noticeable dust or stains." },
-            { value: 1, label: "Unacceptable", emoji: "🚫", desc: "Serious hygiene issues." },
+            {
+              value: 4,
+              label: "Spotless!",
+              emoji: "🧼",
+              desc: "Everything sparkles!",
+            },
+            {
+              value: 3,
+              label: "Clean & tidy",
+              emoji: "👍",
+              desc: "Fresh and well-maintained.",
+            },
+            {
+              value: 2,
+              label: "Could be cleaner",
+              emoji: "😕",
+              desc: "Noticeable dust or stains.",
+            },
+            {
+              value: 1,
+              label: "Unacceptable",
+              emoji: "🚫",
+              desc: "Serious hygiene issues.",
+            },
           ]}
           currentValue={currentCleanliness}
           setValue={setValue}

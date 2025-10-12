@@ -1,7 +1,6 @@
 import Column from "./Column.tsx";
 import ReviewCard from "./ReviewCard.tsx";
-import { FileIcon } from "lucide-react";
-import { Loader2 } from "lucide-react";
+import {FileIcon, Loader2} from "lucide-react";
 
 interface ReviewsTableProps {
   isSelected: number;
