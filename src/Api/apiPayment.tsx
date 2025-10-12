@@ -25,5 +25,5 @@ export const createCheckoutSessionWithoutToken = async (
 };
 
 export const refundBooking = async (data: CreateRefundRequest): void => {
-  await baseApi.post("/payment/refund_booking", data);
+  await baseApi.post("/payment/refund", data);
 };

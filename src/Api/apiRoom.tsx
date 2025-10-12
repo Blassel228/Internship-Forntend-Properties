@@ -23,7 +23,7 @@ export const getRooms = async (
   offset?: number,
   limit?: number,
 ): Promise<Room[]> => {
-  const { data }: { data: Room[] } = await baseApi.get<Room[]>("/room", {
+  const { data }: { data: Room[] } = await baseApi.get<Room[]>("/room/", {
     params: { offset, limit },
   });
   return data;
@@ -41,14 +41,14 @@ export const getSearchRooms = async (
 };
 
 export const getRoom = async (room_id: string): Promise<Room> => {
-  const { data } = await baseApi.get<Room>(`/room/get_one/${room_id}`);
+  const { data } = await baseApi.get<Room>(`/room/${room_id}`);
   return data;
 };
 
 export const getRoomsWithFilter = async (
   filters: RoomFilters,
 ): Promise<Room[]> => {
-  const { data } = await baseApi.get<Room[]>("room/get_with_filters", {
+  const { data } = await baseApi.get<Room[]>("room/filter", {
     params: filters,
   });
   return data;
@@ -68,8 +68,6 @@ export const deleteRoom = async (room_id: string): Promise<boolean> => {
 };
 
 export const getRoomsBookedNotRatedByUser = async (): Promise<Room[]> => {
-  const { data } = await baseApi.get<Room[]>(
-    "/room/get_rooms_booked_not_rated_by_user",
-  );
+  const { data } = await baseApi.get<Room[]>("/room/not-rated");
   return data;
 };

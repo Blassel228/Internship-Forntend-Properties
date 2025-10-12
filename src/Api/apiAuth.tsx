@@ -23,7 +23,7 @@ export async function loginGetToken(
 }
 
 export async function loginGetUserByToken(token: string): Promise<User> {
-  const response = await baseApi.get("/auth/user/me/", {
+  const response = await baseApi.get("/auth/user/me", {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response.data;
