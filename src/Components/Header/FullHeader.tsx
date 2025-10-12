@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from "react";
-import Subheader from "./Subheader.tsx";
 import Header from "./Header.tsx";
 
 const FullHeader = React.forwardRef<HTMLDivElement>((_, ref) => {

@@ -2,7 +2,6 @@ import {useState} from "react";
 import {Link, useLocation} from "react-router-dom";
 import {Booking} from "../Types/Booking.tsx";
 import {Room} from "../Types/Room.tsx";
-import FullHeader from "../Components/Header/FullHeader.tsx";
 import useRefund from "../Hooks/useRefund.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
@@ -92,7 +91,6 @@ const CancelBooking = () => {
 
   return (
     <>
-      <FullHeader />
       <div className="min-h-screen bg-gray-50">
         <main className="container mx-auto px-6 py-8 max-w-6xl mt-36">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

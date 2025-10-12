@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { FaBars } from "react-icons/fa";
+import React, {useEffect, useState} from "react";
+import {FaBars} from "react-icons/fa";
 import DesktopNav from "./DesktopNav.tsx";
 import HeaderMobileMenu from "./HeaderMobileMenu.tsx";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import routers from "../../Constants/routers.tsx";
 
 const Header = ({ style }) => {

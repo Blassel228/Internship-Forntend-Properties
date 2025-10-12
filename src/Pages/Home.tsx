@@ -1,11 +1,9 @@
-import FullHeader from "../Components/Header/FullHeader.tsx";
 import ImageSection from "../Components/ImageSection.tsx";
 import React from "react";
 import CityCard from "../Components/CityCard.tsx";
 import ExclusiveBenefits from "../Components/ExclusiveBenefits.tsx";
 import SpecialDeals from "../Components/SpecialDeals.tsx";
 import PopularRooms from "../Components/PopularRooms.tsx";
-import Footer from "../Components/Footer/Footer.tsx";
 import SearchForm from "../Components/SearchForm.tsx";
 
 const HomePage = () => {

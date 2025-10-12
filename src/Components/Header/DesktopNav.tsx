@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import Navlink from "../Navlink.tsx";
-import AuthButton from "./AuthButton.tsx";
 import AuthButtons from "./AuthButtons.tsx";
 import HeaderAvatar from "../HeaderAvatar.tsx";
 import UserDropdownMenu from "../UserDropdownMenu.tsx";

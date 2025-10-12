@@ -7,7 +7,6 @@ import {RootState} from "../Store/store.tsx";
 import {User} from "../Types/User.tsx";
 import Row from "../Components/Row.tsx";
 import Column from "../Components/Column.tsx";
-import FullHeader from "../Components/Header/FullHeader.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
 import {formatDate} from "../Utils/helpers.tsx";
@@ -39,7 +38,6 @@ const BookingDetails = () => {
 
   return (
     <>
-      <FullHeader />
       <Column className="container mx-auto px-4 py-8 w-[70%] mt-36">
         <h1 className="text-sm  mb-6 text-green-500">
           Your booking is confirmed

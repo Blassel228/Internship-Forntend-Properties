@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {useRoomsWithFilters} from "../Hooks/useRooms.tsx";
-import FullHeader from "../Components/Header/FullHeader.tsx";
 import Column from "../Components/Column.tsx";
 import AdminRoomTable from "../Components/AdminRoomTable.tsx";
 import AdminRoomsPagePaginator from "../Components/AdminRoomsPagePaginator.tsx";
@@ -35,7 +34,6 @@ const AdminRooms = () => {
 
   return (
     <>
-      <FullHeader />
       <Row className="mt-36 justify-center px-16 w-full gap-8">
         <Column className="gap-4">
           <AdminRoomTable

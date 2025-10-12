@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {FormProvider, useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
 import {RootState} from "../Types/RootState.tsx";
-import FullHeader from "../Components/Header/FullHeader.tsx";
 import Row from "../Components/Row.tsx";
 import Column from "../Components/Column.tsx";
 import useUpdateUser from "../Hooks/useUpdateUser.tsx";
@@ -45,7 +44,6 @@ export default function PersonalData() {
   }, [error, isUpdatingError]);
   return (
     <>
-      <FullHeader />
       <Row className="settings-layout mt-36 justify-center content-center w-full">
         <Column className="user-settings w-2/4">
           <PersonalDataHeader

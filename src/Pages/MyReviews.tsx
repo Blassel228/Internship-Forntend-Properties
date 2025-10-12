@@ -1,6 +1,5 @@
 import ReviewsTable from "../Components/ReviewsTable.tsx";
 import Row from "../Components/Row.tsx";
-import FullHeader from "../Components/Header/FullHeader.tsx";
 import ReviewsPanel from "../Components/ReviewsPanel.tsx";
 import {useMemo, useState} from "react";
 import {useBookings, useGetBookingsForRoomsNotRatedByUser,} from "../Hooks/useBooking.tsx";
@@ -57,7 +56,6 @@ const MyReviews = () => {
 
   return (
     <>
-      <FullHeader />
       <Row className="mt-36 w-full gap-4 justify-center">
         <ReviewsPanel
           isSelected={isSelected}

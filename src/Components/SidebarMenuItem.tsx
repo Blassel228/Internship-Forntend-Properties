@@ -1,5 +1,4 @@
 import React from "react";
-import {ThemeProvider} from "@material-tailwind/react";
 
 interface SidebarMenuItemProps {
   sectionName: string;

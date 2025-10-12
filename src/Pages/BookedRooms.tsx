@@ -1,7 +1,6 @@
 import CurrentBookedRoomCard from "../Components/CurrentBookedRoomCard.tsx";
 import {useBookings} from "../Hooks/useBooking.tsx";
 import Row from "../Components/Row.tsx";
-import FullHeader from "../Components/Header/FullHeader.tsx";
 import {AlertCircle, Bed, Globe, Loader2} from "lucide-react";
 import {Link} from "react-router-dom";
 import routers from "../Constants/routers.tsx";
@@ -113,7 +112,6 @@ const UserBookingsPage = () => {
   if (!bookings || bookings.length === 0) {
     return (
       <>
-        <FullHeader />
         <div className="container mx-auto px-4 py-8 mt-36 lg:w-[70%]">
           <div className="flex flex-col items-center justify-center py-16 px-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-lg">
             <div className="text-center">
@@ -148,7 +146,6 @@ const UserBookingsPage = () => {
 
   return (
     <>
-      <FullHeader />
       <div className="container mx-auto px-4 py-8 mt-36 lg:w-[70%]">
         <h1 className="text-2xl text-center font-bold mb-8">My bookings</h1>
 

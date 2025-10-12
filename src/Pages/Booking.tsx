@@ -1,4 +1,3 @@
-import FullHeader from "../Components/Header/FullHeader.tsx";
 import Row from "../Components/Row.tsx";
 import React from "react";
 import {useLocation} from "react-router-dom";
@@ -11,8 +10,7 @@ const Booking = () => {
   const room: Room = location.state?.room;
   return (
     <div className="w-full justify-center flex">
-      <FullHeader />
-      <Row className="view gap-5 justify-center mt-36 mx-20">
+      <Row className="view gap-5 justify-center mt-36 mx-40">
         <BookingDetails room={room} />
         <BasicDetailsInputSection room={room} />
       </Row>
