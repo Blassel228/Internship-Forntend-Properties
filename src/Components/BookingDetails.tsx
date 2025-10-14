@@ -43,10 +43,6 @@ const BookingDetails = ({ room }) => {
             <h1>Total</h1>
             <h1>${room.price * nights}</h1>
           </div>
-          <div className="text-sm ml-auto text-right">
-            <p>Includes taxes and fees</p>
-            <p>In the property's currency: KRW 63,500</p>
-          </div>
         </Column>
         <Column className="py-4 border-b border-black">
           <h2 className="text-xl font-bold pb-4">Your booking info</h2>

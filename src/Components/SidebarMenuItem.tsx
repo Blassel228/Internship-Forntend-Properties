@@ -3,13 +3,9 @@ import React from "react";
 interface SidebarMenuItemProps {
   sectionName: string;
   count: number;
-  isSelected: string;
+  isSelected: boolean;
   onClick: () => void;
 }
-
-const SidebarMenuItemText = ({ children }) => {
-  return <p className="font-bold text-blue-500">{children}</p>;
-};
 
 const SidebarMenuItem = ({
   sectionName,
@@ -18,17 +14,19 @@ const SidebarMenuItem = ({
   onClick,
 }: SidebarMenuItemProps) => {
   return (
-    <div
+    <button
       onClick={onClick}
-      className={`border-t border-gray-300 w-full flex justify-between p-4 cursor-pointer ${isSelected && "border-l-blue-500 border-l-2"}`}
+      className={`w-full text-left px-4 py-3 rounded-lg transition-colors duration-150 flex justify-between items-center ${
+        isSelected
+          ? "bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-600"
+          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+      }`}
     >
-      <div>
-        <SidebarMenuItemText>{sectionName}</SidebarMenuItemText>
-      </div>
-      <div>
-        <SidebarMenuItemText>{count}</SidebarMenuItemText>
-      </div>
-    </div>
+      <span>{sectionName}</span>
+      <span className={isSelected ? "text-blue-700" : "text-gray-500"}>
+        {count}
+      </span>
+    </button>
   );
 };
 

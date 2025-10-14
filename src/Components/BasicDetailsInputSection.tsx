@@ -91,7 +91,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       email: data.email.trim(),
       phone: data.phone_number,
       country: data.country,
-      whether_send_confirmation: !!data.wantsEmailConfirmation,
+      whether_send_confirmation: data.wantsEmailConfirmation,
       is_booking_for_me: isMainGuest,
     };
 
@@ -129,17 +129,22 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
 
   return (
     <form
-      className="userInfoSection w-full h-full gap-8 bg-white flex flex-col"
+      className="userInfoSection w-full h-full gap-8 flex flex-col"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <ContainerWithBorders className="basicDataSection">
+      <ContainerWithBorders className="basicDataSection bg-white">
         <div>
           <h1 className="font-bold text-xl">Enter your data</h1>
           <p className="text-green-600 leading-7 text-[13px]">
-            Everything is almost done! All remains is entering your data.
-            <br />
             Please enter your data in Latin, so the administration could
             understand it.
+          </p>
+        </div>
+
+        {/* ⚠️ Попередження про неможливість редагування */}
+        <div className="bg-amber-50 border-l-4 border-amber-400 p-3 rounded mb-6">
+          <p className="text-sm text-amber-700">
+            <strong>Important:</strong> Editing bookings is not available. If your plans change, you’ll need to cancel this booking and create a new one (rebooking).
           </p>
         </div>
 
@@ -269,7 +274,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
         </Column>
       </ContainerWithBorders>
 
-      <ContainerWithBorders>
+      <ContainerWithBorders className="bg-white">
         <h1 className="font-bold text-xl">Refund Policy</h1>
         <p className="leading-7">
           Book with confidence! You can cancel your reservation and receive a
@@ -286,16 +291,13 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
         </p>
       </ContainerWithBorders>
 
-      <ContainerWithBorders>
+      <ContainerWithBorders className="bg-white">
         <h1 className="font-bold text-xl">Write your special requests</h1>
         <p className="leading-7">
-          Fulfillment of special requests is not guaranteed, but the
-          accommodation administration will do everything possible to meet your
-          needs. You can always submit a request or special request after
-          completing the booking!
+          You can ask the administration for something. Not all requests can be satisfied, but our staff will do its best.
         </p>
         <label htmlFor="specialRequests">
-          Please write your request in English or these languages: Korean
+          Please write your request in English.
           (optional).
         </label>
         <textarea
