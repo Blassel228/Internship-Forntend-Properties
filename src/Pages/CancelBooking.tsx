@@ -5,7 +5,7 @@ import {Room} from "../Types/Room.tsx";
 import useRefund from "../Hooks/useRefund.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
-import {formatDate} from "../Utils/helpers.tsx";
+import {formatStringDate} from "../Utils/helpers.tsx";
 
 const CancelBooking = () => {
   const location = useLocation();
@@ -182,8 +182,8 @@ const CancelBooking = () => {
                   <div>
                     <h3 className="font-bold text-lg">{room.type}</h3>
                     <p className="text-gray-500 mt-1">
-                      {formatDate(booking.start_date)} –{" "}
-                      {formatDate(booking.end_date)}
+                      {formatStringDate(booking.start_date)} –{" "}
+                      {formatStringDate(booking.end_date)}
                     </p>
                   </div>
                 </div>

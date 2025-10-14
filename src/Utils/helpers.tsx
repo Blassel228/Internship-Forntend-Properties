@@ -1,8 +1,18 @@
 import dayjs from "dayjs";
 
-export const substituteDaysAndFormatDate = (date, days) => {
-  const newDate = dayjs(date).subtract(days, "day");
+export const addDaysAndFormatDate = (date, days) => {
+  const newDate = dayjs(date).add(days, "day");
   return newDate.format("YYYY-MM-DD");
+};
+
+export const formatDateToStandardDate = (date: Date) => {
+  const newDate = dayjs(date);
+  return newDate.format("YYYY-MM-DD");
+}
+
+export const formatStringDate = (dateString: string): string => {
+  const d = new Date(dateString);
+  return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
 };
 
 const colorCache: Record<string, string> = {};
@@ -22,11 +32,6 @@ export const stringToColor = (str: string) => {
   colorCache[str] = color;
 
   return color;
-};
-
-export const formatDate = (dateString: string): string => {
-  const d = new Date(dateString);
-  return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
 };
 
 export const capitalize = (text) =>

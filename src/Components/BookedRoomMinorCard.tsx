@@ -3,7 +3,7 @@ import Column from "./Column.tsx";
 import {Booking} from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
 import {AlertTriangle, Image as ImageIcon} from "lucide-react";
-import {formatDate} from "../Utils/helpers.tsx";
+import {formatStringDate} from "../Utils/helpers.tsx";
 
 interface BookedRoomCardProps {
   booking: Booking;
@@ -90,7 +90,7 @@ const BookedRoomMinorCard = ({
           {room.type || "Без назви"}
         </div>
         <div className="text-sm text-gray-600">
-          {formatDate(booking.start_date)} — {formatDate(booking.end_date)}
+          {formatStringDate(booking.start_date)} — {formatStringDate(booking.end_date)}
         </div>
       </Column>
     </Row>

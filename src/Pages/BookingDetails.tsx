@@ -9,7 +9,7 @@ import Row from "../Components/Row.tsx";
 import Column from "../Components/Column.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
-import {formatDate} from "../Utils/helpers.tsx";
+import {formatStringDate} from "../Utils/helpers.tsx";
 
 const BookingDetails = () => {
   const location = useLocation();
@@ -73,13 +73,13 @@ const BookingDetails = () => {
                 <Column className="border-r pr-4">
                   <p>Check-in</p>
                   <p className="font-bold text-lg">
-                    {formatDate(booking.start_date)}
+                    {formatStringDate(booking.start_date)}
                   </p>
                 </Column>
                 <Column>
                   <p>Check-out</p>
                   <p className="font-bold text-lg">
-                    {formatDate(booking.end_date)}
+                    {formatStringDate(booking.end_date)}
                   </p>
                 </Column>
               </Row>

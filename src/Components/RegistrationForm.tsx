@@ -24,7 +24,6 @@ const RegistrationForm: React.FC = () => {
 
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState<string>("");
-  const [country, setCountry] = useState<string>("GB");
 
   useEffect(() => {
     if (error && error.response?.data?.detail) {
@@ -53,7 +52,6 @@ const RegistrationForm: React.FC = () => {
     const submitData: UserCreate = {
       ...data,
       phone_number: phone,
-      country: country,
     };
 
     try {
@@ -124,7 +122,6 @@ const RegistrationForm: React.FC = () => {
             international
             defaultCountry="GB"
             value={phone}
-            onCountryChange={(country: string) => setCountry(country)}
             onChange={(phone: string) => {
               setPhone(phone);
               clearErrors("phone_number");

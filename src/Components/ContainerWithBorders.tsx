@@ -10,7 +10,6 @@ const ContainerWithBorders = ({ children, className }) => {
         p-4               
         gap-2
         rounded-lg         
-        bg-white          
         shadow-sm         
         ${className || ""}
       `}

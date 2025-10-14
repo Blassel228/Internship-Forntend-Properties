@@ -11,8 +11,8 @@ const Booking = () => {
   return (
     <div className="w-full justify-center flex">
       <Row className="view gap-5 justify-center mt-36 mx-40">
-        <BookingDetails room={room} />
         <BasicDetailsInputSection room={room} />
+        <BookingDetails room={room} />
       </Row>
     </div>
   );
