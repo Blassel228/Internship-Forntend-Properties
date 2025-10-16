@@ -1,10 +1,13 @@
-import {useMutation} from "@tanstack/react-query";
-import {updateUser} from "../Api/apiUser.tsx";
-import {useDispatch} from "react-redux";
-import {setAuthorizedUser, setAuthorizedUserImage,} from "../Store/slices/authorizedUserSlice.tsx";
-import {User, UserUpdate} from "../Types/User.tsx";
-import {getImage} from "../Api/apiImage.tsx";
-import {ImageGet} from "../Types/Image.tsx";
+import { useMutation } from "@tanstack/react-query";
+import { updateUser } from "../Api/apiUser.tsx";
+import { useDispatch } from "react-redux";
+import {
+  setAuthorizedUser,
+  setAuthorizedUserImage,
+} from "../Store/slices/authorizedUserSlice.tsx";
+import { User, UserUpdate } from "../Types/User.tsx";
+import { getImage } from "../Api/apiImage.tsx";
+import { ImageGet } from "../Types/Image.tsx";
 
 function useUpdateUser() {
   const dispatch = useDispatch();

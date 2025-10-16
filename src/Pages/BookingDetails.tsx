@@ -31,7 +31,9 @@ const BookingDetails = () => {
   if (!booking || !room) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
-        <h2 className="text-xl font-bold text-red-600">Booking data is absent</h2>
+        <h2 className="text-xl font-bold text-red-600">
+          Booking data is absent
+        </h2>
         <p className="mt-2 text-gray-600">Please go back to booking list</p>
       </div>
     );
@@ -69,23 +71,30 @@ const BookingDetails = () => {
                 <CalendarArrowDownIcon className="text-blue-600" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-gray-800">Your stay & room</h2>
+                <h2 className="text-lg font-semibold text-gray-800">
+                  Your stay & room
+                </h2>
                 <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <p className="text-sm text-gray-500">Check-in</p>
-                    <p className="text-xl font-bold">{formatStringDate(booking.start_date)}</p>
+                    <p className="text-xl font-bold">
+                      {formatStringDate(booking.start_date)}
+                    </p>
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Check-out</p>
-                    <p className="text-xl font-bold">{formatStringDate(booking.end_date)}</p>
+                    <p className="text-xl font-bold">
+                      {formatStringDate(booking.end_date)}
+                    </p>
                   </div>
                 </div>
 
                 <div className="mt-5 pt-4 border-t border-gray-100">
                   <p className="text-sm text-gray-500 mb-1">Room details</p>
                   <p className="text-gray-700">
-                    {room.capacity} guests • {room.beds} bed{room.beds !== 1 ? "s" : ""} •{" "}
-                    {room.area} m² • Floor {room.floor}
+                    {room.capacity} guests • {room.beds} bed
+                    {room.beds !== 1 ? "s" : ""} • {room.area} m² • Floor{" "}
+                    {room.floor}
                   </p>
                 </div>
               </div>
@@ -94,11 +103,15 @@ const BookingDetails = () => {
 
           <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="text-amber-600 mt-0.5 flex-shrink-0" size={20} />
+              <AlertTriangle
+                className="text-amber-600 mt-0.5 flex-shrink-0"
+                size={20}
+              />
               <div>
                 <p className="font-medium text-amber-800">Stay safe online</p>
                 <p className="text-amber-700 text-sm mt-1">
-                  Never share personal or payment details over phone, email, or chat.
+                  Never share personal or payment details over phone, email, or
+                  chat.
                 </p>
               </div>
             </div>
@@ -107,13 +120,17 @@ const BookingDetails = () => {
           <div className="pt-4 space-y-3">
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
               <p className="text-sm text-blue-700">
-                <strong>Need to change your dates or room?</strong> Editing bookings is not available. Please cancel this booking and create a new one (rebooking).
+                <strong>Need to change your dates or room?</strong> Editing
+                bookings is not available. Please cancel this booking and create
+                a new one (rebooking).
               </p>
             </div>
 
             <button
               className="flex items-center gap-3 px-5 py-3 bg-red-50 text-red-700 hover:bg-red-100 rounded-lg transition-colors font-medium"
-              onClick={() => goTo(routers.cancelBooking, { state: { room, booking } })}
+              onClick={() =>
+                goTo(routers.cancelBooking, { state: { room, booking } })
+              }
             >
               <XIcon size={18} />
               Cancel booking

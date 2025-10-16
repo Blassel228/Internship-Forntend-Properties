@@ -1,4 +1,4 @@
-import {Room} from "../Types/Room";
+import { Room } from "../Types/Room";
 import AdminTablDataCell from "./AdminTablDataCell.tsx";
 import AdminTableRow from "./AdminTableRow.tsx";
 import Row from "./Row.tsx";

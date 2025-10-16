@@ -1,5 +1,5 @@
-import {useForm} from "react-hook-form";
-import {useCreateRating} from "../Hooks/useRating.tsx";
+import { useForm } from "react-hook-form";
+import { useCreateRating } from "../Hooks/useRating.tsx";
 import Column from "./Column.tsx";
 import ReviewImage from "./ReviewImage.tsx";
 import ReviewHeader from "./ReviewHeader.tsx";
@@ -7,7 +7,7 @@ import ReviewRatingSection from "./ReviewRatingSection.tsx";
 import ReviewCategory from "./ReviewCategory.tsx";
 import ReviewCheckboxes from "./ReviewCheckboxes.tsx";
 import ReviewCommentBox from "./ReviewCommentBox.tsx";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useGetRoom from "../Hooks/useGetRoom.tsx";
 import routers from "../Constants/routers.tsx";
 import useNavigation from "../Utils/navigate.tsx";

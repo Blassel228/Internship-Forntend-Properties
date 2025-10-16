@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {FaBars} from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa";
 import DesktopNav from "./DesktopNav.tsx";
 import HeaderMobileMenu from "./HeaderMobileMenu.tsx";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import routers from "../../Constants/routers.tsx";
 
 const Header = ({ style }) => {
@@ -26,9 +26,7 @@ const Header = ({ style }) => {
   return (
     <header
       className={`w-full px-32 fixed top-0 z-50 transition-all duration-300 ease-in-out ${
-        isScrolled
-          ? "bg-white shadow-md" 
-          : "bg-transparent shadow-none" 
+        isScrolled ? "bg-white shadow-md" : "bg-transparent shadow-none"
       }`}
       style={style}
     >

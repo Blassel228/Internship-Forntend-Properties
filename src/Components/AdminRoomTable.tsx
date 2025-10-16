@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
-import {Room} from "../Types/Room";
+import { useEffect, useState } from "react";
+import { Room } from "../Types/Room";
 import RoomAdminRow from "./RoomAdminRow";
 import RoomEditModal from "./RoomEditModal";
-import {AlertCircle, Loader2} from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 import RoomDeleteModal from "./RoomDeleteModal.tsx";
 
 interface RoomAdminTableProps {

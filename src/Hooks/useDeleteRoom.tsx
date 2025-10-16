@@ -1,6 +1,6 @@
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {deleteRoom as deleteRoomApi} from "../Api/apiRoom.tsx";
-import {toast} from "react-hot-toast";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteRoom as deleteRoomApi } from "../Api/apiRoom.tsx";
+import { toast } from "react-hot-toast";
 
 function useDeleteRoom() {
   const queryClient = useQueryClient();

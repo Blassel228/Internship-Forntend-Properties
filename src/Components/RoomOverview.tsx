@@ -1,19 +1,16 @@
 import React from "react";
 import RoomDescription from "./RoomDetailsContentSection.tsx";
-import {useLocation, useNavigate} from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
 import AppButton from "./AppButton.tsx";
 import routers from "../Constants/routers.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
-import {Room} from "../Types/Room.tsx";
 import KeyDetails from "./KeyDetails.tsx";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
+import ReviewSection from "./ReviewSection.tsx";
 
-export const RoomOverview = () => {
-  const location = useLocation();
-  const room: Room = location.state?.room;
-
+export const RoomOverview = ({ room }) => {
   const navigate = useNavigate();
   const { startDate, endDate, capacity } = useSearchParams();
 
@@ -28,7 +25,7 @@ export const RoomOverview = () => {
   };
 
   return (
-    <Row className="gap-16 px-56 pb-10">
+    <Row className="gap-16 pb-10 px-56">
       <Column>
         <img
           src={`data:image/png;base64,${room.image}`}
@@ -51,6 +48,7 @@ export const RoomOverview = () => {
           </AppButton>
         </Row>
         <RoomDescription room={room} />
+        <ReviewSection room={room} />
       </Column>
       <KeyDetails />
     </Row>

@@ -1,9 +1,13 @@
 import Column from "./Column.tsx";
-import ReviewCard from "./ReviewCard.tsx";
-import {FileIcon, Loader2} from "lucide-react";
+import { FileIcon, Loader2 } from "lucide-react";
+import UserReviewCard from "./UserReviewCard.tsx";
 
 interface ReviewsTableProps {
   isSelected: number;
+  displayedBookings: any[];
+  areBookingsLoading: boolean;
+  error: unknown;
+  notRatedBookingIds: Set<number | string>;
 }
 
 const ReviewsTable = ({
@@ -11,20 +15,19 @@ const ReviewsTable = ({
   displayedBookings,
   areBookingsLoading,
   error,
+  notRatedBookingIds,
 }: ReviewsTableProps) => {
   if (areBookingsLoading) {
     return (
-      <Column className="w-7/12">
-        <div className="flex justify-center items-center h-12">
-          <Loader2 className="animate-spin" />
-        </div>
+      <Column className="w-full justify-center items-center py-12">
+        <Loader2 className="animate-spin text-gray-500" size={24} />
       </Column>
     );
   }
 
   if (error) {
     return (
-      <Column className="w-7/12">
+      <Column className="w-full justify-center items-center py-12">
         <p className="text-red-500 text-center">
           Failed to load data. Please try again later.
         </p>
@@ -40,19 +43,25 @@ const ReviewsTable = ({
     else if (isSelected === 3) message = "All your stays have been reviewed!";
 
     return (
-      <Column className="w-7/12 justify-center items-center py-12">
-        <FileIcon size={76} className="text-gray-400 mb-4" />
-        <p className="text-gray-500 text-center">{message}</p>
+      <Column className="w-full justify-center items-center py-12 px-4">
+        <FileIcon size={64} className="text-gray-400 mb-4" />
+        <p className="text-gray-500 text-center max-w-md">{message}</p>
       </Column>
     );
   }
 
   return (
-    <Column className="w-7/12">
-      {displayedBookings.map((booking) => (
-        <ReviewCard key={booking.id} booking={booking} />
-      ))}
-    </Column>
+    <div className="w-full">
+      <Column className="md:grid-cols-2 gap-6">
+        {displayedBookings.map((booking) => (
+          <UserReviewCard
+            key={booking.id}
+            booking={booking}
+            isReviewable={notRatedBookingIds.has(booking.id)}
+          />
+        ))}
+      </Column>
+    </div>
   );
 };
 

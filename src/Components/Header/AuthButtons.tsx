@@ -1,13 +1,13 @@
 import Navlink from "../Navlink.tsx";
 import React from "react";
-import {getItem} from "../../Utils/localStorage.tsx";
+import { getItem } from "../../Utils/localStorage.tsx";
 
 const AuthButtons = () => {
   const token = getItem("token");
   return (
     <>
-      {!token &&
-      (<>
+      {!token && (
+        <>
           <Navlink to="/login">Login</Navlink>
           <Navlink to="/register" variant="success">
             Register

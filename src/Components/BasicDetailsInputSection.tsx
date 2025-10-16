@@ -144,7 +144,9 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
         {/* ⚠️ Попередження про неможливість редагування */}
         <div className="bg-amber-50 border-l-4 border-amber-400 p-3 rounded mb-6">
           <p className="text-sm text-amber-700">
-            <strong>Important:</strong> Editing bookings is not available. If your plans change, you’ll need to cancel this booking and create a new one (rebooking).
+            <strong>Important:</strong> Editing bookings is not available. If
+            your plans change, you’ll need to cancel this booking and create a
+            new one (rebooking).
           </p>
         </div>
 
@@ -294,11 +296,11 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       <ContainerWithBorders className="bg-white">
         <h1 className="font-bold text-xl">Write your special requests</h1>
         <p className="leading-7">
-          You can ask the administration for something. Not all requests can be satisfied, but our staff will do its best.
+          You can ask the administration for something. Not all requests can be
+          satisfied, but our staff will do its best.
         </p>
         <label htmlFor="specialRequests">
-          Please write your request in English.
-          (optional).
+          Please write your request in English. (optional).
         </label>
         <textarea
           id="specialRequests"

@@ -1,7 +1,7 @@
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {toast} from "react-hot-toast";
-import {createRating} from "../Api/apiRating.tsx";
-import {RatingCreateRequest} from "../Types/Rating.tsx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
+import { createRating } from "../Api/apiReview.tsx";
+import { ReviewCreateRequest } from "../Types/Review.tsx";
 
 function useCreateRating() {
   const queryClient = useQueryClient();
@@ -11,7 +11,7 @@ function useCreateRating() {
     isPending: isRatingCreating,
     error: creationError,
   } = useMutation({
-    mutationFn: async (rating: RatingCreateRequest) =>
+    mutationFn: async (rating: ReviewCreateRequest) =>
       await createRating(rating),
     onSuccess: () => {
       toast.success("Rating created successfully");

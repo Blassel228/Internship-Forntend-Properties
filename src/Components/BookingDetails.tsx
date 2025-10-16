@@ -1,6 +1,6 @@
 import BookingDetailTitle from "./BookingDetailTitle.tsx";
 import BookingDetail from "./BookingDetail.tsx";
-import {toWords, toWordsOrdinal} from "number-to-words";
+import { toWords, toWordsOrdinal } from "number-to-words";
 import React from "react";
 import {
   addDaysAndFormatDate,
@@ -66,7 +66,7 @@ const BookingDetails = ({ room }) => {
         </div>
 
         <div className="py-4 border-b border-black">
-          <BookingDetailTitle >You have chosen:</BookingDetailTitle>
+          <BookingDetailTitle>You have chosen:</BookingDetailTitle>
           <BookingDetail>
             Room for {toWords(capacity)} {capacity > 1 ? "people" : "person"}
           </BookingDetail>
@@ -77,7 +77,8 @@ const BookingDetails = ({ room }) => {
             What is booking cancellation price?
           </h2>
           <p className="text-green-600 leading-7 text-[13px]">
-            You can cancel booking for free before  {addDaysAndFormatDate(new Date(startDate), 12)}.
+            You can cancel booking for free before{" "}
+            {addDaysAndFormatDate(new Date(startDate), 12)}.
           </p>
         </div>
       </ContainerWithBorders>

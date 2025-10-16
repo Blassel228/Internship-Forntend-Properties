@@ -1,7 +1,7 @@
-import {getItem, removeItem, setItem} from "../Utils/localStorage.tsx";
-import axios, {AxiosInstance} from "axios";
+import { getItem, removeItem, setItem } from "../Utils/localStorage.tsx";
+import axios, { AxiosInstance } from "axios";
 import routers from "../Constants/routers.tsx";
-import {refreshToken} from "./apiAuth.tsx";
+import { refreshToken } from "./apiAuth.tsx";
 
 const baseApi: AxiosInstance = axios.create({
   baseURL: "http://localhost:8000/api",

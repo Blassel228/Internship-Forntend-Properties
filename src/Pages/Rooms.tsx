@@ -8,7 +8,7 @@ import image from "../Images/moreno.jpg";
 const Rooms = () => {
   return (
     <>
-      <ImageWrap image={image}/>
+      <ImageWrap image={image} />
       <div className="container mx-auto px-4 py-6">
         <SearchForm />
         <RoomListHeader />

@@ -1,5 +1,12 @@
 import React from "react";
-import {FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaTwitter,} from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaMapMarkerAlt,
+  FaTwitter,
+} from "react-icons/fa";
 import Navlink from "../Navlink.tsx";
 
 const Subheader = ({ className, ref }) => {

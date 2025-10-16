@@ -83,7 +83,10 @@ const CancelBooking = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
         <div className="text-center">
           <p className="text-red-500 mb-4">Booking or room data not found.</p>
-          <Link to="/my-bookings" className="text-blue-600 hover:underline font-medium">
+          <Link
+            to="/my-bookings"
+            className="text-blue-600 hover:underline font-medium"
+          >
             Go back to my bookings
           </Link>
         </div>
@@ -95,7 +98,9 @@ const CancelBooking = () => {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-10">
-          <h1 className="text-2xl font-bold text-gray-800">Cancel your booking</h1>
+          <h1 className="text-2xl font-bold text-gray-800">
+            Cancel your booking
+          </h1>
           <p className="text-gray-600 mt-2">
             We’re sorry to see you go. Please select a reason below.
           </p>
@@ -136,9 +141,25 @@ const CancelBooking = () => {
                 >
                   {isPending ? (
                     <>
-                      <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Processing...
                     </>
@@ -169,7 +190,8 @@ const CancelBooking = () => {
                 <div>
                   <h3 className="font-semibold text-gray-800">{room.type}</h3>
                   <p className="text-sm text-gray-600">
-                    {formatStringDate(booking.start_date)} – {formatStringDate(booking.end_date)}
+                    {formatStringDate(booking.start_date)} –{" "}
+                    {formatStringDate(booking.end_date)}
                   </p>
                 </div>
               </div>
@@ -177,7 +199,9 @@ const CancelBooking = () => {
 
             {/* Refund Summary */}
             <div className="bg-white rounded-xl p-5 shadow-sm">
-              <h3 className="font-semibold text-gray-800 mb-4">Refund summary</h3>
+              <h3 className="font-semibold text-gray-800 mb-4">
+                Refund summary
+              </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Total paid</span>
@@ -185,12 +209,18 @@ const CancelBooking = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Refundable amount</span>
-                  <span className="text-green-600 font-medium">{formatCurrency(refundAmount)}</span>
+                  <span className="text-green-600 font-medium">
+                    {formatCurrency(refundAmount)}
+                  </span>
                 </div>
                 <div className="pt-3 border-t border-gray-100">
                   <div className="flex justify-between">
-                    <span className="font-medium text-gray-800">Cancellation fee</span>
-                    <span className="text-red-600 font-bold">{formatCurrency(cancellationFee)}</span>
+                    <span className="font-medium text-gray-800">
+                      Cancellation fee
+                    </span>
+                    <span className="text-red-600 font-bold">
+                      {formatCurrency(cancellationFee)}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -198,15 +228,26 @@ const CancelBooking = () => {
 
             {/* Policy */}
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-5">
-              <h3 className="font-semibold text-amber-800 mb-3">Cancellation policy</h3>
+              <h3 className="font-semibold text-amber-800 mb-3">
+                Cancellation policy
+              </h3>
               <ul className="text-amber-700 text-sm space-y-2">
-                <li>• <strong>12+ days</strong> before check-in → 100% refund</li>
-                <li>• <strong>10–12 days</strong> → 70% refund</li>
-                <li>• <strong>7–9 days</strong> → 50% refund</li>
-                <li>• <strong>Under 7 days</strong> → 35% refund</li>
+                <li>
+                  • <strong>12+ days</strong> before check-in → 100% refund
+                </li>
+                <li>
+                  • <strong>10–12 days</strong> → 70% refund
+                </li>
+                <li>
+                  • <strong>7–9 days</strong> → 50% refund
+                </li>
+                <li>
+                  • <strong>Under 7 days</strong> → 35% refund
+                </li>
               </ul>
               <p className="text-xs text-amber-600 mt-3">
-                Refunds are processed instantly and may take 5–10 business days to appear in your account.
+                Refunds are processed instantly and may take 5–10 business days
+                to appear in your account.
               </p>
             </div>
           </div>

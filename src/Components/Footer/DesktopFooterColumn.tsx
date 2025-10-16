@@ -1,5 +1,11 @@
 import React from "react";
-import {corporate, help, legal, quickLinks, travelProfessionals,} from "../../Constants/footer.tsx";
+import {
+  corporate,
+  help,
+  legal,
+  quickLinks,
+  travelProfessionals,
+} from "../../Constants/footer.tsx";
 import ContactInfo from "../ContactInfo.tsx";
 
 const DesktopFooterColumns = () => {

@@ -1,7 +1,7 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import {User} from "../../Types/User.tsx";
-import {ImageUpdate} from "../../Types/Image.tsx";
+import { User } from "../../Types/User.tsx";
+import { ImageUpdate } from "../../Types/Image.tsx";
 
 interface AuthorizedUserState {
   authorizedUser: User | null;

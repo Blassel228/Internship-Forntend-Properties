@@ -1,7 +1,7 @@
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {updateRoom as updateRoomApi} from "../Api/apiRoom";
-import {toast} from "react-hot-toast";
-import {RoomUpdate} from "../Types/Room";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateRoom as updateRoomApi } from "../Api/apiRoom";
+import { toast } from "react-hot-toast";
+import { RoomUpdate } from "../Types/Room";
 
 interface UpdateRoomParams {
   roomId: string;
