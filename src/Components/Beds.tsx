@@ -1,5 +1,5 @@
 import React from "react";
-import {LuBed} from "react-icons/lu";
+import { LuBed } from "react-icons/lu";
 import KeyDetailOverlay from "./KeyDetailOverlay.tsx";
 import KeyDetailTitle from "./KeyDetailTitle.tsx";
 import KeyDetailDetails from "./KeyDetailDetails.tsx";

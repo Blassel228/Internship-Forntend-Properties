@@ -1,7 +1,10 @@
-import {useQuery} from "@tanstack/react-query";
-import {getRoomsBookedNotRatedByUser, getRoomsWithFilter,} from "../Api/apiRoom.tsx";
-import {Booking} from "../Types/Booking.tsx";
-import {RoomFilters} from "../Types/Room.tsx";
+import { useQuery } from "@tanstack/react-query";
+import {
+  getRoomsBookedNotRatedByUser,
+  getRoomsWithFilter,
+} from "../Api/apiRoom.tsx";
+import { Booking } from "../Types/Booking.tsx";
+import { RoomFilters } from "../Types/Room.tsx";
 
 export const useRoomsWithFilters = (filters: RoomFilters) => {
   const {

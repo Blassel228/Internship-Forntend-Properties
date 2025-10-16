@@ -1,15 +1,14 @@
 import useGetRoom from "../Hooks/useGetRoom";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Row from "../Components/Row.tsx";
 import ReviewForm from "../Components/ReviewForm.tsx";
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 const MakeReview = () => {
   const location = useLocation();
   const roomId = location.state?.roomId;
   const { room, isRoomLoading, isError } = useGetRoom(roomId || "");
-  useEffect(() => {
-  }, [roomId, room, location.state]);
+  useEffect(() => {}, [roomId, room, location.state]);
 
   if (!roomId || isRoomLoading) {
     return (

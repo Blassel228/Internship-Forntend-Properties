@@ -1,5 +1,5 @@
 import React from "react";
-import {IoPricetagOutline} from "react-icons/io5";
+import { IoPricetagOutline } from "react-icons/io5";
 import KeyDetailOverlay from "./KeyDetailOverlay.tsx";
 import KeyDetailTitle from "./KeyDetailTitle.tsx";
 import KeyDetailDetails from "./KeyDetailDetails.tsx";

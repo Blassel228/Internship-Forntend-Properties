@@ -1,5 +1,5 @@
-import {useQuery} from "@tanstack/react-query";
-import {getRoom} from "../Api/apiRoom.tsx";
+import { useQuery } from "@tanstack/react-query";
+import { getRoom } from "../Api/apiRoom.tsx";
 
 const useRoom = (room_id: string) => {
   const {

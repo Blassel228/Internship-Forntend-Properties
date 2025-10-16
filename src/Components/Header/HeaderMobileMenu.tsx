@@ -1,5 +1,5 @@
 import React from "react";
-import {FaTimes} from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import AuthButton from "./AuthButton.tsx";
 import Navlink from "../Navlink.tsx";
 import AuthButtons from "./AuthButtons.tsx";

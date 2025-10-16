@@ -1,5 +1,5 @@
-import {useQuery} from "@tanstack/react-query";
-import {getSearchRooms} from "../Api/apiRoom.tsx";
+import { useQuery } from "@tanstack/react-query";
+import { getSearchRooms } from "../Api/apiRoom.tsx";
 
 const useSearchRoomsQuery = (
   start_date: string,

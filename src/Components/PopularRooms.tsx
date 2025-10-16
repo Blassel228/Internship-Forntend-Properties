@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import PopularRoom from "./PopularRoom";
-import {getRooms} from "../Api/apiRoom";
+import { getRooms } from "../Api/apiRoom";
 import roomNames from "../Constants/roomNames";
-import {Room} from "../Types/Room.tsx";
+import { Room } from "../Types/Room.tsx";
 
 const PopularRooms = () => {
   const [rooms, setRooms] = useState<Room[] | null>(null);

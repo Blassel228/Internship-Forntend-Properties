@@ -1,9 +1,9 @@
-import {useRef, useState} from "react";
+import { useRef, useState } from "react";
 import * as Avatar from "@radix-ui/react-avatar";
-import {useSelector} from "react-redux";
-import {RootState} from "../Types/RootState.tsx";
-import {User} from "../Types/User.tsx";
-import {stringToColor} from "../Utils/helpers.tsx";
+import { useSelector } from "react-redux";
+import { RootState } from "../Types/RootState.tsx";
+import { User } from "../Types/User.tsx";
+import { stringToColor } from "../Utils/helpers.tsx";
 
 interface AvatarUploaderProps {
   currentAvatarBase64?: string | null;

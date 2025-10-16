@@ -1,3 +1,5 @@
+import { ImageGet } from "./Image.tsx";
+
 export interface User {
   username: string;
   email: string;
@@ -9,6 +11,7 @@ export interface User {
   sex?: number;
   image_data?: string;
   birthdate?: string;
+  image: ImageGet;
 }
 
 export interface UserCreate {

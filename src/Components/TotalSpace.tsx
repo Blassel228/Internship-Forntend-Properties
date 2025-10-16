@@ -1,5 +1,5 @@
 import React from "react";
-import {FaRegSquare} from "react-icons/fa";
+import { FaRegSquare } from "react-icons/fa";
 import KeyDetailOverlay from "./KeyDetailOverlay.tsx";
 import KeyDetailTitle from "./KeyDetailTitle.tsx";
 import KeyDetailDetails from "./KeyDetailDetails.tsx";

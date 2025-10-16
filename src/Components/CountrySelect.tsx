@@ -13,10 +13,15 @@ interface CountrySelectorProps {
   [key: string]: any;
 }
 
-const CountrySelector = ({ value, onChange, ...props }: CountrySelectorProps) => {
+const CountrySelector = ({
+  value,
+  onChange,
+  ...props
+}: CountrySelectorProps) => {
   const options = useMemo<CountryOption[]>(() => countryList().getData(), []);
 
-  const selectedOption = options.find((option) => option.label === value) || null;
+  const selectedOption =
+    options.find((option) => option.label === value) || null;
 
   const handleChange = (selected: SingleValue<CountryOption>) => {
     onChange?.(selected);
@@ -65,8 +70,8 @@ const CountrySelector = ({ value, onChange, ...props }: CountrySelectorProps) =>
       backgroundColor: state.isSelected
         ? "#2563eb"
         : state.isFocused
-        ? "#f3f4f6"
-        : "white",
+          ? "#f3f4f6"
+          : "white",
       color: state.isSelected ? "white" : "black",
       cursor: "pointer",
     }),

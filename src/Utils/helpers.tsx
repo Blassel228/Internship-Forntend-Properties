@@ -8,7 +8,7 @@ export const addDaysAndFormatDate = (date, days) => {
 export const formatDateToStandardDate = (date: Date) => {
   const newDate = dayjs(date);
   return newDate.format("YYYY-MM-DD");
-}
+};
 
 export const formatStringDate = (dateString: string): string => {
   const d = new Date(dateString);

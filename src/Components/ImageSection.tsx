@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import NavigationArrow from "./NavigationArrow";
 
 import hotel1 from "../Images/hotel2.1.jpg";

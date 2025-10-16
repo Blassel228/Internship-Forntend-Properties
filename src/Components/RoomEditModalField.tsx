@@ -1,4 +1,4 @@
-import {InputHTMLAttributes} from "react";
+import { InputHTMLAttributes } from "react";
 
 interface RoomEditModalFieldProps
   extends InputHTMLAttributes<HTMLInputElement> {

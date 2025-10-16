@@ -1,7 +1,7 @@
 import React from "react";
 
 const BookingInput = React.forwardRef(
-  ({ defaultValue, type, placeholder, id,  ...props }, ref) => {
+  ({ defaultValue, type, placeholder, id, ...props }, ref) => {
     return (
       <input
         defaultValue={defaultValue || ""}
@@ -13,7 +13,7 @@ const BookingInput = React.forwardRef(
         {...props}
       />
     );
-  }
+  },
 );
 
 export default BookingInput;
