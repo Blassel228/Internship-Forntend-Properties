@@ -5,7 +5,7 @@ interface KeyDetailTitleProps {
 }
 
 const KeyDetailTitle: React.FC<KeyDetailTitleProps> = ({ children }) => {
-  return <h3 className="text-2xl">{children}</h3>;
+  return <h3 className="lg:text-2xl sm:text-xs">{children}</h3>;
 };
 
 export default KeyDetailTitle;

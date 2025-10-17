@@ -3,15 +3,14 @@ import Beds from "./Beds.tsx";
 import Bathes from "./Bathes.tsx";
 import Price from "./Price.tsx";
 import TotalSpace from "./TotalSpace.tsx";
-import { useLocation } from "react-router-dom";
-
 import { Room } from "../Types/Room.tsx";
+import {useLocation} from "react-router-dom";
 
 const KeyDetails = () => {
   const location = useLocation();
-  const room: Room = location.state?.room;
+  const room = location.state?.room as Room;
   return (
-    <div className="flex bg-white p-4 gap-6 rounded-lg shadow-xl h-96 lg:flex-col lg:h- sm:flex-row">
+    <div className="flex bg-white p-4 gap-6 rounded-lg shadow-xl lg:h-96 lg:flex-col sm:flex-row sm:h-[10rem]">
       <TotalSpace room={room} />
       <Beds room={room} />
       <Bathes room={room} />

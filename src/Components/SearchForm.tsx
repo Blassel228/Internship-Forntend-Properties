@@ -113,7 +113,9 @@ const SearchForm = () => {
           onChange={(e) => setCapacity(Number(e.target.value))}
           placeholder="Number of people"
         />
-        <AppButton type="submit">SEARCH</AppButton>
+        <div className="flex justify-center sm:justify-start w-full sm:w-auto">
+          <AppButton type="submit">SEARCH</AppButton>
+        </div>
       </form>
 
       {error && <p className="text-red-500 mt-2">{error}</p>}

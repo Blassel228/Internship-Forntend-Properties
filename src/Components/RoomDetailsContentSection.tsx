@@ -1,13 +1,12 @@
 import React from "react";
 
-const RoomDetailsContentSection = ({ room }: { room: any }) => {
+const RoomDetailsContentSection = ({ room }) => {
   return (
-    <div className="mt-8">
-      <p className="mb-4 border-t border-gray-200 pt-4 text-sm sm:text-base">
+    <div className="mt-6">
+      <p className="mb-4 border-t border-gray-200 pt-4 text-sm sm:text-base leading-relaxed">
         {room.description}
       </p>
     </div>
   );
 };
-
 export default RoomDetailsContentSection;

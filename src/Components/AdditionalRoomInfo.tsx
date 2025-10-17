@@ -1,15 +1,10 @@
 import React from "react";
 
-interface Props {
-  children: React.ReactNode;
-}
-
-const AdditionalRoomInfo: React.FC<Props> = ({ children }) => {
+const AdditionalRoomInfo = ({ children }) => {
   return (
-    <span className="bg-pink-200 w-fit h-[32px] text-pink-800 px-2 text-xs font-medium flex justify-center items-center rounded-md">
+    <span className="bg-pink-100 text-pink-800 px-2 py-1 text-xs font-medium rounded-md whitespace-nowrap">
       {children}
     </span>
   );
 };
-
 export default AdditionalRoomInfo;

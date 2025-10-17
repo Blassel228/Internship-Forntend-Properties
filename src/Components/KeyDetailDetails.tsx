@@ -5,7 +5,7 @@ interface KeyDetailDetailsProps {
 }
 
 const KeyDetailDetails: React.FC<KeyDetailDetailsProps> = ({ children }) => {
-  return <p className="text-gray-600 text-xs">{children}</p>;
+  return <p className="text-gray-600 text-xs ">{children}</p>;
 };
 
 export default KeyDetailDetails;

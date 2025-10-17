@@ -7,11 +7,13 @@ import KeyDetailDetails from "./KeyDetailDetails.tsx";
 const TotalSpace = ({ room }) => {
   return (
     <KeyDetailOverlay>
-      <FaRegSquare color="orange" size="30px" />
+      <span className="hidden sm:inline-flex">
+        <FaRegSquare color="orange" size={24} />
+      </span>
       <div>
-        <KeyDetailTitle>Total Space</KeyDetailTitle>
+        <KeyDetailTitle>Space</KeyDetailTitle>
         <KeyDetailDetails>
-          Room`s space is {room.total_space} m*2
+          Space is {room.total_space} m*2
         </KeyDetailDetails>
       </div>
     </KeyDetailOverlay>

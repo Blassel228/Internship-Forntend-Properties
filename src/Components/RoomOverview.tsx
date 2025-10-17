@@ -1,6 +1,6 @@
 import React from "react";
-import RoomDescription from "./RoomDetailsContentSection.tsx";
-import {  useNavigate } from "react-router-dom";
+import RoomDetailsContentSection from "./RoomDetailsContentSection.tsx";
+import { useNavigate } from "react-router-dom";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
 import AppButton from "./AppButton.tsx";
 import routers from "../Constants/routers.tsx";
@@ -24,33 +24,67 @@ export const RoomOverview = ({ room }) => {
     );
   };
 
+  const imageSrc = room.image?.startsWith("data:image")
+    ? room.image
+    : `data:image/png;base64,${room.image}`;
+
   return (
-    <Row className="gap-16 pb-10 px-56">
-      <Column>
+    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6">
+      <div className="hidden lg:block">
+        <Row className="gap-8">
+          <Column className="w-3/4">
+            <img
+              src={imageSrc}
+              className="w-full h-96 object-cover rounded-lg shadow-md"
+              alt="Room"
+            />
+            <Row className="mt-4 items-center justify-between gap-3">
+              <Row className="flex-wrap gap-2">
+                <AdditionalRoomInfo>{room.type}</AdditionalRoomInfo>
+                <AdditionalRoomInfo>Has {room.bedrooms} bedrooms</AdditionalRoomInfo>
+                <AdditionalRoomInfo>For {room.capacity} persons</AdditionalRoomInfo>
+                {room.has_jacuzzi && <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>}
+              </Row>
+              <AppButton className="py-2 px-4" onClick={handleNavigate}>
+                Make Booking
+              </AppButton>
+            </Row>
+          </Column>
+
+          <Column className="w-1/4">
+            <KeyDetails room={room} />
+          </Column>
+        </Row>
+
+        <Column className="mt-8">
+          <RoomDetailsContentSection room={room} />
+          <ReviewSection room={room} />
+        </Column>
+      </div>
+
+      <Column className="lg:hidden gap-8">
         <img
-          src={`data:image/png;base64,${room.image}`}
-          className="w-full h-96 object-cover rounded-lg shadow-md"
+          src={imageSrc}
+          className="w-full h-64 sm:h-80 object-cover rounded-lg shadow-md"
           alt="Room"
         />
-        <Row className="mt-3 justify-between">
-          <Row className="gap-3 ">
+        <Row className="flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <Row className="flex-wrap gap-2">
             <AdditionalRoomInfo>{room.type}</AdditionalRoomInfo>
-            <AdditionalRoomInfo>
-              Has {room.bedrooms} bedrooms
-            </AdditionalRoomInfo>
+            <AdditionalRoomInfo>Has {room.bedrooms} bedrooms</AdditionalRoomInfo>
             <AdditionalRoomInfo>For {room.capacity} persons</AdditionalRoomInfo>
-            {room.has_jacuzzi && (
-              <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>
-            )}
+            {room.has_jacuzzi && <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>}
           </Row>
-          <AppButton className="py-0 ml-10" onClick={handleNavigate}>
+          <AppButton className="w-full sm:w-auto sm:h-[1rem] py-2 px-4" onClick={handleNavigate}>
             Make Booking
           </AppButton>
         </Row>
-        <RoomDescription room={room} />
+
+        <KeyDetails room={room} />
+
+        <RoomDetailsContentSection room={room}/>
         <ReviewSection room={room} />
       </Column>
-      <KeyDetails />
-    </Row>
+    </div>
   );
 };

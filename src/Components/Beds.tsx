@@ -7,7 +7,9 @@ import KeyDetailDetails from "./KeyDetailDetails.tsx";
 const Beds = ({ room }) => {
   return (
     <KeyDetailOverlay>
-      <LuBed color="orange" size="30px" />
+      <span className="hidden sm:inline-flex">
+        <LuBed color="orange" size="30px" />
+      </span>
       <div>
         <KeyDetailTitle>Beds</KeyDetailTitle>
         <KeyDetailDetails>The room has {room.beds} beds</KeyDetailDetails>
