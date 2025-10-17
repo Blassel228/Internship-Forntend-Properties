@@ -31,3 +31,11 @@ export const getReviewsForRoom = async (
   console.log("DATA: ", data);
   return data;
 };
+
+export const getReviewCount = async (
+  roomId: string,
+) => {
+  const { data } = await baseApi.get(`/review/count/rooms/${roomId}`);
+  console.log("DATA: ", data);
+  return data;
+};

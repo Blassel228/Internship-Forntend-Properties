@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RoomDetailsContentSection from "./RoomDetailsContentSection.tsx";
 import { useNavigate } from "react-router-dom";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
@@ -9,10 +9,27 @@ import KeyDetails from "./KeyDetails.tsx";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import ReviewSection from "./ReviewSection.tsx";
+import { getReviewCount } from "../Api/apiReview.tsx";
 
 export const RoomOverview = ({ room }) => {
   const navigate = useNavigate();
   const { startDate, endDate, capacity } = useSearchParams();
+  const [reviewCount, setReviewCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchReviewCount = async () => {
+      try {
+        const count = await getReviewCount(room.id);
+        setReviewCount(count);
+      } catch (error) {
+        console.error("Failed to fetch review count:", error);
+      }
+    };
+
+    if (room?.id) {
+      fetchReviewCount();
+    }
+  }, [room.id]);
 
   const handleNavigate = () => {
     navigate(
@@ -20,7 +37,7 @@ export const RoomOverview = ({ room }) => {
         pathname: `${routers.book}/${room.id}`,
         search: `?start_date=${startDate}&end_date=${endDate}&capacity=${capacity}`,
       },
-      { state: { room } },
+      { state: { room, reviewCount } },
     );
   };
 

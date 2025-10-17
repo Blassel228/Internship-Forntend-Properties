@@ -43,3 +43,12 @@ export const calculateNights = (start_date, end_date) => {
   const diffTime = endDate.getTime() - startDate.getTime();
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 };
+
+export const getRatingLabel = (rating: number): string => {
+  if (rating >= 9.0) return "Superb";
+  if (rating >= 8.0) return "Fabulous";
+  if (rating >= 7.0) return "Good";
+  if (rating >= 6.0) return "Pleasant";
+  if (rating >= 5.0) return "Fair";
+  return "Poor";
+};
