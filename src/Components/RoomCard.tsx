@@ -1,9 +1,12 @@
+// RoomCard.tsx
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import routers from "../Constants/routers.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
 import { Room } from "../Types/Room.tsx";
+import Row from "./Row.tsx";
+import { StarIcon } from "lucide-react";
 
 const RoomCard = ({ room }: { room: Room }) => {
   const navigate = useNavigate();
@@ -18,6 +21,8 @@ const RoomCard = ({ room }: { room: Room }) => {
       { state: { room } },
     );
   };
+
+  const hasRating = room.average_rating !== null && room.average_rating !== undefined;
 
   return (
     <motion.div
@@ -36,9 +41,30 @@ const RoomCard = ({ room }: { room: Room }) => {
       />
 
       <div className="p-3 space-y-1">
-        <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
-          {room.type}
-        </span>
+        <Row className="items-center gap-1 flex-wrap">
+          {hasRating ? (
+            <>
+              <div className="flex items-center bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
+                <span className="font-bold text-orange-700 text-sm">
+                  {room.average_rating}
+                </span>
+                <StarIcon className="text-orange-500 fill-orange-500 ml-1" size={12} />
+              </div>
+              <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
+                {room.type}
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs font-medium italic">
+                Not rated yet
+              </span>
+              <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
+                {room.type}
+              </span>
+            </>
+          )}
+        </Row>
 
         <h2 className="text-lg font-bold text-orange-600">
           ${room.price.toFixed(2)}
