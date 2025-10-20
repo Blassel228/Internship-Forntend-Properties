@@ -1,16 +1,17 @@
-import { Booking } from "../Types/Booking.tsx";
+import {Booking} from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
-import { AlertTriangle, Image as ImageIcon } from "lucide-react";
+import {AlertTriangle, Image as ImageIcon} from "lucide-react";
 
 interface BookedRoomCardProps {
   booking: Booking;
+  handleNavigate: (room_id: string) => void;
 }
 
 const CurrentBookedRoomCard = ({
   booking,
   handleNavigate,
 }: BookedRoomCardProps) => {
-  const formatDate = (dateString: string): string => {
+    const formatDate = (dateString: string): string => {
     const d = new Date(dateString);
     return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
   };
@@ -36,10 +37,7 @@ const CurrentBookedRoomCard = ({
           <AlertTriangle className="text-red-500" size={48} />
         </div>
         <div className="p-5 text-red-800">
-          <h3 className="font-bold">Не вдалося завантажити кімнату</h3>
-          <p className="text-sm mt-1">
-            {error ? error.message : "Немає ID кімнати"}
-          </p>
+          <h3 className="font-bold">Couldn`t load the room</h3>
         </div>
       </div>
     );
@@ -52,8 +50,7 @@ const CurrentBookedRoomCard = ({
           <ImageIcon className="text-yellow-500" size={48} />
         </div>
         <div className="p-5 text-yellow-800">
-          <h3 className="font-bold">Кімнату не знайдено</h3>
-          <p className="text-sm mt-1">ID: {booking.room_id}</p>
+          <h3 className="font-bold">Couldn`t find the room</h3>
         </div>
       </div>
     );
@@ -63,10 +60,8 @@ const CurrentBookedRoomCard = ({
 
   return (
     <div
-      className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all duration-300"
-      onClick={() => handleNavigate(booking, room)}
-    >
-      <div className="h-48 w-full bg-gray-100 relative">
+      className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all duration-300">
+      <div className="h-48 w-full bg-gray-100 relative" onClick={() => handleNavigate(booking, room)}>
         {image ? (
           <img
             alt="Room"
@@ -93,7 +88,7 @@ const CurrentBookedRoomCard = ({
 
       <div className="p-5">
         <h3 className="font-bold text-lg text-gray-800 mb-2">
-          {room.type || "Без назви"}
+          {room.type || "Without a name"}
         </h3>
         <p className="text-sm text-gray-600">
           {formatDate(booking.start_date)} — {formatDate(booking.end_date)}

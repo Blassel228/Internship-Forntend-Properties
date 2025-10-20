@@ -1,18 +1,13 @@
-import { useLocation } from "react-router-dom";
-import { Room } from "../Types/Room.tsx";
-import { Booking } from "../Types/Booking.tsx";
-import {
-  AlertTriangle,
-  CalendarArrowDownIcon,
-  CheckIcon,
-  XIcon,
-} from "lucide-react";
-import { useSelector } from "react-redux";
-import { RootState } from "../Store/store.tsx";
-import { User } from "../Types/User.tsx";
+import {useLocation} from "react-router-dom";
+import {Room} from "../Types/Room.tsx";
+import {Booking} from "../Types/Booking.tsx";
+import {AlertTriangle, CalendarArrowDownIcon, CheckIcon, XIcon,} from "lucide-react";
+import {useSelector} from "react-redux";
+import {RootState} from "../Store/store.tsx";
+import {User} from "../Types/User.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
-import { formatStringDate } from "../Utils/helpers.tsx";
+import {formatStringDate} from "../Utils/helpers.tsx";
 
 const BookingDetails = () => {
   const location = useLocation();
@@ -117,25 +112,23 @@ const BookingDetails = () => {
             </div>
           </div>
 
-          <div className="pt-4 space-y-3">
-            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
-              <p className="text-sm text-blue-700">
-                <strong>Need to change your dates or room?</strong> Editing
-                bookings is not available. Please cancel this booking and create
-                a new one (rebooking).
-              </p>
-            </div>
-
-            <button
-              className="flex items-center gap-3 px-5 py-3 bg-red-50 text-red-700 hover:bg-red-100 rounded-lg transition-colors font-medium"
-              onClick={() =>
-                goTo(routers.cancelBooking, { state: { room, booking } })
-              }
-            >
-              <XIcon size={18} />
-              Cancel booking
-            </button>
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+            <p className="text-sm text-blue-700">
+              <strong>Need to change your dates or room?</strong> Editing
+              bookings is not available. Please cancel this booking and create
+              a new one (rebooking).
+            </p>
           </div>
+
+          <button
+            className="flex items-center gap-3 px-5 py-3 bg-red-50 text-red-700 hover:bg-red-100 rounded-lg transition-colors font-medium"
+            onClick={() =>
+              goTo(routers.cancelBooking, { state: { room, booking } })
+            }
+          >
+            <XIcon size={18} />
+            Cancel booking
+          </button>
         </div>
 
         <div className="space-y-5">

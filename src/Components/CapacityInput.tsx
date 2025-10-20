@@ -1,5 +1,5 @@
 import React from "react";
-import { CiUser } from "react-icons/ci";
+import {CiUser} from "react-icons/ci";
 
 const CapacityInput = ({ label, value, onChange, placeholder }) => {
   return (

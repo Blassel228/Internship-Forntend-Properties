@@ -1,8 +1,5 @@
 import baseApi from "./apiBase.tsx";
-import {
-  CreateCheckoutSessionRequest,
-  CreateRefundRequest,
-} from "../Types/Payment.tsx";
+import {CreateCheckoutSessionRequest, CreateRefundRequest,} from "../Types/Payment.tsx";
 
 export const createCheckoutSessionWithToken = async (
   data: CreateCheckoutSessionRequest,

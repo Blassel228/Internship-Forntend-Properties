@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useRoomsWithFilters } from "../Hooks/useRooms.tsx";
+import {useEffect, useState} from "react";
+import {useRoomsWithFilters} from "../Hooks/useRooms.tsx";
 import Column from "../Components/Column.tsx";
 import AdminRoomTable from "../Components/AdminRoomTable.tsx";
 import AdminRoomsPagePaginator from "../Components/AdminRoomsPagePaginator.tsx";
 import AdminRoomFilter from "../Components/AdminRoomFilter.tsx";
-import { RoomFilters } from "../types/Room.tsx";
+import {RoomFilters} from "../types/Room.tsx";
 import Row from "../Components/Row.tsx";
 
 const AdminRooms = () => {

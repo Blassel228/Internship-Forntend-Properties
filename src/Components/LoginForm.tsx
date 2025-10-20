@@ -1,10 +1,10 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import {useForm} from "react-hook-form";
+import {Link, useNavigate} from "react-router-dom";
 import Input from "./Input.tsx";
 import Label from "./Label.tsx";
 import useAuth from "../Hooks/useAuth.tsx";
-import { useMutation } from "@tanstack/react-query";
+import {useMutation} from "@tanstack/react-query";
 
 const LoginForm = () => {
   const {

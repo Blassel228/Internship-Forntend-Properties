@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { Room, RoomUpdate } from "../Types/Room";
+import React, {Fragment, useEffect, useState} from "react";
+import {Dialog, Transition} from "@headlessui/react";
+import {Room, RoomUpdate} from "../Types/Room";
 import useUpdateRoom from "../Hooks/useUpdateRoom";
 import RoomEditModalField from "./RoomEditModalField";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import roomType from "../Enums/roomType.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
 

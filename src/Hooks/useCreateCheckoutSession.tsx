@@ -1,9 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  createCheckoutSessionWithoutToken,
-  createCheckoutSessionWithToken,
-} from "../Api/apiPayment.tsx";
-import { CreateCheckoutSessionRequest } from "../Types/Payment.tsx";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {createCheckoutSessionWithoutToken, createCheckoutSessionWithToken,} from "../Api/apiPayment.tsx";
+import {CreateCheckoutSessionRequest} from "../Types/Payment.tsx";
 
 export function useCreateCheckoutSessionWithToken(): string {
   const queryClient = useQueryClient();

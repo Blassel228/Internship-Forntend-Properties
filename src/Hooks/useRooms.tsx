@@ -1,10 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import {
-  getRoomsBookedNotRatedByUser,
-  getRoomsWithFilter,
-} from "../Api/apiRoom.tsx";
-import { Booking } from "../Types/Booking.tsx";
-import { RoomFilters } from "../Types/Room.tsx";
+import {useQuery} from "@tanstack/react-query";
+import {getRoomsBookedNotRatedByUser, getRoomsWithFilter,} from "../Api/apiRoom.tsx";
+import {RoomFilters} from "../Types/Room.tsx";
+import Room from "../Pages/Room.tsx";
 
 export const useRoomsWithFilters = (filters: RoomFilters) => {
   const {
@@ -12,7 +9,7 @@ export const useRoomsWithFilters = (filters: RoomFilters) => {
     isLoading,
     error,
     isError,
-  } = useQuery<Booking[], Error>({
+  } = useQuery<Room[], Error>({
     queryKey: ["rooms", "filtered", filters],
     queryFn: async () => await getRoomsWithFilter(filters),
     refetchOnWindowFocus: false,
@@ -28,7 +25,7 @@ export const useGetRoomsBookedNotRatedByUser = () => {
     isLoading,
     error,
     isError,
-  } = useQuery<Booking[], Error>({
+  } = useQuery<Room[], Error>({
     queryKey: ["notRatedRooms"],
     queryFn: async () => await getRoomsBookedNotRatedByUser(),
     refetchOnWindowFocus: false,

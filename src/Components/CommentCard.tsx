@@ -1,10 +1,10 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import { FaStar as FullStar } from "react-icons/fa";
-import { FaRegStar as EmptyStar } from "react-icons/fa6";
-import { Review } from "../Types/Review.tsx";
+import {FaStar as FullStar} from "react-icons/fa";
+import {FaRegStar as EmptyStar} from "react-icons/fa6";
+import {Review} from "../Types/Review.tsx";
 import useGetUser from "../Hooks/useGetUser.tsx";
-import { stringToColor } from "../Utils/helpers.tsx";
+import {stringToColor} from "../Utils/helpers.tsx";
 import AvatarImage from "./AvatarImage.tsx";
 
 const CommentCard = ({ review }: { review: Review }) => {

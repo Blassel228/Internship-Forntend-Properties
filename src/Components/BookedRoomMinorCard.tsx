@@ -1,9 +1,9 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import { Booking } from "../Types/Booking.tsx";
+import {Booking} from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
-import { AlertTriangle, Image as ImageIcon } from "lucide-react";
-import { formatStringDate } from "../Utils/helpers.tsx";
+import {AlertTriangle, Image as ImageIcon} from "lucide-react";
+import {formatStringDate} from "../Utils/helpers.tsx";
 
 interface BookedRoomCardProps {
   booking: Booking;
@@ -33,9 +33,9 @@ const BookedRoomMinorCard = ({
       <Row className="gap-4 p-4 border border-red-200 rounded-lg bg-red-50 text-red-800 shadow">
         <AlertTriangle size={32} className="text-red-500 flex-shrink-0" />
         <Column className="roomInfo justify-center">
-          <div className="font-medium">Не вдалося завантажити кімнату</div>
+          <div className="font-medium">Couldn`t load the room</div>
           <div className="text-sm">
-            {error ? error.message : "Немає ID кімнати"}
+            {error ? error.message : "Something went wrong"}
           </div>
         </Column>
       </Row>
@@ -47,7 +47,7 @@ const BookedRoomMinorCard = ({
       <Row className="gap-4 p-4 border border-yellow-200 rounded-lg bg-yellow-50 text-yellow-800 shadow">
         <ImageIcon size={32} className="text-yellow-500 flex-shrink-0" />
         <Column className="roomInfo justify-center">
-          <div className="font-medium">Кімнату не знайдено</div>
+          <div className="font-medium">Couldn`t find the room</div>
           <div className="text-sm">ID: {booking.room_id}</div>
         </Column>
       </Row>
@@ -58,10 +58,7 @@ const BookedRoomMinorCard = ({
 
   return (
     <Row className="gap-4 p-4 border border-gray-200 rounded-lg shadow hover:shadow-md transition-all duration-200 bg-white cursor-pointer">
-      <div
-        className="roomImage flex-shrink-0"
-        onClick={() => handleNavigate(booking, room)}
-      >
+      <div className="roomImage flex-shrink-0">
         {image ? (
           <img
             alt="Room"
@@ -87,7 +84,7 @@ const BookedRoomMinorCard = ({
       </div>
       <Column className="roomInfo justify-center">
         <div className="font-semibold text-gray-800">
-          {room.type || "Без назви"}
+          {room.type || "Without name"}
         </div>
         <div className="text-sm text-gray-600">
           {formatStringDate(booking.start_date)} —{" "}

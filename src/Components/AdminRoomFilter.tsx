@@ -1,10 +1,10 @@
 // AdminRoomFilter.tsx
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import { useState } from "react";
+import {useState} from "react";
 import AdminRoomFilterInput from "./AdminRoomFilterInput.tsx";
-import { useForm } from "react-hook-form";
-import { Room, RoomFilters } from "../types/Room.tsx";
+import {useForm} from "react-hook-form";
+import {Room, RoomFilters} from "../types/Room.tsx";
 import AdminPriceFilter from "./AdminPriceFilter.tsx";
 import roomType from "../Enums/roomType.tsx";
 import roomArea from "../Enums/roomArea.tsx";

@@ -1,13 +1,13 @@
 import CurrentBookedRoomCard from "../Components/CurrentBookedRoomCard.tsx";
-import { useBookings } from "../Hooks/useBooking.tsx";
+import {useBookings} from "../Hooks/useBooking.tsx";
 import Row from "../Components/Row.tsx";
-import { AlertCircle, Bed, Globe, Loader2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import {AlertCircle, Bed, Globe, Loader2} from "lucide-react";
+import {Link} from "react-router-dom";
 import routers from "../Constants/routers.tsx";
-import { useEffect, useState } from "react";
-import { Booking } from "../Types/Booking.tsx";
+import {useEffect, useState} from "react";
+import {Booking} from "../Types/Booking.tsx";
 import BookedRoomMinorCard from "../Components/BookedRoomMinorCard.tsx";
-import { Room } from "../Types/Room.tsx";
+import {Room} from "../Types/Room.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
 import Column from "../Components/Column.tsx";
@@ -16,13 +16,13 @@ const MyBookings = () => {
   const { goTo } = useNavigation();
 
   const [showTimeoutError, setShowTimeoutError] = useState(false);
+  const [activeTab, setActiveTab] = useState<"past" | "cancelled">("past");
 
   const {
     bookings,
     isLoading: areBookingsLoading,
     error,
   }: { bookings: Booking[] } = useBookings();
-  const [activeTab, setActiveTab] = useState<"past" | "cancelled">("past");
 
   const hasError = !!error || showTimeoutError;
   const errorMessage = showTimeoutError
@@ -52,8 +52,12 @@ const MyBookings = () => {
       );
     }) || [];
 
-  const handleNavigate = (booking: Booking, room: Room) => {
+  const handleNavigateToDetailsPage = (booking: Booking, room: Room) => {
     goTo(routers.bookingDetails, { state: { room, booking } });
+  };
+
+  const handleNavigateToRoomPage = (room_id: string) => {
+    goTo(routers.room + "/" + room_id);
   };
 
   pastBookings.sort((a, b) => {
@@ -182,7 +186,7 @@ const MyBookings = () => {
                   key={`current-${booking.id}`}
                   booking={booking}
                   className="w-full sm:w-[300px]"
-                  handleNavigate={handleNavigate}
+                  handleNavigate={handleNavigateToDetailsPage}
                 />
               ))}
             </Row>
@@ -228,7 +232,7 @@ const MyBookings = () => {
                   key={`${activeTab}-${booking.id}`}
                   booking={booking}
                   className="w-full sm:w-[300px]"
-                  handleNavigate={handleNavigate}
+                  handleNavigate={handleNavigateToRoomPage}
                 />
               ))}
             </Row>

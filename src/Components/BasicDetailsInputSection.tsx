@@ -1,27 +1,28 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
-import { useForm, Controller } from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
-import { calculateNights } from "../Utils/helpers.tsx";
-import { useSelector } from "react-redux";
-import { RootState } from "../Store/store.tsx";
+import {calculateNights} from "../Utils/helpers.tsx";
+import {useSelector} from "react-redux";
+import {RootState} from "../Store/store.tsx";
 import RequiredStar from "./RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
-import { isValidPhoneNumber } from "libphonenumber-js";
+import {isValidPhoneNumber} from "libphonenumber-js";
 import RegistrationFormError from "./RegistrationFormError.tsx";
-import { GuestCreateIn } from "../Types/Guest.tsx";
-import { getItem } from "../Utils/localStorage.tsx";
-import { User } from "../Types/User.tsx";
-import { CreateCheckoutSessionRequest } from "../Types/Payment.tsx";
+import {GuestCreateIn} from "../Types/Guest.tsx";
+import {getItem} from "../Utils/localStorage.tsx";
+import {User} from "../Types/User.tsx";
+import {CreateCheckoutSessionRequest} from "../Types/Payment.tsx";
 import {
   useCreateCheckoutSessionWithoutToken,
   useCreateCheckoutSessionWithToken,
 } from "../Hooks/useCreateCheckoutSession.tsx";
 import BookingInput from "./BookingInput.tsx";
 import CountrySelector from "./CountrySelect.tsx";
+import AppButton from "./AppButton.tsx";
 
 interface BasicDetailsInputSectionProps {
   room: {
@@ -311,15 +312,15 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       </ContainerWithBorders>
 
       <div className="mt-4 w-full flex">
-        <button
+        <AppButton
           type="submit"
           disabled={isBookingCreating}
-          className="bg-blue-500 ml-auto mb-10 text-white px-6 py-4 rounded-md font-medium text-lg hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="ml-auto px-6 py-4"
         >
           {isBookingCreating
             ? "Redirecting to Payment..."
             : "Pay Now via Stripe"}
-        </button>
+        </AppButton>
       </div>
 
       <RegistrationFormError error={errors.serverError}>

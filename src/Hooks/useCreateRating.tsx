@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-hot-toast";
-import { createRating } from "../Api/apiReview.tsx";
-import { ReviewCreateRequest } from "../Types/Review.tsx";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {toast} from "react-hot-toast";
+import {createRating} from "../Api/apiReview.tsx";
+import {ReviewCreateRequest} from "../Types/Review.tsx";
 
 function useCreateRating() {
   const queryClient = useQueryClient();

@@ -2,7 +2,7 @@ import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
 import AvatarImage from "./AvatarImage.tsx";
 import Column from "./Column.tsx";
-import { CheckCircle } from "lucide-react";
+import {CheckCircle} from "lucide-react";
 
 interface ReviewCardProps {
   booking: any;

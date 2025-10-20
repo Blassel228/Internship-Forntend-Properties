@@ -1,5 +1,5 @@
-import { Guest } from "./Guest.tsx";
-import { Room } from "./Room.tsx";
+import {Guest} from "./Guest.tsx";
+import {Room} from "./Room.tsx";
 
 export interface Booking {
   id: string;

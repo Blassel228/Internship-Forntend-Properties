@@ -1,4 +1,4 @@
-import { Room } from "../Types/Room";
+import {Room} from "../Types/Room";
 import AdminTablDataCell from "./AdminTablDataCell.tsx";
 import AdminTableRow from "./AdminTableRow.tsx";
 import Row from "./Row.tsx";
@@ -35,12 +35,15 @@ const RoomAdminRow = ({ room, onEdit, onDelete }: RoomAdminRowProps) => {
       <AdminTablDataCell>${room.price}</AdminTablDataCell>
       <AdminTablDataCell>
         <Row className="gap-4">
-          <button
-            onClick={() => onEdit(room)}
-            className="flex-1 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded transition-colors"
-          >
-            Edit
-          </button>
+          <div className="flex-1">
+            <button
+              onClick={() => onEdit(room)}
+              className="flex-1 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded transition-colors"
+            >
+              Edit
+            </button>
+          </div>
+
           <button
             onClick={() => onDelete(room)}
             className="flex-1 py-2 bg-red-600 hover:bg-red-800 text-white text-sm font-medium rounded transition-colors"

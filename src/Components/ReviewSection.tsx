@@ -1,7 +1,7 @@
-import { useState } from "react";
-import  RatingFilters from "../Enums/ratingFilters";
-import { useGetReviewsForRoom } from "../Hooks/useGetReviewsForRoom";
-import { Room } from "../Types/Room";
+import {useState} from "react";
+import RatingFilters from "../Enums/ratingFilters";
+import {useGetReviewsForRoom} from "../Hooks/useGetReviewsForRoom";
+import {Room} from "../Types/Room";
 import {Review} from "../Types/Review.tsx";
 import Row from "./Row.tsx";
 import CommentCard from "./CommentCard.tsx";

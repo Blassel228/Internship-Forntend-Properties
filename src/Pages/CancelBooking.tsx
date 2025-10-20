@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Booking } from "../Types/Booking.tsx";
-import { Room } from "../Types/Room.tsx";
+import {useState} from "react";
+import {Link, useLocation} from "react-router-dom";
+import {Booking} from "../Types/Booking.tsx";
+import {Room} from "../Types/Room.tsx";
 import useRefund from "../Hooks/useRefund.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
-import { formatStringDate } from "../Utils/helpers.tsx";
+import {formatStringDate} from "../Utils/helpers.tsx";
+import AppButton from "../Components/AppButton.tsx";
 
 const CancelBooking = () => {
   const location = useLocation();
@@ -107,7 +108,6 @@ const CancelBooking = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left: Form */}
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-xl p-6 shadow-sm">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -134,10 +134,10 @@ const CancelBooking = () => {
               )}
 
               <div className="flex flex-col sm:flex-row gap-4 mt-6">
-                <button
+                <AppButton
                   onClick={handleContinue}
                   disabled={!reason || isPending}
-                  className="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-4 rounded-lg transition disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1"
                 >
                   {isPending ? (
                     <>
@@ -166,7 +166,7 @@ const CancelBooking = () => {
                   ) : (
                     "Confirm cancellation"
                   )}
-                </button>
+                </AppButton>
                 <button
                   onClick={handleKeepBooking}
                   className="flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-3 px-4 rounded-lg transition"
@@ -177,9 +177,7 @@ const CancelBooking = () => {
             </div>
           </div>
 
-          {/* Right: Summary */}
           <div className="space-y-6">
-            {/* Booking Preview */}
             <div className="bg-white rounded-xl p-5 shadow-sm">
               <div className="flex gap-4">
                 <img
@@ -197,7 +195,6 @@ const CancelBooking = () => {
               </div>
             </div>
 
-            {/* Refund Summary */}
             <div className="bg-white rounded-xl p-5 shadow-sm">
               <h3 className="font-semibold text-gray-800 mb-4">
                 Refund summary
@@ -226,7 +223,6 @@ const CancelBooking = () => {
               </div>
             </div>
 
-            {/* Policy */}
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-5">
               <h3 className="font-semibold text-amber-800 mb-3">
                 Cancellation policy

@@ -1,18 +1,11 @@
 // BookingDetails.tsx
-import BookingDetailTitle from "./BookingDetailTitle.tsx";
-import BookingDetail from "./BookingDetail.tsx";
-import { toWords, toWordsOrdinal } from "number-to-words";
+import {toWordsOrdinal} from "number-to-words";
 import React from "react";
-import {
-  addDaysAndFormatDate,
-  calculateNights,
-  capitalize,
-  getRatingLabel,
-} from "../Utils/helpers.tsx";
+import {addDaysAndFormatDate, calculateNights, capitalize, getRatingLabel,} from "../Utils/helpers.tsx";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import Column from "./Column.tsx";
-import { StarIcon } from "lucide-react";
+import {StarIcon} from "lucide-react";
 
 const BookingDetails = ({ room, reviewCount }) => {
   const { startDate, endDate, capacity } = useBookingParams();

@@ -1,5 +1,5 @@
 import Column from "./Column.tsx";
-import { FileIcon, Loader2 } from "lucide-react";
+import {FileIcon, Loader2} from "lucide-react";
 import UserReviewCard from "./UserReviewCard.tsx";
 
 interface ReviewsTableProps {

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import RoomDetailsContentSection from "./RoomDetailsContentSection.tsx";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
 import AppButton from "./AppButton.tsx";
 import routers from "../Constants/routers.tsx";
@@ -9,7 +9,7 @@ import KeyDetails from "./KeyDetails.tsx";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import ReviewSection from "./ReviewSection.tsx";
-import { getReviewCount } from "../Api/apiReview.tsx";
+import {getReviewCount} from "../Api/apiReview.tsx";
 
 export const RoomOverview = ({ room }) => {
   const navigate = useNavigate();

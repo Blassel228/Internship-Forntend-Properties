@@ -1,24 +1,19 @@
-// RoomCard.tsx
 import React from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import {motion} from "framer-motion";
 import routers from "../Constants/routers.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
-import { Room } from "../Types/Room.tsx";
+import {Room} from "../Types/Room.tsx";
 import Row from "./Row.tsx";
-import { StarIcon } from "lucide-react";
+import {StarIcon} from "lucide-react";
+import useNavigation from "../Utils/navigate.tsx";
 
 const RoomCard = ({ room }: { room: Room }) => {
-  const navigate = useNavigate();
+  const { goTo } = useNavigation();
   const { startDate, endDate, capacity } = useSearchParams();
 
-  const handleNavigate = () => {
-    navigate(
-      {
-        pathname: `${routers.room}/${room.id}`,
-        search: `?start_date=${startDate}&end_date=${endDate}&capacity=${capacity}`,
-      },
-      { state: { room } },
+const handleNavigate = () => {
+  goTo(
+    `${routers.room}/${room.id}?start_date=${startDate}&end_date=${endDate}&capacity=${capacity}`
     );
   };
 

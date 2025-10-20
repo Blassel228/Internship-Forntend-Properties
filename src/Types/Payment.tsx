@@ -1,4 +1,4 @@
-import { GuestCreateIn } from "./Guest.tsx";
+import {GuestCreateIn} from "./Guest.tsx";
 
 export interface CreateCheckoutSessionRequest {
   room_id: string;

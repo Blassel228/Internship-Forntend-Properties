@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { Room } from "../Types/Room";
+import React, {Fragment} from "react";
+import {Dialog, Transition} from "@headlessui/react";
+import {Room} from "../Types/Room";
 import * as Avatar from "@radix-ui/react-avatar";
 import useDeleteRoom from "../Hooks/useDeleteRoom.tsx";
 import Row from "./Row.tsx";

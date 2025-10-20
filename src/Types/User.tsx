@@ -1,4 +1,4 @@
-import { ImageGet } from "./Image.tsx";
+import {ImageGet} from "./Image.tsx";
 
 export interface User {
   username: string;
