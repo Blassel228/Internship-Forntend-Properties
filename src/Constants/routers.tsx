@@ -5,16 +5,21 @@ const routers = {
   login: "/login",
   rooms: "/rooms",
   book: "/makeBooking",
+
   mySettings: "/mysettings",
   personalData: "/mysettings/personaldata",
   myBookings: "/mysettings/mybookings",
   bookingDetails: "/mysetings/mybookings/bookingdetails",
   cancelBooking: "/mysetings/mybookings/bookingdetails/cancelBooking",
-  adminRooms: "/adminrooms",
-  adminEditRoom: "/admineditroom",
-  adminBookings: "/adminbookings",
+
   reviews: "/reviews",
   makeReview: "/reviews/makereview",
+
+  adminBookings: "/adminbookings",
+  adminUsers: "/adminusers",
+  adminRooms: "/adminrooms",
+  adminEditRoom: "/admineditroom",
+
   notExisting: "*",
 };
 

@@ -15,6 +15,7 @@ import AdminRooms from "../Pages/AdminRooms.tsx";
 import MyReviews from "../Pages/MyReviews.tsx";
 import MakeReview from "../Pages/MakeReview.tsx";
 import Layout from "./Layout.tsx";
+import AdminUsers from "../Pages/AdminUsers.tsx";
 
 export default function Routers(): JSX.Element {
   return (
@@ -30,9 +31,12 @@ export default function Routers(): JSX.Element {
         <Route path={routers.myBookings} element={<MyBookings />} />
         <Route path={routers.bookingDetails} element={<BookingDetails />} />
         <Route path={routers.cancelBooking} element={<CancelBooking />} />
-        <Route path={routers.adminRooms} element={<AdminRooms />} />
         <Route path={routers.reviews} element={<MyReviews />} />
         <Route path={routers.makeReview} element={<MakeReview />} />
+
+        <Route path={routers.adminUsers} element={<AdminUsers />} />
+        <Route path={routers.adminRooms} element={<AdminRooms />} />
+
       </Route>
       <Route
         path={routers.notExisting}
