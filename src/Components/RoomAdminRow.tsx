@@ -35,14 +35,12 @@ const RoomAdminRow = ({ room, onEdit, onDelete }: RoomAdminRowProps) => {
       <AdminTablDataCell>${room.price}</AdminTablDataCell>
       <AdminTablDataCell>
         <Row className="gap-4">
-          <div className="flex-1">
-            <button
-              onClick={() => onEdit(room)}
-              className="flex-1 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded transition-colors"
-            >
-              Edit
-            </button>
-          </div>
+          <button
+            onClick={() => onEdit(room)}
+            className="flex-1 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded transition-colors"
+          >
+            Edit
+          </button>
 
           <button
             onClick={() => onDelete(room)}

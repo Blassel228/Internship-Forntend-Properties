@@ -39,5 +39,10 @@ export default function useAuth() {
     navigate("/login");
   }
 
-  return { login, logout };
+  function isAuthenticated() {
+    const token = getImage("token");
+    return !!token;
+  }
+
+  return { login, logout, isAuthenticated };
 }
