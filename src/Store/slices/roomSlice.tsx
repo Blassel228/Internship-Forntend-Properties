@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import {Room} from "../../Types/Room.tsx";
+import { Room } from "../../Types/Room.tsx";
 
 interface RoomState {
   rooms: Room[] | null;

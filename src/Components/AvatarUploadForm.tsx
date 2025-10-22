@@ -1,12 +1,18 @@
-import React, {useRef, useState} from "react";
-import {useSelector} from "react-redux";
-import {Dialog, DialogClose, DialogContent, DialogOverlay, DialogTrigger,} from "@radix-ui/react-dialog";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogOverlay,
+  DialogTrigger,
+} from "@radix-ui/react-dialog";
 import * as Avatar from "@radix-ui/react-avatar";
-import {RootState} from "../Types/RootState.tsx";
-import {User} from "../Types/User.tsx";
+import { RootState } from "../Types/RootState.tsx";
+import { User } from "../Types/User.tsx";
 import useUpdateImage from "../Hooks/useUpdateImage.tsx";
 import useCreateImage from "../Hooks/useCreateImage.tsx";
-import {stringToColor} from "../Utils/helpers.tsx";
+import { stringToColor } from "../Utils/helpers.tsx";
 
 interface AvatarUploadModalProps {
   trigger: React.ReactNode;

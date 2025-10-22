@@ -1,10 +1,10 @@
-import {useFormContext} from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
-import {User} from "../Types/User.tsx";
+import { User } from "../Types/User.tsx";
 import FieldError from "./FieldError.tsx";
 import CountrySelector from "./CountrySelect.tsx";
 

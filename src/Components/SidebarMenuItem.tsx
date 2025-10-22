@@ -24,7 +24,9 @@ const SidebarMenuItem = ({
       }`}
     >
       <span className="text-sm sm:text-base">{sectionName}</span>
-      <span className={isSelected ? "text-blue-700 font-medium" : "text-gray-500"}>
+      <span
+        className={isSelected ? "text-blue-700 font-medium" : "text-gray-500"}
+      >
         {count}
       </span>
     </button>

@@ -1,6 +1,6 @@
 import Row from "../Components/Row.tsx";
 import React from "react";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import BookingDetails from "../Components/BookingDetails.tsx";
 import BasicDetailsInputSection from "../Components/BasicDetailsInputSection.tsx";
 import Column from "../Components/Column.tsx";

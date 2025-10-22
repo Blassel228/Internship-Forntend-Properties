@@ -1,5 +1,5 @@
 import React from "react";
-import {FaChevronDown, FaChevronUp} from "react-icons/fa";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 interface FooterColumnProps {
   title: string;

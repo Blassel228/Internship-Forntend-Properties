@@ -1,4 +1,4 @@
-import {Range} from "react-range";
+import { Range } from "react-range";
 
 const AdminPriceFilter = ({ priceRange, setPriceRange }) => {
   return (

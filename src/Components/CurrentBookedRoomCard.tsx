@@ -1,6 +1,6 @@
-import {Booking} from "../Types/Booking.tsx";
+import { Booking } from "../Types/Booking.tsx";
 import useRoom from "../Hooks/useRoom.tsx";
-import {AlertTriangle, Image as ImageIcon} from "lucide-react";
+import { AlertTriangle, Image as ImageIcon } from "lucide-react";
 
 interface BookedRoomCardProps {
   booking: Booking;
@@ -11,7 +11,7 @@ const CurrentBookedRoomCard = ({
   booking,
   handleNavigate,
 }: BookedRoomCardProps) => {
-    const formatDate = (dateString: string): string => {
+  const formatDate = (dateString: string): string => {
     const d = new Date(dateString);
     return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
   };
@@ -59,9 +59,11 @@ const CurrentBookedRoomCard = ({
   const image = room.image ? `data:image/jpeg;base64,${room.image}` : undefined;
 
   return (
-    <div
-      className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all duration-300">
-      <div className="h-48 w-full bg-gray-100 relative" onClick={() => handleNavigate(booking, room)}>
+    <div className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all duration-300">
+      <div
+        className="h-48 w-full bg-gray-100 relative"
+        onClick={() => handleNavigate(booking, room)}
+      >
         {image ? (
           <img
             alt="Room"

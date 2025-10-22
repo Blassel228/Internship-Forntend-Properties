@@ -1,5 +1,5 @@
 import React from "react";
-import {FaRegSquare} from "react-icons/fa";
+import { FaRegSquare } from "react-icons/fa";
 import KeyDetailOverlay from "./KeyDetailOverlay.tsx";
 import KeyDetailTitle from "./KeyDetailTitle.tsx";
 import KeyDetailDetails from "./KeyDetailDetails.tsx";
@@ -12,9 +12,7 @@ const TotalSpace = ({ room }) => {
       </span>
       <div>
         <KeyDetailTitle>Space</KeyDetailTitle>
-        <KeyDetailDetails>
-          Space is {room.total_space} m*2
-        </KeyDetailDetails>
+        <KeyDetailDetails>Space is {room.total_space} m*2</KeyDetailDetails>
       </div>
     </KeyDetailOverlay>
   );

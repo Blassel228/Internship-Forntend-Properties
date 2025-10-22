@@ -11,7 +11,11 @@ interface ReviewData {
   cons?: string[];
 }
 
-export default function CompletedReviewCard({ review }: { review: ReviewData }) {
+export default function CompletedReviewCard({
+  review,
+}: {
+  review: ReviewData;
+}) {
   const formattedDate = review.published
     ? new Date(review.published).toLocaleDateString("uk-UA", {
         day: "2-digit",

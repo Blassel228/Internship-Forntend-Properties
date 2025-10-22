@@ -1,6 +1,9 @@
-import {useQuery} from "@tanstack/react-query";
-import {getBookingsForOneUser, getBookingsNotRatedByUser,} from "../Api/apiBooking.tsx";
-import {Booking} from "../Types/Booking.tsx";
+import { useQuery } from "@tanstack/react-query";
+import {
+  getBookingsForOneUser,
+  getBookingsNotRatedByUser,
+} from "../Api/apiBooking.tsx";
+import { Booking } from "../Types/Booking.tsx";
 
 export const useBookings = () => {
   const {

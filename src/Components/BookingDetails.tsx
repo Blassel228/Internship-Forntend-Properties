@@ -1,11 +1,16 @@
 // BookingDetails.tsx
-import {toWordsOrdinal} from "number-to-words";
+import { toWordsOrdinal } from "number-to-words";
 import React from "react";
-import {addDaysAndFormatDate, calculateNights, capitalize, getRatingLabel,} from "../Utils/helpers.tsx";
+import {
+  addDaysAndFormatDate,
+  calculateNights,
+  capitalize,
+  getRatingLabel,
+} from "../Utils/helpers.tsx";
 import useBookingParams from "../Hooks/useSearchParams.tsx";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import Column from "./Column.tsx";
-import {StarIcon} from "lucide-react";
+import { StarIcon } from "lucide-react";
 
 const BookingDetails = ({ room, reviewCount }) => {
   const { startDate, endDate, capacity } = useBookingParams();
@@ -30,7 +35,10 @@ const BookingDetails = ({ room, reviewCount }) => {
               <span className="font-bold text-orange-700 text-sm">
                 {room.average_rating}
               </span>
-              <StarIcon className="text-orange-500 fill-orange-500 ml-1" size={12} />
+              <StarIcon
+                className="text-orange-500 fill-orange-500 ml-1"
+                size={12}
+              />
             </div>
 
             {reviewCount > 0 && (
@@ -40,7 +48,9 @@ const BookingDetails = ({ room, reviewCount }) => {
               </span>
             )}
             {reviewCount === 0 && room.average_rating && (
-              <span className="text-gray-600 text-xs italic">No reviews yet</span>
+              <span className="text-gray-600 text-xs italic">
+                No reviews yet
+              </span>
             )}
           </div>
         )}

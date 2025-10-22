@@ -2,7 +2,7 @@ import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
 import AvatarImage from "./AvatarImage.tsx";
 import Column from "./Column.tsx";
-import {CheckCircle} from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 interface ReviewCardProps {
   booking: any;
@@ -15,7 +15,9 @@ const UserReviewCard = ({ booking, isReviewable }: ReviewCardProps) => {
 
   const createdAt = new Date(created_at);
   const now = new Date();
-  const diffDays = Math.ceil((now.getTime() - createdAt.getTime()) / (1000 * 60 * 60 * 24));
+  const diffDays = Math.ceil(
+    (now.getTime() - createdAt.getTime()) / (1000 * 60 * 60 * 24),
+  );
   const daysLeft = Math.max(0, 90 - diffDays);
 
   const canReview = isReviewable && daysLeft > 0;
@@ -54,7 +56,9 @@ const UserReviewCard = ({ booking, isReviewable }: ReviewCardProps) => {
             ) : (
               <div className="mt-3 flex items-center gap-2">
                 <CheckCircle className="text-green-600" size={20} />
-                <span className="text-green-700 font-medium">Review submitted</span>
+                <span className="text-green-700 font-medium">
+                  Review submitted
+                </span>
               </div>
             )
           ) : (

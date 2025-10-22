@@ -3,8 +3,8 @@ import Beds from "./Beds.tsx";
 import Bathes from "./Bathes.tsx";
 import Price from "./Price.tsx";
 import TotalSpace from "./TotalSpace.tsx";
-import {Room} from "../Types/Room.tsx";
-import {useLocation} from "react-router-dom";
+import { Room } from "../Types/Room.tsx";
+import { useLocation } from "react-router-dom";
 
 const KeyDetails = () => {
   const location = useLocation();

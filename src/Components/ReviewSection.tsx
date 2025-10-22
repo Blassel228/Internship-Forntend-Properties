@@ -1,8 +1,8 @@
-import {useState} from "react";
+import { useState } from "react";
 import RatingFilters from "../Enums/ratingFilters";
-import {useGetReviewsForRoom} from "../Hooks/useGetReviewsForRoom";
-import {Room} from "../Types/Room";
-import {Review} from "../Types/Review.tsx";
+import { useGetReviewsForRoom } from "../Hooks/useGetReviewsForRoom";
+import { Room } from "../Types/Room";
+import { Review } from "../Types/Review.tsx";
 import Row from "./Row.tsx";
 import CommentCard from "./CommentCard.tsx";
 
@@ -15,7 +15,7 @@ const ReviewSection = ({ room }: { room: Room }) => {
     loadMore,
     hasMore,
     isFetchingNextPage,
-  } : { reviews: Review[] } = useGetReviewsForRoom(room.id, sort);
+  }: { reviews: Review[] } = useGetReviewsForRoom(room.id, sort);
 
   return (
     <section className="py-8">

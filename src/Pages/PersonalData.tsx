@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
-import {FormProvider, useForm} from "react-hook-form";
-import {useSelector} from "react-redux";
-import {RootState} from "../Types/RootState.tsx";
+import React, { useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { RootState } from "../Types/RootState.tsx";
 import Row from "../Components/Row.tsx";
 import Column from "../Components/Column.tsx";
 import useUpdateUser from "../Hooks/useUpdateUser.tsx";
 import PersonalDataHeader from "../Components/PersonalDataHeader.tsx";
 import PersonalDataForm from "../Components/PersonalDataForm.tsx";
 import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
-import {User} from "../Types/User.tsx";
+import { User } from "../Types/User.tsx";
 
 export default function PersonalData() {
   const {

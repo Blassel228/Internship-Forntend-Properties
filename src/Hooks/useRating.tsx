@@ -1,6 +1,6 @@
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {createRating as createRatingApi} from "../Api/apiReview.tsx";
-import {ReviewCreateRequest} from "../Types/Review.tsx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createRating as createRatingApi } from "../Api/apiReview.tsx";
+import { ReviewCreateRequest } from "../Types/Review.tsx";
 
 export const useCreateRating = () => {
   const queryClient = useQueryClient();

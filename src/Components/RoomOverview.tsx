@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import RoomDetailsContentSection from "./RoomDetailsContentSection.tsx";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
 import AppButton from "./AppButton.tsx";
 import routers from "../Constants/routers.tsx";
@@ -9,7 +9,7 @@ import KeyDetails from "./KeyDetails.tsx";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
 import ReviewSection from "./ReviewSection.tsx";
-import {getReviewCount} from "../Api/apiReview.tsx";
+import { getReviewCount } from "../Api/apiReview.tsx";
 
 export const RoomOverview = ({ room }) => {
   const navigate = useNavigate();
@@ -58,9 +58,15 @@ export const RoomOverview = ({ room }) => {
             <Row className="mt-4 items-center justify-between gap-3">
               <Row className="flex-wrap gap-2">
                 <AdditionalRoomInfo>{room.type}</AdditionalRoomInfo>
-                <AdditionalRoomInfo>Has {room.bedrooms} bedrooms</AdditionalRoomInfo>
-                <AdditionalRoomInfo>For {room.capacity} persons</AdditionalRoomInfo>
-                {room.has_jacuzzi && <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>}
+                <AdditionalRoomInfo>
+                  Has {room.bedrooms} bedrooms
+                </AdditionalRoomInfo>
+                <AdditionalRoomInfo>
+                  For {room.capacity} persons
+                </AdditionalRoomInfo>
+                {room.has_jacuzzi && (
+                  <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>
+                )}
               </Row>
               <AppButton className="py-2 px-4" onClick={handleNavigate}>
                 Make Booking
@@ -88,18 +94,25 @@ export const RoomOverview = ({ room }) => {
         <Row className="flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <Row className="flex-wrap gap-2">
             <AdditionalRoomInfo>{room.type}</AdditionalRoomInfo>
-            <AdditionalRoomInfo>Has {room.bedrooms} bedrooms</AdditionalRoomInfo>
+            <AdditionalRoomInfo>
+              Has {room.bedrooms} bedrooms
+            </AdditionalRoomInfo>
             <AdditionalRoomInfo>For {room.capacity} persons</AdditionalRoomInfo>
-            {room.has_jacuzzi && <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>}
+            {room.has_jacuzzi && (
+              <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>
+            )}
           </Row>
-          <AppButton className="w-full sm:w-auto sm:h-[1rem] py-2 px-4" onClick={handleNavigate}>
+          <AppButton
+            className="w-full sm:w-auto sm:h-[1rem] py-2 px-4"
+            onClick={handleNavigate}
+          >
             Make Booking
           </AppButton>
         </Row>
 
         <KeyDetails room={room} />
 
-        <RoomDetailsContentSection room={room}/>
+        <RoomDetailsContentSection room={room} />
         <ReviewSection room={room} />
       </Column>
     </div>

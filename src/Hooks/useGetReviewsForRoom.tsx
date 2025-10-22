@@ -1,5 +1,5 @@
-import {getReviewsForRoom} from "../Api/apiReview.tsx";
-import {useInfiniteQuery} from "@tanstack/react-query";
+import { getReviewsForRoom } from "../Api/apiReview.tsx";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import RatingFilters from "../Enums/ratingFilters.tsx";
 
 const REVIEWS_PER_PAGE = 3;
@@ -19,7 +19,7 @@ export const useGetReviewsForRoom = (roomId: string, sort: RatingFilters) => {
         roomId,
         pageParam * REVIEWS_PER_PAGE,
         REVIEWS_PER_PAGE + 1,
-        sort
+        sort,
       );
 
       const hasMore = result.length > REVIEWS_PER_PAGE;

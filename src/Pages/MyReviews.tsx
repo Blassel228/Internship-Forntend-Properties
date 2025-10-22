@@ -1,7 +1,10 @@
 import ReviewsTable from "../Components/ReviewsTable.tsx";
 import ReviewsPanel from "../Components/ReviewsPanel.tsx";
-import {useMemo, useState} from "react";
-import {useBookings, useGetBookingsForRoomsNotRatedByUser} from "../Hooks/useBooking.tsx";
+import { useMemo, useState } from "react";
+import {
+  useBookings,
+  useGetBookingsForRoomsNotRatedByUser,
+} from "../Hooks/useBooking.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
 import Column from "../Components/Column.tsx";
 
@@ -33,7 +36,9 @@ const MyReviews = () => {
   }, [notRatedBookings]);
 
   const ratedBookings = useMemo(() => {
-    return pastBookings.filter((booking) => !notRatedBookingIds.has(booking.id));
+    return pastBookings.filter(
+      (booking) => !notRatedBookingIds.has(booking.id),
+    );
   }, [pastBookings, notRatedBookingIds]);
 
   let displayedBookings = pastBookings;

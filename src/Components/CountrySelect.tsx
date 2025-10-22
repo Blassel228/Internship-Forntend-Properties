@@ -1,5 +1,5 @@
-import React, {useMemo} from "react";
-import Select, {SingleValue} from "react-select";
+import React, { useMemo } from "react";
+import Select, { SingleValue } from "react-select";
 import countryList from "react-select-country-list";
 
 interface CountryOption {
