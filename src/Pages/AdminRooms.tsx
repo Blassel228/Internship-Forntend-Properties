@@ -1,56 +1,105 @@
-import {useEffect, useState} from "react";
-import {useRoomsWithFilters} from "../Hooks/useRooms.tsx";
-import Column from "../Components/Column.tsx";
-import AdminRoomTable from "../Components/AdminRoomTable.tsx";
-import AdminRoomsPagePaginator from "../Components/AdminRoomsPagePaginator.tsx";
+import React, { useEffect, useState } from "react";
+import { Room, RoomFilters } from "../Types/Room";
+import { useRoomsWithFilters } from "../Hooks/useRooms.tsx";
+import AdminRoomCreateModal from "../Components/AdminRoomCreateModal";
+import RoomEditModal from "../Components/RoomEditModal";
+import RoomDeleteModal from "../Components/RoomDeleteModal";
+import DataTable from "../Components/Table/DataTable";
+import RoomImageCell from "../Components/Table/RoomImageCell";
+import TableColumn from "../Types/Table";
 import AdminRoomFilter from "../Components/AdminRoomFilter.tsx";
-import {RoomFilters} from "../types/Room.tsx";
 import Row from "../Components/Row.tsx";
 
-const AdminRooms = () => {
-  const [filters, setFilters] = useState<RoomFilters | null>(null);
+function AdminRooms() {
+  const [filters, setFilters] = useState<RoomFilters>({});
   const {
-    roomsWithFilters: rooms,
+    roomsWithFilters,
     isLoading,
-    error,
     isError,
+    error,
   } = useRoomsWithFilters(filters);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [editingRoom, setEditingRoom] = useState<Room | null>(null);
+  const [deletingRoom, setDeletingRoom] = useState<Room | null>(null);
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [filters]);
+    console.log("ROOMS", roomsWithFilters);
+  }, []);
 
-  const totalPages = rooms ? Math.ceil(rooms.length / itemsPerPage) : 0;
-  const paginatedRooms = rooms
-    ? rooms.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-    : [];
+  const closeCreateModal = () => setIsCreateModalOpen(false);
+
+  const openEditModal = (room: Room) => {
+    setEditingRoom(room);
+  };
+
+  const closeEditModal = () => setEditingRoom(null);
+
+  const openDeleteModal = (room: Room) => setDeletingRoom(room);
+  const closeDeleteModal = () => setDeletingRoom(null);
 
   const handleFilterSubmit = (newFilters: RoomFilters) => {
     setFilters(newFilters);
   };
 
+  const columns: TableColumn<Room>[] = [
+    {
+      header: "Image",
+      cell: (room) => (
+        <RoomImageCell
+          image={room.image ? `data:image/png;base64,${room.image}` : undefined}
+          alt={room.type}
+        />
+      ),
+    },
+    { header: "Type", accessorKey: "type" },
+    { header: "Beds", accessorKey: "beds" },
+    { header: "Price", accessorKey: "price" },
+    { header: "Capacity", accessorKey: "capacity" },
+  ];
+
+  const headers = ["Image", "Type", "Beds", "Price", "Capacity"];
+  const widths = ["15%", "20%", "10%", "15%", "15%"];
+
   return (
-    <>
-      <Row className="mt-36 justify-center px-16 w-full gap-8">
-        <Column className="gap-4">
-          <AdminRoomTable
-            rooms={paginatedRooms}
+    <div className="p-6 mt-36">
+      <Row className="gap-8">
+        <div className="w-3/4">
+          <DataTable
+            data={roomsWithFilters || []}
+            columns={columns}
+            headers={headers}
+            widths={widths}
             isLoading={isLoading}
+            isError={isError}
             error={error}
+            onEdit={openEditModal}
+            onDelete={openDeleteModal}
           />
-          <AdminRoomsPagePaginator
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
-        </Column>
-        <AdminRoomFilter onFilterSubmit={handleFilterSubmit} />
+        </div>
+        <div className="w-1/4">
+          <AdminRoomFilter onFilterSubmit={handleFilterSubmit} />
+        </div>
       </Row>
-    </>
+
+      <AdminRoomCreateModal
+        isOpen={isCreateModalOpen}
+        onClose={closeCreateModal}
+      />
+
+      <RoomEditModal
+        room={editingRoom}
+        isOpen={!!editingRoom}
+        onClose={closeEditModal}
+      />
+
+      <RoomDeleteModal
+        room={deletingRoom}
+        isOpen={!!deletingRoom}
+        onClose={closeDeleteModal}
+      />
+    </div>
   );
-};
+}
 
 export default AdminRooms;

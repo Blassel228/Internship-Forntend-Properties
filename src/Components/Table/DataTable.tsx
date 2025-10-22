@@ -9,6 +9,7 @@ interface DataTableProps<T> extends React.HTMLAttributes<HTMLDivElement> {
   columns: TableColumn<T>[];
   headers: string[];
   widths?: string[];
+  actionsWidth?: string;
   isLoading?: boolean;
   isError?: boolean;
   error?: unknown;
@@ -22,6 +23,7 @@ function DataTable<T>({
   columns,
   headers,
   widths,
+  actionsWidth,
   isLoading = false,
   isError = false,
   error,
@@ -64,11 +66,12 @@ function DataTable<T>({
 
   return (
     <TableContainer className={className} {...props}>
-      <TableHeader headers={headers} widths={widths} />
+      <TableHeader headers={headers} widths={widths} actionsWidth={actionsWidth} />
       <TableBody
         data={data}
         columns={columns}
         widths={widths}
+        actionsWidth={actionsWidth}
         onEdit={onEdit}
         onDelete={onDelete}
       />

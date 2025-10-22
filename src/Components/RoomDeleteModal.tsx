@@ -1,6 +1,6 @@
-import React, {Fragment} from "react";
-import {Dialog, Transition} from "@headlessui/react";
-import {Room} from "../Types/Room";
+import React, { Fragment, useEffect } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { Room } from "../Types/Room";
 import * as Avatar from "@radix-ui/react-avatar";
 import useDeleteRoom from "../Hooks/useDeleteRoom.tsx";
 import Row from "./Row.tsx";
@@ -12,11 +12,23 @@ interface RoomDeleteModalProps {
 }
 
 const RoomDeleteModal = ({ room, isOpen, onClose }: RoomDeleteModalProps) => {
-  const { deleteRoom, isRoomDeleting, deletionError } = useDeleteRoom();
+  const { deleteRoom, isRoomDeleting, deletionError, isSuccess: deletionSuccess } = useDeleteRoom();
 
   const handleDeleteRoom = async (id: string) => {
-    return deleteRoom(id);
+    const success = await deleteRoom(id);
+    if (success) {
+      setTimeout(() => {
+        onClose();
+      }, 1000);
+    }
+    return success;
   };
+
+  useEffect(() => {
+    if (deletionSuccess) {
+        onClose();
+    }
+  }, [deletionSuccess, onClose]);
 
   if (!room) return;
 
@@ -78,6 +90,11 @@ const RoomDeleteModal = ({ room, isOpen, onClose }: RoomDeleteModalProps) => {
                 {deletionError && (
                   <p className="text-red-500 text-sm">
                     Something went wrong while deleting
+                  </p>
+                )}
+                {deletionSuccess && (
+                  <p className="text-green-500 text-sm">
+                    Room deleted successfully!
                   </p>
                 )}
               </Dialog.Panel>

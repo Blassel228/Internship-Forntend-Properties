@@ -6,6 +6,7 @@ interface TableBodyProps<T> {
   data: T[];
   columns: TableColumn<T>[];
   widths?: string[];
+  actionsWidth?: string;
   onEdit?: (item: T) => void;
   onDelete?: (item: T) => void;
 }
@@ -14,6 +15,7 @@ export function TableBody<T>({
   data,
   columns,
   widths,
+  actionsWidth,
   onEdit,
   onDelete,
 }: TableBodyProps<T>) {
@@ -25,6 +27,7 @@ export function TableBody<T>({
           item={item}
           columns={columns}
           widths={widths}
+          actionsWidth={actionsWidth}
           onEdit={onEdit}
           onDelete={onDelete}
         />

@@ -9,15 +9,17 @@ interface TableRowProps<T> {
   widths?: string[];
   onEdit?: (item: T) => void;
   onDelete?: (item: T) => void;
+  actionsWidth?: string;
 }
 
 function TableRow<T>({
   item,
   columns,
   widths,
+  actionsWidth,
   onEdit,
   onDelete,
-}: TableRowProps<T>) {
+}: TableRowProps<T> & { actionsWidth?: string }) {
   return (
     <tr className="hover:bg-orange-50">
       {columns.map((column, colIndex) => (
@@ -29,11 +31,12 @@ function TableRow<T>({
               : null}
         </TableCell>
       ))}
-      <TableCell width={widths?.[widths?.length - 1] || "160px"}>
+      <TableCell width={actionsWidth || widths?.[widths?.length - 1] || "160px"}>
         <ActionButtons item={item} onEdit={onEdit} onDelete={onDelete} />
       </TableCell>
     </tr>
   );
 }
+
 
 export default TableRow;
