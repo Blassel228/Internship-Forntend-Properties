@@ -23,7 +23,6 @@ export default function Routers() {
   return (
     <Routes>
       <Route element={<Layout />}>
-
         <Route index element={<HomePage />} />
         <Route path={routers.home} element={<HomePage />} />
         <Route path={`${routers.room}/:id`} element={<Room />} />
@@ -43,7 +42,7 @@ export default function Routers() {
 
         <Route element={<AdminRoute />}>
           <Route path={routers.adminRooms} element={<AdminRooms />} />
-                  <Route path={routers.adminUsers} element={<AdminUsers />} />
+          <Route path={routers.adminUsers} element={<AdminUsers />} />
         </Route>
 
         <Route

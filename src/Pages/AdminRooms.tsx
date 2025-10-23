@@ -12,12 +12,8 @@ import Row from "../Components/Row.tsx";
 
 function AdminRooms() {
   const [filters, setFilters] = useState<RoomFilters>({});
-  const {
-    roomsWithFilters,
-    isLoading,
-    isError,
-    error,
-  } = useRoomsWithFilters(filters);
+  const { roomsWithFilters, isLoading, isError, error } =
+    useRoomsWithFilters(filters);
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [editingRoom, setEditingRoom] = useState<Room | null>(null);

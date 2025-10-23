@@ -3,7 +3,7 @@ import RoomCard from "./RoomCard";
 import useSearchRoomsQuery from "../Hooks/useSearchRooms.tsx";
 import Spinner from "./Spinner.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
-import {AnimatePresence} from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const RoomList = () => {
   const { startDate, endDate, capacity } = useSearchParams();

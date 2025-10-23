@@ -17,26 +17,26 @@ export const selfUpdateUser = async (
   return data;
 };
 
-
-export const updateUser = async (userId: string, updatedData: Partial<UserUpdate>): Promise<User> => {
-  console.log("ID AND DATA: ", userId, updatedData);
-  const { data }: { data: User } = await baseApi.put<User>(`/user/${userId}`, { ...updatedData });
+export const updateUser = async (
+  userId: string,
+  updatedData: Partial<UserUpdate>,
+): Promise<User> => {
+  const { data }: { data: User } = await baseApi.put<User>(`/user/${userId}`, {
+    ...updatedData,
+  });
   return data;
-}
-
+};
 
 export const getUser = async (userId): Promise<User> => {
   const { data }: { data: User } = await baseApi.get<User>(`/user/${userId}`);
   return data;
 };
 
-
 export const getUsers = async (): Promise<User[]> => {
   const { data }: { data: User[] } = await baseApi.get<User[]>(`/user/`);
   console.log("DATA", data);
   return data;
 };
-
 
 export const deleteUser = async (userId: string): Promise<boolean> => {
   const { data }: { data: boolean } = await baseApi.delete<boolean>(

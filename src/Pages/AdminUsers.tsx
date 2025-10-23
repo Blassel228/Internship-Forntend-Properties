@@ -22,10 +22,7 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageData, setImageData] = useState<string | null>(null); // Додано стан для зберігання image_data
 
-  const {
-    setValue,
-    reset,
-  } = useForm<UserUpdate>({
+  const { setValue, reset } = useForm<UserUpdate>({
     defaultValues: {
       username: user?.username || "",
       email: user?.email || "",
@@ -88,8 +85,8 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
 
     const processedData = {
       ...data,
-      is_admin: data.is_admin === 'true' || data.is_admin === true,
-      image_data: imageData || data.image_data
+      is_admin: data.is_admin === "true" || data.is_admin === true,
+      image_data: imageData || data.image_data,
     };
 
     updateUser(
@@ -102,71 +99,71 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
 
   const editFields = [
     {
-      name: 'username',
-      label: 'Username',
-      type: 'text',
-      required: false
+      name: "username",
+      label: "Username",
+      type: "text",
+      required: false,
     },
     {
-      name: 'email',
-      label: 'Email',
-      type: 'email',
-      required: false
+      name: "email",
+      label: "Email",
+      type: "email",
+      required: false,
     },
     {
-      name: 'name',
-      label: 'Name',
-      type: 'text',
-      required: false
+      name: "name",
+      label: "Name",
+      type: "text",
+      required: false,
     },
     {
-      name: 'surname',
-      label: 'Surname',
-      type: 'text',
-      required: false
+      name: "surname",
+      label: "Surname",
+      type: "text",
+      required: false,
     },
     {
-      name: 'is_admin',
-      label: 'Is Admin',
-      type: 'select',
-      options: ['true', 'false'],
-      required: false
+      name: "is_admin",
+      label: "Is Admin",
+      type: "select",
+      options: ["true", "false"],
+      required: false,
     },
     {
-      name: 'phone_number',
-      label: 'Phone Number',
-      type: 'text',
-      required: false
+      name: "phone_number",
+      label: "Phone Number",
+      type: "text",
+      required: false,
     },
     {
-      name: 'country',
-      label: 'Country',
-      type: 'text',
-      required: false
+      name: "country",
+      label: "Country",
+      type: "text",
+      required: false,
     },
     {
-      name: 'sex',
-      label: 'Sex',
-      type: 'select',
-      options: ['0', '1', '2'],
-      required: false
+      name: "sex",
+      label: "Sex",
+      type: "select",
+      options: ["0", "1", "2"],
+      required: false,
     },
     {
-      name: 'birthdate',
-      label: 'Birthdate',
-      type: 'date',
-      required: false
+      name: "birthdate",
+      label: "Birthdate",
+      type: "date",
+      required: false,
     },
     {
-      name: 'image-preview',
-      label: 'Avatar Preview',
-      type: 'image-preview'
+      name: "image-preview",
+      label: "Avatar Preview",
+      type: "image-preview",
     },
     {
-      name: 'image_data',
-      label: 'Upload Avatar',
-      type: 'file'
-    }
+      name: "image_data",
+      label: "Upload Avatar",
+      type: "file",
+    },
   ];
 
   return (
@@ -192,7 +189,12 @@ interface UserDeleteModalProps {
 }
 
 const UserDeleteModal = ({ user, isOpen, onClose }: UserDeleteModalProps) => {
-  const { deleteUser, isUserDeleting, deletionError, isSuccess: deletionSuccess } = useDeleteUser();
+  const {
+    deleteUser,
+    isUserDeleting,
+    deletionError,
+    isSuccess: deletionSuccess,
+  } = useDeleteUser();
 
   return (
     <GenericDeleteModal
@@ -204,7 +206,11 @@ const UserDeleteModal = ({ user, isOpen, onClose }: UserDeleteModalProps) => {
       deletionError={deletionError}
       deletionSuccess={deletionSuccess}
       title={(user) => `Delete User: ${user?.username}`}
-      getImageUrl={(user) => user?.image_data ? `data:image/png;base64,${user.image_data}` : undefined}
+      getImageUrl={(user) =>
+        user?.image.image_data
+          ? `data:image/png;base64,${user.image.image_data}`
+          : undefined
+      }
       itemName={(user) => `User ${user?.username}`}
       confirmationMessage="Are you sure you want to delete this user from the database?"
       showImage={true}
@@ -246,7 +252,8 @@ const AdminUsers = () => {
             />
           ) : (
             <Avatar.Fallback className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500">
-              {user.name.charAt(0)}{user.surname.charAt(0)}
+              {user.name.charAt(0)}
+              {user.surname.charAt(0)}
             </Avatar.Fallback>
           )}
         </Avatar.Root>
@@ -282,7 +289,7 @@ const AdminUsers = () => {
     },
   ];
 
-  const headers = columns.map(col => col.header);
+  const headers = columns.map((col) => col.header);
   const widths = ["10%", "12%", "10%", "10%", "15%", "12%", "10%", "6%"];
   const actionsWidth = "10%";
 
@@ -307,7 +314,7 @@ const AdminUsers = () => {
           {totalPages > 1 && (
             <div className="flex justify-center gap-2 mt-4">
               <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
                 className="px-4 py-2 bg-orange-500 text-white rounded disabled:opacity-50"
               >
@@ -317,7 +324,9 @@ const AdminUsers = () => {
                 Page {currentPage} of {totalPages}
               </span>
               <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
                 disabled={currentPage === totalPages}
                 className="px-4 py-2 bg-orange-500 text-white rounded disabled:opacity-50"
               >
@@ -329,7 +338,7 @@ const AdminUsers = () => {
       </Row>
 
       <UserEditModal
-        key={editingUser?.id || 'new'}
+        key={editingUser?.id || "new"}
         user={editingUser}
         isOpen={!!editingUser}
         onClose={closeEditModal}

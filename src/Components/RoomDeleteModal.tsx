@@ -12,7 +12,12 @@ interface RoomDeleteModalProps {
 }
 
 const RoomDeleteModal = ({ room, isOpen, onClose }: RoomDeleteModalProps) => {
-  const { deleteRoom, isRoomDeleting, deletionError, isSuccess: deletionSuccess } = useDeleteRoom();
+  const {
+    deleteRoom,
+    isRoomDeleting,
+    deletionError,
+    isSuccess: deletionSuccess,
+  } = useDeleteRoom();
 
   const handleDeleteRoom = async (id: string) => {
     const success = await deleteRoom(id);
@@ -26,7 +31,7 @@ const RoomDeleteModal = ({ room, isOpen, onClose }: RoomDeleteModalProps) => {
 
   useEffect(() => {
     if (deletionSuccess) {
-        onClose();
+      onClose();
     }
   }, [deletionSuccess, onClose]);
 

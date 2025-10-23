@@ -31,12 +31,13 @@ function TableRow<T>({
               : null}
         </TableCell>
       ))}
-      <TableCell width={actionsWidth || widths?.[widths?.length - 1] || "160px"}>
+      <TableCell
+        width={actionsWidth || widths?.[widths?.length - 1] || "160px"}
+      >
         <ActionButtons item={item} onEdit={onEdit} onDelete={onDelete} />
       </TableCell>
     </tr>
   );
 }
-
 
 export default TableRow;

@@ -3,12 +3,11 @@ import { Dialog, Transition } from "@headlessui/react";
 import * as Avatar from "@radix-ui/react-avatar";
 import Row from "./Row.tsx";
 
-// Компонент для відображення зображення
 const ItemImage = <T,>({
   item,
   getImageUrl,
   imageClassName = "w-full h-full object-cover",
-  fallbackClassName = "w-full h-full flex items-center justify-center text-gray-400 text-sm bg-gray-100"
+  fallbackClassName = "w-full h-full flex items-center justify-center text-gray-400 text-sm bg-gray-100",
 }: {
   item: T;
   getImageUrl?: (item: T) => string | undefined;
@@ -28,10 +27,7 @@ const ItemImage = <T,>({
           className={imageClassName}
         />
       ) : (
-        <Avatar.Fallback
-          className={fallbackClassName}
-          delayMs={0}
-        >
+        <Avatar.Fallback className={fallbackClassName} delayMs={0}>
           No image
         </Avatar.Fallback>
       )}
@@ -39,8 +35,13 @@ const ItemImage = <T,>({
   );
 };
 
-// Компонент для відображення заголовка
-const ModalTitle = <T,>({ item, title }: { item: T; title: (item: T) => string }) => {
+const ModalTitle = <T,>({
+  item,
+  title,
+}: {
+  item: T;
+  title: (item: T) => string;
+}) => {
   return (
     <Dialog.Title className="text-lg font-medium text-gray-900 mb-4">
       {title(item)}
@@ -48,18 +49,15 @@ const ModalTitle = <T,>({ item, title }: { item: T; title: (item: T) => string }
   );
 };
 
-// Компонент для відображення повідомлення підтвердження
 const ConfirmationMessage = ({
   message,
-  centerText = false
+  centerText = false,
 }: {
   message: string;
   centerText?: boolean;
 }) => {
   return (
-    <p className={`font-bold ${centerText ? 'text-center' : ''}`}>
-      {message}
-    </p>
+    <p className={`font-bold ${centerText ? "text-center" : ""}`}>{message}</p>
   );
 };
 
@@ -68,7 +66,7 @@ const ActionButtons = <T,>({
   item,
   isDeleting,
   onDelete,
-  onClose
+  onClose,
 }: {
   item: T;
   isDeleting: boolean;
@@ -104,7 +102,6 @@ const ActionButtons = <T,>({
   );
 };
 
-// Компонент для відображення повідомлень про помилки
 const ErrorMessage = ({ error }: { error: unknown }) => {
   if (!error) return null;
 
@@ -115,15 +112,14 @@ const ErrorMessage = ({ error }: { error: unknown }) => {
   );
 };
 
-// Компонент для відображення повідомлень про успіх
 const SuccessMessage = <T,>({
   success,
   item,
-  itemName
+  itemName,
 }: {
   success: boolean;
   item: T;
-  itemName: (item: T) => string
+  itemName: (item: T) => string;
 }) => {
   if (!success) return null;
 
@@ -134,7 +130,6 @@ const SuccessMessage = <T,>({
   );
 };
 
-// Основний універсальний компонент для видалення
 interface GenericDeleteModalProps<T> {
   item: T | null;
   isOpen: boolean;
@@ -170,7 +165,7 @@ const GenericDeleteModal = <T,>({
   centerText = false,
   imageClassName = "w-32 h-32 object-cover rounded-lg",
   fallbackClassName = "w-32 h-32 flex items-center justify-center text-gray-400 text-sm bg-gray-100 rounded-lg",
-  dialogClassName = "w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 shadow-xl"
+  dialogClassName = "w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 shadow-xl",
 }: GenericDeleteModalProps<T>) => {
   useEffect(() => {
     if (deletionSuccess) {
@@ -209,7 +204,10 @@ const GenericDeleteModal = <T,>({
                     />
                   </div>
                 )}
-                <ConfirmationMessage message={confirmationMessage} centerText={centerText} />
+                <ConfirmationMessage
+                  message={confirmationMessage}
+                  centerText={centerText}
+                />
                 <ActionButtons
                   item={item}
                   isDeleting={isDeleting}

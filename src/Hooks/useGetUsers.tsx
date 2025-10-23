@@ -1,5 +1,5 @@
-import {getUsers} from "../Api/apiUser.tsx";
-import {useQuery} from "@tanstack/react-query";
+import { getUsers } from "../Api/apiUser.tsx";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetUsers = () => {
   const {
@@ -12,7 +12,7 @@ const useGetUsers = () => {
     staleTime: 1000 * 60 * 5,
   });
 
-  return { users, areUsersLoading, error }
-}
+  return { users, areUsersLoading, error };
+};
 
 export default useGetUsers;

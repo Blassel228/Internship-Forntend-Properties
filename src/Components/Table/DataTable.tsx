@@ -66,7 +66,11 @@ function DataTable<T>({
 
   return (
     <TableContainer className={className} {...props}>
-      <TableHeader headers={headers} widths={widths} actionsWidth={actionsWidth} />
+      <TableHeader
+        headers={headers}
+        widths={widths}
+        actionsWidth={actionsWidth}
+      />
       <TableBody
         data={data}
         columns={columns}

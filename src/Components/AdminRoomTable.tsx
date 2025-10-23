@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import { User } from "../Types/User";
-import useGetUsers  from "../Hooks/useGetUsers.tsx";
+import useGetUsers from "../Hooks/useGetUsers.tsx";
 import DataTable from "../Components/Table/DataTable";
 import * as Avatar from "@radix-ui/react-avatar";
 import Row from "../Components/Row.tsx";
 import TableColumn from "../Types/Table";
 
 function AdminUsers() {
-  const {
-    users,
-    isLoading,
-    isError,
-    error,
-  } = useGetUsers();
+  const { users, isLoading, isError, error } = useGetUsers();
 
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [deletingUser, setDeletingUser] = useState<User | null>(null);
@@ -36,7 +31,8 @@ function AdminUsers() {
             />
           ) : (
             <Avatar.Fallback className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500">
-              {user.name.charAt(0)}{user.surname.charAt(0)}
+              {user.name.charAt(0)}
+              {user.surname.charAt(0)}
             </Avatar.Fallback>
           )}
         </Avatar.Root>
@@ -54,7 +50,16 @@ function AdminUsers() {
     },
   ];
 
-  const headers = ["Avatar", "Username", "Name", "Surname", "Email", "Phone", "Country", "Admin"];
+  const headers = [
+    "Avatar",
+    "Username",
+    "Name",
+    "Surname",
+    "Email",
+    "Phone",
+    "Country",
+    "Admin",
+  ];
   const widths = ["10%", "15%", "10%", "30%", "20%", "15%", "5%", "5%"];
 
   return (

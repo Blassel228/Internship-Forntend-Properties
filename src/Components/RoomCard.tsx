@@ -21,7 +21,8 @@ const RoomCard = ({ room }: { room: Room }) => {
     );
   };
 
-  const hasRating = room.average_rating !== null && room.average_rating !== undefined;
+  const hasRating =
+    room.average_rating !== null && room.average_rating !== undefined;
 
   return (
     <motion.div
@@ -47,7 +48,10 @@ const RoomCard = ({ room }: { room: Room }) => {
                 <span className="font-bold text-orange-700 text-sm">
                   {room.average_rating}
                 </span>
-                <StarIcon className="text-orange-500 fill-orange-500 ml-1" size={12} />
+                <StarIcon
+                  className="text-orange-500 fill-orange-500 ml-1"
+                  size={12}
+                />
               </div>
               <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
                 {room.type}

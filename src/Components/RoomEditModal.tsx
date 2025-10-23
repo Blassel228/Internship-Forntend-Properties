@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import GenericEditModal from "./GenericEditModal";
 import { Room, RoomUpdate } from "../Types/Room";
 import useUpdateRoom from "../Hooks/useUpdateRoom";
@@ -16,10 +16,7 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
 
-  const {
-    setValue,
-    reset,
-  } = useForm<RoomUpdate>({
+  const { setValue, reset } = useForm<RoomUpdate>({
     defaultValues: {
       type: room?.type || "",
       beds: room?.beds || 1,
@@ -73,7 +70,7 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
 
     const submitData = {
       ...data,
-      image: imageData || data.image
+      image: imageData || data.image,
     };
 
     updateRoom(
@@ -86,47 +83,47 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
 
   const editFields = [
     {
-      name: 'type',
-      label: 'Room Type',
-      type: 'select',
+      name: "type",
+      label: "Room Type",
+      type: "select",
       options: Object.values(roomType),
-      required: true
+      required: true,
     },
     {
-      name: 'beds',
-      label: 'Beds',
-      type: 'number',
+      name: "beds",
+      label: "Beds",
+      type: "number",
       min: 1,
       max: 5,
-      required: true
+      required: true,
     },
     {
-      name: 'image-preview',
-      label: 'Image Preview',
-      type: 'image-preview'
+      name: "image-preview",
+      label: "Image Preview",
+      type: "image-preview",
     },
     {
-      name: 'image',
-      label: 'Upload Image',
-      type: 'file'
+      name: "image",
+      label: "Upload Image",
+      type: "file",
     },
     {
-      name: 'capacity',
-      label: 'Capacity (people)',
-      type: 'number',
+      name: "capacity",
+      label: "Capacity (people)",
+      type: "number",
       min: 1,
       max: 10,
-      required: true
+      required: true,
     },
     {
-      name: 'price',
-      label: 'Price ($)',
-      type: 'number',
+      name: "price",
+      label: "Price ($)",
+      type: "number",
       min: 0,
       max: 1000,
-      step: '0.01',
-      required: true
-    }
+      step: "0.01",
+      required: true,
+    },
   ];
 
   return (

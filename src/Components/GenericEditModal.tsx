@@ -27,7 +27,13 @@ interface GenericEditModalProps<T> {
   setValue?: (name: string, value: any, config?: any) => void;
 }
 
-const ImagePreview = ({ imagePreview, alt }: { imagePreview?: string | null; alt: string }) => {
+const ImagePreview = ({
+  imagePreview,
+  alt,
+}: {
+  imagePreview?: string | null;
+  alt: string;
+}) => {
   return (
     <div className="w-32 h-32 overflow-hidden border-4 border-orange-100 bg-gray-100 flex items-center justify-center">
       <Avatar.Root className="w-full h-full">
@@ -53,7 +59,7 @@ const ImagePreview = ({ imagePreview, alt }: { imagePreview?: string | null; alt
 const TextField = <T,>({
   field,
   register,
-  errors
+  errors,
 }: {
   field: FieldConfig<T>;
   register: any;
@@ -72,7 +78,7 @@ const TextField = <T,>({
           required: field.required ? `${field.label} is required` : false,
           min: field.min,
           max: field.max,
-          step: field.step
+          step: field.step,
         })}
       />
       {errors[field.name] && (
@@ -87,7 +93,7 @@ const TextField = <T,>({
 const NumberField = <T,>({
   field,
   register,
-  errors
+  errors,
 }: {
   field: FieldConfig<T>;
   register: any;
@@ -107,7 +113,7 @@ const NumberField = <T,>({
           valueAsNumber: true,
           min: field.min,
           max: field.max,
-          step: field.step
+          step: field.step,
         })}
       />
       {errors[field.name] && (
@@ -122,7 +128,7 @@ const NumberField = <T,>({
 const SelectField = <T,>({
   field,
   register,
-  errors
+  errors,
 }: {
   field: FieldConfig<T>;
   register: any;
@@ -136,7 +142,7 @@ const SelectField = <T,>({
       <select
         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 appearance-none"
         {...register(field.name, {
-          required: field.required ? `${field.label} is required` : false
+          required: field.required ? `${field.label} is required` : false,
         })}
       >
         {field.options?.map((option) => (
@@ -156,7 +162,7 @@ const SelectField = <T,>({
 
 const FileField = <T,>({
   field,
-  onFileChange
+  onFileChange,
 }: {
   field: FieldConfig<T>;
   onFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -178,7 +184,7 @@ const FileField = <T,>({
 
 const ImagePreviewField = <T,>({
   field,
-  imagePreview
+  imagePreview,
 }: {
   field: FieldConfig<T>;
   imagePreview?: string | null;
@@ -198,7 +204,7 @@ const FormField = <T,>({
   register,
   errors,
   imagePreview,
-  onFileChange
+  onFileChange,
 }: {
   field: FieldConfig<T>;
   register: any;
@@ -236,7 +242,7 @@ const GenericEditModal = <T,>({
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<T>({
-    defaultValues: item || {}
+    defaultValues: item || {},
   });
 
   if (!item) return null;
