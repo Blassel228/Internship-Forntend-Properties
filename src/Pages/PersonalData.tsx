@@ -83,7 +83,11 @@ export default function PersonalData() {
               isPending={isUserUpdating}
             />
           </FormProvider>
-          {isError && <PersonalDataFooter message={userUpdateError?.response?.data?.detail} />}
+          {isError && (
+            <PersonalDataFooter
+              message={userUpdateError?.response?.data?.detail}
+            />
+          )}
         </Column>
       </Row>
     </>

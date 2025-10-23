@@ -19,7 +19,6 @@ function AdminRooms() {
   const [editingRoom, setEditingRoom] = useState<Room | null>(null);
   const [deletingRoom, setDeletingRoom] = useState<Room | null>(null);
 
-
   const closeCreateModal = () => setIsCreateModalOpen(false);
 
   const openEditModal = (room: Room) => {

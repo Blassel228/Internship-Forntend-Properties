@@ -44,7 +44,7 @@ function useUpdateAuthorizedUser() {
     mutate: updateUser,
     isPending: isUserUpdating,
     error: userUpdateError,
-    isError
+    isError,
   } = useMutation({
     mutationFn: async (userUpdate: Partial<UserUpdate>) =>
       await selfUpdateUserApi(userUpdate),
