@@ -16,7 +16,7 @@ export default function HeaderAvatar({
     (root: RootState) => root.authorizedUser.authorizedUser,
   ) as User | null;
 
-  if (!user) return null;
+  if (!user || !user.username) return null;
 
   const initial = user.username?.charAt(0).toUpperCase() || "?";
 
