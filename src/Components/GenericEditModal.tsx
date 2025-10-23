@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from "react";
+import React, { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import * as Avatar from "@radix-ui/react-avatar";
@@ -226,7 +226,7 @@ const FormField = <T,>({
   }
 };
 
-const GenericEditModal = <T extends Record<string, any>,>({
+const GenericEditModal = <T extends Record<string, any>>({
   item,
   isOpen,
   onClose,

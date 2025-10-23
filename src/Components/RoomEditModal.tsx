@@ -16,17 +16,10 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
 
-  const { setValue, reset } = useForm<RoomUpdate>();
+  const { setValue} = useForm<RoomUpdate>();
 
   useEffect(() => {
     if (room) {
-      reset({
-        type: room.type || "",
-        beds: room.beds || 1,
-        capacity: room.capacity || 1,
-        price: room.price || 0,
-      });
-
       if (room.image) {
         setImagePreview(`data:image/png;base64,${room.image}`);
         setImageData(room.image);
@@ -35,7 +28,7 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
         setImageData(null);
       }
     }
-  }, [room, reset]);
+  }, [room]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target?.files?.[0];
