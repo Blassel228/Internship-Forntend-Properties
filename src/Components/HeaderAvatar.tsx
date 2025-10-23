@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../Types/RootState.tsx";
 import { User } from "../Types/User.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
-import { getItem } from "../Utils/localStorage.tsx";
 import { stringToColor } from "../Utils/helpers.tsx";
 
 interface HeaderAvatarProps {
@@ -19,14 +18,9 @@ export default function HeaderAvatar({
 
   if (!user) return null;
 
-  const avatarUrl =
-    user.image_data && getItem("token")
-      ? `data:image/jpeg;base64,${user.image_data}`
-      : undefined;
-
   const initial = user.username?.charAt(0).toUpperCase() || "?";
 
-  const bgColor = stringToColor(user.username);
+  const bgColor = stringToColor(user?.username);
 
   return (
     <div
@@ -43,7 +37,7 @@ export default function HeaderAvatar({
     >
       <Avatar.Root className="w-full h-full rounded-full overflow-hidden">
         <Avatar.Image
-          src={avatarUrl}
+          src={`data:image/jpeg;base64,${user.image?.image_data}`}
           alt={user.username}
           className="w-full h-full object-cover"
         />

@@ -4,19 +4,15 @@ import { useSelector } from "react-redux";
 import { RootState } from "../Types/RootState.tsx";
 import Row from "../Components/Row.tsx";
 import Column from "../Components/Column.tsx";
-import useUpdateUser from "../Hooks/useUpdateUser.tsx";
+import { useUpdateAuthorizedUser } from "../Hooks/useUpdateUser.tsx";
 import PersonalDataHeader from "../Components/PersonalDataHeader.tsx";
 import PersonalDataForm from "../Components/PersonalDataForm.tsx";
 import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
 import { User } from "../Types/User.tsx";
 
 export default function PersonalData() {
-  const {
-    mutate: updateUser,
-    isPending,
-    isError: isUpdatingError,
-    error,
-  } = useUpdateUser();
+  const { updateUser, isUserUpdating, userUpdateError, error } =
+    useUpdateAuthorizedUser();
   const user = useSelector(
     (root: RootState) => root.authorizedUser.authorizedUser,
   ) as User | null;
@@ -40,15 +36,17 @@ export default function PersonalData() {
   });
 
   useEffect(() => {
-    console.log(error, isUpdatingError);
-  }, [error, isUpdatingError]);
+    console.log(error, userUpdateError);
+  }, [error, userUpdateError]);
   return (
     <>
       <Row className="settings-layout mt-36 justify-center content-center w-full">
         <Column className="user-settings w-2/4">
           <PersonalDataHeader
             username={user?.username}
-            image_data={user?.image_data ? user?.image_data : undefined}
+            image_data={
+              user?.image?.image_data ? user.image.image_data : undefined
+            }
           />
           <FormProvider {...form}>
             <PersonalDataForm
@@ -56,12 +54,12 @@ export default function PersonalData() {
               editingField={editingField}
               setEditingField={setEditingField}
               updateUser={updateUser}
-              isPending={isPending}
+              isPending={isUserUpdating}
             />
           </FormProvider>
         </Column>
       </Row>
-      {isUpdatingError && <PersonalDataFooter />}
+      {isUserUpdating && <PersonalDataFooter />}
     </>
   );
 }

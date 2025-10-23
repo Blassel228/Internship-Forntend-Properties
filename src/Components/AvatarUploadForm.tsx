@@ -36,7 +36,7 @@ export default function AvatarUploadModal({
   const { mutate: updateImage, isPending: isImageUpdating } = useUpdateImage();
   const { mutate: createImage, isPending: isImageCreating } = useCreateImage();
 
-  const mutate = user?.image_data ? updateImage : createImage;
+  const mutate = user?.image?.image_data ? updateImage : createImage;
   const isImageChanging = isImageUpdating || isImageCreating;
 
   const bgColor = user?.username ? stringToColor(user.username) : "#ccc";

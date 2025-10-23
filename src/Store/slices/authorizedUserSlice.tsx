@@ -1,14 +1,15 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-
-import {User} from "../../Types/User.tsx";
-import {ImageUpdate} from "../../Types/Image.tsx";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../../Types/User.tsx";
+import { ImageUpdate } from "../../Types/Image.tsx";
 
 interface AuthorizedUserState {
   authorizedUser: User | null;
 }
 
 const initialState: AuthorizedUserState = {
-  authorizedUser: null,
+  authorizedUser: {
+    image: { image_data: null },
+  } as User,
 };
 
 const authorizedUserSlice = createSlice({
@@ -22,9 +23,15 @@ const authorizedUserSlice = createSlice({
       state.authorizedUser = null;
     },
     setAuthorizedUserImage(state, action: PayloadAction<ImageUpdate>) {
-      if (state.authorizedUser?.image_data)
-        state.authorizedUser.image_data = action.payload.image_data;
-      else state.authorizedUser.image_data = null;
+      if (state.authorizedUser) {
+        if (!state.authorizedUser.image) {
+          state.authorizedUser.image = {
+            image_data: action.payload.image_data,
+          };
+        } else {
+          state.authorizedUser.image.image_data = action.payload.image_data;
+        }
+      }
     },
   },
 });
