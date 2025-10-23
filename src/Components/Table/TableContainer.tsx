@@ -12,7 +12,7 @@ export function TableContainer({
 }: TableContainerProps) {
   return (
     <div
-      className={`border border-orange-200 rounded-lg mb-4 ${className}`}
+      className={`border border-orange-200 bg-white rounded-lg mb-4 ${className}`}
       {...props}
     >
       <table className="w-full min-w-full table-fixed">{children}</table>

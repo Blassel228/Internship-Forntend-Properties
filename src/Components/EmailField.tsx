@@ -44,8 +44,8 @@ export default function EmailField({
               type="email"
               {...register("email", { required: "Email is required" })}
             />
-            {errors.email && (
-              <FieldError message={errors.email.message as string} />
+            {errors?.email && (
+              <FieldError message={errors.email.message as string}/>
             )}
           </Column>
 

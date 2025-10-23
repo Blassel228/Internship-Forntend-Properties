@@ -11,13 +11,14 @@ import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
 import { User } from "../Types/User.tsx";
 
 export default function PersonalData() {
-  const { updateUser, isUserUpdating, userUpdateError, error } =
+  const { updateUser, isUserUpdating, userUpdateError, error, isError } =
     useUpdateAuthorizedUser();
   const user = useSelector(
     (root: RootState) => root.authorizedUser.authorizedUser,
   ) as User | null;
 
   const [editingField, setEditingField] = useState<string | null>(null);
+  const [lastValidValues, setLastValidValues] = useState<any>(null);
 
   const defaultBirthDate = user?.birthdate ? new Date(user.birthdate) : null;
 
@@ -36,8 +37,33 @@ export default function PersonalData() {
   });
 
   useEffect(() => {
-    console.log(error, userUpdateError);
+    if (!lastValidValues) {
+      const initialValues = form.getValues();
+      setLastValidValues(initialValues);
+    }
+  }, [form, lastValidValues]);
+
+  useEffect(() => {
+    if (isError && lastValidValues) {
+      form.reset(lastValidValues);
+    }
+  }, [isError, lastValidValues, form]);
+
+  const handleUpdateUser = (data: any) => {
+    updateUser(data);
+  };
+
+  useEffect(() => {
+    if (!isUserUpdating && !isError) {
+      const currentValues = form.getValues();
+      setLastValidValues(currentValues);
+    }
+  }, [isUserUpdating, isError, form]);
+
+  useEffect(() => {
+    console.log("ERROR", error, userUpdateError);
   }, [error, userUpdateError]);
+
   return (
     <>
       <Row className="settings-layout mt-36 justify-center content-center w-full">
@@ -53,13 +79,13 @@ export default function PersonalData() {
               user={user}
               editingField={editingField}
               setEditingField={setEditingField}
-              updateUser={updateUser}
+              updateUser={handleUpdateUser}
               isPending={isUserUpdating}
             />
           </FormProvider>
+          {isError && <PersonalDataFooter message={userUpdateError?.response?.data?.detail} />}
         </Column>
       </Row>
-      {isUserUpdating && <PersonalDataFooter />}
     </>
   );
 }

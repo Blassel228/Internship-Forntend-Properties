@@ -42,7 +42,17 @@ export default function UsernameField({
             </label>
             <EditInput
               type="text"
-              {...register("username", { required: "Username is required" })}
+              {...register("username", {
+                required: "Username is required",
+                minLength: {
+                  value: 4,
+                  message: "Username must be at least 4 characters long",
+                },
+                maxLength: {
+                  value: 112,
+                  message: "Username must be at most 112 characters long",
+                },
+              })}
             />
             {errors.username && (
               <FieldError message={errors.username.message as string} />

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, {Fragment, useEffect} from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import * as Avatar from "@radix-ui/react-avatar";
@@ -226,7 +226,7 @@ const FormField = <T,>({
   }
 };
 
-const GenericEditModal = <T,>({
+const GenericEditModal = <T extends Record<string, any>,>({
   item,
   isOpen,
   onClose,
@@ -240,12 +240,17 @@ const GenericEditModal = <T,>({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting, errors },
-  } = useForm<T>({
-    defaultValues: item || {},
-  });
+  } = useForm<T>();
 
-  if (!item) return null;
+  useEffect(() => {
+    if (item) {
+      reset(item);
+    }
+  }, [item, reset]);
+
+  if (!isOpen) return null;
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -275,7 +280,7 @@ const GenericEditModal = <T,>({
             >
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 shadow-xl">
                 <Dialog.Title className="text-lg font-medium text-gray-900 mb-4">
-                  {title(item)}
+                  {item ? title(item) : "Edit Item"}
                 </Dialog.Title>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

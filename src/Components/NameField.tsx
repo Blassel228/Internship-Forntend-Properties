@@ -55,7 +55,17 @@ export default function NameField({
             </label>
             <EditInput
               type="text"
-              {...register("surname", { required: "Surname is required" })}
+              {...register("surname", {
+                required: "Surname is required",
+                minLength: {
+                  value: 4,
+                  message: "Username must be at least 4 characters long",
+                },
+                maxLength: {
+                  value: 112,
+                  message: "Username must be at most 112 characters long",
+                },
+              })}
             />
             {errors.surname && (
               <FieldError message={errors.surname.message as string} />

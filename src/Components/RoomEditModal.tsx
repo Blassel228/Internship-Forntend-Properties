@@ -16,22 +16,15 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
 
-  const { setValue, reset } = useForm<RoomUpdate>({
-    defaultValues: {
-      type: room?.type || "",
-      beds: room?.beds || 1,
-      capacity: room?.capacity || 1,
-      price: room?.price || 0,
-    },
-  });
+  const { setValue, reset } = useForm<RoomUpdate>();
 
   useEffect(() => {
     if (room) {
       reset({
-        type: room.type,
-        beds: room.beds,
-        capacity: room.capacity,
-        price: room.price,
+        type: room.type || "",
+        beds: room.beds || 1,
+        capacity: room.capacity || 1,
+        price: room.price || 0,
       });
 
       if (room.image) {

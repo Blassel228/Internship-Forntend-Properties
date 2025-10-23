@@ -41,6 +41,7 @@ export default function PersonalDataForm({
       image_data: image ? image.image_data : null,
     };
     console.log("PAYLOAD", payload);
+
     updateUser(payload);
     setEditingField(null);
   };
