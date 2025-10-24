@@ -45,16 +45,28 @@ function useUpdateAuthorizedUser() {
     isPending: isUserUpdating,
     error: userUpdateError,
     isError,
+    isSuccess
   } = useMutation({
     mutationFn: async (userUpdate: Partial<UserUpdate>) =>
       await selfUpdateUserApi(userUpdate),
     onSuccess: async (user: User) => {
       dispatch(setAuthorizedUser(user));
-      const image: ImageGet = await getImage();
-      dispatch(setAuthorizedUserImage(image));
+
+      try {
+        const image: ImageGet | null = await getImage();
+
+        if (image && image.image_data) {
+          dispatch(setAuthorizedUserImage(image));
+        } else {
+          dispatch(setAuthorizedUserImage({ image_data: null }));
+        }
+      } catch (err) {
+        console.warn("No image found for user, setting null");
+        dispatch(setAuthorizedUserImage({ image_data: null }));
+      }
     },
   });
-  return { updateUser, isUserUpdating, userUpdateError, isError };
+  return { updateUser, isUserUpdating, userUpdateError, isError, isSuccess };
 }
 
 export { useUpdateAuthorizedUser, useUpdateUser };

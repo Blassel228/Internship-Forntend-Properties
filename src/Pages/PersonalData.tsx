@@ -11,7 +11,7 @@ import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
 import { User } from "../Types/User.tsx";
 
 export default function PersonalData() {
-  const { updateUser, isUserUpdating, userUpdateError, error, isError } =
+  const { updateUser, isUserUpdating, userUpdateError, error, isError, isSuccess } =
     useUpdateAuthorizedUser();
   const user = useSelector(
     (root: RootState) => root.authorizedUser.authorizedUser,
@@ -35,6 +35,8 @@ export default function PersonalData() {
       sex: user?.sex ?? 0,
     },
   });
+
+  console.log("ISSUCCESS: ", isSuccess, isError);
 
   useEffect(() => {
     if (!lastValidValues) {
@@ -83,7 +85,7 @@ export default function PersonalData() {
               isPending={isUserUpdating}
             />
           </FormProvider>
-          {isError && (
+          {isError && !isSuccess && (
             <PersonalDataFooter
               message={userUpdateError?.response?.data?.detail}
             />
