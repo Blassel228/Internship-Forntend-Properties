@@ -44,7 +44,6 @@ baseApi.interceptors.response.use(
       if (originalRequest.url?.includes("refresh")) {
         console.error("Refresh endpoint failed — logging out");
         removeItem("token");
-        window.location.href = routers.home;
         return Promise.reject(error);
       }
 
@@ -60,10 +59,7 @@ baseApi.interceptors.response.use(
 
         return baseApi(originalRequest);
       } catch (refreshError) {
-        console.error("Refresh failed — clearing session", refreshError);
-        removeItem("token");
-        window.location.href = routers.home;
-        return Promise.reject(refreshError);
+        console.error("Refresh failed — clearing session catch part", refreshError);
       }
     }
 

@@ -61,9 +61,6 @@ export default function SexField({
               <option value={2}>I am a female</option>
               <option value={9}>I prefer not to answer</option>
             </select>
-            {errors.sex && (
-              <FieldError message={errors.sex.message as string} />
-            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">

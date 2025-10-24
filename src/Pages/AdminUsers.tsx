@@ -20,7 +20,7 @@ interface UserEditModalProps {
 const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
   const { updateUser, isUserUpdating } = useUpdateUser();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [imageData, setImageData] = useState<string | null>(null); // Додано стан для зберігання image_data
+  const [imageData, setImageData] = useState<string | null>(null);
 
   const { setValue, reset } = useForm<UserUpdate>({
     defaultValues: {
@@ -52,10 +52,10 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
 
       if (user.image_data) {
         setImagePreview(`data:image/png;base64,${user.image_data}`);
-        setImageData(user.image_data); // Зберігаємо image_data
+        setImageData(user.image_data);
       } else {
         setImagePreview(null);
-        setImageData(null); // Очищуємо image_data
+        setImageData(null);
       }
     }
   }, [user, reset]);
@@ -243,10 +243,10 @@ const AdminUsers = () => {
     {
       header: "Avatar",
       cell: (user: User) => (
-        <Avatar.Root className="w-12 h-12 rounded-full overflow-hidden">
-          {user.image_data ? (
+        <Avatar.Root className="w-2 h-6 overflow-hidden">
+          {user.image.image_data ? (
             <Avatar.Image
-              src={`data:image/png;base64,${user.image_data}`}
+              src={`data:image/png;base64,${user.image.image_data}`}
               alt="User avatar"
               className="w-full h-full object-cover rounded-full"
             />
@@ -290,7 +290,7 @@ const AdminUsers = () => {
   ];
 
   const headers = columns.map((col) => col.header);
-  const widths = ["10%", "12%", "10%", "10%", "15%", "12%", "10%", "6%"];
+  const widths = ["6%", "12%", "10%", "10%", "15%", "12%", "10%", "6%"];
   const actionsWidth = "10%";
 
   return (

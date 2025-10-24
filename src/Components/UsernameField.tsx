@@ -54,9 +54,6 @@ export default function UsernameField({
                 },
               })}
             />
-            {errors.username && (
-              <FieldError message={errors.username.message as string} />
-            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">

@@ -44,9 +44,6 @@ export default function EmailField({
               type="email"
               {...register("email", { required: "Email is required" })}
             />
-            {errors?.email && (
-              <FieldError message={errors.email.message as string} />
-            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">

@@ -36,8 +36,6 @@ export default function PersonalData() {
     },
   });
 
-  console.log("ISSUCCESS: ", isSuccess, isError);
-
   useEffect(() => {
     if (!lastValidValues) {
       const initialValues = form.getValues();

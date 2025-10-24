@@ -12,6 +12,7 @@ import { RootState } from "../Types/RootState.tsx";
 import { User } from "../Types/User.tsx";
 import useUpdateImage from "../Hooks/useUpdateImage.tsx";
 import useCreateImage from "../Hooks/useCreateImage.tsx";
+import useDeleteImage from "../Hooks/useDeleteImage.tsx";
 import { stringToColor } from "../Utils/helpers.tsx";
 
 interface AvatarUploadModalProps {
@@ -35,9 +36,10 @@ export default function AvatarUploadModal({
 
   const { mutate: updateImage, isPending: isImageUpdating } = useUpdateImage();
   const { mutate: createImage, isPending: isImageCreating } = useCreateImage();
+  const { mutate: deleteImage, isPending: isDeleting } = useDeleteImage(); // ← додаємо
 
   const mutate = user?.image?.image_data ? updateImage : createImage;
-  const isImageChanging = isImageUpdating || isImageCreating;
+  const isImageChanging = isImageUpdating || isImageCreating || isDeleting;
 
   const bgColor = user?.username ? stringToColor(user.username) : "#ccc";
   const initial = user?.username?.charAt(0).toUpperCase() || "?";
@@ -48,7 +50,6 @@ export default function AvatarUploadModal({
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log("file", file);
     if (!file) return;
 
     if (!file.type.startsWith("image/")) {
@@ -79,6 +80,19 @@ export default function AvatarUploadModal({
     });
   };
 
+  const handleDelete = () => {
+    if (!user?.image?.image_data) return;
+    if (confirm("Are you sure you want to delete your avatar?")) {
+      deleteImage(undefined, {
+        onSuccess: () => {
+          setPreview(null);
+          setSelectedFile(null);
+          setOpen(false);
+        },
+      });
+    }
+  };
+
   const handleUploadClick = () => {
     fileInputRef.current?.click();
   };
@@ -95,8 +109,6 @@ export default function AvatarUploadModal({
       }}
     >
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-
-      <DialogOverlay className="fixed inset-0 bg-opacity-30 backdrop-blur-sm z-999" />
 
       <DialogContent
         className={`
@@ -145,18 +157,35 @@ export default function AvatarUploadModal({
             w-full py-3 px-4 mb-4
             bg-orange-500 hover:bg-orange-600
             text-white font-medium rounded-lg
-            transition-colors duration-200 cursor-pointer`}
+            transition-colors duration-200 cursor-pointer
+          `}
           disabled={isImageChanging}
         >
           {isImageChanging ? (
             <>
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></span>
               Uploading...
             </>
           ) : (
             <>📷 Upload Photo</>
           )}
         </button>
+
+        {user?.image?.image_data && (
+          <button
+            type="button"
+            onClick={handleDelete}
+            disabled={isDeleting}
+            className={`
+              w-full py-3 px-4 mb-4
+              bg-red-500 hover:bg-red-600 disabled:bg-red-300
+              text-white font-medium rounded-lg
+              transition-colors duration-200
+            `}
+          >
+            {isDeleting ? "Deleting..." : "🗑️ Delete Avatar"}
+          </button>
+        )}
 
         <button
           type="button"
@@ -167,7 +196,8 @@ export default function AvatarUploadModal({
             bg-orange-600 hover:bg-orange-700
             disabled:bg-gray-300 disabled:cursor-not-allowed
             text-white font-medium rounded-lg
-            transition-colors duration-200 cursor-pointer`}
+            transition-colors duration-200
+          `}
         >
           Save Photo
         </button>
@@ -178,7 +208,8 @@ export default function AvatarUploadModal({
               w-full py-2 px-4
               bg-gray-200 hover:bg-gray-300
               text-gray-700 font-medium rounded-lg
-              transition-colors duration-200 cursor-pointer`}
+              transition-colors duration-200
+            `}
           >
             Close
           </button>

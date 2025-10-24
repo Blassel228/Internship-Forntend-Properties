@@ -67,9 +67,6 @@ export default function NameField({
                 },
               })}
             />
-            {errors.surname && (
-              <FieldError message={errors.surname.message as string} />
-            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center min-w-[80px]">

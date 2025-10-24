@@ -27,3 +27,7 @@ export const updateImage = async (file: File): Promise<ImageGet> => {
 
   return response.data;
 };
+
+export const deleteImage = async (): Promise<boolean> => {
+  return await baseApi.delete("/image/");
+};

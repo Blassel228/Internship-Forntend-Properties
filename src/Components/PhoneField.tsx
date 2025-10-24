@@ -55,9 +55,6 @@ export default function PhoneField({
                 />
               )}
             />
-            {errors.phone_number && (
-              <FieldError message={errors.phone_number.message as string} />
-            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">

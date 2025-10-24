@@ -61,7 +61,6 @@ const ConfirmationMessage = ({
   );
 };
 
-// Компонент для кнопок дій
 const ActionButtons = <T,>({
   item,
   isDeleting,

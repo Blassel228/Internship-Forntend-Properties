@@ -52,9 +52,6 @@ export default function CountryField({
                 });
               }}
             />
-            {errors.country && (
-              <FieldError message={errors.country.message as string} />
-            )}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">
