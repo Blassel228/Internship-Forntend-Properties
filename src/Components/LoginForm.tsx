@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "./Input.tsx";
@@ -16,8 +16,9 @@ const LoginForm = () => {
   const { login } = useAuth();
 
   const { mutate, error, status } = useMutation({
-    mutationFn: (data) => login(data.username, data.password),
+    mutationFn: async (data) => await login(data.username_or_email, data.password),
     onSuccess: () => navigate("/home"),
+    onError: (error) => console.log("ERROR: ", error),
   });
 
   const onSubmit = (data) => mutate(data);
@@ -27,17 +28,17 @@ const LoginForm = () => {
       <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <Label htmlFor="username">Username</Label>
+          <Label htmlFor="username_or_email">Username</Label>
           <Input
             type="text"
-            id="username"
-            {...register("username", { required: "Username is required" })}
-            placeholder="Enter your username"
+            id="username_or_email"
+            {...register("username_or_email", { required: "Username is required" })}
+            placeholder="Enter your username or email"
           />
           <p
-            className={`text-red-500 text-sm ${errors.username ? "visible" : "invisible"}`}
+            className={`text-red-500 text-sm ${errors.username_or_email ? "visible" : "invisible"}`}
           >
-            {errors.username?.message || "\u00A0"}
+            {errors.username_or_email?.message || "\u00A0"}
           </p>
         </div>
 
@@ -62,10 +63,8 @@ const LoginForm = () => {
           </p>
         </div>
 
-        <p
-          className={`text-red-500 text-sm ${error ? "visible" : "invisible"}`}
-        >
-          {error instanceof Error ? error.message : "\u00A0"}
+        <p className={`text-red-500 text-sm ${error ? "visible" : "invisible"}`}>
+          {error && (error.response?.data?.error?.message || "Login failed. Please try again.")}
         </p>
 
         <button

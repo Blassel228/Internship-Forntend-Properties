@@ -25,6 +25,7 @@ export default function PersonalData() {
   const form = useForm({
     defaultValues: {
       name: user?.name ?? "",
+      username: user?.username ?? "",
       surname: user?.surname ?? "",
       email: user?.email ?? "",
       phone_number: user?.phone_number ?? "",

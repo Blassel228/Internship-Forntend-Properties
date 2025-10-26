@@ -18,6 +18,7 @@ import ProtectedRoute from "./ProtectedRoute.tsx";
 import AdminRoute from "./AdminRoute.tsx";
 
 import routers from "../Constants/routers.tsx";
+import AdminBookings from "../Pages/AdminBooking.tsx";
 
 export default function Routers() {
   return (
@@ -43,6 +44,7 @@ export default function Routers() {
         <Route element={<AdminRoute />}>
           <Route path={routers.adminRooms} element={<AdminRooms />} />
           <Route path={routers.adminUsers} element={<AdminUsers />} />
+          <Route path={routers.adminBookings} element={<AdminBookings />} />
         </Route>
 
         <Route

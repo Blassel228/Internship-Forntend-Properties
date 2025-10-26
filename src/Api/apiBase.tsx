@@ -15,6 +15,9 @@ const baseApi: AxiosInstance = axios.create({
 baseApi.interceptors.request.use(
   (config) => {
     console.log("Request Sent:", config);
+    if (config.url.includes("login")){
+      return config;
+    }
     const token = getItem("token");
     if (token) {
       config.headers = config.headers || {};
@@ -41,9 +44,16 @@ baseApi.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
+      if (originalRequest.url?.includes("image"))
+        return
+
+      if (originalRequest.url?.includes("login"))
+        return
+
       if (originalRequest.url?.includes("refresh")) {
         console.error("Refresh endpoint failed — logging out");
         removeItem("token");
+        window.location.href = routers.home;
         return Promise.reject(error);
       }
 
@@ -59,7 +69,10 @@ baseApi.interceptors.response.use(
 
         return baseApi(originalRequest);
       } catch (refreshError) {
-        console.error("Refresh failed — clearing session catch part", refreshError);
+        console.error("Refresh failed — clearing session", refreshError);
+        removeItem("token");
+        window.location.href = routers.home;
+        return Promise.reject(refreshError);
       }
     }
 

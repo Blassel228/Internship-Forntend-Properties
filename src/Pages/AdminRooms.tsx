@@ -44,14 +44,15 @@ function AdminRooms() {
         />
       ),
     },
+    { header: "ID", accessorKey: "id" },
     { header: "Type", accessorKey: "type" },
     { header: "Beds", accessorKey: "beds" },
     { header: "Price", accessorKey: "price" },
     { header: "Capacity", accessorKey: "capacity" },
   ];
 
-  const headers = ["Image", "Type", "Beds", "Price", "Capacity"];
-  const widths = ["15%", "20%", "10%", "15%", "15%"];
+  const headers = ["Image", "ID", "Type", "Beds", "Price", "Capacity"];
+  const widths = ["10%", "30%", "10%", "10%", "10%", "5"];
 
   return (
     <div className="p-6 mt-36">

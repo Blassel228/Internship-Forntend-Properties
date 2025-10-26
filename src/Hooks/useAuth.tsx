@@ -13,18 +13,13 @@ import { getImage } from "../Api/apiImage.tsx";
 export default function useAuth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  async function login(username: string, password: string): Promise<void> {
-    try {
-      const response: Token = await loginGetToken(username, password);
+  async function login(username_or_email: string, password: string): Promise<void> {
+      const response: Token = await loginGetToken(username_or_email, password);
       const token = response.access_token;
 
       const user: User = await loginGetUserByToken(token);
       setItem("token", token);
       dispatch(setAuthorizedUser(user));
-    } catch (error) {
-      console.error("Login error:", error);
-      throw new Error(error.message || "Error logging in");
-    }
   }
 
   async function logout() {

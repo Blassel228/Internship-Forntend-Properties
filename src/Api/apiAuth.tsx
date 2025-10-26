@@ -3,13 +3,13 @@ import { Token } from "../Types/Token.tsx";
 import { User } from "../Types/User.tsx";
 
 export async function loginGetToken(
-  username: string,
+  username_or_email: string,
   password: string,
 ): Promise<Token> {
   const response = await baseApi.post(
     `/auth/token/login`,
     new URLSearchParams({
-      username: username,
+      username: username_or_email,
       password: password,
     }),
     {

@@ -19,3 +19,8 @@ export const getBookingsNotRatedByUser = async (): Promise<Room[]> => {
   const { data } = await baseApi.get<Booking[]>("/booking/unrated");
   return data;
 };
+
+export const getBookings = async (): Promise<Booking[]> => {
+  const { data } = await baseApi.get<Booking[]>("/booking/");
+  return data;
+};

@@ -18,7 +18,6 @@ const routers = {
   adminBookings: "/adminbookings",
   adminUsers: "/adminusers",
   adminRooms: "/adminrooms",
-  adminEditRoom: "/admineditroom",
 
   notExisting: "*",
 };

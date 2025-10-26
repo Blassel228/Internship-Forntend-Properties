@@ -260,6 +260,10 @@ const AdminUsers = () => {
       ),
     },
     {
+      header: "ID",
+      accessorKey: "id",
+    },
+    {
       header: "Username",
       accessorKey: "username",
     },
@@ -290,7 +294,7 @@ const AdminUsers = () => {
   ];
 
   const headers = columns.map((col) => col.header);
-  const widths = ["6%", "12%", "10%", "10%", "15%", "12%", "10%", "6%"];
+  const widths = ["7%", "15%", "15%", "15%", "15%", "15%", "15%", "13%", "5%"];
   const actionsWidth = "10%";
 
   return (

@@ -26,6 +26,11 @@ const DesktopNav = () => {
             {is_admin ? "Rooms" : "Contact Us"}
           </Navlink>
         </li>
+        <li className={`${is_admin ? "" : "hidden"}`}>
+          <Navlink to={is_admin ? routers.adminUsers : "/contact"}>
+            Users
+          </Navlink>
+        </li>
       </ul>
       <AuthButtons />
       <UserDropdownMenu open={open} setOpen={setOpen}>
