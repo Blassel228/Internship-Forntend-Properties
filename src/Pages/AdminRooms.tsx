@@ -50,12 +50,21 @@ function AdminRooms() {
     { header: "Price", accessorKey: "price" },
     { header: "Area", accessorKey: "area" },
     { header: "Capacity", accessorKey: "capacity" },
-    { header: "Space", accessorKey: "total_space"}
+    { header: "Space", accessorKey: "total_space" },
   ];
 
-const headers = ["Image", "ID", "Type", "Beds", "Price", "Area", "Capacity", "Space"];
-const widths = ["10%", "23%"];
-const actionsWidth = "15%";
+  const headers = [
+    "Image",
+    "ID",
+    "Type",
+    "Beds",
+    "Price",
+    "Area",
+    "Capacity",
+    "Space",
+  ];
+  const widths = ["10%", "23%"];
+  const actionsWidth = "15%";
 
   return (
     <div className="p-6 mt-36">

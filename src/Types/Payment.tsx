@@ -18,5 +18,5 @@ export interface CreateRefundRequestByUser {
 export interface CreateRefundRequestByAdmin {
   booking_id: string;
   refund_reason: string;
-  amount: number
+  amount: number;
 }

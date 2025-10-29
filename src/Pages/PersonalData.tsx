@@ -85,7 +85,11 @@ export default function PersonalData() {
             />
           </FormProvider>
           <PersonalDataFooter
-            message={isError && !isSuccess ? userUpdateError?.response?.data?.error?.detail : undefined}
+            message={
+              isError && !isSuccess
+                ? userUpdateError?.response?.data?.error?.detail
+                : undefined
+            }
           />
         </Column>
       </Row>

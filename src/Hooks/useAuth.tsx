@@ -13,13 +13,16 @@ import { getImage } from "../Api/apiImage.tsx";
 export default function useAuth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  async function login(username_or_email: string, password: string): Promise<void> {
-      const response: Token = await loginGetToken(username_or_email, password);
-      const token = response.access_token;
+  async function login(
+    username_or_email: string,
+    password: string,
+  ): Promise<void> {
+    const response: Token = await loginGetToken(username_or_email, password);
+    const token = response.access_token;
 
-      const user: User = await loginGetUserByToken(token);
-      setItem("token", token);
-      dispatch(setAuthorizedUser(user));
+    const user: User = await loginGetUserByToken(token);
+    setItem("token", token);
+    dispatch(setAuthorizedUser(user));
   }
 
   async function logout() {

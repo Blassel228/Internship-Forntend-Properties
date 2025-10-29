@@ -7,7 +7,7 @@ import GenericDeleteModal from "../Components/GenericDeleteModal.tsx";
 import GenericEditModal from "../Components/GenericEditModal";
 import { Booking, UpdateBooking } from "../Types/Booking.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
-import {format, parseISO} from "date-fns";
+import { format, parseISO } from "date-fns";
 import { useForm } from "react-hook-form";
 import useRefundByAdmin from "../Hooks/useRefundByAdmin.tsx";
 import { CreateRefundRequestByAdmin } from "../Types/Payment.tsx";
@@ -20,7 +20,11 @@ interface BookingRefundModalProps {
   onClose: () => void;
 }
 
-const BookingRefundModal = ({ booking, isOpen, onClose }: BookingRefundModalProps) => {
+const BookingRefundModal = ({
+  booking,
+  isOpen,
+  onClose,
+}: BookingRefundModalProps) => {
   const { createRefundByAdmin, isPending, isError, error } = useRefundByAdmin();
 
   const handleRefund = () => {
@@ -29,13 +33,13 @@ const BookingRefundModal = ({ booking, isOpen, onClose }: BookingRefundModalProp
     const refundRequest: CreateRefundRequestByAdmin = {
       booking_id: booking.id,
       amount: booking.price,
-      reason: "Admin initiated refund"
+      reason: "Admin initiated refund",
     };
 
     createRefundByAdmin(refundRequest, {
       onSuccess: () => {
         onClose();
-      }
+      },
     });
   };
 
@@ -64,7 +68,11 @@ interface BookingEditModalProps {
   onClose: () => void;
 }
 
-const BookingEditModal = ({ booking, isOpen, onClose }: BookingEditModalProps) => {
+const BookingEditModal = ({
+  booking,
+  isOpen,
+  onClose,
+}: BookingEditModalProps) => {
   const { updateBooking, isBookingUpdating } = useUpdateBooking();
   const { setValue, reset } = useForm<UpdateBooking>({
     defaultValues: {
@@ -72,8 +80,12 @@ const BookingEditModal = ({ booking, isOpen, onClose }: BookingEditModalProps) =
       guest_id: booking?.guest_id || "",
       room_id: booking?.room_id || "",
       price: booking?.price || 0,
-      start_date: booking?.start_date ? new Date(booking.start_date).toISOString() : "",
-      end_date: booking?.end_date ? new Date(booking.end_date).toISOString() : "",
+      start_date: booking?.start_date
+        ? new Date(booking.start_date).toISOString()
+        : "",
+      end_date: booking?.end_date
+        ? new Date(booking.end_date).toISOString()
+        : "",
       status: booking?.status || bookingStatus.CONFIRMED,
       special_requests: booking?.special_requests || "",
     },
@@ -86,8 +98,12 @@ const BookingEditModal = ({ booking, isOpen, onClose }: BookingEditModalProps) =
         guest_id: booking.guest_id || "",
         room_id: booking.room_id || "",
         price: booking.price || 0,
-        start_date: booking.start_date ? new Date(booking.start_date).toISOString() : "",
-        end_date: booking.end_date ? new Date(booking.end_date).toISOString() : "",
+        start_date: booking.start_date
+          ? new Date(booking.start_date).toISOString()
+          : "",
+        end_date: booking.end_date
+          ? new Date(booking.end_date).toISOString()
+          : "",
         status: booking.status || bookingStatus.CONFIRMED,
         special_requests: booking.special_requests || "",
       });
@@ -99,15 +115,19 @@ const BookingEditModal = ({ booking, isOpen, onClose }: BookingEditModalProps) =
 
     const processedData = {
       ...data,
-      start_date: data.start_date ? new Date(data.start_date).toISOString() : undefined,
-      end_date: data.end_date ? new Date(data.end_date).toISOString() : undefined,
+      start_date: data.start_date
+        ? new Date(data.start_date).toISOString()
+        : undefined,
+      end_date: data.end_date
+        ? new Date(data.end_date).toISOString()
+        : undefined,
     };
 
     updateBooking(
       { bookingId: booking.id, updatedData: processedData },
       {
         onSuccess: () => onClose(),
-      }
+      },
     );
   };
 
@@ -183,15 +203,22 @@ interface BookingDeleteModalProps {
   onClose: () => void;
 }
 
-const BookingDeleteModal = ({ booking, isOpen, onClose }: BookingDeleteModalProps) => {
-  const { deleteBooking, isBookingDeleting, deleteBookingError } = useDeleteBooking();
+const BookingDeleteModal = ({
+  booking,
+  isOpen,
+  onClose,
+}: BookingDeleteModalProps) => {
+  const { deleteBooking, isBookingDeleting, deleteBookingError } =
+    useDeleteBooking();
 
   return (
     <GenericDeleteModal
       item={booking}
       isOpen={isOpen}
       onClose={onClose}
-      onDelete={(id) => deleteBooking({ bookingId: id }) as unknown as Promise<boolean>}
+      onDelete={(id) =>
+        deleteBooking({ bookingId: id }) as unknown as Promise<boolean>
+      }
       isDeleting={isBookingDeleting}
       deletionError={deleteBookingError}
       deletionSuccess={false}
@@ -204,16 +231,22 @@ const BookingDeleteModal = ({ booking, isOpen, onClose }: BookingDeleteModalProp
 };
 
 const AdminBookings = () => {
-  const { bookings, areBookingsLoading, bookingsError, isError } = useBookings();
+  const { bookings, areBookingsLoading, bookingsError, isError } =
+    useBookings();
   const [currentPage, setCurrentPage] = useState(1);
   const [editingBooking, setEditingBooking] = useState<Booking | null>(null);
   const [deletingBooking, setDeletingBooking] = useState<Booking | null>(null);
-  const [refundingBooking, setRefundingBooking] = useState<Booking | null>(null);
+  const [refundingBooking, setRefundingBooking] = useState<Booking | null>(
+    null,
+  );
   const itemsPerPage = 10;
 
   const totalPages = bookings ? Math.ceil(bookings.length / itemsPerPage) : 0;
   const paginatedBookings = bookings
-    ? bookings.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    ? bookings.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage,
+      )
     : [];
 
   const openEditModal = (booking: Booking) => setEditingBooking(booking);
@@ -232,25 +265,19 @@ const AdminBookings = () => {
     },
     {
       header: "Guest ID",
-      cell: (booking: Booking) =>
-        booking.guest_id ||
-        "None"
+      cell: (booking: Booking) => booking.guest_id || "None",
     },
     {
       header: "User ID",
-      cell: (booking: Booking) =>
-        booking.user_id ||
-        "None"
+      cell: (booking: Booking) => booking.user_id || "None",
     },
     {
       header: "Room ID",
-      cell: (booking: Booking) =>
-        booking.room_id ||
-        "Unknown"
+      cell: (booking: Booking) => booking.room_id || "Unknown",
     },
     {
       header: "Price",
-      cell: (booking: Booking) => `$${booking.price.toFixed(2)}`
+      cell: (booking: Booking) => `$${booking.price.toFixed(2)}`,
     },
     {
       header: "Dates",
@@ -259,7 +286,7 @@ const AdminBookings = () => {
           <div>{format(parseISO(booking.start_date), "MMM dd, yyyy")}</div>
           <div>{format(parseISO(booking.end_date), "MMM dd, yyyy")}</div>
         </div>
-      )
+      ),
     },
     {
       header: "Status",
@@ -267,8 +294,9 @@ const AdminBookings = () => {
     },
     {
       header: "Created",
-      cell: (booking: Booking) => format(new Date(booking.created_at), "MMM dd, yyyy")
-    }
+      cell: (booking: Booking) =>
+        format(new Date(booking.created_at), "MMM dd, yyyy"),
+    },
   ];
 
   const headers = columns.map((col) => col.header);

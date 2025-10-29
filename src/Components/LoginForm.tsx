@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "./Input.tsx";
@@ -16,7 +16,8 @@ const LoginForm = () => {
   const { login } = useAuth();
 
   const { mutate, error, status } = useMutation({
-    mutationFn: async (data) => await login(data?.username_or_email, data.password),
+    mutationFn: async (data) =>
+      await login(data?.username_or_email, data.password),
     onSuccess: () => navigate("/home"),
     onError: (error) => console.log("ERROR: ", error),
   });
@@ -32,7 +33,9 @@ const LoginForm = () => {
           <Input
             type="text"
             id="username_or_email"
-            {...register("username_or_email", { required: "Username is required" })}
+            {...register("username_or_email", {
+              required: "Username is required",
+            })}
             placeholder="Enter your username or email"
           />
           <p
@@ -63,8 +66,12 @@ const LoginForm = () => {
           </p>
         </div>
 
-        <p className={`text-red-500 text-sm ${error ? "visible" : "invisible"}`}>
-          {error && (error.response?.data?.error?.message || "Login failed. Please try again.")}
+        <p
+          className={`text-red-500 text-sm ${error ? "visible" : "invisible"}`}
+        >
+          {error &&
+            (error.response?.data?.error?.message ||
+              "Login failed. Please try again.")}
         </p>
 
         <button

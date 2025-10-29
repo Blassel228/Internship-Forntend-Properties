@@ -1,7 +1,7 @@
-import {useMutation, useQueryClient} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { adminRefundBooking } from "../Api/apiPayment.tsx";
-import {CreateRefundRequestByAdmin} from "../Types/Payment.tsx";
-import {toast} from "react-hot-toast";
+import { CreateRefundRequestByAdmin } from "../Types/Payment.tsx";
+import { toast } from "react-hot-toast";
 
 const useRefundByAdmin = () => {
   const queryClient = useQueryClient();
@@ -12,7 +12,8 @@ const useRefundByAdmin = () => {
     isError,
     error,
   } = useMutation({
-    mutationFn: (request: CreateRefundRequestByAdmin) => adminRefundBooking(request),
+    mutationFn: (request: CreateRefundRequestByAdmin) =>
+      adminRefundBooking(request),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["adminBookings"] });
       toast.success("Booking deleted successfully");

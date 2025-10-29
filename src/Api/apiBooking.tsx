@@ -1,5 +1,5 @@
 import baseApi from "./apiBase.tsx";
-import {Booking, UpdateBooking} from "../Types/Booking.tsx";
+import { Booking, UpdateBooking } from "../Types/Booking.tsx";
 import { Room } from "../Types/Room.tsx";
 
 export const getBookingsForOneUser = async (): Promise<Booking[]> => {
@@ -25,7 +25,10 @@ export const getBookings = async (): Promise<Booking[]> => {
   return data;
 };
 
-export const updateBooking = async (booking_id: string, booking: UpdateBooking): Promise<Booking> => {
+export const updateBooking = async (
+  booking_id: string,
+  booking: UpdateBooking,
+): Promise<Booking> => {
   const { data } = await baseApi.put(`/booking/${booking_id}`, booking);
   return data;
 };

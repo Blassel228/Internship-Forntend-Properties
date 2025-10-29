@@ -9,7 +9,8 @@ const useRefundByUser = () => {
     isError,
     error,
   } = useMutation({
-    mutationFn: (request: CreateRefundRequestByUser) => userRefundBooking(request),
+    mutationFn: (request: CreateRefundRequestByUser) =>
+      userRefundBooking(request),
   });
   return { createRefund: createRefundByUser, isPending, isError, error };
 };

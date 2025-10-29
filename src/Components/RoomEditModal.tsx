@@ -16,7 +16,7 @@ const RoomEditModal = ({ room, isOpen, onClose }: RoomEditModalProps) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
 
-  const { setValue} = useForm<RoomUpdate>();
+  const { setValue } = useForm<RoomUpdate>();
 
   useEffect(() => {
     if (room) {

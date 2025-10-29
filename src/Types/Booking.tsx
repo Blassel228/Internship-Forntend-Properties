@@ -18,11 +18,11 @@ export interface Booking {
 }
 
 export interface UpdateBooking {
-    user_id: string;
-    guest_id: string;
-    room_id: string;
-    price: number;
-    status: BookingStatus;
-    start_date: Date;
-    end_date: Date;
+  user_id: string;
+  guest_id: string;
+  room_id: string;
+  price: number;
+  status: BookingStatus;
+  start_date: Date;
+  end_date: Date;
 }

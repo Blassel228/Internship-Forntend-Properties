@@ -62,8 +62,13 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
   const { startDate, endDate } = useBookingParams();
   const nights = calculateNights(startDate, endDate);
 
-  const { mutate: createCheckoutWithToken, isPending: isWithTokenLoading, error: creatingError, isSuccess: creatingSuccess, isError: creatingErrorWithoutToken } =
-    useCreateCheckoutSessionWithToken();
+  const {
+    mutate: createCheckoutWithToken,
+    isPending: isWithTokenLoading,
+    error: creatingError,
+    isSuccess: creatingSuccess,
+    isError: creatingErrorWithoutToken,
+  } = useCreateCheckoutSessionWithToken();
   const {
     mutate: createCheckoutWithoutToken,
     isPending: isWithoutTokenLoading,

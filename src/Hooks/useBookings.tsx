@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import {getBookings} from "../Api/apiBooking.tsx";
-import {Booking} from "../Types/Booking.tsx";
+import { getBookings } from "../Api/apiBooking.tsx";
+import { Booking } from "../Types/Booking.tsx";
 
 const useBookings = () => {
   const {

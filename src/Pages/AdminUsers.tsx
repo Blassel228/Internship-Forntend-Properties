@@ -21,13 +21,14 @@ interface UserEditModalProps {
 }
 
 const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
-  const { updateUser, isUserUpdating } = useUpdateUser();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [imageData, setImageData] = useState<string | null>(null);
   const [selectedImageFile, setImageFile] = useState<File | null>(null);
 
+  const { updateUser, isUserUpdating } = useUpdateUser();
   const { mutate: updateImage, isPending: isImageUpdating } = useUpdateImage();
   const { mutate: createImage, isPending: isImageCreating } = useCreateImage();
+
+  const isUpdating = isUserUpdating || isImageUpdating || isImageCreating;
 
   const imageMutate = user?.image?.image_data ? updateImage : createImage;
 
@@ -61,10 +62,8 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
 
       if (user.image?.image_data) {
         setImagePreview(`data:image/png;base64,${user.image?.image_data}`);
-        setImageData(user.image?.image_data);
       } else {
         setImagePreview(null);
-        setImageData(null);
       }
     }
   }, [user, reset]);
@@ -82,7 +81,6 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
       const base64String = reader.result as string;
       const base64StringRequest = (reader.result as string).split(",")[1];
       setImagePreview(base64String);
-      setImageData(base64StringRequest);
       setImageFile(file);
       setValue("image_data", base64StringRequest, { shouldValidate: true });
     };
@@ -94,8 +92,8 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
     if (!user) return;
 
     let formattedBirthdate = data.birthdate;
-    if (data.birthdate && !data.birthdate.includes('T')) {
-      formattedBirthdate = new Date(data.birthdate).toISOString().split('T')[0];
+    if (data.birthdate && !data.birthdate.includes("T")) {
+      formattedBirthdate = new Date(data.birthdate).toISOString().split("T")[0];
     }
 
     const processedData = {
@@ -110,12 +108,11 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
         onSuccess: () => onClose(),
       },
     );
-    imageMutate(
-      selectedImageFile,
-      {onError: () => {
+    imageMutate(selectedImageFile, {
+      onError: () => {
         alert("Failed to upload avatar. Please try again.");
-      },}
-    )
+      },
+    });
   };
 
   const editFields = [
@@ -193,7 +190,7 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleEditSubmit}
-      isUpdating={isUserUpdating}
+      isUpdating={isUpdating}
       title={(user) => `Edit User: ${user?.username}`}
       fields={editFields}
       imagePreview={imagePreview}
