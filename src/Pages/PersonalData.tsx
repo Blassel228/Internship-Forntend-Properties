@@ -11,7 +11,7 @@ import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
 import { User } from "../Types/User.tsx";
 
 export default function PersonalData() {
-  const { updateUser, isUserUpdating, userUpdateError, error, isError, isSuccess } =
+  const { updateUser, isUserUpdating, userUpdateError, isError, isSuccess } =
     useUpdateAuthorizedUser();
   const user = useSelector(
     (root: RootState) => root.authorizedUser.authorizedUser,
@@ -62,8 +62,8 @@ export default function PersonalData() {
   }, [isUserUpdating, isError, form]);
 
   useEffect(() => {
-    console.log("ERROR", error, userUpdateError);
-  }, [error, userUpdateError]);
+    console.log("ERROR", userUpdateError);
+  }, [userUpdateError]);
 
   return (
     <>
@@ -84,11 +84,9 @@ export default function PersonalData() {
               isPending={isUserUpdating}
             />
           </FormProvider>
-          {isError && !isSuccess && (
-            <PersonalDataFooter
-              message={userUpdateError?.response?.data?.detail}
-            />
-          )}
+          <PersonalDataFooter
+            message={isError && !isSuccess ? userUpdateError?.response?.data?.error?.detail : undefined}
+          />
         </Column>
       </Row>
     </>

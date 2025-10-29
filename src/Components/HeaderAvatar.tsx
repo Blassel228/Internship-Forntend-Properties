@@ -6,6 +6,7 @@ import { stringToColor } from "../Utils/helpers.tsx";
 
 interface HeaderAvatarProps {
   className?: string;
+  onClick?: () => void;
 }
 
 export default function HeaderAvatar({

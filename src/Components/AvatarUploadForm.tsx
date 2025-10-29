@@ -36,7 +36,7 @@ export default function AvatarUploadModal({
 
   const { mutate: updateImage, isPending: isImageUpdating } = useUpdateImage();
   const { mutate: createImage, isPending: isImageCreating } = useCreateImage();
-  const { mutate: deleteImage, isPending: isDeleting } = useDeleteImage(); // ← додаємо
+  const { mutate: deleteImage, isPending: isDeleting } = useDeleteImage();
 
   const mutate = user?.image?.image_data ? updateImage : createImage;
   const isImageChanging = isImageUpdating || isImageCreating || isDeleting;

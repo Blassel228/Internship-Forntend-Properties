@@ -16,7 +16,7 @@ const LoginForm = () => {
   const { login } = useAuth();
 
   const { mutate, error, status } = useMutation({
-    mutationFn: async (data) => await login(data.username_or_email, data.password),
+    mutationFn: async (data) => await login(data?.username_or_email, data.password),
     onSuccess: () => navigate("/home"),
     onError: (error) => console.log("ERROR: ", error),
   });
@@ -28,7 +28,7 @@ const LoginForm = () => {
       <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <Label htmlFor="username_or_email">Username</Label>
+          <Label htmlFor="username_or_email">Username or Email</Label>
           <Input
             type="text"
             id="username_or_email"

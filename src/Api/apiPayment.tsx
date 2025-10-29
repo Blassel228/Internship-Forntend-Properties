@@ -1,7 +1,7 @@
 import baseApi from "./apiBase.tsx";
 import {
-  CreateCheckoutSessionRequest,
-  CreateRefundRequest,
+  CreateCheckoutSessionRequest, CreateRefundRequestByAdmin,
+  CreateRefundRequestByUser,
 } from "../Types/Payment.tsx";
 
 export const createCheckoutSessionWithToken = async (
@@ -24,6 +24,10 @@ export const createCheckoutSessionWithoutToken = async (
   return response;
 };
 
-export const refundBooking = async (data: CreateRefundRequest): void => {
-  await baseApi.post("/payment/refund", data);
+export const userRefundBooking = async (data: CreateRefundRequestByUser): void => {
+  await baseApi.post("/payment/user-refund", data);
+};
+
+export const adminRefundBooking = async (data: CreateRefundRequestByAdmin): void => {
+  await baseApi.post("/payment/admin-refund", data);
 };

@@ -62,8 +62,8 @@ export default function NameField({
                   message: "Username must be at least 4 characters long",
                 },
                 maxLength: {
-                  value: 112,
-                  message: "Username must be at most 112 characters long",
+                  value: 12,
+                  message: "Username must be at most 12 characters long",
                 },
               })}
             />

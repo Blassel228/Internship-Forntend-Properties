@@ -26,8 +26,8 @@ const RegistrationForm: React.FC = () => {
   const [phone, setPhone] = useState<string>("");
 
   useEffect(() => {
-    if (error && error.response?.data?.detail) {
-      const fieldErrors = error.response.data.detail;
+    if (error && error.response?.data?.error?.detail) {
+      const fieldErrors = error.response.data.error.detail;
 
       Object.entries(fieldErrors).forEach(([field, message]) => {
         setError(field as keyof UserCreate, {

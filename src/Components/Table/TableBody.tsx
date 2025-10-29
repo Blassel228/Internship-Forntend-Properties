@@ -9,6 +9,7 @@ interface TableBodyProps<T> {
   actionsWidth?: string;
   onEdit?: (item: T) => void;
   onDelete?: (item: T) => void;
+  renderActions?: (item: T) => React.ReactNode;
 }
 
 export function TableBody<T>({
@@ -18,6 +19,7 @@ export function TableBody<T>({
   actionsWidth,
   onEdit,
   onDelete,
+  renderActions,
 }: TableBodyProps<T>) {
   return (
     <tbody>
@@ -30,6 +32,7 @@ export function TableBody<T>({
           actionsWidth={actionsWidth}
           onEdit={onEdit}
           onDelete={onDelete}
+          renderActions={renderActions}
         />
       ))}
     </tbody>

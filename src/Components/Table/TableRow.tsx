@@ -10,6 +10,7 @@ interface TableRowProps<T> {
   onEdit?: (item: T) => void;
   onDelete?: (item: T) => void;
   actionsWidth?: string;
+  renderActions?: (item: T) => React.ReactNode;
 }
 
 function TableRow<T>({
@@ -19,6 +20,7 @@ function TableRow<T>({
   actionsWidth,
   onEdit,
   onDelete,
+  renderActions,
 }: TableRowProps<T> & { actionsWidth?: string }) {
   return (
     <tr className="hover:bg-orange-50">
@@ -34,7 +36,11 @@ function TableRow<T>({
       <TableCell
         width={actionsWidth || widths?.[widths?.length - 1] || "160px"}
       >
-        <ActionButtons item={item} onEdit={onEdit} onDelete={onDelete} />
+        {renderActions ? (
+          renderActions(item)
+        ) : (
+          <ActionButtons item={item} onEdit={onEdit} onDelete={onDelete} />
+        )}
       </TableCell>
     </tr>
   );

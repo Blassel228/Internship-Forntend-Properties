@@ -48,11 +48,14 @@ function AdminRooms() {
     { header: "Type", accessorKey: "type" },
     { header: "Beds", accessorKey: "beds" },
     { header: "Price", accessorKey: "price" },
+    { header: "Area", accessorKey: "area" },
     { header: "Capacity", accessorKey: "capacity" },
+    { header: "Space", accessorKey: "total_space"}
   ];
 
-  const headers = ["Image", "ID", "Type", "Beds", "Price", "Capacity"];
-  const widths = ["10%", "30%", "10%", "10%", "10%", "5"];
+const headers = ["Image", "ID", "Type", "Beds", "Price", "Area", "Capacity", "Space"];
+const widths = ["10%", "23%"];
+const actionsWidth = "15%";
 
   return (
     <div className="p-6 mt-36">
@@ -68,6 +71,7 @@ function AdminRooms() {
             error={error}
             onEdit={openEditModal}
             onDelete={openDeleteModal}
+            actionsWidth={actionsWidth}
           />
         </div>
         <div className="w-1/4">

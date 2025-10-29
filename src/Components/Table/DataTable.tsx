@@ -16,6 +16,7 @@ interface DataTableProps<T> extends React.HTMLAttributes<HTMLDivElement> {
   emptyMessage?: string;
   onEdit?: (item: T) => void;
   onDelete?: (item: T) => void;
+  renderActions?: (item: T) => React.ReactNode;
 }
 
 function DataTable<T>({
@@ -31,6 +32,7 @@ function DataTable<T>({
   className,
   onEdit,
   onDelete,
+  renderActions,
   ...props
 }: DataTableProps<T>) {
   if (isError) {
@@ -78,6 +80,7 @@ function DataTable<T>({
         actionsWidth={actionsWidth}
         onEdit={onEdit}
         onDelete={onDelete}
+        renderActions={renderActions}
       />
     </TableContainer>
   );

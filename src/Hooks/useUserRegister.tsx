@@ -6,9 +6,9 @@ function useCreateUser() {
   return useMutation({
     mutationFn: ({ user }: { user: UserCreate }) => createUser(user),
     onError: (error: any, _, context) => {
-      if (error.response?.data?.detail) {
+      if (error.response?.data?.error?.detail) {
         console.error("ERROR:", error);
-        const fieldErrors = error.response.data.detail;
+        const fieldErrors = error.response.data.error.detail;
         return {
           fieldErrors,
         };

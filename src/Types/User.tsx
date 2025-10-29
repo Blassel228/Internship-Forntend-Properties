@@ -22,7 +22,6 @@ export interface UserCreate {
   phone_number: string;
   name: string;
   surname: string;
-  country?: string;
 }
 
 export interface UserUpdate {

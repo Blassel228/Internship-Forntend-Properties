@@ -1,6 +1,6 @@
 import Row from "./Row.tsx";
 import Column from "./Column.tsx";
-import React, { useState } from "react";
+import React from "react"; // ✅ useState видалено — не потрібен
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
 import { Controller, useForm } from "react-hook-form";
@@ -11,7 +11,6 @@ import { RootState } from "../Store/store.tsx";
 import RequiredStar from "./RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
 import { isValidPhoneNumber } from "libphonenumber-js";
-import RegistrationFormError from "./RegistrationFormError.tsx";
 import { GuestCreateIn } from "../Types/Guest.tsx";
 import { getItem } from "../Utils/localStorage.tsx";
 import { User } from "../Types/User.tsx";
@@ -23,6 +22,8 @@ import {
 import BookingInput from "./BookingInput.tsx";
 import CountrySelector from "./CountrySelect.tsx";
 import AppButton from "./AppButton.tsx";
+import PersonalDataFooter from "./PersonalDataFooter.tsx";
+import isEmail from "validator/lib/isEmail";
 
 interface BasicDetailsInputSectionProps {
   room: {
@@ -45,7 +46,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
     setError,
     control,
     formState: { errors },
-    clearErrors,
   } = useForm({
     defaultValues: {
       name: user?.name || "",
@@ -59,14 +59,10 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
     },
   });
 
-  const [phoneNumber, setPhoneNumber] = useState<string>(
-    user?.phone_number || "",
-  );
-
   const { startDate, endDate } = useBookingParams();
   const nights = calculateNights(startDate, endDate);
 
-  const { mutate: createCheckoutWithToken, isPending: isWithTokenLoading } =
+  const { mutate: createCheckoutWithToken, isPending: isWithTokenLoading, error: creatingError, isSuccess: creatingSuccess, isError: creatingErrorWithoutToken } =
     useCreateCheckoutSessionWithToken();
   const {
     mutate: createCheckoutWithoutToken,
@@ -76,14 +72,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
   const isBookingCreating = isWithTokenLoading || isWithoutTokenLoading;
 
   const onSubmit = (data) => {
-    if (!isValidPhoneNumber(data.phone_number)) {
-      setError("phone_number", {
-        type: "manual",
-        message: "Please enter a valid phone number",
-      });
-      return;
-    }
-
     const isMainGuest = data.mainGuest === "true";
 
     const guestIn: GuestCreateIn = {
@@ -142,7 +130,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
           </p>
         </div>
 
-        {/* ⚠️ Попередження про неможливість редагування */}
         <div className="bg-amber-50 border-l-4 border-amber-400 p-3 rounded mb-6">
           <p className="text-sm text-amber-700">
             <strong>Important:</strong> Editing bookings is not available. If
@@ -165,6 +152,11 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
               error={!!errors.name}
               {...register("name", { required: "Name is required" })}
             />
+            {errors.name && (
+              <span className="text-red-500 text-sm mt-1">
+                {errors.name.message as string}
+              </span>
+            )}
           </Column>
 
           <Column className="w-[23rem]">
@@ -180,6 +172,11 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
               error={!!errors.surname}
               {...register("surname", { required: "Surname is required" })}
             />
+            {errors.surname && (
+              <span className="text-red-500 text-sm mt-1">
+                {errors.surname.message as string}
+              </span>
+            )}
           </Column>
         </Row>
 
@@ -193,11 +190,24 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
             type="email"
             id="email"
             error={!!errors.email}
-            {...register("email", { required: "Email is required" })}
+            {...register("email", {
+              required: "Email is required",
+              validate: (value) => {
+                if (!isEmail(value.trim())) {
+                  return "Please enter a valid email address";
+                }
+                return true;
+              },
+            })}
           />
-          <p className="text-xs">Booking confirmation will be sent here.</p>
+          {errors.email && (
+            <span className="text-red-500 text-sm mt-1">
+              {errors.email.message as string}
+            </span>
+          )}
         </Column>
 
+        {/* ✅ Оновлений блок телефону з Controller */}
         <Column className="w-[23rem]">
           <Row>
             <label htmlFor="phone">
@@ -205,20 +215,39 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
               <RequiredStar />
             </label>
           </Row>
-          <PhoneInput
-            international
-            className={`border py-2 px-3 rounded pl-2 w-full ${
-              errors.phone_number ? "border-red-500" : "border-gray-300"
-            }`}
-            defaultCountry={user?.country || "GB"}
-            value={phoneNumber}
-            onChange={(phone: string | undefined) => {
-              setPhoneNumber(phone || "");
-              clearErrors("phone_number");
+          <Controller
+            name="phone_number"
+            control={control}
+            rules={{
+              required: "Phone is required",
+              validate: (value) => {
+                if (!value) return "Phone is required";
+                if (!isValidPhoneNumber(value)) {
+                  return "Please enter a valid phone number";
+                }
+                return true;
+              },
             }}
-            inputComponent="input"
-            {...register("phone_number", { required: "Phone is required" })}
+            render={({ field: { onChange, value } }) => (
+              <PhoneInput
+                international
+                className={`border py-2 px-3 rounded pl-2 w-full ${
+                  errors.phone_number ? "border-red-500" : "border-gray-300"
+                }`}
+                defaultCountry={user?.country || "GB"}
+                value={value}
+                onChange={(phone) => {
+                  onChange(phone || "");
+                }}
+                inputComponent="input"
+              />
+            )}
           />
+          {errors.phone_number && (
+            <span className="text-red-500 text-sm mt-1">
+              {errors.phone_number.message as string}
+            </span>
+          )}
         </Column>
 
         <Column className="w-[23rem]">
@@ -323,9 +352,14 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
         </AppButton>
       </div>
 
-      <RegistrationFormError error={errors.serverError}>
-        {errors.serverError?.message || "\u00A0"}
-      </RegistrationFormError>
+      <PersonalDataFooter
+        message={
+          errors.phone_number?.message ||
+          (creatingErrorWithoutToken && !creatingSuccess
+            ? "Something went wrong during booking creation"
+            : undefined)
+        }
+      />
     </form>
   );
 };

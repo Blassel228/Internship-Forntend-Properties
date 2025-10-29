@@ -10,6 +10,9 @@ import GenericEditModal from "../Components/GenericEditModal";
 import { User, UserUpdate } from "../Types/User";
 import { useUpdateUser } from "../Hooks/useUpdateUser.tsx";
 import { useForm } from "react-hook-form";
+import useUpdateImage from "../Hooks/useUpdateImage.tsx";
+import useCreateImage from "../Hooks/useCreateImage.tsx";
+import useDeleteImage from "../Hooks/useDeleteImage.tsx";
 
 interface UserEditModalProps {
   user: User | null;
@@ -21,6 +24,12 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
   const { updateUser, isUserUpdating } = useUpdateUser();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
+  const [selectedImageFile, setImageFile] = useState<File | null>(null);
+
+  const { mutate: updateImage, isPending: isImageUpdating } = useUpdateImage();
+  const { mutate: createImage, isPending: isImageCreating } = useCreateImage();
+
+  const imageMutate = user?.image?.image_data ? updateImage : createImage;
 
   const { setValue, reset } = useForm<UserUpdate>({
     defaultValues: {
@@ -50,9 +59,9 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
         birthdate: user.birthdate || "",
       });
 
-      if (user.image_data) {
-        setImagePreview(`data:image/png;base64,${user.image_data}`);
-        setImageData(user.image_data);
+      if (user.image?.image_data) {
+        setImagePreview(`data:image/png;base64,${user.image?.image_data}`);
+        setImageData(user.image?.image_data);
       } else {
         setImagePreview(null);
         setImageData(null);
@@ -74,6 +83,7 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
       const base64StringRequest = (reader.result as string).split(",")[1];
       setImagePreview(base64String);
       setImageData(base64StringRequest);
+      setImageFile(file);
       setValue("image_data", base64StringRequest, { shouldValidate: true });
     };
     reader.readAsDataURL(file);
@@ -83,10 +93,15 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
     console.log("SUBMITTED: " + JSON.stringify(data));
     if (!user) return;
 
+    let formattedBirthdate = data.birthdate;
+    if (data.birthdate && !data.birthdate.includes('T')) {
+      formattedBirthdate = new Date(data.birthdate).toISOString().split('T')[0];
+    }
+
     const processedData = {
       ...data,
       is_admin: data.is_admin === "true" || data.is_admin === true,
-      image_data: imageData || data.image_data,
+      birthdate: formattedBirthdate,
     };
 
     updateUser(
@@ -95,6 +110,12 @@ const UserEditModal = ({ user, isOpen, onClose }: UserEditModalProps) => {
         onSuccess: () => onClose(),
       },
     );
+    imageMutate(
+      selectedImageFile,
+      {onError: () => {
+        alert("Failed to upload avatar. Please try again.");
+      },}
+    )
   };
 
   const editFields = [
@@ -244,7 +265,7 @@ const AdminUsers = () => {
       header: "Avatar",
       cell: (user: User) => (
         <Avatar.Root className="w-2 h-6 overflow-hidden">
-          {user.image.image_data ? (
+          {user.image?.image_data ? (
             <Avatar.Image
               src={`data:image/png;base64,${user.image.image_data}`}
               alt="User avatar"
@@ -294,8 +315,8 @@ const AdminUsers = () => {
   ];
 
   const headers = columns.map((col) => col.header);
-  const widths = ["7%", "15%", "15%", "15%", "15%", "15%", "15%", "13%", "5%"];
-  const actionsWidth = "10%";
+  const widths = ["9%", "15%", "15%", "15%", "15%", "15%", "15%", "10%", "10%"];
+  const actionsWidth = "15%";
 
   return (
     <>

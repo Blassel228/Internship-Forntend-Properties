@@ -10,7 +10,13 @@ export interface CreateCheckoutSessionRequest {
   guest_data: GuestCreateIn;
 }
 
-export interface CreateRefundRequest {
+export interface CreateRefundRequestByUser {
   booking_id: string;
   refund_reason: string;
+}
+
+export interface CreateRefundRequestByAdmin {
+  booking_id: string;
+  refund_reason: string;
+  amount: number
 }

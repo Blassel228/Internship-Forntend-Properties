@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Booking } from "../Types/Booking.tsx";
 import { Room } from "../Types/Room.tsx";
-import useRefund from "../Hooks/useRefund.tsx";
+import useRefundByUser from "../Hooks/useRefundByUser.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
 import { formatStringDate } from "../Utils/helpers.tsx";
@@ -11,7 +11,7 @@ import AppButton from "../Components/AppButton.tsx";
 const CancelBooking = () => {
   const location = useLocation();
   const { goBack, goTo } = useNavigation();
-  const { createRefund, isPending, isError } = useRefund();
+  const { createRefund, isPending, isError } = useRefundByUser();
 
   const { room, booking } = location.state as { room: Room; booking: Booking };
 

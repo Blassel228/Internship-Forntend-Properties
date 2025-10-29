@@ -7,7 +7,7 @@ interface TableCellProps {
 
 function TableCell({ children, width }: TableCellProps) {
   return (
-    <td className="p-3 align-middle" style={{ width, height: "90px" }}>
+    <td className="p-2 text-xs text-center" style={{ width, height: "90px" }}>
       {children}
     </td>
   );

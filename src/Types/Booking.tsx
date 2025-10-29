@@ -1,5 +1,6 @@
 import { Guest } from "./Guest.tsx";
 import { Room } from "./Room.tsx";
+import BookingStatus from "../Enums/bookingStatus.tsx";
 
 export interface Booking {
   id: string;
@@ -14,4 +15,14 @@ export interface Booking {
   created_at: string;
   guest: Guest;
   room: Room;
+}
+
+export interface UpdateBooking {
+    user_id: string;
+    guest_id: string;
+    room_id: string;
+    price: number;
+    status: BookingStatus;
+    start_date: Date;
+    end_date: Date;
 }

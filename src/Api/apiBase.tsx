@@ -44,13 +44,13 @@ baseApi.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      if (originalRequest.url?.includes("image"))
+      if (originalRequest.url?.includes("/api/image/"))
         return
 
       if (originalRequest.url?.includes("login"))
         return
 
-      if (originalRequest.url?.includes("refresh")) {
+      if (originalRequest.url?.includes("refresh") && error.response.status !== 401) {
         console.error("Refresh endpoint failed — logging out");
         removeItem("token");
         window.location.href = routers.home;
