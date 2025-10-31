@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Column from "../Components/Column.tsx";
 import Row from "../Components/Row.tsx";
 import DataTable from "../Components/Table/DataTable.tsx";
-import useBookings from "../Hooks/useBookings.tsx";
+import useAdminBookings from "../Hooks/useAdminBookings.tsx";
 import GenericDeleteModal from "../Components/GenericDeleteModal.tsx";
 import GenericEditModal from "../Components/GenericEditModal";
 import { Booking, UpdateBooking } from "../Types/Booking.tsx";
@@ -359,7 +359,7 @@ const BookingDeleteModal = ({ booking, isOpen, onClose }: BookingDeleteModalProp
 };
 
 const AdminBookings = () => {
-  const { bookings, areBookingsLoading, bookingsError, isError } = useBookings();
+  const { bookings, areBookingsLoading, bookingsError, isError } = useAdminBookings();
   const [currentPage, setCurrentPage] = useState(1);
   const [editingBooking, setEditingBooking] = useState<Booking | null>(null);
   const [deletingBooking, setDeletingBooking] = useState<Booking | null>(null);

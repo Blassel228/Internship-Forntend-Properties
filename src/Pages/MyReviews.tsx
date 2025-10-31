@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import {
   useBookings,
   useGetBookingsForRoomsNotRatedByUser,
-} from "../Hooks/useBooking.tsx";
+} from "../Hooks/useUserBookings.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
 import Column from "../Components/Column.tsx";
 

@@ -6,6 +6,7 @@ import { Room } from "../Types/Room.tsx";
 import Row from "./Row.tsx";
 import { StarIcon } from "lucide-react";
 import useNavigation from "../Utils/navigate.tsx";
+import NotRatedTag from "./NotRatedTag.tsx";
 
 const RoomCard = ({ room }: { room: Room }) => {
   const { goTo } = useNavigation();
@@ -59,9 +60,7 @@ const RoomCard = ({ room }: { room: Room }) => {
             </>
           ) : (
             <>
-              <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs font-medium italic">
-                Not rated yet
-              </span>
+              <NotRatedTag/>
               <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
                 {room.type}
               </span>

@@ -1,5 +1,5 @@
 import CurrentBookedRoomCard from "../Components/CurrentBookedRoomCard.tsx";
-import { useBookings } from "../Hooks/useBooking.tsx";
+import { useBookings } from "../Hooks/useUserBookings.tsx";
 import Row from "../Components/Row.tsx";
 import { AlertCircle, Bed, Globe, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -91,7 +91,7 @@ const MyBookings = () => {
     );
   }
 
-  if (hasError) {
+  if (hasError) { //skip this button
     return (
       <div className="flex min-h-screen items-center justify-center p-4">
         <Column className="p-8 text-center max-w-md w-full">
@@ -99,7 +99,7 @@ const MyBookings = () => {
           <h3 className="mt-4 text-lg font-medium text-red-700">
             Couldn't load bookings.
           </h3>
-          <p className="text-red-500 mt-2">{errorMessage}</p>
+          <p className="text-red-500 mt-2">{errorMessage || "Something went wrong"}</p>
           <div className="mt-6">
             <button
               onClick={() => window.location.reload()}
@@ -113,46 +113,12 @@ const MyBookings = () => {
     );
   }
 
-  if (!bookings || bookings.length === 0) {
-    return (
-      <>
-        <div className="container mx-auto px-4 py-8 mt-36 lg:w-[70%]">
-          <div className="flex flex-col items-center justify-center py-16 px-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-lg">
-            <div className="text-center">
-              <Globe
-                className="mx-auto text-indigo-500"
-                size={120}
-                strokeWidth={1}
-              />
-              <h2 className="mt-8 text-3xl font-extrabold text-gray-800">
-                Where are we going?
-              </h2>
-              <p className="mt-4 text-lg text-gray-600 max-w-md">
-                You haven’t booked any rooms yet. Explore our catalog and find
-                the perfect place for your next adventure.
-              </p>
-              <Link
-                to={routers.home}
-                className="mt-8 inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg shadow transition"
-              >
-                <Bed size={20} />
-                Browse Rooms
-              </Link>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
   const activeBookings =
     activeTab === "past" ? pastBookings : cancelledBookings;
 
   return (
     <>
       <div className="container mx-auto px-4 py-8 mt-36 lg:w-[70%]">
-        <h1 className="text-2xl text-center font-bold mb-8">My bookings</h1>
-
         <section className="mb-12">
           <h2 className="text-xl font-bold text-gray-800 mb-4">
             Current bookings

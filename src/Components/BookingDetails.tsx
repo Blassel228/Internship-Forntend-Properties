@@ -1,4 +1,3 @@
-// BookingDetails.tsx
 import { toWordsOrdinal } from "number-to-words";
 import React from "react";
 import {
@@ -11,6 +10,7 @@ import useBookingParams from "../Hooks/useSearchParams.tsx";
 import ContainerWithBorders from "./ContainerWithBorders.tsx";
 import Column from "./Column.tsx";
 import { StarIcon } from "lucide-react";
+import NotRatedTag from "./NotRatedTag.tsx";
 
 const BookingDetails = ({ room, reviewCount }) => {
   const { startDate, endDate, capacity } = useBookingParams();
@@ -29,7 +29,11 @@ const BookingDetails = ({ room, reviewCount }) => {
       <ContainerWithBorders className="bg-gray-50 p-3 sm:p-4 rounded-lg">
         <h1 className="text-lg font-bold text-gray-900 mb-1">{room.type}</h1>
 
-        {room.average_rating !== undefined && (
+        {room.average_rating === null ? (
+          <div className="w-[30%]">
+            <NotRatedTag color={"orange"}/>
+          </div>
+        ):(
           <div className="flex flex-wrap items-center gap-2 mt-1">
             <div className="flex items-center bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
               <span className="font-bold text-orange-700 text-sm">
@@ -47,16 +51,11 @@ const BookingDetails = ({ room, reviewCount }) => {
                 {reviewCount === 1 ? "review" : "reviews"}
               </span>
             )}
-            {reviewCount === 0 && room.average_rating && (
-              <span className="text-gray-600 text-xs italic">
-                No reviews yet
-              </span>
-            )}
           </div>
         )}
 
         <p className="text-gray-600 text-xs mt-1">
-          {room.area} m² · {capitalize(toWordsOrdinal(room.floor))} floor
+          {room.total_space} m² · {capitalize(toWordsOrdinal(room.floor))} floor
         </p>
 
         <div className="border-t border-gray-200 pt-2 mt-2">

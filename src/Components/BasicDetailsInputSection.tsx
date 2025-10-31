@@ -21,7 +21,7 @@ import {
 } from "../Hooks/useCreateCheckoutSession.tsx";
 import BookingInput from "./BookingInput.tsx";
 import CountrySelector from "./CountrySelect.tsx";
-import AppButton from "./AppButton.tsx";
+import AppButton from "./Buttons/AppButton.tsx";
 import PersonalDataFooter from "./PersonalDataFooter.tsx";
 import isEmail from "validator/lib/isEmail";
 

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getBookings } from "../Api/apiBooking.tsx";
 import { Booking } from "../Types/Booking.tsx";
 
-const useBookings = () => {
+const useAdminBookings = () => {
   const {
     data: bookings,
     isLoading: areBookingsLoading,
@@ -18,4 +18,4 @@ const useBookings = () => {
   return { bookings, areBookingsLoading, bookingsError, isError };
 };
 
-export default useBookings;
+export default useAdminBookings;

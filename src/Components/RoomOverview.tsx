@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import RoomDetailsContentSection from "./RoomDetailsContentSection.tsx";
 import { useNavigate } from "react-router-dom";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
-import AppButton from "./AppButton.tsx";
+import AppButton from "./Buttons/AppButton.tsx";
 import routers from "../Constants/routers.tsx";
 import useSearchParams from "../Hooks/useSearchParams.tsx";
 import KeyDetails from "./KeyDetails.tsx";

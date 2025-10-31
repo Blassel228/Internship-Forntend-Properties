@@ -13,6 +13,7 @@ import { User } from "../Types/User.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
 import { formatStringDate } from "../Utils/helpers.tsx";
+import ConfirmationCard from "../Components/ConfirnationCard.tsx";
 
 const BookingDetails = () => {
   const location = useLocation();
@@ -41,7 +42,6 @@ const BookingDetails = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-5xl">
-      {/* Header */}
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full mb-4">
           <CheckIcon size={18} />
@@ -137,31 +137,13 @@ const BookingDetails = () => {
         </div>
 
         <div className="space-y-5">
-          <div className="bg-green-50 border border-green-200 rounded-xl p-5">
-            <h3 className="font-semibold text-gray-800 mb-2">Confirmation #</h3>
-            <p className="font-mono text-lg bg-white p-2 rounded mb-2">
-              {/*{booking.confirmation_number}*/}322
-            </p>
-            <button
-              // onClick={() => navigator.clipboard.writeText(booking.confirmation_number)}
-              className="text-sm text-blue-600 hover:underline"
-            >
-              Copy to clipboard
-            </button>
-          </div>
+          <ConfirmationCard confirmationNumber={228} onCopy={
+            () => navigator.clipboard.writeText(228)
+          }/>
 
-          <div className="bg-green-50 border border-green-200 rounded-xl p-5">
-            <h3 className="font-semibold text-gray-800 mb-2">Access PIN</h3>
-            <p className="font-mono text-lg bg-white p-2 rounded mb-2">
-              {/*{booking.pin_code}*/}228
-            </p>
-            <button
-              // onClick={() => navigator.clipboard.writeText(booking.pin_code)}
-              className="text-sm text-blue-600 hover:underline"
-            >
-              Copy to clipboard
-            </button>
-          </div>
+          <ConfirmationCard confirmationNumber={228} onCopy={ () =>
+            navigator.clipboard.writeText(228)
+          }/>
         </div>
       </div>
     </div>
