@@ -11,6 +11,7 @@ const useRefundByAdmin = () => {
     isPending,
     isError,
     error,
+    reset
   } = useMutation({
     mutationFn: (request: CreateRefundRequestByAdmin) =>
       adminRefundBooking(request),
@@ -22,7 +23,7 @@ const useRefundByAdmin = () => {
       toast.error(error?.message || "Failed to delete booking");
     },
   });
-  return { createRefundByAdmin, isPending, isError, error };
+  return { createRefundByAdmin, isPending, isError, error, reset };
 };
 
 export default useRefundByAdmin;
