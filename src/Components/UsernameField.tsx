@@ -1,12 +1,11 @@
 import { useFormContext } from "react-hook-form";
 import Column from "./Column.tsx";
 import Row from "./Row.tsx";
-import CancelButton from "./Buttons/CancelButton.tsx";
-import SaveButton from "./Buttons/SaveButton.tsx";
-import SettingsChangeButton from "./Buttons/SettingsChangeButton.tsx";
+import CancelButton from "./CancelButton.tsx";
+import SaveButton from "./SaveButton.tsx";
+import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import { User } from "../Types/User.tsx";
 import EditInput from "./EditInput.tsx";
-import FieldError from "./FieldError.tsx";
 
 interface UsernameFieldProps {
   user: User | null;
