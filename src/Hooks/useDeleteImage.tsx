@@ -1,4 +1,3 @@
-// useDeleteImage.tsx
 import { useMutation } from "@tanstack/react-query";
 import { deleteImage } from "../Api/apiImage.tsx";
 import { useDispatch } from "react-redux";

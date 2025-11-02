@@ -1,7 +1,7 @@
 import React from "react";
 import SearchForm from "../Components/SearchForm";
-import RoomListHeader from "../Components/RoomListHeader.tsx";
-import RoomList from "../Components/RoomList.tsx";
+import RoomListHeader from "../Feature/Rooms/RoomListHeader.tsx";
+import RoomList from "../Feature/Rooms/RoomList.tsx";
 import ImageWrap from "../Components/ImageWrap.tsx";
 import image from "../Images/moreno.jpg";
 

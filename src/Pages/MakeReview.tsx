@@ -1,7 +1,7 @@
 import useGetRoom from "../Hooks/useGetRoom";
 import { useLocation } from "react-router-dom";
 import Row from "../Components/Row.tsx";
-import ReviewForm from "../Components/ReviewForm.tsx";
+import ReviewForm from "../Feature/MakeReview/Components/ReviewForm.tsx";
 import { useEffect } from "react";
 
 const MakeReview = () => {

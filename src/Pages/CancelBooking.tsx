@@ -6,7 +6,7 @@ import useRefundByUser from "../Hooks/useRefundByUser.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
 import { formatStringDate } from "../Utils/helpers.tsx";
-import AppButton from "../Components/Buttons/AppButton.tsx";
+import AppButton from "../Components/AppButton.tsx";
 
 const CancelBooking = () => {
   const location = useLocation();

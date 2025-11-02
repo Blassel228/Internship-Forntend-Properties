@@ -1,10 +1,10 @@
-import ReviewsTable from "../Components/ReviewsTable.tsx";
-import ReviewsPanel from "../Components/ReviewsPanel.tsx";
+import ReviewsTable from "../Feature/MyReviews/ReviewsTable.tsx";
+import ReviewsPanel from "../Feature/MyReviews/ReviewsPanel.tsx";
 import { useMemo, useState } from "react";
 import {
   useBookings,
   useGetBookingsForRoomsNotRatedByUser,
-} from "../Hooks/useUserBookings.tsx";
+} from "../Feature/MyReviews/useUserBookings.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
 import Column from "../Components/Column.tsx";
 
@@ -58,7 +58,7 @@ const MyReviews = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 mt-32">
+    <div className="w-full max-w-4xl mx-auto px-4 mt-32 mb-32">
       <Column className="gap-6 sm:gap-8 items-center w-full">
         <div className="w-full max-w-2xl">
           <ReviewsPanel

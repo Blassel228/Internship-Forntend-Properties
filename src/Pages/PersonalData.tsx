@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../Types/RootState.tsx";
 import Row from "../Components/Row.tsx";
 import Column from "../Components/Column.tsx";
-import { useUpdateAuthorizedUser } from "../Hooks/useUpdateUser.tsx";
-import PersonalDataHeader from "../Components/PersonalDataHeader.tsx";
-import PersonalDataForm from "../Components/PersonalDataForm.tsx";
+import PersonalDataHeader from "../Feature/PersonalData/Components/PersonalDataHeader.tsx";
+import PersonalDataForm from "../Feature/PersonalData/Components/PersonalDataForm.tsx";
 import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
 import { User } from "../Types/User.tsx";
+import {useUpdateAuthorizedUser} from "../Feature/PersonalData/Hooks/useUpdateAuthorizedUser.tsx";
 
 export default function PersonalData() {
   const { updateUser, isUserUpdating, userUpdateError, isError, isSuccess } =

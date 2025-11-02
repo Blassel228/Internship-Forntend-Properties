@@ -13,7 +13,7 @@ import { User } from "../Types/User.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
 import { formatStringDate } from "../Utils/helpers.tsx";
-import ConfirmationCard from "../Components/ConfirnationCard.tsx";
+import ConfirmationCard from "../Feature/BookingDetails/ConfirmationCard.tsx";
 
 const BookingDetails = () => {
   const location = useLocation();
