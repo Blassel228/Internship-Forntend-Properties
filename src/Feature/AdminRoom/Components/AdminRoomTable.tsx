@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { User } from "../../../Types/User.tsx";
-import useGetUsers from "../../../Hooks/useGetUsers.tsx";
+import useUsers from "../../../Hooks/useUsers.tsx";
 import DataTable from "../../../Components/Table/DataTable.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
 import Row from "../../../Components/Row.tsx";
 import TableColumn from "../../../Types/Table.tsx";
 
 function AdminUsers() {
-  const { users, isLoading, isError, error } = useGetUsers();
+  const { users, isLoading, isError, error } = useUsers();
 
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [deletingUser, setDeletingUser] = useState<User | null>(null);

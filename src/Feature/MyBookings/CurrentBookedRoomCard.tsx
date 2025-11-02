@@ -16,9 +16,9 @@ const CurrentBookedRoomCard = ({
     return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
   };
 
-  const { room, isLoading, error } = useRoom(booking.room_id);
+  const { room, isRoomLoading, error } = useRoom(booking.room_id);
 
-  if (isLoading) {
+  if (isRoomLoading) {
     return (
       <div className="w-full max-w-sm bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition">
         <div className="h-48 bg-gray-300 animate-pulse"></div>

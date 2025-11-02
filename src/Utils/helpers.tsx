@@ -5,11 +5,6 @@ export const addDaysAndFormatDate = (date, days) => {
   return newDate.format("YYYY-MM-DD");
 };
 
-export const formatDateToStandardDate = (date: Date) => {
-  const newDate = dayjs(date);
-  return newDate.format("YYYY-MM-DD");
-};
-
 export const formatStringDate = (dateString: string): string => {
   const d = new Date(dateString);
   return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;

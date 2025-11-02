@@ -8,7 +8,7 @@ import ReviewCategory from "./ReviewCategory.tsx";
 import ReviewCheckboxes from "./ReviewCheckboxes.tsx";
 import ReviewCommentBox from "./ReviewCommentBox.tsx";
 import { useLocation } from "react-router-dom";
-import useGetRoom from "../../../Hooks/useGetRoom.tsx";
+import useRoom from "../../../Hooks/useRoom.tsx";
 import routers from "../../../Constants/routers.tsx";
 import useNavigation from "../../../Utils/navigate.tsx";
 
@@ -27,7 +27,7 @@ const ReviewForm = () => {
   const { goTo } = useNavigation();
   const location = useLocation();
   const roomId = location.state?.roomId;
-  const { room } = useGetRoom(roomId || "");
+  const { room } = useRoom(roomId || "");
 
   const {
     register,

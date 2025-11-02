@@ -1,7 +1,7 @@
 import { getUsers } from "../Api/apiUser.tsx";
 import { useQuery } from "@tanstack/react-query";
 
-const useGetUsers = () => {
+const useUsers = () => {
   const {
     data: users,
     isLoading: areUsersLoading,
@@ -15,4 +15,4 @@ const useGetUsers = () => {
   return { users, areUsersLoading, error };
 };
 
-export default useGetUsers;
+export default useUsers;

@@ -12,11 +12,10 @@ interface BookedRoomCardProps {
 
 const BookedRoomMinorCard = ({
   booking,
-  handleNavigate,
 }: BookedRoomCardProps) => {
-  const { room, isLoading, error } = useRoom(booking.room_id);
+  const { room, isRoomLoading, error } = useRoom(booking.room_id);
 
-  if (isLoading) {
+  if (isRoomLoading) {
     return (
       <Row className="gap-4 p-4 border border-gray-200 rounded-lg shadow animate-pulse bg-white">
         <div className="roomImage bg-gray-300 rounded-md h-16 w-16"></div>

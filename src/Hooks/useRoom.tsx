@@ -4,8 +4,9 @@ import { getRoom } from "../Api/apiRoom.tsx";
 const useRoom = (room_id: string) => {
   const {
     data: room,
-    isLoading,
+    isLoading: isRoomLoading,
     error,
+    isError
   } = useQuery({
     queryKey: ["room", room_id],
     queryFn: () => {
@@ -15,7 +16,7 @@ const useRoom = (room_id: string) => {
     staleTime: 5 * 60 * 1000,
   });
 
-  return { room, isLoading, error };
+  return { room, isRoomLoading, error, isError };
 };
 
 export default useRoom;
