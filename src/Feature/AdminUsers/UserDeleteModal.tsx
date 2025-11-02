@@ -1,6 +1,6 @@
 import useDeleteUser from "./useDeleteUser.tsx";
 import GenericDeleteModal from "../../Components/GenericDeleteModal.tsx";
-import {User} from "../../Types/User.tsx";
+import { User } from "../../Types/User.tsx";
 
 interface UserDeleteModalProps {
   user: User | null;
@@ -8,7 +8,11 @@ interface UserDeleteModalProps {
   onClose: () => void;
 }
 
-export const UserDeleteModal = ({user, isOpen, onClose}: UserDeleteModalProps) => {
+export const UserDeleteModal = ({
+  user,
+  isOpen,
+  onClose,
+}: UserDeleteModalProps) => {
   const {
     deleteUser,
     isUserDeleting,

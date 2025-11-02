@@ -1,8 +1,8 @@
 import useUpdateBooking from "./useUpdateBooking.tsx";
-import {useForm} from "react-hook-form";
-import {Booking, UpdateBooking} from "../../Types/Booking.tsx";
+import { useForm } from "react-hook-form";
+import { Booking, UpdateBooking } from "../../Types/Booking.tsx";
 import bookingStatus from "../../Enums/bookingStatus.tsx";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import GenericEditModal from "../../Components/GenericEditModal.tsx";
 
 interface BookingEditModalProps {
@@ -11,9 +11,13 @@ interface BookingEditModalProps {
   onClose: () => void;
 }
 
-export const BookingEditModal = ({booking, isOpen, onClose}: BookingEditModalProps) => {
-  const {updateBooking, isBookingUpdating} = useUpdateBooking();
-  const {setValue, reset} = useForm<UpdateBooking>({
+export const BookingEditModal = ({
+  booking,
+  isOpen,
+  onClose,
+}: BookingEditModalProps) => {
+  const { updateBooking, isBookingUpdating } = useUpdateBooking();
+  const { setValue, reset } = useForm<UpdateBooking>({
     defaultValues: {
       user_id: booking?.user_id || "",
       guest_id: booking?.guest_id || "",
@@ -63,7 +67,7 @@ export const BookingEditModal = ({booking, isOpen, onClose}: BookingEditModalPro
     };
 
     updateBooking(
-      {bookingId: booking.id, updatedData: processedData},
+      { bookingId: booking.id, updatedData: processedData },
       {
         onSuccess: () => onClose(),
       },

@@ -31,9 +31,9 @@ const BookingDetails = ({ room, reviewCount }) => {
 
         {room.average_rating === null ? (
           <div className="w-[30%]">
-            <NotRatedTag color={"orange"}/>
+            <NotRatedTag color={"orange"} />
           </div>
-        ):(
+        ) : (
           <div className="flex flex-wrap items-center gap-2 mt-1">
             <div className="flex items-center bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
               <span className="font-bold text-orange-700 text-sm">

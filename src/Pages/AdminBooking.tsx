@@ -1,26 +1,32 @@
-import React, {Fragment, useState} from "react";
+import React, { Fragment, useState } from "react";
 import Column from "../Components/Column.tsx";
 import Row from "../Components/Row.tsx";
 import DataTable from "../Components/Table/DataTable.tsx";
 import useAdminBookings from "../Feature/AdminBooking/useAdminBookings.tsx";
-import {Booking} from "../Types/Booking.tsx";
+import { Booking } from "../Types/Booking.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
-import {format, parseISO} from "date-fns";
-import {BookingRefundModal} from "../Feature/AdminBooking/BookingRefundModal.tsx";
-import {BookingEditModal} from "../Feature/AdminBooking/BookingEditModal.tsx";
-import {BookingDeleteModal} from "../Feature/AdminBooking/BookingDeleteModal.tsx";
+import { format, parseISO } from "date-fns";
+import { BookingRefundModal } from "../Feature/AdminBooking/BookingRefundModal.tsx";
+import { BookingEditModal } from "../Feature/AdminBooking/BookingEditModal.tsx";
+import { BookingDeleteModal } from "../Feature/AdminBooking/BookingDeleteModal.tsx";
 
 const AdminBookings = () => {
-  const { bookings, areBookingsLoading, bookingsError, isError } = useAdminBookings();
+  const { bookings, areBookingsLoading, bookingsError, isError } =
+    useAdminBookings();
   const [currentPage, setCurrentPage] = useState(1);
   const [editingBooking, setEditingBooking] = useState<Booking | null>(null);
   const [deletingBooking, setDeletingBooking] = useState<Booking | null>(null);
-  const [refundingBooking, setRefundingBooking] = useState<Booking | null>(null);
+  const [refundingBooking, setRefundingBooking] = useState<Booking | null>(
+    null,
+  );
   const itemsPerPage = 10;
 
   const totalPages = bookings ? Math.ceil(bookings.length / itemsPerPage) : 0;
   const paginatedBookings = bookings
-    ? bookings.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    ? bookings.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage,
+      )
     : [];
 
   const openEditModal = (booking: Booking) => setEditingBooking(booking);
@@ -48,7 +54,10 @@ const AdminBookings = () => {
       ),
     },
     { header: "Status", accessorKey: "status" },
-    { header: "Created", cell: (b: Booking) => format(new Date(b.created_at), "MMM dd, yyyy") },
+    {
+      header: "Created",
+      cell: (b: Booking) => format(new Date(b.created_at), "MMM dd, yyyy"),
+    },
   ];
 
   const headers = columns.map((col) => col.header);
@@ -112,7 +121,9 @@ const AdminBookings = () => {
                 Page {currentPage} of {totalPages}
               </span>
               <button
-                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
                 disabled={currentPage === totalPages}
                 className="px-4 py-2 bg-orange-500 text-white rounded disabled:opacity-50"
               >

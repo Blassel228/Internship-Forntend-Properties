@@ -1,9 +1,9 @@
-import {Booking} from "../../Types/Booking.tsx";
-import React, {Fragment, useEffect, useState} from "react";
+import { Booking } from "../../Types/Booking.tsx";
+import React, { Fragment, useEffect, useState } from "react";
 import useRefundByAdmin from "./useRefundByAdmin.tsx";
-import {CreateRefundRequestByAdmin} from "../../Types/Payment.tsx";
-import {Dialog, Transition} from "@headlessui/react";
-import {AlertCircle, Loader2} from "lucide-react";
+import { CreateRefundRequestByAdmin } from "../../Types/Payment.tsx";
+import { Dialog, Transition } from "@headlessui/react";
+import { AlertCircle, Loader2 } from "lucide-react";
 
 interface BookingRefundModalProps {
   booking: Booking | null;
@@ -11,30 +11,34 @@ interface BookingRefundModalProps {
   onClose: () => void;
 }
 
-export const BookingRefundModal: React.FC<BookingRefundModalProps> = ({booking, isOpen, onClose}) => {
-  const {createRefundByAdmin, isPending, isError, error, reset} =
+export const BookingRefundModal: React.FC<BookingRefundModalProps> = ({
+  booking,
+  isOpen,
+  onClose,
+}) => {
+  const { createRefundByAdmin, isPending, isError, error, reset } =
     useRefundByAdmin();
 
   const [refundAmount, setRefundAmount] = useState<string>(
-    booking?.price ? booking.price.toString() : ''
+    booking?.price ? booking.price.toString() : "",
   );
   const [validationError, setValidationError] = useState<string | null>(null);
 
   const handleRefund = async () => {
     if (!booking || !refundAmount) {
-      setValidationError('Please enter a refund amount.');
+      setValidationError("Please enter a refund amount.");
       return;
     }
 
     const amountNum = parseFloat(refundAmount);
     if (isNaN(amountNum) || amountNum <= 0) {
-      setValidationError('Refund amount must be greater than zero.');
+      setValidationError("Refund amount must be greater than zero.");
       return;
     }
 
     if (amountNum > booking.price) {
       setValidationError(
-        `Refund amount cannot exceed the booking price of $${booking.price.toFixed(2)}.`
+        `Refund amount cannot exceed the booking price of $${booking.price.toFixed(2)}.`,
       );
       return;
     }
@@ -44,7 +48,7 @@ export const BookingRefundModal: React.FC<BookingRefundModalProps> = ({booking, 
     const refundRequest: CreateRefundRequestByAdmin = {
       booking_id: booking.id,
       amount: amountNum,
-      refund_reason: 'Admin initiated refund',
+      refund_reason: "Admin initiated refund",
     };
 
     await createRefundByAdmin(refundRequest, {
@@ -76,7 +80,7 @@ export const BookingRefundModal: React.FC<BookingRefundModalProps> = ({booking, 
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0"/>
+          <div className="fixed inset-0" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -90,8 +94,7 @@ export const BookingRefundModal: React.FC<BookingRefundModalProps> = ({booking, 
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel
-                className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 shadow-2xl border-2 border-gray-300 relative z-[60]">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 shadow-2xl border-2 border-gray-300 relative z-[60]">
                 <Dialog.Title className="text-lg font-medium text-gray-900 mb-4">
                   Refund Booking
                 </Dialog.Title>
@@ -99,7 +102,7 @@ export const BookingRefundModal: React.FC<BookingRefundModalProps> = ({booking, 
                 {booking && (
                   <div className="py-2 space-y-4">
                     <p className="text-sm text-gray-700">
-                      Refund amount for booking{' '}
+                      Refund amount for booking{" "}
                       <span className="font-mono text-xs">{booking.id}</span>:
                     </p>
 
@@ -136,17 +139,17 @@ export const BookingRefundModal: React.FC<BookingRefundModalProps> = ({booking, 
 
                     {validationError && (
                       <div className="flex items-start gap-2 p-3 text-sm text-red-600 bg-red-50 rounded">
-                        <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0"/>
+                        <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
                         <span>{validationError}</span>
                       </div>
                     )}
 
                     {isError && !validationError && (
                       <div className="flex items-start gap-2 p-3 text-sm text-red-600 bg-red-50 rounded">
-                        <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0"/>
+                        <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
                         <span>
                           {error?.response?.data?.error?.detail ||
-                            'Failed to process refund. Please try again.'}
+                            "Failed to process refund. Please try again."}
                         </span>
                       </div>
                     )}
@@ -170,11 +173,11 @@ export const BookingRefundModal: React.FC<BookingRefundModalProps> = ({booking, 
                   >
                     {isPending ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin"/>
+                        <Loader2 className="w-4 h-4 animate-spin" />
                         Processing...
                       </>
                     ) : (
-                      'Refund'
+                      "Refund"
                     )}
                   </button>
                 </div>

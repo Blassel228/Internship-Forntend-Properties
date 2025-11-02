@@ -1,7 +1,7 @@
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {updateUser as updateUserApi,} from "../Api/apiUser.tsx";
-import {UserUpdate} from "../Types/User.tsx";
-import {toast} from "react-hot-toast";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateUser as updateUserApi } from "../Api/apiUser.tsx";
+import { UserUpdate } from "../Types/User.tsx";
+import { toast } from "react-hot-toast";
 
 function useUpdateUser() {
   const queryClient = useQueryClient();

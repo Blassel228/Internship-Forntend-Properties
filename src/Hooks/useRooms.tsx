@@ -1,7 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import {
-  getRoomsWithFilter,
-} from "../Api/apiRoom.tsx";
+import { getRoomsWithFilter } from "../Api/apiRoom.tsx";
 import { RoomFilters } from "../Types/Room.tsx";
 import Room from "../Pages/Room.tsx";
 

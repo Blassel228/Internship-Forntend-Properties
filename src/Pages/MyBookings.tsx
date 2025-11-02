@@ -91,7 +91,8 @@ const MyBookings = () => {
     );
   }
 
-  if (hasError) { //skip this button
+  if (hasError) {
+    //skip this button
     return (
       <div className="flex min-h-screen items-center justify-center p-4">
         <Column className="p-8 text-center max-w-md w-full">
@@ -99,7 +100,9 @@ const MyBookings = () => {
           <h3 className="mt-4 text-lg font-medium text-red-700">
             Couldn't load bookings.
           </h3>
-          <p className="text-red-500 mt-2">{errorMessage || "Something went wrong"}</p>
+          <p className="text-red-500 mt-2">
+            {errorMessage || "Something went wrong"}
+          </p>
           <div className="mt-6">
             <button
               onClick={() => window.location.reload()}

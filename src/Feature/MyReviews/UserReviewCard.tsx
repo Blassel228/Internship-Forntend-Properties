@@ -50,11 +50,7 @@ const UserReviewCard = ({ booking, isReviewable }: ReviewCardProps) => {
             </div>
 
             {canReview && (
-              <AppButton
-                onClick={handleReview}
-              >
-                Write a Review
-              </AppButton>
+              <AppButton onClick={handleReview}>Write a Review</AppButton>
             )}
 
             {isReviewable && daysLeft <= 0 && (

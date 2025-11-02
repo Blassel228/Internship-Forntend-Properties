@@ -60,7 +60,7 @@ const RoomCard = ({ room }: { room: Room }) => {
             </>
           ) : (
             <>
-              <NotRatedTag/>
+              <NotRatedTag />
               <span className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
                 {room.type}
               </span>

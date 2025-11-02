@@ -1,4 +1,4 @@
-import {Booking} from "../../Types/Booking.tsx";
+import { Booking } from "../../Types/Booking.tsx";
 import useDeleteBooking from "./useDeleteBooking.tsx";
 import GenericDeleteModal from "../../Components/GenericDeleteModal.tsx";
 import React from "react";
@@ -9,15 +9,22 @@ interface BookingDeleteModalProps {
   onClose: () => void;
 }
 
-export const BookingDeleteModal = ({booking, isOpen, onClose}: BookingDeleteModalProps) => {
-  const {deleteBooking, isBookingDeleting, deleteBookingError} = useDeleteBooking();
+export const BookingDeleteModal = ({
+  booking,
+  isOpen,
+  onClose,
+}: BookingDeleteModalProps) => {
+  const { deleteBooking, isBookingDeleting, deleteBookingError } =
+    useDeleteBooking();
 
   return (
     <GenericDeleteModal
       item={booking}
       isOpen={isOpen}
       onClose={onClose}
-      onDelete={(id) => deleteBooking({bookingId: id}) as unknown as Promise<boolean>}
+      onDelete={(id) =>
+        deleteBooking({ bookingId: id }) as unknown as Promise<boolean>
+      }
       isDeleting={isBookingDeleting}
       deletionError={deleteBookingError}
       deletionSuccess={false}

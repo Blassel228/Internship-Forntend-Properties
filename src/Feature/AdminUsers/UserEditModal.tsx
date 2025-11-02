@@ -1,9 +1,9 @@
-import {ChangeEvent, useEffect, useState} from "react";
-import {useUpdateUser} from "../../Hooks/useUpdateUser.tsx";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useUpdateUser } from "../../Hooks/useUpdateUser.tsx";
 import useUpdateImage from "../../Hooks/useUpdateImage.tsx";
 import useCreateImage from "../../Hooks/useCreateImage.tsx";
-import {useForm} from "react-hook-form";
-import {User, UserUpdate} from "../../Types/User.tsx";
+import { useForm } from "react-hook-form";
+import { User, UserUpdate } from "../../Types/User.tsx";
 import GenericEditModal from "../../Components/GenericEditModal.tsx";
 
 interface UserEditModalProps {
@@ -12,19 +12,23 @@ interface UserEditModalProps {
   onClose: () => void;
 }
 
-export const UserEditModal = ({user, isOpen, onClose}: UserEditModalProps) => {
+export const UserEditModal = ({
+  user,
+  isOpen,
+  onClose,
+}: UserEditModalProps) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [selectedImageFile, setImageFile] = useState<File | null>(null);
 
-  const {updateUser, isUserUpdating} = useUpdateUser();
-  const {mutate: updateImage, isPending: isImageUpdating} = useUpdateImage();
-  const {mutate: createImage, isPending: isImageCreating} = useCreateImage();
+  const { updateUser, isUserUpdating } = useUpdateUser();
+  const { mutate: updateImage, isPending: isImageUpdating } = useUpdateImage();
+  const { mutate: createImage, isPending: isImageCreating } = useCreateImage();
 
   const isUpdating = isUserUpdating || isImageUpdating || isImageCreating;
 
   const imageMutate = user?.image?.image_data ? updateImage : createImage;
 
-  const {setValue, reset} = useForm<UserUpdate>({
+  const { setValue, reset } = useForm<UserUpdate>({
     defaultValues: {
       username: user?.username || "",
       email: user?.email || "",
@@ -74,7 +78,7 @@ export const UserEditModal = ({user, isOpen, onClose}: UserEditModalProps) => {
       const base64StringRequest = (reader.result as string).split(",")[1];
       setImagePreview(base64String);
       setImageFile(file);
-      setValue("image_data", base64StringRequest, {shouldValidate: true});
+      setValue("image_data", base64StringRequest, { shouldValidate: true });
     };
     reader.readAsDataURL(file);
   };
@@ -95,7 +99,7 @@ export const UserEditModal = ({user, isOpen, onClose}: UserEditModalProps) => {
     };
 
     updateUser(
-      {userId: user.id, updatedData: processedData},
+      { userId: user.id, updatedData: processedData },
       {
         onSuccess: () => onClose(),
       },

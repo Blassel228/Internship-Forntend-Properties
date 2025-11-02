@@ -1,12 +1,12 @@
-import {useState} from "react";
+import { useState } from "react";
 import Column from "../Components/Column.tsx";
 import Row from "../Components/Row.tsx";
 import DataTable from "../Components/Table/DataTable.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
 import useUsers from "../Hooks/useUsers.tsx";
-import {User} from "../Types/User";
-import {UserEditModal} from "../Feature/AdminUsers/UserEditModal.tsx";
-import {UserDeleteModal} from "../Feature/AdminUsers/UserDeleteModal.tsx";
+import { User } from "../Types/User";
+import { UserEditModal } from "../Feature/AdminUsers/UserEditModal.tsx";
+import { UserDeleteModal } from "../Feature/AdminUsers/UserDeleteModal.tsx";
 
 const AdminUsers = () => {
   const { users, areUsersLoading, error } = useUsers();

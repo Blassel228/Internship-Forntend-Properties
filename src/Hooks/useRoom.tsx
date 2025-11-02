@@ -6,7 +6,7 @@ const useRoom = (room_id: string) => {
     data: room,
     isLoading: isRoomLoading,
     error,
-    isError
+    isError,
   } = useQuery({
     queryKey: ["room", room_id],
     queryFn: () => {

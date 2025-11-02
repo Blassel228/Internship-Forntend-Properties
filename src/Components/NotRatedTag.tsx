@@ -8,7 +8,7 @@ const NotRatedTag = ({ color = "gray" }) => {
       "bg-gray-100 text-gray-600": color === "gray",
       "bg-orange-100 text-orange-700": color === "orange",
       "bg-red-100 text-red-700": color === "red",
-    }
+    },
   );
 
   return <span className={styles}>Not rated yet</span>;

@@ -10,9 +10,7 @@ interface BookedRoomCardProps {
   handleNavigate: void;
 }
 
-const BookedRoomMinorCard = ({
-  booking,
-}: BookedRoomCardProps) => {
+const BookedRoomMinorCard = ({ booking }: BookedRoomCardProps) => {
   const { room, isRoomLoading, error } = useRoom(booking.room_id);
 
   if (isRoomLoading) {
