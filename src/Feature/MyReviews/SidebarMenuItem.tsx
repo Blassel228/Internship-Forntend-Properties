@@ -22,7 +22,7 @@ const SidebarMenuItem = ({
           : "text-gray-700 hover:bg-orange-50 hover:text-orange-700"
       }`}
     >
-      <span className="text-sm sm:text-base">{sectionName}</span>
+      <span className="text-sm sm:text-base mr-4">{sectionName}</span>
       <span
         className={isSelected ? "text-orange-700 font-medium" : "text-gray-500"}
       >

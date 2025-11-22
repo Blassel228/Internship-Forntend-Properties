@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { RootState } from "../Types/RootState.tsx";
-import Row from "../Components/Row.tsx";
-import Column from "../Components/Column.tsx";
+import Row from "../Components/Ui/Row.tsx";
+import Column from "../Components/Ui/Column.tsx";
 import PersonalDataHeader from "../Feature/PersonalData/Components/PersonalDataHeader.tsx";
 import PersonalDataForm from "../Feature/PersonalData/Components/PersonalDataForm.tsx";
-import PersonalDataFooter from "../Components/PersonalDataFooter.tsx";
+import PersonalDataFooter from "../Components/Ui/PersonalDataFooter.tsx";
 import { User } from "../Types/User.tsx";
 import { useUpdateAuthorizedUser } from "../Feature/PersonalData/Hooks/useUpdateAuthorizedUser.tsx";
 

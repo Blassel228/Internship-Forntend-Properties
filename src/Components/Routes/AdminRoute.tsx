@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
-import useAuth from "../Hooks/useAuth";
+import useAuth from "../../Hooks/useAuth.tsx";
 import { useSelector } from "react-redux";
-import { RootState } from "../Types/RootState.tsx";
+import { RootState } from "../../Types/RootState.tsx";
 
 const AdminRoute = () => {
   const { isAuthenticated } = useAuth();

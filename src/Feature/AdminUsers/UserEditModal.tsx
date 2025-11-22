@@ -4,7 +4,7 @@ import useUpdateImage from "../../Hooks/useUpdateImage.tsx";
 import useCreateImage from "../../Hooks/useCreateImage.tsx";
 import { useForm } from "react-hook-form";
 import { User, UserUpdate } from "../../Types/User.tsx";
-import GenericEditModal from "../../Components/GenericEditModal.tsx";
+import GenericEditModal from "../../Components/Ui/GenericEditModal.tsx";
 
 interface UserEditModalProps {
   user: User | null;

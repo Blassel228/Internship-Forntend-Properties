@@ -1,5 +1,4 @@
-// ReviewsPanel.tsx
-import Row from "../../Components/Row.tsx";
+import Row from "../../Components/Ui/Row.tsx";
 import SidebarMenuItem from "./SidebarMenuItem.tsx";
 
 const ReviewsPanel = ({
@@ -20,13 +19,13 @@ const ReviewsPanel = ({
         />
         <SidebarMenuItem
           onClick={() => handleSetSelected(2)}
-          sectionName="Property reviews"
+          sectionName="Reviewed"
           count={propertyReviewsCount}
           isSelected={isSelected === 2}
         />
         <SidebarMenuItem
           onClick={() => handleSetSelected(3)}
-          sectionName="Write a review"
+          sectionName="Not reviewed"
           count={writeReviewCount}
           isSelected={isSelected === 3}
         />

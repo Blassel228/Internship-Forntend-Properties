@@ -3,7 +3,7 @@ import { User } from "../../../Types/User.tsx";
 import useUsers from "../../../Hooks/useUsers.tsx";
 import DataTable from "../../../Components/Table/DataTable.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
-import Row from "../../../Components/Row.tsx";
+import Row from "../../../Components/Ui/Row.tsx";
 import TableColumn from "../../../Types/Table.tsx";
 
 function AdminUsers() {

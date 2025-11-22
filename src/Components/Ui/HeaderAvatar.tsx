@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../Types/RootState.tsx";
-import { User } from "../Types/User.tsx";
+import { RootState } from "../../Types/RootState.tsx";
+import { User } from "../../Types/User.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
-import { stringToColor } from "../Utils/helpers.tsx";
+import { stringToColor } from "../../Utils/helpers.tsx";
 
 interface HeaderAvatarProps {
   className?: string;

@@ -6,7 +6,7 @@ import {
   quickLinks,
   travelProfessionals,
 } from "../../Constants/footer.tsx";
-import ContactInfo from "../ContactInfo.tsx";
+import ContactInfo from "./ContactInfo.tsx";
 import React from "react";
 
 const MobileFooterColumn = () => {

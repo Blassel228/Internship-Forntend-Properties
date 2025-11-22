@@ -5,12 +5,12 @@ import {
   calculateNights,
   capitalize,
   getRatingLabel,
-} from "../Utils/helpers.tsx";
-import useBookingParams from "../Hooks/useSearchParams.tsx";
-import ContainerWithBorders from "./ContainerWithBorders.tsx";
-import Column from "./Column.tsx";
+} from "../../Utils/helpers.tsx";
+import useBookingParams from "../../Hooks/useSearchParams.tsx";
+import ContainerWithBorders from "../../Components/Ui/ContainerWithBorders.tsx";
+import Column from "../../Components/Ui/Column.tsx";
 import { StarIcon } from "lucide-react";
-import NotRatedTag from "./NotRatedTag.tsx";
+import NotRatedTag from "../../Components/Ui/NotRatedTag.tsx";
 
 const BookingDetails = ({ room, reviewCount }) => {
   const { startDate, endDate, capacity } = useBookingParams();

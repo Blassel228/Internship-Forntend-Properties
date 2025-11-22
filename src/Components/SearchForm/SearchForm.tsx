@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import DatePickerInput from "./DatePickerInput";
-import CapacityInput from "./CapacityInput";
+import DatePickerInput from "./DatePickerInput.tsx";
+import CapacityInput from "./CapacityInput.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { getSearchRooms } from "../Api/apiRoom";
+import { getSearchRooms } from "../../Api/apiRoom.tsx";
 import { useNavigate } from "react-router-dom";
-import AppButton from "./AppButton.tsx";
-import useSearchParams from "../Hooks/useSearchParams.tsx";
-import routers from "../Constants/routers.tsx";
+import AppButton from "../Ui/AppButton.tsx";
+import useSearchParams from "../../Hooks/useSearchParams.tsx";
+import routers from "../../Constants/routers.tsx";
 
 const SearchForm = () => {
   const queryClient = useQueryClient();

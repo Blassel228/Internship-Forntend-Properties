@@ -3,7 +3,7 @@ import RatingFilters from "../../../Enums/ratingFilters.tsx";
 import { useGetReviewsForRoom } from "../../Room/Hooks/useGetReviewsForRoom.tsx";
 import { Room } from "../../../Types/Room.tsx";
 import { Review } from "../../../Types/Review.tsx";
-import Row from "../../../Components/Row.tsx";
+import Row from "../../../Components/Ui/Row.tsx";
 import CommentCard from "../../Room/Components/CommentCard.tsx";
 
 const ReviewSection = ({ room }: { room: Room }) => {

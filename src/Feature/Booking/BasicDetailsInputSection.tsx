@@ -1,14 +1,14 @@
-import Row from "../../Components/Row.tsx";
-import Column from "../../Components/Column.tsx";
+import Row from "../../Components/Ui/Row.tsx";
+import Column from "../../Components/Ui/Column.tsx";
 import React from "react"; // ✅ useState видалено — не потрібен
-import ContainerWithBorders from "../../Components/ContainerWithBorders.tsx";
+import ContainerWithBorders from "../../Components/Ui/ContainerWithBorders.tsx";
 import CustomCheckbox from "./CustomCheckbox.tsx";
 import { Controller, useForm } from "react-hook-form";
 import useBookingParams from "../../Hooks/useSearchParams.tsx";
 import { calculateNights } from "../../Utils/helpers.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Store/store.tsx";
-import RequiredStar from "../../Components/RequiredStar.tsx";
+import RequiredStar from "../../Components/Ui/RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { GuestCreateIn } from "../../Types/Guest.tsx";
@@ -20,9 +20,9 @@ import {
   useCreateCheckoutSessionWithToken,
 } from "./useCreateCheckoutSession.tsx";
 import BookingInput from "./BookingInput.tsx";
-import CountrySelector from "../../Components/CountrySelect.tsx";
-import AppButton from "../../Components/AppButton.tsx";
-import PersonalDataFooter from "../../Components/PersonalDataFooter.tsx";
+import CountrySelector from "../../Components/Ui/CountrySelect.tsx";
+import AppButton from "../../Components/Ui/AppButton.tsx";
+import PersonalDataFooter from "../../Components/Ui/PersonalDataFooter.tsx";
 import isEmail from "validator/lib/isEmail";
 
 interface BasicDetailsInputSectionProps {

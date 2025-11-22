@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
-import Column from "../Components/Column.tsx";
-import Row from "../Components/Row.tsx";
+import Column from "../Components/Ui/Column.tsx";
+import Row from "../Components/Ui/Row.tsx";
 import DataTable from "../Components/Table/DataTable.tsx";
 import useAdminBookings from "../Feature/AdminBooking/useAdminBookings.tsx";
 import { Booking } from "../Types/Booking.tsx";

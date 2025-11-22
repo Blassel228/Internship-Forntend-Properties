@@ -1,5 +1,5 @@
-import Row from "../../Components/Row.tsx";
-import Column from "../../Components/Column.tsx";
+import Row from "../../Components/Ui/Row.tsx";
+import Column from "../../Components/Ui/Column.tsx";
 import { Booking } from "../../Types/Booking.tsx";
 import useRoom from "../../Hooks/useRoom.tsx";
 import { AlertTriangle, Image as ImageIcon } from "lucide-react";

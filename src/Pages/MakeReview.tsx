@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import Row from "../Components/Row.tsx";
+import Row from "../Components/Ui/Row.tsx";
 import ReviewForm from "../Feature/MakeReview/Components/ReviewForm.tsx";
 import { useEffect } from "react";
 import useRoom from "../Hooks/useRoom.tsx";

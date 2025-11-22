@@ -1,6 +1,6 @@
 import { Controller, useFormContext } from "react-hook-form";
-import Column from "../../../Components/Column.tsx";
-import Row from "../../../Components/Row.tsx";
+import Column from "../../../Components/Ui/Column.tsx";
+import Row from "../../../Components/Ui/Row.tsx";
 import CancelButton from "./CancelButton.tsx";
 import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";

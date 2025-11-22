@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Booking, UpdateBooking } from "../../Types/Booking.tsx";
 import bookingStatus from "../../Enums/bookingStatus.tsx";
 import React, { useEffect } from "react";
-import GenericEditModal from "../../Components/GenericEditModal.tsx";
+import GenericEditModal from "../../Components/Ui/GenericEditModal.tsx";
 
 interface BookingEditModalProps {
   booking: Booking | null;

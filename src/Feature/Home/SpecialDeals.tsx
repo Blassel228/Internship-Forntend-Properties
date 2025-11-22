@@ -1,6 +1,6 @@
 import React from "react";
-import vacation_photo1 from "../../Images/vacation1.jpg";
-import vacation_photo2 from "../../Images/vacation2.jpg";
+import vacation_photo1 from "../../Assets/vacation1.jpg";
+import vacation_photo2 from "../../Assets/vacation2.jpg";
 
 const SpecialDeals = () => {
   return (

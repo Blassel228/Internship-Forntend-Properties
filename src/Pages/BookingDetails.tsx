@@ -18,8 +18,8 @@ import { User } from "../Types/User.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import routers from "../Constants/routers.tsx";
 import { formatStringDate } from "../Utils/helpers.tsx";
-import Column from "../Components/Column.tsx";
-import Row from "../Components/Row.tsx";
+import Column from "../Components/Ui/Column.tsx";
+import Row from "../Components/Ui/Row.tsx";
 
 const BookingDetails = () => {
   const location = useLocation();
@@ -59,8 +59,7 @@ const BookingDetails = () => {
   );
 
   return (
-    <Column className="container mx-auto px-4 py-8 max-w-5xl items-center">
-      {/* Header */}
+    <Column className="container mx-auto px-4 py-8 max-w-5xl items-center mt-36">
       <Column className="items-center mb-8">
         <Row className="items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full mb-4">
           <CheckIcon size={18} />
@@ -74,7 +73,6 @@ const BookingDetails = () => {
         </p>
       </Column>
 
-      {/* Room Image */}
       <Row className="justify-center mb-8">
         <img
           alt="Room"
@@ -83,7 +81,6 @@ const BookingDetails = () => {
         />
       </Row>
 
-      {/* Booking Info Card */}
       <Column className="w-full max-w-2xl">
         <Column className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <h2 className="text-lg font-semibold text-gray-800">
@@ -145,7 +142,6 @@ const BookingDetails = () => {
             </Column>
           )}
 
-          {/* Price summary */}
           <Row className="mt-5 pt-4 border-t border-gray-100 justify-between items-center">
             <span className="text-gray-600">
               {nights} night{nights !== 1 ? "s" : ""} • Total
@@ -156,7 +152,6 @@ const BookingDetails = () => {
           </Row>
         </Column>
 
-        {/* Safety Notice */}
         <Row className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded mt-6">
           <AlertTriangle
             className="text-amber-600 mt-0.5 flex-shrink-0"
@@ -179,9 +174,9 @@ const BookingDetails = () => {
           </p>
         </Row>
 
-        <Row className="gap-4 mt-6 justify-center">
+        <Row className="gap-4 mt-6">
           <button
-            className="flex items-center gap-3 px-5 py-3 bg-red-50 text-red-700 hover:bg-red-100 rounded-lg transition-colors font-medium"
+            className="flex items-center gap-3 px-5 py-3 bg-red-50 cursor-pointer text-red-700 hover:bg-red-100 rounded-lg transition-colors font-medium"
             onClick={() =>
               goTo(routers.cancelBooking, { state: { room, booking } })
             }
@@ -191,7 +186,7 @@ const BookingDetails = () => {
           </button>
           <button
             onClick={() => goTo(routers.myBookings)}
-            className="flex items-center gap-2 px-5 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors font-medium"
+            className="flex items-center gap-2 px-5 py-3 cursor-pointer text-gray-700 hover:bg-gray-100 rounded-lg transition-colors font-medium"
           >
             <HomeIcon size={18} />
             My bookings

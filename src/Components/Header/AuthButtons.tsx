@@ -1,4 +1,4 @@
-import Navlink from "../Navlink.tsx";
+import Navlink from "../Ui/Navlink.tsx";
 import React from "react";
 import { getItem } from "../../Utils/localStorage.tsx";
 

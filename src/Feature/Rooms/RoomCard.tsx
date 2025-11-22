@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import routers from "../../Constants/routers.tsx";
 import useSearchParams from "../../Hooks/useSearchParams.tsx";
 import { Room } from "../../Types/Room.tsx";
-import Row from "../../Components/Row.tsx";
+import Row from "../../Components/Ui/Row.tsx";
 import { StarIcon } from "lucide-react";
 import useNavigation from "../../Utils/navigate.tsx";
-import NotRatedTag from "../../Components/NotRatedTag.tsx";
+import NotRatedTag from "../../Components/Ui/NotRatedTag.tsx";
 
 const RoomCard = ({ room }: { room: Room }) => {
   const { goTo } = useNavigation();

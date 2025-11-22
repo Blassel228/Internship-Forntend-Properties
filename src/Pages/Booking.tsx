@@ -1,9 +1,9 @@
-import Row from "../Components/Row.tsx";
+import Row from "../Components/Ui/Row.tsx";
 import React from "react";
 import { useLocation } from "react-router-dom";
-import BookingDetails from "../Components/BookingDetails.tsx";
+import BookingDetails from "../Feature/BookingDetails/BookingDetails.tsx";
 import BasicDetailsInputSection from "../Feature/Booking/BasicDetailsInputSection.tsx";
-import Column from "../Components/Column.tsx";
+import Column from "../Components/Ui/Column.tsx";
 
 const Booking = () => {
   const location = useLocation();

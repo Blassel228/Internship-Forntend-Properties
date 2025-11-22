@@ -1,6 +1,6 @@
 import CurrentBookedRoomCard from "../Feature/MyBookings/CurrentBookedRoomCard.tsx";
 import { useBookings } from "../Feature/MyReviews/useUserBookings.tsx";
-import Row from "../Components/Row.tsx";
+import Row from "../Components/Ui/Row.tsx";
 import { AlertCircle, Bed, Globe, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import routers from "../Constants/routers.tsx";
@@ -10,7 +10,7 @@ import BookedRoomMinorCard from "../Feature/MyBookings/BookedRoomMinorCard.tsx";
 import { Room } from "../Types/Room.tsx";
 import useNavigation from "../Utils/navigate.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
-import Column from "../Components/Column.tsx";
+import Column from "../Components/Ui/Column.tsx";
 
 const MyBookings = () => {
   const { goTo } = useNavigation();

@@ -1,4 +1,4 @@
-import Column from "../../Components/Column.tsx";
+import Column from "../../Components/Ui/Column.tsx";
 import { FileIcon, Loader2 } from "lucide-react";
 import UserReviewCard from "./UserReviewCard.tsx";
 
@@ -17,6 +17,7 @@ const ReviewsTable = ({
   error,
   notRatedBookingIds,
 }: ReviewsTableProps) => {
+  console.log("REVIEWS: ", displayedBookings);
   if (areBookingsLoading) {
     return (
       <Column className="w-full justify-center items-center py-12">

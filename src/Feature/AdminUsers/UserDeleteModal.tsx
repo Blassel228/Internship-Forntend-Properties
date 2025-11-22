@@ -1,5 +1,5 @@
 import useDeleteUser from "./useDeleteUser.tsx";
-import GenericDeleteModal from "../../Components/GenericDeleteModal.tsx";
+import GenericDeleteModal from "../../Components/Ui/GenericDeleteModal.tsx";
 import { User } from "../../Types/User.tsx";
 
 interface UserDeleteModalProps {

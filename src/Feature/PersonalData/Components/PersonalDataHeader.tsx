@@ -1,4 +1,4 @@
-import Row from "../../../Components/Row.tsx";
+import Row from "../../../Components/Ui/Row.tsx";
 import AvatarUploadModal from "./AvatarUploadModal.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
 import { stringToColor } from "../../../Utils/helpers.tsx";

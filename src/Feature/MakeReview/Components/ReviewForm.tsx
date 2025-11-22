@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useCreateRating } from "../Hooks/useRating.tsx";
-import Column from "../../../Components/Column.tsx";
+import Column from "../../../Components/Ui/Column.tsx";
 import ReviewImage from "./ReviewImage.tsx";
 import ReviewHeader from "./ReviewHeader.tsx";
 import ReviewRatingSection from "./ReviewRatingSection.tsx";

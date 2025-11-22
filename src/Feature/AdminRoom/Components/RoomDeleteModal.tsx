@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Room } from "../../../Types/Room.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
 import useDeleteRoom from "../Hooks/useDeleteRoom.tsx";
-import Row from "../../../Components/Row.tsx";
+import Row from "../../../Components/Ui/Row.tsx";
 
 interface RoomDeleteModalProps {
   room: Room | null;

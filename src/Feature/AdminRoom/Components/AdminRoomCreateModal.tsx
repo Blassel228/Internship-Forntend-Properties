@@ -6,7 +6,7 @@ import RoomEditModalField from "./RoomEditModalField.tsx";
 import { useForm } from "react-hook-form";
 import roomType from "../../../Enums/roomType.tsx";
 import roomArea from "../../../Enums/roomArea.tsx";
-import AvatarImage from "../../../Components/AvatarImage.tsx";
+import AvatarImage from "../../../Components/Ui/AvatarImage.tsx";
 
 interface AdminRoomCreateModalProps {
   isOpen: boolean;

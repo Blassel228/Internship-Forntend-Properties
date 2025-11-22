@@ -25,7 +25,7 @@ export const useGetBookingsForRoomsNotRatedByUser = () => {
     data: notRatedBookings,
     isLoading: areNotRatedBookingsLoading,
     error: notRatedBookingsError,
-  } = useQuery<Booking[], Error>({
+  } : { notRatedBookings: Booking[] } = useQuery<Booking[], Error>({
     queryKey: ["notRatedRoomsBookings"],
     queryFn: async () => await getBookingsNotRatedByUser(),
     refetchOnWindowFocus: false,

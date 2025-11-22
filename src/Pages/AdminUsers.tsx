@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Column from "../Components/Column.tsx";
-import Row from "../Components/Row.tsx";
+import Column from "../Components/Ui/Column.tsx";
+import Row from "../Components/Ui/Row.tsx";
 import DataTable from "../Components/Table/DataTable.tsx";
 import * as Avatar from "@radix-ui/react-avatar";
 import useUsers from "../Hooks/useUsers.tsx";

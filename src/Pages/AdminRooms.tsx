@@ -8,7 +8,7 @@ import DataTable from "../Components/Table/DataTable";
 import RoomImageCell from "../Components/Table/RoomImageCell";
 import TableColumn from "../Types/Table";
 import AdminRoomFilter from "../Feature/AdminRoom/Components/AdminRoomFilter.tsx";
-import Row from "../Components/Row.tsx";
+import Row from "../Components/Ui/Row.tsx";
 
 function AdminRooms() {
   const [filters, setFilters] = useState<RoomFilters>({});

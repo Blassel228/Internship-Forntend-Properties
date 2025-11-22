@@ -1,24 +1,24 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Layout from "./Layout.tsx";
-import HomePage from "../Pages/Home.tsx";
-import Room from "../Pages/Room.tsx";
-import Registration from "../Pages/Registration.tsx";
-import Login from "../Pages/Login.tsx";
-import Rooms from "../Pages/Rooms.tsx";
-import Booking from "../Pages/Booking.tsx";
-import PersonalData from "../Pages/PersonalData.tsx";
-import MyBookings from "../Pages/MyBookings.tsx";
-import BookingDetails from "../Pages/BookingDetails.tsx";
-import CancelBooking from "../Pages/CancelBooking.tsx";
-import AdminRooms from "../Pages/AdminRooms.tsx";
-import MyReviews from "../Pages/MyReviews.tsx";
-import MakeReview from "../Pages/MakeReview.tsx";
-import AdminUsers from "../Pages/AdminUsers.tsx";
+import Layout from "../Ui/Layout.tsx";
+import HomePage from "../../Pages/Home.tsx";
+import Room from "../../Pages/Room.tsx";
+import Registration from "../../Pages/Registration.tsx";
+import Login from "../../Pages/Login.tsx";
+import Rooms from "../../Pages/Rooms.tsx";
+import Booking from "../../Pages/Booking.tsx";
+import PersonalData from "../../Pages/PersonalData.tsx";
+import MyBookings from "../../Pages/MyBookings.tsx";
+import BookingDetails from "../../Pages/BookingDetails.tsx";
+import CancelBooking from "../../Pages/CancelBooking.tsx";
+import AdminRooms from "../../Pages/AdminRooms.tsx";
+import MyReviews from "../../Pages/MyReviews.tsx";
+import MakeReview from "../../Pages/MakeReview.tsx";
+import AdminUsers from "../../Pages/AdminUsers.tsx";
 import ProtectedRoute from "./ProtectedRoute.tsx";
 import AdminRoute from "./AdminRoute.tsx";
 
-import routers from "../Constants/routers.tsx";
-import AdminBookings from "../Pages/AdminBooking.tsx";
+import routers from "../../Constants/routers.tsx";
+import AdminBookings from "../../Pages/AdminBooking.tsx";
 
 export default function Routers() {
   return (

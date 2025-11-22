@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../../Components/Input.tsx";
-import Label from "../../Components/Label.tsx";
+import Input from "../../Components/Ui/Input.tsx";
+import Label from "../../Components/Ui/Label.tsx";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { isValidPhoneNumber } from "libphonenumber-js";

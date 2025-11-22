@@ -1,5 +1,5 @@
 import React from "react";
-import city from "../../Images/san-francisko.jpg";
+import city from "../../Assets/san-francisko.jpg";
 
 const CityCard = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import Navlink from "../Navlink.tsx";
+import Navlink from "../Ui/Navlink.tsx";
 import AuthButton from "./AuthButton.tsx";
 import useAuth from "../../Hooks/useAuth.tsx";
 import { getItem } from "../../Utils/localStorage.tsx";

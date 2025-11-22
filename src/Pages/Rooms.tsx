@@ -1,9 +1,9 @@
 import React from "react";
-import SearchForm from "../Components/SearchForm";
+import SearchForm from "../Components/SearchForm/SearchForm.tsx";
 import RoomListHeader from "../Feature/Rooms/RoomListHeader.tsx";
 import RoomList from "../Feature/Rooms/RoomList.tsx";
-import ImageWrap from "../Components/ImageWrap.tsx";
-import image from "../Images/moreno.jpg";
+import ImageWrap from "../Components/Ui/ImageWrap.tsx";
+import image from "../Assets/moreno.jpg";
 
 const Rooms = () => {
   return (

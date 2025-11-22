@@ -1,6 +1,6 @@
 import { Booking } from "../../Types/Booking.tsx";
 import useDeleteBooking from "./useDeleteBooking.tsx";
-import GenericDeleteModal from "../../Components/GenericDeleteModal.tsx";
+import GenericDeleteModal from "../../Components/Ui/GenericDeleteModal.tsx";
 import React from "react";
 
 interface BookingDeleteModalProps {

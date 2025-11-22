@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GenericEditModal from "../../../Components/GenericEditModal.tsx";
+import GenericEditModal from "../../../Components/Ui/GenericEditModal.tsx";
 import { Room, RoomUpdate } from "../../../Types/Room.tsx";
 import useUpdateRoom from "../Hooks/useUpdateRoom.tsx";
 import roomType from "../../../Enums/roomType.tsx";

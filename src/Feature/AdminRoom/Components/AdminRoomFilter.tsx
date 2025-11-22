@@ -1,5 +1,5 @@
-import Row from "../../../Components/Row.tsx";
-import Column from "../../../Components/Column.tsx";
+import Row from "../../../Components/Ui/Row.tsx";
+import Column from "../../../Components/Ui/Column.tsx";
 import { useState } from "react";
 import AdminRoomFilterInput from "./AdminRoomFilterInput.tsx";
 import { useForm } from "react-hook-form";

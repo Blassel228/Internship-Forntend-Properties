@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import AuthButton from "./AuthButton.tsx";
-import Navlink from "../Navlink.tsx";
+import Navlink from "../Ui/Navlink.tsx";
 import AuthButtons from "./AuthButtons.tsx";
 
 const MobileMenu = ({ isOpen, onClose, style }) => {
@@ -9,7 +9,7 @@ const MobileMenu = ({ isOpen, onClose, style }) => {
 
   return (
     <div
-      className="md:hidden bg-white shadow-lg absolute text-center w-full flex flex-col items-center justify-center left-0 top-full pt-4 pb-6 px-4 border-t border-gray-200 z-40"
+      className="md:hidden bg-white shadow-lg absolute w-full flex flex-col items-center text-center justify-center left-0 top-full pt-4 pb-6 px-4 border-t border-gray-200 z-40"
       style={style}
     >
       <button

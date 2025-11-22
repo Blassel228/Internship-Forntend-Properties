@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import NavigationArrow from "./NavigationArrow.tsx";
 
-import hotel1 from "../../Images/hotel2.1.jpg";
-import hotel2 from "../../Images/hotel2.2.jpg";
-import hotel3 from "../../Images/hotel2.3.jpg";
+import hotel1 from "../../Assets/hotel2.1.jpg";
+import hotel2 from "../../Assets/hotel2.2.jpg";
+import hotel3 from "../../Assets/hotel2.3.jpg";
 
 const ImageSection = () => {
   const images = [hotel1, hotel2, hotel3];

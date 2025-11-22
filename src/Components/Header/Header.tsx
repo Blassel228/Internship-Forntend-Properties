@@ -4,9 +4,13 @@ import DesktopNav from "./DesktopNav.tsx";
 import HeaderMobileMenu from "./HeaderMobileMenu.tsx";
 import { useNavigate } from "react-router-dom";
 import routers from "../../Constants/routers.tsx";
+import Row from "../Ui/Row.tsx";
+import UserDropdownMenu from "./UserDropdownMenu.tsx";
+import HeaderAvatar from "../Ui/HeaderAvatar.tsx";
 
 const Header = ({ style }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
 
@@ -25,27 +29,33 @@ const Header = ({ style }) => {
 
   return (
     <header
-      className={`w-full px-32 fixed top-0 z-50 transition-all duration-300 ease-in-out ${
+      className={`w-full px-16  py-4 fixed top-0 z-50 transition-all duration-300 ease-in-out ${
         isScrolled ? "bg-white shadow-md" : "bg-transparent shadow-none"
       }`}
       style={style}
     >
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1
-          className="text-2xl text-black font-bold mr-5 font-sans cursor-pointer"
-          onClick={toHome}
-        >
-          HOTEL ROOMS
-        </h1>
-        <DesktopNav />
-        <button
-          className="md:hidden text-gray-700"
-          onClick={() => setIsMobileMenuOpen(true)}
-        >
-          <FaBars size={24} />
-        </button>
+      <div className="w-full flex justify-between">
+        <div className="text-center content-center">
+          <h1
+            className="text-black font-bold mr-5 font-sans cursor-pointer lg:text-2xl md:text-sm sm:text-xl"
+            onClick={toHome}
+          >
+            HOTEL ROOMS
+          </h1>
+        </div>
+        <Row className="text-center gap-4 content-center">
+            <DesktopNav />
+            <UserDropdownMenu open={open} setOpen={setOpen}>
+              <HeaderAvatar className="lg" />
+            </UserDropdownMenu>
+          <button
+            className="md:hidden text-gray-700 text-center"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
+            <FaBars size={24} />
+          </button>
+        </Row>
       </div>
-
       <HeaderMobileMenu
         style={style}
         isOpen={isMobileMenuOpen}

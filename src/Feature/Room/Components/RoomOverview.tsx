@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import RoomDetailsContentSection from "./RoomDetailsContentSection.tsx";
 import { useNavigate } from "react-router-dom";
 import AdditionalRoomInfo from "./AdditionalRoomInfo.tsx";
-import AppButton from "../../../Components/AppButton.tsx";
+import AppButton from "../../../Components/Ui/AppButton.tsx";
 import routers from "../../../Constants/routers.tsx";
 import useSearchParams from "../../../Hooks/useSearchParams.tsx";
 import KeyDetails from "./KeyDetails.tsx";
-import Column from "../../../Components/Column.tsx";
-import Row from "../../../Components/Row.tsx";
+import Column from "../../../Components/Ui/Column.tsx";
+import Row from "../../../Components/Ui/Row.tsx";
 import ReviewSection from "../../MakeReview/Components/ReviewSection.tsx";
 import { getReviewCount } from "../../../Api/apiReview.tsx";
 
@@ -46,7 +46,7 @@ export const RoomOverview = ({ room }) => {
     : `data:image/png;base64,${room.image}`;
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6">
+    <>
       <div className="hidden lg:block">
         <Row className="gap-8">
           <Column className="w-3/4">
@@ -115,6 +115,6 @@ export const RoomOverview = ({ room }) => {
         <RoomDetailsContentSection room={room} />
         <ReviewSection room={room} />
       </Column>
-    </div>
+  </>
   );
 };

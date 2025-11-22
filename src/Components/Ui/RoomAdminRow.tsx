@@ -1,6 +1,6 @@
-import { Room } from "../Types/Room";
-import AdminTablDataCell from "./AdminTablDataCell.tsx";
-import AdminTableRow from "./AdminTableRow.tsx";
+import { Room } from "../../Types/Room.tsx";
+import AdminTablDataCell from "../../Feature/AdminRoom/Components/AdminTablDataCell.tsx";
+import AdminTableRow from "../../Feature/AdminRoom/Components/AdminTableRow.tsx";
 import Row from "./Row.tsx";
 
 interface RoomAdminRowProps {

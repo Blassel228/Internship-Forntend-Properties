@@ -1,11 +1,11 @@
-import Row from "../../../Components/Row.tsx";
-import Column from "../../../Components/Column.tsx";
+import Row from "../../../Components/Ui/Row.tsx";
+import Column from "../../../Components/Ui/Column.tsx";
 import { FaStar as FullStar } from "react-icons/fa";
 import { FaRegStar as EmptyStar } from "react-icons/fa6";
 import { Review } from "../../../Types/Review.tsx";
 import useGetUser from "../../AdminUsers/useGetUser.tsx";
 import { stringToColor } from "../../../Utils/helpers.tsx";
-import AvatarImage from "../../../Components/AvatarImage.tsx";
+import AvatarImage from "../../../Components/Ui/AvatarImage.tsx";
 
 const CommentCard = ({ review }: { review: Review }) => {
   const { stars, title, experience_comment, created_at, user_id } = review;
@@ -44,7 +44,7 @@ const CommentCard = ({ review }: { review: Review }) => {
         <p className="font-bold text-gray-800">{username}</p>
       </Row>
 
-      <Row className="items-center gap-1.5 my-3">
+      <Row className="items-center lg:gap-1.5 sm:gap-0.5 my-3">
         {Array.from({ length: 10 }).map((_, i) => (
           <span key={i} className="text-orange-400">
             {i < stars ? (

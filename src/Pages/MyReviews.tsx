@@ -6,7 +6,7 @@ import {
   useGetBookingsForRoomsNotRatedByUser,
 } from "../Feature/MyReviews/useUserBookings.tsx";
 import bookingStatus from "../Enums/bookingStatus.tsx";
-import Column from "../Components/Column.tsx";
+import Column from "../Components/Ui/Column.tsx";
 
 const MyReviews = () => {
   const [isSelected, setIsSelected] = useState<number>(1);

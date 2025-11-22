@@ -4,7 +4,7 @@ import CityCard from "../Feature/Home/CityCard.tsx";
 import ExclusiveBenefits from "../Feature/Home/ExclusiveBenefits.tsx";
 import SpecialDeals from "../Feature/Home/SpecialDeals.tsx";
 import PopularRooms from "../Feature/Home/PopularRooms.tsx";
-import SearchForm from "../Components/SearchForm.tsx";
+import SearchForm from "../Components/SearchForm/SearchForm.tsx";
 
 const HomePage = () => {
   return (

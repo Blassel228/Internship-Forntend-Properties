@@ -1,7 +1,7 @@
 import React from "react";
 import RoomCard from "./RoomCard.tsx";
 import useSearchRooms from "./useSearchRooms.tsx";
-import Spinner from "../../Components/Spinner.tsx";
+import Spinner from "../../Components/Ui/Spinner.tsx";
 import useSearchParams from "../../Hooks/useSearchParams.tsx";
 import { AnimatePresence } from "framer-motion";
 

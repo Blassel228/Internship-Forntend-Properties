@@ -7,7 +7,7 @@ import {
   FaMapMarkerAlt,
   FaTwitter,
 } from "react-icons/fa";
-import Navlink from "../Navlink.tsx";
+import Navlink from "../Ui/Navlink.tsx";
 
 const Subheader = ({ className, ref }) => {
   return (
