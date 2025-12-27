@@ -6,14 +6,6 @@ const ExclusiveBenefits = () => {
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <h2 className="text-2xl font-bold">Enjoy the exclusive benefits</h2>
-          <div className="flex flex-wrap gap-2 justify-center md:justify-end">
-            <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
-              DISCOVER MORE BENEFITS
-            </button>
-            <button className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">
-              BECOME A MEMBER
-            </button>
-          </div>
         </div>
 
         <p className="text-gray-600 mb-6">

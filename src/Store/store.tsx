@@ -2,7 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import authorizedUserSlice from "./slices/authorizedUserSlice";
 import storage from "redux-persist/lib/storage";
-import roomSlice from "./slices/roomSlice.tsx";
 
 const persistConfig = {
   key: "userSession",
@@ -10,12 +9,10 @@ const persistConfig = {
 };
 
 const persistedUserReducer = persistReducer(persistConfig, authorizedUserSlice);
-const persistRoomsReducer = persistReducer(persistConfig, roomSlice);
 
 const store = configureStore({
   reducer: {
     authorizedUser: persistedUserReducer,
-    rooms: persistRoomsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

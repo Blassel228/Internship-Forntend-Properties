@@ -8,7 +8,6 @@ import { RootState } from "../../Types/RootState.tsx";
 import routers from "../../Constants/routers.tsx";
 
 const DesktopNav = () => {
-  const [open, setOpen] = useState(false);
   const { is_admin } = useSelector(
     (root: RootState) => root.authorizedUser.authorizedUser,
   ) ?? { is_admin: false };

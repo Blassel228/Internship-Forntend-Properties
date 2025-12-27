@@ -5,7 +5,7 @@ import vacation_photo2 from "../../Assets/vacation2.jpg";
 const SpecialDeals = () => {
   return (
     <div className="py-8">
-      <h2 className="text-2xl font-bold text-center mb-6">Special Deals</h2>
+      <h2 className="text-2xl font-bold mb-6">Special Deals</h2>
       <div className="flex flex-col md:flex-row gap-6 items-stretch justify-center">
         <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-2xl w-full flex flex-row">
           <img

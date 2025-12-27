@@ -25,10 +25,6 @@ const CityCard = () => {
             Enjoy fresh seafood, breathtaking views, and let San Francisco
             inspire you with its progressive spirit and diverse energy.
           </p>
-
-          <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 sm:py-3 rounded-full font-semibold text-lg w-full sm:w-auto">
-            Discover Now
-          </button>
         </div>
       </div>
     </div>
