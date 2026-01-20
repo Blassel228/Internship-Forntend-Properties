@@ -25,9 +25,7 @@ const MyReviews = () => {
 
   const pastBookings = useMemo(() => {
     return (bookings || []).filter((booking) => {
-      const today = new Date();
-      const endDate = new Date(booking.end_date);
-      return endDate < today && booking.status === bookingStatus.CONFIRMED;
+      return booking.status === bookingStatus.CONFIRMED;
     });
   }, [bookings]);
 
@@ -41,7 +39,7 @@ const MyReviews = () => {
     );
   }, [pastBookings, notRatedBookingIds]);
 
-  let displayedBookings = pastBookings;
+  let displayedBookings = bookings;
   let areBookingsLoading = bookingsLoading || notRatedLoading;
   let error = bookingsError || notRatedError;
 
@@ -64,7 +62,7 @@ const MyReviews = () => {
           <ReviewsPanel
             isSelected={isSelected}
             handleSetSelected={handleSetSelected}
-            allReviewsCount={pastBookings.length}
+            allReviewsCount={bookings.length}
             writeReviewCount={notRatedBookings?.length || 0}
             propertyReviewsCount={ratedBookings.length}
           />

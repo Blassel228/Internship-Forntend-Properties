@@ -4,6 +4,7 @@ import CityCard from "../Feature/Home/CityCard.tsx";
 import ExclusiveBenefits from "../Feature/Home/ExclusiveBenefits.tsx";
 import SpecialDeals from "../Feature/Home/SpecialDeals.tsx";
 import SearchForm from "../Components/SearchForm/SearchForm.tsx";
+import ContactsAndLocation from "../Feature/Home/ContactsAndLocation.tsx";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
         <CityCard />
         <ExclusiveBenefits />
         <SpecialDeals />
+        <ContactsAndLocation />
       </div>
     </>
   );

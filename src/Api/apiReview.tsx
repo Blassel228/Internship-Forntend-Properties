@@ -1,6 +1,7 @@
 import baseApi from "./apiBase.tsx";
 import { Review, ReviewCreateRequest } from "../Types/Review.tsx";
 import RatingFilters from "../Enums/ratingFilters.tsx";
+import {AverageRating} from "../Types/AverageRating.tsx";
 
 export const createRating = async (
   rating: ReviewCreateRequest,
@@ -9,8 +10,8 @@ export const createRating = async (
   return data;
 };
 
-export const getAverageRating = async (room_id: string): Promise<Review> => {
-  const { data } = await baseApi.get(`/review/rooms/${room_id}/average`);
+export const getAverageRating = async (room_id: string): AverageRating => {
+  const { data } : AverageRating = await baseApi.get(`/review/rooms/${room_id}/average`);
   return data;
 };
 
@@ -28,7 +29,6 @@ export const getReviewsForRoom = async (
   const { data } = await baseApi.get(`/review/rooms/${roomId}`, {
     params: { sort: sort, limit: limit, offset: offset },
   });
-  console.log("DATA: ", data);
   return data;
 };
 

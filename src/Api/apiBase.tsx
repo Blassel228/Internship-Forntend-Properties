@@ -15,7 +15,7 @@ const baseApi: AxiosInstance = axios.create({
 baseApi.interceptors.request.use(
   (config) => {
     console.log("Request Sent:", config);
-    if (config.url.includes("login")) {
+    if (config.url?.includes("login")) {
       return config;
     }
     const token = getItem("token");
@@ -41,20 +41,24 @@ baseApi.interceptors.response.use(
 
     const originalRequest = error.config;
 
+    if (
+      error.response?.status === 401 &&
+      originalRequest.url?.includes("refresh")
+    ) {
+      console.error("Refresh token invalid — logging out");
+      removeItem("token");
+      window.location.href = routers.home;
+      return Promise.reject(error);
+    }
+
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      if (originalRequest.url?.includes("/api/image/")) return;
+      if (originalRequest.url?.includes("/api/image/")) {
+        return Promise.reject(error);
+      }
 
-      if (originalRequest.url?.includes("login")) return;
-
-      if (
-        originalRequest.url?.includes("refresh") &&
-        error.response.status !== 401
-      ) {
-        console.error("Refresh endpoint failed — logging out");
-        removeItem("token");
-        window.location.href = routers.home;
+      if (originalRequest.url?.includes("login")) {
         return Promise.reject(error);
       }
 

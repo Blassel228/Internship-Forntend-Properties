@@ -6,7 +6,7 @@ type NavLinkProps = {
   children: React.ReactNode;
 };
 
-const NavLink = ({ to, children }: NavLinkProps) => {
+const NavLink = ({ to, children, href }: NavLinkProps) => {
   return (
     <Link
       to={to}

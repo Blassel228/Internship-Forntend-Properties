@@ -62,7 +62,7 @@ const CommentCard = ({ review }: { review: Review }) => {
         {title && (
           <h3 className="font-bold text-lg text-gray-800 mb-1">{title}</h3>
         )}
-        <p className="text-gray-600 leading-relaxed">{experience_comment}</p>
+        <p className="text-gray-600 leading-relaxed text-justify">{experience_comment}</p>
       </Column>
     </Column>
   );

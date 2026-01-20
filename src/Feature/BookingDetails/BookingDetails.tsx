@@ -9,12 +9,16 @@ import {
 import useBookingParams from "../../Hooks/useSearchParams.tsx";
 import ContainerWithBorders from "../../Components/Ui/ContainerWithBorders.tsx";
 import Column from "../../Components/Ui/Column.tsx";
-import { StarIcon } from "lucide-react";
 import NotRatedTag from "../../Components/Ui/NotRatedTag.tsx";
+import useAverageRating from "../../Hooks/useAverageRating.tsx";
+import RatingWithStar from "../../Components/Ui/RatingWithStar.tsx";
 
 const BookingDetails = ({ room, reviewCount }) => {
   const { startDate, endDate, capacity } = useBookingParams();
   const nights = calculateNights(startDate, endDate);
+  const { averageRating } = useAverageRating(room.id);
+
+  const hasRating = averageRating !== null && averageRating !== undefined;
 
   return (
     <Column className="bookingDetails gap-4">
@@ -28,26 +32,16 @@ const BookingDetails = ({ room, reviewCount }) => {
 
       <ContainerWithBorders className="bg-gray-50 p-3 sm:p-4 rounded-lg">
         <h1 className="text-lg font-bold text-gray-900 mb-1">{room.type}</h1>
-
-        {room.average_rating === null ? (
+          {!hasRating ? (
           <div className="w-[30%]">
             <NotRatedTag color={"orange"} />
           </div>
         ) : (
           <div className="flex flex-wrap items-center gap-2 mt-1">
-            <div className="flex items-center bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
-              <span className="font-bold text-orange-700 text-sm">
-                {room.average_rating}
-              </span>
-              <StarIcon
-                className="text-orange-500 fill-orange-500 ml-1"
-                size={12}
-              />
-            </div>
-
+            <RatingWithStar rating={averageRating} />
             {reviewCount > 0 && (
               <span className="text-gray-700 text-xs">
-                {getRatingLabel(room.average_rating)} · {reviewCount}{" "}
+                {getRatingLabel(averageRating)} · {reviewCount}{" "}
                 {reviewCount === 1 ? "review" : "reviews"}
               </span>
             )}
@@ -61,7 +55,7 @@ const BookingDetails = ({ room, reviewCount }) => {
         <div className="border-t border-gray-200 pt-2 mt-2">
           <div className="text-base font-bold flex justify-between">
             <span>Total</span>
-            <span>${room.price * nights}</span>
+            <span>${(room.price * nights).toFixed(2)}</span>
           </div>
         </div>
 

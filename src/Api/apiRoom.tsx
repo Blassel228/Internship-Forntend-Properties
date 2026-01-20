@@ -19,16 +19,6 @@ export const createRoom = async (
   return data;
 };
 
-export const getRooms = async (
-  offset?: number,
-  limit?: number,
-): Promise<Room[]> => {
-  const { data }: { data: Room[] } = await baseApi.get<Room[]>("/room/", {
-    params: { offset, limit },
-  });
-  return data;
-};
-
 export const getSearchRooms = async (
   start_date: string,
   end_date: string,
@@ -64,10 +54,5 @@ export const updateRoom = async (
 
 export const deleteRoom = async (room_id: string): Promise<boolean> => {
   const { data } = await baseApi.delete<boolean>(`room/${room_id}`);
-  return data;
-};
-
-export const getRoomsBookedNotRatedByUser = async (): Promise<Room[]> => {
-  const { data } = await baseApi.get<Room[]>("/room/not-rated");
   return data;
 };
