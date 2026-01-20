@@ -23,7 +23,7 @@ const UserReviewCardMobile = ({ booking, isReviewable }: ReviewCardProps) => {
 
   const handleReview = () => {
     if (canReview) {
-      goTo(routers.makeReview, { state: { roomId: room.id } });
+      goTo(routers.makeReview, { state: { roomId: room.id, bookingId: booking.id } });
     }
   };
 
@@ -88,7 +88,7 @@ const UserReviewCardDesktop = ({ booking, isReviewable }: ReviewCardProps) => {
 
   const handleReview = () => {
     if (canReview) {
-      goTo(routers.makeReview, { state: { roomId: room.id } });
+      goTo(routers.makeReview, { state: { roomId: room.id, bookingId: booking.id } });
     }
   };
 
