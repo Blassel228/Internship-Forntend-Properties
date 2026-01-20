@@ -104,11 +104,13 @@ export const UserEditModal = ({
         onSuccess: () => onClose(),
       },
     );
-    imageMutate(selectedImageFile, {
-      onError: () => {
-        alert("Failed to upload avatar. Please try again.");
-      },
-    });
+    if(selectedImageFile){
+        imageMutate(selectedImageFile, {
+        onError: () => {
+          alert("Failed to upload avatar. Please try again.");
+        },
+      });
+    }
   };
 
   const editFields = [

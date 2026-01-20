@@ -1,11 +1,21 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
-import AuthButton from "./AuthButton.tsx";
 import Navlink from "../Ui/Navlink.tsx";
 import AuthButtons from "./AuthButtons.tsx";
+import routers from "../../Constants/routers.tsx";
+import { useNavigate } from "react-router-dom";
+import { scrollToSection } from "../../Utils/helpers.tsx";
+import AuthButton from "./AuthButton.tsx";
 
 const MobileMenu = ({ isOpen, onClose, style }) => {
+  const navigate = useNavigate();
+
   if (!isOpen) return null;
+
+  const handleScrollToContacts = () => {
+    scrollToSection("contacts", "/home", navigate);
+    onClose();
+  };
 
   return (
     <div
@@ -19,31 +29,48 @@ const MobileMenu = ({ isOpen, onClose, style }) => {
         <FaTimes size={24} />
       </button>
 
-      <ul className="flex flex-col space-y-4 mb-6 mt-4">
+      <ul className="flex flex-col space-y-4 mb-6 mt-4 w-full max-w-xs">
         <li>
-          <Navlink to="/home" onClick={onClose}>
+          <Navlink
+            to={routers.home}
+            onClick={onClose}
+            className="block w-full py-1"
+          >
             Home
           </Navlink>
         </li>
         <li>
-          <Navlink to="/rooms" onClick={onClose}>
-            Rooms
-          </Navlink>
+          <button
+            onClick={handleScrollToContacts}
+            className="text-black font-sans text-base font-medium hover:text-gray-900 w-full py-1"
+          >
+            Contact Us
+          </button>
         </li>
         <li>
-          <Navlink to="/contact" onClick={onClose}>
-            Contact Us
-          </Navlink>
+          <button
+            onClick={handleScrollToContacts}
+            className="text-black font-sans text-base font-medium hover:text-gray-900 w-full py-1"
+          >
+            Location
+          </button>
         </li>
       </ul>
 
-      <AuthButton to="/schedule-visit" variant="secondary" onClick={onClose}>
-        Schedule a visit
-      </AuthButton>
-
-      <ul className="flex flex-col space-y-4 mb-6 mt-4">
+      <div className="w-full max-w-xs">
         <AuthButtons />
-      </ul>
+      </div>
+
+      <div className="mt-4 w-full max-w-xs">
+        <AuthButton
+          to="/schedule-visit"
+          variant="secondary"
+          onClick={onClose}
+          className="w-full"
+        >
+          Schedule a visit
+        </AuthButton>
+      </div>
     </div>
   );
 };

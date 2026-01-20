@@ -54,7 +54,7 @@ const BookedRoomMinorCard = ({ booking }: BookedRoomCardProps) => {
   const image = room.image ? `data:image/jpeg;base64,${room.image}` : undefined;
 
   return (
-    <Row className="gap-4 p-4 border border-gray-200 rounded-lg shadow hover:shadow-md transition-all duration-200 bg-white cursor-pointer">
+    <Row className="w-[18rem] gap-4 p-4 border border-gray-200 rounded-lg shadow hover:shadow-md transition-all duration-200 bg-white cursor-pointer">
       <div className="roomImage flex-shrink-0">
         {image ? (
           <img

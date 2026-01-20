@@ -5,7 +5,7 @@ const ContactInfo = () => {
   return (
     <div className="mt-4 flex items-center space-x-2">
       <FaPhone className="text-xl" />
-      <span>+48 12 3986225 (PL)</span>
+      <span>+1 (650) 555-0198</span>
     </div>
   );
 };

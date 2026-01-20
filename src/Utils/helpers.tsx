@@ -47,3 +47,21 @@ export const getRatingLabel = (rating: number): string => {
   if (rating >= 5.0) return "Fair";
   return "Poor";
 };
+
+
+export const scrollToSection = (sectionId: string, pathname: string, navigate: (path: string) => void) => {
+  if (window.location.pathname === pathname) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  } else {
+    navigate(pathname);
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 150);
+  }
+};

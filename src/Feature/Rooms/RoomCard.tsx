@@ -7,10 +7,13 @@ import Row from "../../Components/Ui/Row.tsx";
 import { StarIcon } from "lucide-react";
 import useNavigation from "../../Utils/navigate.tsx";
 import NotRatedTag from "../../Components/Ui/NotRatedTag.tsx";
+import useAverageRating from "../../Hooks/useAverageRating.tsx";
 
 const RoomCard = ({ room }: { room: Room }) => {
   const { goTo } = useNavigation();
   const { startDate, endDate, capacity } = useSearchParams();
+
+  const { averageRating, isAverageRatingLoading } = useAverageRating(room.id);
 
   const handleNavigate = () => {
     goTo(
@@ -23,7 +26,9 @@ const RoomCard = ({ room }: { room: Room }) => {
   };
 
   const hasRating =
-    room.average_rating !== null && room.average_rating !== undefined;
+    averageRating !== null &&
+    averageRating !== undefined &&
+    !isAverageRatingLoading;
 
   return (
     <motion.div
@@ -47,7 +52,7 @@ const RoomCard = ({ room }: { room: Room }) => {
             <>
               <div className="flex items-center bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
                 <span className="font-bold text-orange-700 text-sm">
-                  {room.average_rating}
+                  {averageRating.toFixed(1)}
                 </span>
                 <StarIcon
                   className="text-orange-500 fill-orange-500 ml-1"

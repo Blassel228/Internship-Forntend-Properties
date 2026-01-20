@@ -10,11 +10,15 @@ import Column from "../../../Components/Ui/Column.tsx";
 import Row from "../../../Components/Ui/Row.tsx";
 import ReviewSection from "../../MakeReview/Components/ReviewSection.tsx";
 import { getReviewCount } from "../../../Api/apiReview.tsx";
+import useAverageRating from "../../../Hooks/useAverageRating.tsx";
+import RatingWithStar from "../../../Components/Ui/RatingWithStar.tsx";
+import NotRatedTag from "../../../Components/Ui/NotRatedTag.tsx";
 
 export const RoomOverview = ({ room }) => {
   const navigate = useNavigate();
   const { startDate, endDate, capacity } = useSearchParams();
   const [reviewCount, setReviewCount] = useState<number | null>(null);
+  const { averageRating } = useAverageRating(room.id);
 
   useEffect(() => {
     const fetchReviewCount = async () => {
@@ -45,6 +49,11 @@ export const RoomOverview = ({ room }) => {
     ? room.image
     : `data:image/png;base64,${room.image}`;
 
+  const hasValidRating =
+    averageRating !== null &&
+    averageRating !== undefined &&
+    typeof averageRating === 'number';
+
   return (
     <>
       <div className="hidden lg:block">
@@ -56,18 +65,23 @@ export const RoomOverview = ({ room }) => {
               alt="Room"
             />
             <Row className="mt-4 items-center justify-between gap-3">
-              <Row className="flex-wrap gap-2">
-                <AdditionalRoomInfo>{room.type}</AdditionalRoomInfo>
-                <AdditionalRoomInfo>
-                  Has {room.bedrooms} bedrooms
-                </AdditionalRoomInfo>
-                <AdditionalRoomInfo>
-                  For {room.capacity} persons
-                </AdditionalRoomInfo>
-                {room.has_jacuzzi && (
-                  <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>
-                )}
-              </Row>
+                <Row className="flex-wrap gap-2">
+                  {hasValidRating ? (
+                    <RatingWithStar rating={averageRating} />
+                  ) : (
+                    <NotRatedTag color="orange" />
+                  )}
+                  <AdditionalRoomInfo>{room.type}</AdditionalRoomInfo>
+                  <AdditionalRoomInfo>
+                    Has {room.bedrooms} bedrooms
+                  </AdditionalRoomInfo>
+                  <AdditionalRoomInfo>
+                    For {room.capacity} persons
+                  </AdditionalRoomInfo>
+                  {room.has_jacuzzi && (
+                    <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>
+                  )}
+                </Row>
               <AppButton className="py-2 px-4" onClick={handleNavigate}>
                 Make Booking
               </AppButton>
@@ -91,8 +105,14 @@ export const RoomOverview = ({ room }) => {
           className="w-full h-64 sm:h-80 object-cover rounded-lg shadow-md"
           alt="Room"
         />
-        <Row className="flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <Row className="flex-wrap gap-2">
+        <Column className="flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <KeyDetails room={room}/>
+          <Row className="flex-wrap gap-2 sm:items-center">
+            {hasValidRating ? (
+              <RatingWithStar rating={averageRating} />
+            ) : (
+              <NotRatedTag color="orange" />
+            )}
             <AdditionalRoomInfo>{room.type}</AdditionalRoomInfo>
             <AdditionalRoomInfo>
               Has {room.bedrooms} bedrooms
@@ -108,13 +128,11 @@ export const RoomOverview = ({ room }) => {
           >
             Make Booking
           </AppButton>
-        </Row>
-
-        <KeyDetails room={room} />
+        </Column>
 
         <RoomDetailsContentSection room={room} />
         <ReviewSection room={room} />
       </Column>
-  </>
+    </>
   );
 };

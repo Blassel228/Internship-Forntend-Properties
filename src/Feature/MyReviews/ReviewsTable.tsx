@@ -17,7 +17,12 @@ const ReviewsTable = ({
   error,
   notRatedBookingIds,
 }: ReviewsTableProps) => {
-  console.log("REVIEWS: ", displayedBookings);
+    let message = "";
+    if (isSelected === 1)
+      message = "You don’t have any past confirmed bookings.";
+    else if (isSelected === 2) message = "You haven’t left any reviews yet.";
+    else if (isSelected === 3) message = "All your stays have been reviewed!";
+
   if (areBookingsLoading) {
     return (
       <Column className="w-full justify-center items-center py-12">
@@ -36,31 +41,23 @@ const ReviewsTable = ({
     );
   }
 
-  if (displayedBookings.length === 0) {
-    let message = "";
-    if (isSelected === 1)
-      message = "You don’t have any past confirmed bookings.";
-    else if (isSelected === 2) message = "You haven’t left any reviews yet.";
-    else if (isSelected === 3) message = "All your stays have been reviewed!";
-
-    return (
-      <Column className="w-full justify-center items-center py-12 px-4">
-        <FileIcon size={64} className="text-gray-400 mb-4" />
-        <p className="text-gray-500 text-center max-w-md">{message}</p>
-      </Column>
-    );
-  }
-
   return (
     <div className="w-full">
       <Column className="md:grid-cols-2 gap-6">
-        {displayedBookings.map((booking) => (
+        {displayedBookings.length !== 0 ? (
+          displayedBookings.map((booking) => (
           <UserReviewCard
             key={booking.id}
             booking={booking}
             isReviewable={notRatedBookingIds.has(booking.id)}
           />
-        ))}
+        ))
+        ):(
+          <Column className="w-full justify-center items-center py-4 px-4">
+            <FileIcon size={64} className="text-gray-400 mb-4" />
+            <p className="text-gray-500 text-center max-w-md">{message}</p>
+          </Column>
+        )}
       </Column>
     </div>
   );
