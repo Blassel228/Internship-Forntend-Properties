@@ -19,6 +19,8 @@ const routers = {
   adminUsers: "/adminusers",
   adminRooms: "/adminrooms",
 
+  verifyEmail: "/verify-email",
+
   notExisting: "*",
 };
 

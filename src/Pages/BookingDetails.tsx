@@ -68,9 +68,6 @@ const BookingDetails = () => {
         <h1 className="text-2xl font-bold text-gray-800">
           Your {room.type.toLowerCase()} is ready
         </h1>
-        <p className="text-gray-600 mt-2">
-          Confirmation sent to <span className="font-medium">{email}</span>
-        </p>
       </Column>
 
       <Row className="justify-center mb-8">

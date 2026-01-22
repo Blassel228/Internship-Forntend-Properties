@@ -34,7 +34,6 @@ export const getUser = async (userId): Promise<User> => {
 
 export const getUsers = async (): Promise<User[]> => {
   const { data }: { data: User[] } = await baseApi.get<User[]>(`/user/`);
-  console.log("DATA", data);
   return data;
 };
 

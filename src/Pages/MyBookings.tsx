@@ -149,16 +149,16 @@ const MyBookings = () => {
               </Link>
             </div>
           ) : (
-            <Row className="gap-6 flex-wrap justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center w-full max-w-6xl mx-auto px-4">
               {currentBookings.map((booking) => (
                 <CurrentBookedRoomCard
                   key={`current-${booking.id}`}
                   booking={booking}
-                  className="w-full sm:w-[300px]"
+                  className="w-full max-w-[300px]"
                   handleNavigate={handleNavigateToDetailsPage}
                 />
               ))}
-            </Row>
+            </div>
           )}
         </section>
 

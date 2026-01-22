@@ -19,6 +19,7 @@ import AdminRoute from "./AdminRoute.tsx";
 
 import routers from "../../Constants/routers.tsx";
 import AdminBookings from "../../Pages/AdminBooking.tsx";
+import EmailVerificationPage from "../../Pages/EmailVerificationPage.tsx";
 
 export default function Routers() {
   return (
@@ -31,6 +32,7 @@ export default function Routers() {
         <Route path={routers.register} element={<Registration />} />
         <Route path={routers.login} element={<Login />} />
         <Route path={`${routers.book}/:id`} element={<Booking />} />
+        <Route path={routers.verifyEmail} element={<EmailVerificationPage/>}/>
 
         <Route element={<ProtectedRoute />}>
           <Route path={routers.personalData} element={<PersonalData />} />
