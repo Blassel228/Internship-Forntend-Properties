@@ -4,7 +4,6 @@ import { Room } from "../Types/Room.tsx";
 
 export const getBookingsForOneUser = async (): Promise<Booking[]> => {
   const { data }: { data: Booking[] } = await baseApi.get("/booking/my");
-  console.log(data);
   return data;
 };
 

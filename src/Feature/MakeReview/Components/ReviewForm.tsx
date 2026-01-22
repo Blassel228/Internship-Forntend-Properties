@@ -27,6 +27,7 @@ const ReviewForm = () => {
   const { goTo } = useNavigation();
   const location = useLocation();
   const roomId = location.state?.roomId;
+  const bookingId = location.state?.bookingId;
   const { room } = useRoom(roomId || "");
 
   const {
@@ -61,6 +62,7 @@ const ReviewForm = () => {
       title: data.title || undefined,
       experience_comment: data.comment || undefined,
       room_id: room?.id!,
+      booking_id: bookingId
     };
 
     await createRating(payload);

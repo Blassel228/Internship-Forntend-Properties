@@ -1,8 +1,7 @@
 import Row from "../../Components/Ui/Row.tsx";
 import Column from "../../Components/Ui/Column.tsx";
-import React from "react"; // ✅ useState видалено — не потрібен
+import React from "react";
 import ContainerWithBorders from "../../Components/Ui/ContainerWithBorders.tsx";
-import CustomCheckbox from "./CustomCheckbox.tsx";
 import { Controller, useForm } from "react-hook-form";
 import useBookingParams from "../../Hooks/useSearchParams.tsx";
 import { calculateNights } from "../../Utils/helpers.tsx";
@@ -24,6 +23,7 @@ import CountrySelector from "../../Components/Ui/CountrySelect.tsx";
 import AppButton from "../../Components/Ui/AppButton.tsx";
 import PersonalDataFooter from "../../Components/Ui/PersonalDataFooter.tsx";
 import isEmail from "validator/lib/isEmail";
+import CustomCheckbox from "./CustomCheckbox.tsx";
 
 interface BasicDetailsInputSectionProps {
   room: {
@@ -54,7 +54,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       phone_number: user?.phone_number || "",
       country: user?.country || "",
       wantsEmailConfirmation: true,
-      mainGuest: "true",
       specialRequests: "",
     },
   });
@@ -85,7 +84,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       phone: data.phone_number,
       country: data.country,
       whether_send_confirmation: data.wantsEmailConfirmation,
-      is_booking_for_me: isMainGuest,
     };
 
     const request: CreateCheckoutSessionRequest = {
@@ -282,31 +280,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
             Yes, I want to get an electronic confirmation to my Email address.
           </p>
         </Row>
-
-        <Column className="gap-2">
-          <h1 className="font-bold">Who are you booking for?</h1>
-          <Row>
-            <input
-              type="radio"
-              {...register("mainGuest")}
-              className="h-6 w-6"
-              value="true"
-              defaultChecked
-            />
-            <p className="text-xs content-center ml-2">I am the main guest</p>
-          </Row>
-          <Row>
-            <input
-              type="radio"
-              {...register("mainGuest")}
-              className="h-6 w-6"
-              value="false"
-            />
-            <p className="text-xs content-center ml-2">
-              This booking is not for me
-            </p>
-          </Row>
-        </Column>
       </ContainerWithBorders>
 
       <ContainerWithBorders className="bg-white">

@@ -7,12 +7,15 @@ import routers from "../../Constants/routers.tsx";
 import Row from "../Ui/Row.tsx";
 import UserDropdownMenu from "./UserDropdownMenu.tsx";
 import HeaderAvatar from "../Ui/HeaderAvatar.tsx";
+import useAuth from "../../Hooks/useAuth.tsx";
 
 const Header = ({ style }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+
+  const {isAuthenticated} = useAuth();
 
   const toHome = () => {
     navigate(routers.home);
@@ -45,9 +48,13 @@ const Header = ({ style }) => {
         </div>
         <Row className="text-center gap-4 content-center">
             <DesktopNav />
-            <UserDropdownMenu open={open} setOpen={setOpen}>
-              <HeaderAvatar className="lg" />
-            </UserDropdownMenu>
+            {
+              isAuthenticated ?
+                <UserDropdownMenu open={open} setOpen={setOpen}>
+                  <HeaderAvatar className="lg" />
+                </UserDropdownMenu> : null
+            }
+
           <button
             className="md:hidden text-gray-700 text-center"
             onClick={() => setIsMobileMenuOpen(true)}

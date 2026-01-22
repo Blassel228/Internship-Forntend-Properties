@@ -3,6 +3,9 @@ import Navlink from "../Ui/Navlink.tsx";
 import AuthButton from "./AuthButton.tsx";
 import useAuth from "../../Hooks/useAuth.tsx";
 import { getItem } from "../../Utils/localStorage.tsx";
+import Column from "../Ui/Column.tsx";
+import {router} from "next/client";
+import routers from "../../Constants/routers.tsx";
 
 const HeaderButtons = () => {
   const { logout } = useAuth();
@@ -31,7 +34,7 @@ const HeaderButtons = () => {
 
       {token ? (
         <div className="flex space-x-6">
-          <AuthButton onClick={logout} variant="danger" to={"/home"}>
+          <AuthButton onClick={logout} variant="danger" to={routers.home}>
             Logout
           </AuthButton>
         </div>

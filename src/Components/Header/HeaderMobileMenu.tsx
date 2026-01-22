@@ -1,14 +1,15 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import Navlink from "../Ui/Navlink.tsx";
-import AuthButtons from "./AuthButtons.tsx";
 import routers from "../../Constants/routers.tsx";
 import { useNavigate } from "react-router-dom";
 import { scrollToSection } from "../../Utils/helpers.tsx";
 import AuthButton from "./AuthButton.tsx";
+import useAuth from "../../Hooks/useAuth.tsx";
 
 const MobileMenu = ({ isOpen, onClose, style }) => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   if (!isOpen) return null;
 
@@ -55,11 +56,20 @@ const MobileMenu = ({ isOpen, onClose, style }) => {
             Location
           </button>
         </li>
-      </ul>
+        {!isAuthenticated && (
+          <>
+            <li>
+              <Navlink to={routers.login}>Login</Navlink>
+            </li>
+            <li>
+              <Navlink to={routers.register} variant="success">
+                Register
+              </Navlink>
+            </li>
+          </>
+        )}
 
-      <div className="w-full max-w-xs">
-        <AuthButtons />
-      </div>
+      </ul>
 
       <div className="mt-4 w-full max-w-xs">
         <AuthButton
