@@ -40,7 +40,6 @@ const AdminBookings = () => {
 
   const columns = [
     { header: "ID", accessorKey: "id" },
-    { header: "Guest ID", cell: (b: Booking) => b.guest_id || "None" },
     { header: "User ID", cell: (b: Booking) => b.user_id || "None" },
     { header: "Room ID", cell: (b: Booking) => b.room_id || "Unknown" },
     { header: "Price", cell: (b: Booking) => `$${b.price.toFixed(2)}` },

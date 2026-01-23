@@ -10,16 +10,12 @@ import { RootState } from "../../Store/store.tsx";
 import RequiredStar from "../../Components/Ui/RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
 import { isValidPhoneNumber } from "libphonenumber-js";
-import { GuestCreateIn } from "../../Types/Guest.tsx";
-import { getItem } from "../../Utils/localStorage.tsx";
 import { User } from "../../Types/User.tsx";
 import { CreateCheckoutSessionRequest } from "../../Types/Payment.tsx";
 import {
-  useCreateCheckoutSessionWithoutToken,
   useCreateCheckoutSessionWithToken,
 } from "./useCreateCheckoutSession.tsx";
 import BookingInput from "./BookingInput.tsx";
-import CountrySelector from "../../Components/Ui/CountrySelect.tsx";
 import AppButton from "../../Components/Ui/AppButton.tsx";
 import PersonalDataFooter from "../../Components/Ui/PersonalDataFooter.tsx";
 import isEmail from "validator/lib/isEmail";
@@ -52,8 +48,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       surname: user?.surname || "",
       email: user?.email || "",
       phone_number: user?.phone_number || "",
-      country: user?.country || "",
-      wantsEmailConfirmation: true,
       specialRequests: "",
     },
   });
@@ -67,25 +61,10 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
     isSuccess: creatingSuccess,
     isError: creatingErrorWithoutToken,
   } = useCreateCheckoutSessionWithToken();
-  const {
-    mutate: createCheckoutWithoutToken,
-    isPending: isWithoutTokenLoading,
-  } = useCreateCheckoutSessionWithoutToken();
 
-  const isBookingCreating = isWithTokenLoading || isWithoutTokenLoading;
+  const isBookingCreating = isWithTokenLoading;
 
   const onSubmit = (data) => {
-    const isMainGuest = data.mainGuest === "true";
-
-    const guestIn: GuestCreateIn = {
-      name: data.name.trim(),
-      surname: data.surname.trim(),
-      email: data.email.trim(),
-      phone: data.phone_number,
-      country: data.country,
-      whether_send_confirmation: data.wantsEmailConfirmation,
-    };
-
     const request: CreateCheckoutSessionRequest = {
       room_id: room.id,
       price: nights * room.price,
@@ -93,15 +72,9 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       end_date: endDate,
       currency: "usd",
       special_requests: data.specialRequests?.trim() || null,
-      guest_data: guestIn,
     };
 
-    const token = getItem("token");
-    const mutateFn = token
-      ? createCheckoutWithToken
-      : createCheckoutWithoutToken;
-
-    mutateFn(request, {
+    createCheckoutWithToken(request, {
       onSuccess: (response) => {
         window.location.href = response.url;
       },
@@ -250,36 +223,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
             </span>
           )}
         </Column>
-
-        <Column className="w-[23rem]">
-          <label htmlFor="country">
-            Country
-            <RequiredStar />
-          </label>
-          <Controller
-            name="country"
-            control={control}
-            rules={{ required: "Country is required" }}
-            render={({ field: { onChange, value } }) => (
-              <CountrySelector
-                value={value}
-                onChange={(option) => onChange(option?.label || "")}
-              />
-            )}
-          />
-          {errors.country && (
-            <span className="text-red-500 text-sm mt-1">
-              {errors.country.message as string}
-            </span>
-          )}
-        </Column>
-
-        <Row>
-          <CustomCheckbox {...register("wantsEmailConfirmation")} />
-          <p className="text-xs ml-2 content-center">
-            Yes, I want to get an electronic confirmation to my Email address.
-          </p>
-        </Row>
       </ContainerWithBorders>
 
       <ContainerWithBorders className="bg-white">

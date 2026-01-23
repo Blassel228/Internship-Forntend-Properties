@@ -19,13 +19,3 @@ export function useCreateCheckoutSessionWithToken(): string {
   });
 }
 
-export function useCreateCheckoutSessionWithoutToken(): string {
-  return useMutation({
-    mutationFn: (data: CreateCheckoutSessionRequest) => {
-      return createCheckoutSessionWithoutToken(data);
-    },
-    onSuccess: (result: string) => {
-      return result;
-    },
-  });
-}

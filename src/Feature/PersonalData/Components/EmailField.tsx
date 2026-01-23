@@ -55,10 +55,9 @@ export default function EmailField({
       ) : (
         <>
           <Column className="flex-1">
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center text-sm gap-2 mb-1">
               <p className="text-gray-800">{user?.email || "Not set"}</p>
                 <CheckCircle className="w-4 h-4 text-green-500" />
-                <AlertCircle className="w-4 h-4 text-orange-500" />
             </div>
 
               <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
