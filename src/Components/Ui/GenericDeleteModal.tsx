@@ -170,7 +170,7 @@ const GenericDeleteModal = <T,>({
     if (deletionSuccess) {
       const timer = setTimeout(() => {
         onClose();
-      }, 1000);
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [deletionSuccess, onClose]);
@@ -179,7 +179,7 @@ const GenericDeleteModal = <T,>({
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-999" onClose={() => {}}>
+      <Dialog as="div" className="relative z-999" onClose={() => onClose()}>
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4">
             <Transition.Child

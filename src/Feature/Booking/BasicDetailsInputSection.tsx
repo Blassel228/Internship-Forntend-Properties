@@ -97,14 +97,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       onSubmit={handleSubmit(onSubmit)}
     >
       <ContainerWithBorders className="basicDataSection bg-white">
-        <div>
-          <h1 className="font-bold text-xl">Enter your data</h1>
-          <p className="text-green-600 leading-7 text-[13px]">
-            Please enter your data in Latin, so the administration could
-            understand it.
-          </p>
-        </div>
-
         <div className="bg-amber-50 border-l-4 border-amber-400 p-3 rounded mb-6">
           <p className="text-sm text-amber-700">
             <strong>Important:</strong> Editing bookings is not available. If
@@ -125,6 +117,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
               id="name"
               placeholder="For example: John"
               error={!!errors.name}
+              disabled={true}
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
@@ -145,6 +138,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
               id="surname"
               placeholder="For example: Smith"
               error={!!errors.surname}
+              disabled={true}
               {...register("surname", { required: "Surname is required" })}
             />
             {errors.surname && (
@@ -165,6 +159,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
             type="email"
             id="email"
             error={!!errors.email}
+            disabled={true}
             {...register("email", {
               required: "Email is required",
               validate: (value) => {
@@ -210,6 +205,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
                 }`}
                 defaultCountry={user?.country || "GB"}
                 value={value}
+                disabled={true}
                 onChange={(phone) => {
                   onChange(phone || "");
                 }}

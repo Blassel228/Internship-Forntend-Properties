@@ -28,7 +28,10 @@ function AdminRooms() {
   const closeEditModal = () => setEditingRoom(null);
 
   const openDeleteModal = (room: Room) => setDeletingRoom(room);
-  const closeDeleteModal = () => setDeletingRoom(null);
+  const closeDeleteModal = () => {
+    console.log('closeDeleteModal called');
+    setDeletingRoom(null);
+  };
 
   const handleFilterSubmit = (newFilters: RoomFilters) => {
     setFilters(newFilters);

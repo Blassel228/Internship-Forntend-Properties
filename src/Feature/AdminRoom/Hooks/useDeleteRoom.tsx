@@ -8,12 +8,13 @@ function useDeleteRoom() {
     mutate: deleteRoom,
     isPending: isRoomDeleting,
     error: deletionError,
+    isSuccess: deletionSuccess
   } = useMutation({
     mutationFn: async (room_id: string) => await deleteRoomApi(room_id),
     onSuccess: () => queryClient.invalidateQueries(["rooms", "filtered"]),
     onError: (err: any) => toast.error(err?.date?.message),
   });
-  return { deleteRoom, isRoomDeleting, deletionError };
+  return { deleteRoom, isRoomDeleting, deletionError, deletionSuccess };
 }
 
 export default useDeleteRoom;

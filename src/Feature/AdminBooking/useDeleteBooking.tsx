@@ -9,6 +9,7 @@ function useDeleteBooking() {
     mutate: deleteBooking,
     isPending: isBookingDeleting,
     error: deleteBookingError,
+    isSuccess: deletionSuccess,
   } = useMutation({
     mutationFn: async ({ bookingId }: { bookingId: string }) =>
       await deleteBookingApi(bookingId),
@@ -21,7 +22,7 @@ function useDeleteBooking() {
     },
   });
 
-  return { deleteBooking, isBookingDeleting, deleteBookingError };
+  return { deleteBooking, isBookingDeleting, deleteBookingError, deletionSuccess };
 }
 
 export default useDeleteBooking;
