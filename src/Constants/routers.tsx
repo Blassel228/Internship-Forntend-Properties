@@ -20,6 +20,8 @@ const routers = {
   adminRooms: "/adminrooms",
 
   verifyEmail: "/verify-email",
+  verifyEmailTest: "/verify-email-test",
+  verifyInstruction: "/verify-instruction",
 
   notExisting: "*",
 };

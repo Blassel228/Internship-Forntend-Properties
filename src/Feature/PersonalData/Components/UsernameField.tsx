@@ -6,6 +6,7 @@ import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import { User } from "../../../Types/User.tsx";
 import EditInput from "./EditInput.tsx";
+import FieldError from "../../../Components/Ui/FieldError.tsx";
 
 interface UsernameFieldProps {
   user: User | null;
@@ -48,11 +49,12 @@ export default function UsernameField({
                   message: "Username must be at least 4 characters long",
                 },
                 maxLength: {
-                  value: 112,
-                  message: "Username must be at most 112 characters long",
+                  value: 20,
+                  message: "Username must be at most 20 characters long",
                 },
               })}
             />
+              {errors.username && <FieldError message={errors.username.message as string} />}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">

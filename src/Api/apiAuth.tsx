@@ -2,6 +2,21 @@ import baseApi from "./apiBase.tsx";
 import { Token } from "../Types/Token.tsx";
 import { User } from "../Types/User.tsx";
 
+export async function registerUserPending(userData: {
+  name: string;
+  surname: string;
+  username: string;
+  email: string;
+  password: string;
+  phone_number: string;
+}): Promise<void> {
+  await baseApi.post("/auth/register-pending", userData);
+}
+
+export async function verifyAndCreateUser(token: string): Promise<void> {
+  await baseApi.get(`/auth/verify-and-create?token=${token}`);
+}
+
 export async function loginGetToken(
   username_or_email: string,
   password: string,

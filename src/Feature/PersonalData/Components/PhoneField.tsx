@@ -7,6 +7,7 @@ import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import PhoneInput from "react-phone-number-input";
 import { User } from "../../../Types/User.tsx";
 import EditInput from "./EditInput.tsx";
+import FieldError from "../../../Components/Ui/FieldError.tsx";
 
 interface PhoneFieldProps {
   user: User | null;
@@ -54,6 +55,7 @@ export default function PhoneField({
                 />
               )}
             />
+            {errors.phone_number && <FieldError message={errors.phone_number.message as string} />}
           </Column>
 
           <Column className="w-16 gap-4 content-center items-center ml-auto min-w-[80px]">

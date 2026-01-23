@@ -38,3 +38,4 @@ export default function useAuth() {
 
   return { login, logout, isAuthenticated };
 }
+

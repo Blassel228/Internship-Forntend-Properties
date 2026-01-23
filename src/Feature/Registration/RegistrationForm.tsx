@@ -6,13 +6,13 @@ import Label from "../../Components/Ui/Label.tsx";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { isValidPhoneNumber } from "libphonenumber-js";
-import useCreateUser from "./useCreateUser.tsx";
+import useRegisterPending from "./useRegisterPending.tsx";
 import routers from "../../Constants/routers.tsx";
 import RegistrationFormError from "./RegistrationFormError.tsx";
 import { UserCreate } from "../../Types/User.tsx";
 
 const RegistrationForm: React.FC = () => {
-  const { mutate: createUserMutation, error } = useCreateUser();
+  const { mutate: registerPendingMutation, error, isSuccess, isLoading } = useRegisterPending();
   const {
     register,
     handleSubmit,
@@ -38,40 +38,30 @@ const RegistrationForm: React.FC = () => {
     }
   }, [error, setError]);
 
-  const onSubmit = async (data: any) => {
-    clearErrors();
-
-    if (!isValidPhoneNumber(phone)) {
-      setError("phone_number", {
-        type: "manual",
-        message: "Please enter a valid phone number",
-      });
-      return;
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(routers.verifyInstruction);
     }
+  }, [isSuccess, navigate]);
 
-    const submitData: UserCreate = {
-      ...data,
-      phone_number: phone,
-    };
+  const onSubmit = async (data: UserCreate) => {
+  clearErrors();
 
-    try {
-      await createUserMutation(
-        { user: submitData },
-        {
-          onSuccess: () => {
-            navigate(routers.home);
-          },
-        },
-      );
-    } catch (err: any) {
-      if (!error) {
-        setError("root.serverError", {
-          type: "manual",
-          message: "Registration failed. Please try again.",
-        });
-      }
-    }
+  if (!isValidPhoneNumber(phone)) {
+    setError("phone_number", {
+      type: "manual",
+      message: "Please enter a valid phone number",
+    });
+    return;
+  }
+
+  const submitData: UserCreate = {
+    ...data,
+    phone_number: phone,
   };
+
+  registerPendingMutation(submitData);
+};
 
   return (
     <div className="w-[30%] border border-gray-300 rounded-lg mt-10 mx-auto p-8 shadow-md mb-20">
@@ -122,8 +112,8 @@ const RegistrationForm: React.FC = () => {
             international
             defaultCountry="GB"
             value={phone}
-            onChange={(phone: string) => {
-              setPhone(phone);
+            onChange={(phoneValue: string | undefined) => {
+              setPhone(phoneValue || "");
               clearErrors("phone_number");
             }}
             className={`w-full border ${errors.phone_number ? "border-red-500" : "border-gray-300"} rounded-md p-2`}
@@ -191,17 +181,15 @@ const RegistrationForm: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          disabled={isLoading}
+          className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
         >
-          Register
+          {isLoading ? "Sending verification email..." : "Register"}
         </button>
 
         <p className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link
-            to="/"
-            className="font-medium text-indigo-600 hover:text-indigo-500"
-          >
+          <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500">
             Login here
           </Link>
         </p>
