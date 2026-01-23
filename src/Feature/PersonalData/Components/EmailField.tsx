@@ -6,7 +6,6 @@ import SaveButton from "./SaveButton.tsx";
 import SettingsChangeButton from "./SettingsChangeButton.tsx";
 import { User } from "../../../Types/User.tsx";
 import EditInput from "./EditInput.tsx";
-import { useSendVerificationEmail } from "../../../Hooks/useEmail.tsx";
 import { CheckCircle, AlertCircle } from "lucide-react";
 
 interface EmailFieldProps {
@@ -27,8 +26,6 @@ export default function EmailField({
   const {
     register,
   } = useFormContext();
-
-  const { mutate: sendVerification, isPending: isSendingPending } = useSendVerificationEmail();
 
   return (
     <Row className="gap-4 w-full border-gray-200 border-t pt-4 pb-4 pr-2 pl-2">
@@ -60,35 +57,17 @@ export default function EmailField({
           <Column className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               <p className="text-gray-800">{user?.email || "Not set"}</p>
-              {user?.is_verified ? (
                 <CheckCircle className="w-4 h-4 text-green-500" />
-              ) : (
                 <AlertCircle className="w-4 h-4 text-orange-500" />
-              )}
             </div>
 
-            {user?.is_verified ? (
               <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
                 <CheckCircle className="w-3 h-3" />
                 Email verified
               </p>
-            ) : (
-              <p className="text-xs text-orange-600 mt-1 flex items-center gap-1">
-                <AlertCircle className="w-3 h-3" />
-                You won't receive booking confirmation emails until verified
-              </p>
-            )}
           </Column>
 
           <Row className="gap-4 mr-2">
-            {!user?.is_verified && (
-              <SettingsChangeButton
-                onClick={() => sendVerification()}
-                disabled={isSendingPending}
-              >
-                Verify
-              </SettingsChangeButton>
-            )}
             <SettingsChangeButton onClick={onStartEdit}>
               Change
             </SettingsChangeButton>
