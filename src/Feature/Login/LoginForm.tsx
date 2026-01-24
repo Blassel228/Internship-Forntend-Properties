@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Input from "../../Components/Ui/Input.tsx";
 import Label from "../../Components/Ui/Label.tsx";
 import useLogin from "./useLogin.tsx";
+import routers from "../../Constants/routers.tsx";
 
 // ✅ Define type for your form data
 type LoginFormData = {
@@ -95,10 +96,19 @@ const LoginForm = () => {
         <p className="text-center text-sm text-gray-600">
           Don't have an account?{" "}
           <Link
-            to="/register"
+            to={routers.register}
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             Register here
+          </Link>
+        </p>
+        <p className="text-center text-sm text-gray-600">
+          Don`t remember your password?{" "}
+          <Link
+            to={routers.forgotPassword}
+            className="font-medium text-indigo-600 hover:text-indigo-500"
+          >
+            Reset password here
           </Link>
         </p>
       </form>

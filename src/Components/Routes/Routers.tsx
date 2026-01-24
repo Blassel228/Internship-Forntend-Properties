@@ -22,6 +22,8 @@ import AdminBookings from "../../Pages/AdminBooking.tsx";
 import VerifyEmailInstructionPage from "../../Pages/VerificationInstruction.tsx";
 import VerificationConfirmationPage from "../../Pages/VerificationConfirmation.tsx";
 import VerifyEmailChangePage from "../../Pages/VerifyEmailChange.tsx";
+import ForgotPassword from "../../Pages/ForgotPassword.tsx";
+import ResetPassword from "../../Pages/ResetPassword.tsx";
 
 export default function Routers() {
   return (
@@ -37,6 +39,8 @@ export default function Routers() {
         <Route path={routers.verifyEmail} element={<VerificationConfirmationPage />} />
         <Route path={routers.verifyInstruction} element={<VerifyEmailInstructionPage />} />
         <Route path={routers.verifyEmailChange} element={<VerifyEmailChangePage />}/>
+        <Route path={routers.forgotPassword} element={<ForgotPassword />} />
+        <Route path={routers.resetPassword} element={<ResetPassword />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path={routers.personalData} element={<PersonalData />} />

@@ -24,6 +24,9 @@ const routers = {
   verifyInstruction: "/verify-instruction",
   verifyEmailChange: "/verify-email-change",
 
+  forgotPassword: "/forgot-password",
+  resetPassword: "/reset-password",
+
   notExisting: "*",
 };
 
