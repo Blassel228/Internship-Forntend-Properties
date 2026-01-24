@@ -23,7 +23,7 @@ const authorizedUserSlice = createSlice({
       state.authorizedUser = null;
     },
     setAuthorizedUserEmail(state, action){
-      state.authorizedUser.is_verified = action.payload.is_verified;
+      state.authorizedUser.email = action.payload.email;
     },
     setAuthorizedUserImage(state, action: PayloadAction<ImageUpdate>) {
       if (state.authorizedUser) {

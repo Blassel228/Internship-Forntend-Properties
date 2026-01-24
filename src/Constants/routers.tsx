@@ -22,6 +22,7 @@ const routers = {
   verifyEmail: "/verify-email",
   verifyEmailTest: "/verify-email-test",
   verifyInstruction: "/verify-instruction",
+  verifyEmailChange: "/verify-email-change",
 
   notExisting: "*",
 };

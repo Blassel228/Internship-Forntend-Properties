@@ -1,35 +1,35 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { CheckCircle, XCircle } from "lucide-react";
-import AppButton from "../Components/Ui/AppButton.tsx";
-import routers from "../Constants/routers.tsx";
-import useVerifyAndCreate from "../Hooks/useVerifyAndCreate.tsx";
+import { CheckCircle, XCircle, Mail } from "lucide-react";
+import AppButton from "../Components/Ui/AppButton";
+import routers from "../Constants/routers";
+import useVerifyEmailChange from "../Hooks/useVerifyEmailChange";
 
-const VerificationConfirmationPage = () => {
+const VerifyEmailChangePage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const token = searchParams.get("token");
 
   const {
-    mutate: verifyAndCreate,
+    mutate: verifyEmailChange,
     isSuccess,
     isError,
     error,
     isPending: isLoading,
-  } = useVerifyAndCreate();
+  } = useVerifyEmailChange();
 
   useEffect(() => {
     if (token) {
-      verifyAndCreate(token);
+      verifyEmailChange(token);
     }
-  }, [token]);
+  }, [token, verifyEmailChange]);
+
+  const handleGoToSettings = () => {
+    navigate(routers.personalData);
+  };
 
   const handleGoToLogin = () => {
     navigate(routers.login);
-  };
-
-  const handleGoToRegister = () => {
-    navigate(routers.register);
   };
 
   if (isLoading) {
@@ -37,7 +37,7 @@ const VerificationConfirmationPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-white to-orange-50 flex items-center justify-center p-4">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
-          <p className="text-gray-600">Verifying your email...</p>
+          <p className="text-gray-600">Verifying your new email...</p>
         </div>
       </div>
     );
@@ -64,35 +64,40 @@ const VerificationConfirmationPage = () => {
           )}
 
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
-            {isSuccess ? "✅ Account Created!" : "❌ Verification Failed"}
+            {isSuccess ? "✅ Email Changed!" : "❌ Verification Failed"}
           </h1>
 
           <p className="text-gray-600 leading-relaxed">
             {isSuccess
-              ? "Your account has been successfully created!"
+              ? "Your email address has been successfully updated!"
               : errorMessage}
           </p>
         </div>
 
         {isSuccess ? (
-          <p className="text-sm text-gray-500 mb-6">
-            You can now log in with your credentials.
-          </p>
+          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div className="flex items-center gap-2 justify-center">
+              <Mail className="w-4 h-4 text-green-600" />
+              <p className="text-sm text-green-700">
+                You can now use your new email to log in
+              </p>
+            </div>
+          </div>
         ) : (
           <p className="text-sm text-gray-500 mb-6">
-            Please try registering again.
+            The verification link may have expired. Please try changing your email again.
           </p>
         )}
 
         <AppButton
-          onClick={isSuccess ? handleGoToLogin : handleGoToRegister}
+          onClick={isSuccess ? handleGoToSettings : handleGoToLogin}
           className="w-full py-3"
         >
-          {isSuccess ? "Go to Login" : "Go to Register"}
+          {isSuccess ? "Go to Settings" : "Go to Login"}
         </AppButton>
       </div>
     </div>
   );
 };
 
-export default VerificationConfirmationPage;
+export default VerifyEmailChangePage;

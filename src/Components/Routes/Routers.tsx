@@ -21,6 +21,7 @@ import routers from "../../Constants/routers.tsx";
 import AdminBookings from "../../Pages/AdminBooking.tsx";
 import VerifyEmailInstructionPage from "../../Pages/VerificationInstruction.tsx";
 import VerificationConfirmationPage from "../../Pages/VerificationConfirmation.tsx";
+import VerifyEmailChangePage from "../../Pages/VerifyEmailChange.tsx";
 
 export default function Routers() {
   return (
@@ -35,6 +36,7 @@ export default function Routers() {
         <Route path={`${routers.book}/:id`} element={<Booking />} />
         <Route path={routers.verifyEmail} element={<VerificationConfirmationPage />} />
         <Route path={routers.verifyInstruction} element={<VerifyEmailInstructionPage />} />
+        <Route path={routers.verifyEmailChange} element={<VerifyEmailChangePage />}/>
 
         <Route element={<ProtectedRoute />}>
           <Route path={routers.personalData} element={<PersonalData />} />
