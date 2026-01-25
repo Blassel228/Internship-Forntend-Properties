@@ -15,7 +15,7 @@ const ForgotPassword: React.FC = () => {
   };
 
   return (
-    <div className="w-[30%] border border-gray-300 rounded-lg mt-10 mx-auto p-8 shadow-md my-40">
+    <div className="w-[30%] border border-gray-300 rounded-lg mt-40 mx-auto p-8 shadow-md my-40">
       <h2 className="text-2xl font-bold text-center mb-6">Forgot Password?</h2>
       <p className="text-gray-600 text-center mb-6">
         Enter your email address and we'll send you a link to reset your password.

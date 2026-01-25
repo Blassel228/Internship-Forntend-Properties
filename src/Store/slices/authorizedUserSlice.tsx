@@ -43,6 +43,7 @@ export const {
   setAuthorizedUser,
   clearAuthorizedUser,
   setAuthorizedUserImage,
-  setAuthorizedUserEmail
+  setAuthorizedUserEmail,
+  updateAvatar
 } = authorizedUserSlice.actions;
 export default authorizedUserSlice.reducer;

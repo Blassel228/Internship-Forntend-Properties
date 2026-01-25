@@ -15,9 +15,9 @@ const routers = {
   reviews: "/reviews",
   makeReview: "/reviews/makereview",
 
-  adminBookings: "/adminbookings",
-  adminUsers: "/adminusers",
-  adminRooms: "/adminrooms",
+  adminBookings: "/admin/bookings",
+  adminUsers: "/admin/users",
+  adminRooms: "/admin/rooms",
 
   verifyEmail: "/verify-email",
   verifyEmailTest: "/verify-email-test",

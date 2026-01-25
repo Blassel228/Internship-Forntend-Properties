@@ -8,12 +8,21 @@ import Row from "../Ui/Row.tsx";
 import UserDropdownMenu from "./UserDropdownMenu.tsx";
 import HeaderAvatar from "../Ui/HeaderAvatar.tsx";
 import useAuth from "../../Hooks/useAuth.tsx";
+import {useSelector} from "react-redux";
+import {RootState} from "../../Types/RootState.tsx";
 
 const Header = ({ style }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+const authorizedUser = useSelector(
+  (root: RootState) => root.authorizedUser.authorizedUser
+);
+console.log("authorizedUser:", authorizedUser);
+
+const is_admin = authorizedUser?.is_admin ?? false;
+console.log("is_admin:", is_admin);
 
   const {isAuthenticated} = useAuth();
 
@@ -47,10 +56,10 @@ const Header = ({ style }) => {
           </h1>
         </div>
         <Row className="text-center gap-4 content-center">
-            <DesktopNav />
+            <DesktopNav is_admin={is_admin} />
             {
               isAuthenticated ?
-                <UserDropdownMenu open={open} setOpen={setOpen}>
+                <UserDropdownMenu open={open} is_admin={is_admin} setOpen={setOpen}>
                   <HeaderAvatar className="lg" />
                 </UserDropdownMenu> : null
             }

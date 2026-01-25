@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Column from "../Components/Ui/Column.tsx";
 import Row from "../Components/Ui/Row.tsx";
 import DataTable from "../Components/Table/DataTable.tsx";
@@ -7,6 +7,7 @@ import useUsers from "../Hooks/useUsers.tsx";
 import { User } from "../Types/User";
 import { UserEditModal } from "../Feature/AdminUsers/UserEditModal.tsx";
 import { UserDeleteModal } from "../Feature/AdminUsers/UserDeleteModal.tsx";
+import Header from "../Components/Header/Header.tsx";
 
 const AdminUsers = () => {
   const { users, areUsersLoading, error } = useUsers();
@@ -86,6 +87,7 @@ const AdminUsers = () => {
 
   return (
     <>
+      <Header/>
       <Row className="mt-36 justify-center px-16 w-full">
         <Column className="gap-4">
           <DataTable

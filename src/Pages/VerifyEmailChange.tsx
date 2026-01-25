@@ -50,7 +50,7 @@ const VerifyEmailChangePage = () => {
       : "";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-orange-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br mt-40 from-white to-orange-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md text-center">
         <div className="mb-6">
           {isSuccess ? (

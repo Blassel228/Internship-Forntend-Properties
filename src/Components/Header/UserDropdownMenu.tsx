@@ -14,6 +14,7 @@ const UserDropdownMenu = ({
   open,
   setOpen,
   children,
+  is_admin
 }: UserDropdownMenuProps) => {
   const { goTo } = useNavigation();
   const { logout } = useAuth();
@@ -34,27 +35,34 @@ const UserDropdownMenu = ({
           align="end"
           side="bottom"
         >
-          <DropdownMenu.Item
-            className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 rounded-md hover:bg-gray-100 focus:bg-gray-100 outline-none cursor-pointer transition"
-            onSelect={(e) => {
-              e.preventDefault();
-              goTo(routers.myBookings);
-            }}
-          >
-            <Calendar size={16} />
-            Bookings
-          </DropdownMenu.Item>
+          {
+            !is_admin && (
+              <>
+                <DropdownMenu.Item
+                  className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 rounded-md hover:bg-gray-100 focus:bg-gray-100 outline-none cursor-pointer transition"
+                  onSelect={(e) => {
+                    e.preventDefault();
+                    goTo(routers.myBookings);
+                  }}
+                >
+                  <Calendar size={16} />
+                  Bookings
+                </DropdownMenu.Item>
 
-          <DropdownMenu.Item
-            className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 rounded-md hover:bg-gray-100 focus:bg-gray-100 outline-none cursor-pointer transition"
-            onSelect={(e) => {
-              e.preventDefault();
-              goTo(routers.reviews);
-            }}
-          >
-            <MessageSquare size={16} />
-            Reviews
-          </DropdownMenu.Item>
+            <DropdownMenu.Item
+              className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 rounded-md hover:bg-gray-100 focus:bg-gray-100 outline-none cursor-pointer transition"
+              onSelect={(e) => {
+                e.preventDefault();
+                goTo(routers.reviews);
+              }}
+              >
+              <MessageSquare size={16} />
+              Reviews
+            </DropdownMenu.Item>
+              </>
+            )
+          }
+
 
           <DropdownMenu.Item
             className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 rounded-md hover:bg-gray-100 focus:bg-gray-100 outline-none cursor-pointer transition"
@@ -63,7 +71,7 @@ const UserDropdownMenu = ({
               goTo(routers.personalData);
             }}
           >
-            <Settings size={16} />
+          <Settings size={16} />
             Settings
           </DropdownMenu.Item>
 

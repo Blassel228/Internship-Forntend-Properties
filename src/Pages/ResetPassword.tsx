@@ -52,7 +52,7 @@ const ResetPassword: React.FC = () => {
   }
 
   return (
-    <div className="w-[30%] border border-gray-300 rounded-lg mt-10 mx-auto p-8 shadow-md mb-20">
+    <div className="w-[30%] border border-gray-300 rounded-lg mx-auto p-8 mt-40 shadow-md mb-20">
       <h2 className="text-2xl font-bold text-center mb-6">Set New Password</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">

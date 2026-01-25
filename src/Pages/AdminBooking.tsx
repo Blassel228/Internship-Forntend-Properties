@@ -9,6 +9,7 @@ import { format, parseISO } from "date-fns";
 import { BookingRefundModal } from "../Feature/AdminBooking/BookingRefundModal.tsx";
 import { BookingEditModal } from "../Feature/AdminBooking/BookingEditModal.tsx";
 import { BookingDeleteModal } from "../Feature/AdminBooking/BookingDeleteModal.tsx";
+import Header from "../Components/Header/Header.tsx";
 
 const AdminBookings = () => {
   const { bookings, areBookingsLoading, bookingsError, isError } =
@@ -93,6 +94,7 @@ const AdminBookings = () => {
 
   return (
     <>
+      <Header/>
       <Row className="mt-36 justify-center px-16 w-full">
         <Column className="gap-4">
           <DataTable
