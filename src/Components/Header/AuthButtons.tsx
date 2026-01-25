@@ -1,12 +1,13 @@
 import Navlink from "../Ui/Navlink.tsx";
 import React from "react";
 import { getItem } from "../../Utils/localStorage.tsx";
+import useAuth from "../../Hooks/useAuth.tsx";
 
 const AuthButtons = () => {
-  const token = getItem("token");
+  const {isAuthenticated} = useAuth();
   return (
     <>
-      {!token && (
+      {!isAuthenticated() && (
         <>
           <Navlink to="/login">Login</Navlink>
           <Navlink to="/register" variant="success">
