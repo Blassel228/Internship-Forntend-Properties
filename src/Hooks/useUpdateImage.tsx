@@ -1,9 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 
-import { updateImage } from "../Api/apiImage.tsx";
+import {adminCreate, adminUpdate, updateImage} from "../Api/apiImage.tsx";
 import { ImageGet, ImageUpdate } from "../Types/Image.tsx";
 import { useDispatch } from "react-redux";
 import { setAuthorizedUserImage } from "../Store/slices/authorizedUserSlice.tsx";
+import {toast} from "react-hot-toast";
 
 function useUpdateImage() {
   const dispatch = useDispatch();
@@ -17,5 +18,31 @@ function useUpdateImage() {
     },
   });
 }
+
+export function useAdminUpdateImage() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ file, userId }: { file: File; userId: string }) =>
+      adminUpdate(file, userId),
+    onSuccess: async () =>
+      queryClient.invalidateQueries({ queryKey: ["users"] }),
+    onError: async (error) =>
+      toast.error(error?.data?.message || "Something went wrong"),
+  });
+}
+
+
+export function useAdminCreateImage() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ file, userId }: { file: File; userId: string }) =>
+      adminCreate(file, userId),
+    onSuccess: async () =>
+      queryClient.invalidateQueries({ queryKey: ["users"] }),
+    onError: async (error) =>
+      toast.error(error?.data?.message || "Something went wrong"),
+  });
+}
+
 
 export default useUpdateImage;

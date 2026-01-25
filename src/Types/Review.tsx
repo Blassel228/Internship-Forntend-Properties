@@ -21,4 +21,5 @@ export interface ReviewCreateRequest {
   title?: string;
   experience_comment?: string;
   room_id: string;
+  booking_id: string;
 }

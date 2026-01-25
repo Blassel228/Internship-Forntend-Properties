@@ -5,10 +5,10 @@ import {
 import { loginGetToken, loginGetUserByToken } from "../Api/apiAuth.tsx";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeItem, setItem } from "../Utils/localstorage.tsx";
+import {getItem, removeItem, setItem} from "../Utils/localstorage.tsx";
 import { Token } from "../Types/Token.tsx";
 import { User } from "../Types/User.tsx";
-import { getImage } from "../Api/apiImage.tsx";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function useAuth() {
   const dispatch = useDispatch();
@@ -22,6 +22,7 @@ export default function useAuth() {
 
     const user: User = await loginGetUserByToken(token);
     setItem("token", token);
+    console.log("USER: ", user)
     dispatch(setAuthorizedUser(user));
   }
 
@@ -32,9 +33,10 @@ export default function useAuth() {
   }
 
   function isAuthenticated() {
-    const token = getImage("token");
+    const token = getItem("token");
     return !!token;
   }
 
   return { login, logout, isAuthenticated };
 }
+

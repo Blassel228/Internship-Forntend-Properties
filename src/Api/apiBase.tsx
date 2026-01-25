@@ -6,23 +6,33 @@ import { refreshToken } from "./apiAuth.tsx";
 const baseApi: AxiosInstance = axios.create({
   baseURL: "http://localhost:8000/api",
   withCredentials: true,
-  timeout: 5000,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  timeout: 60000, // ✅ 60 секунд для великих файлів
+  // ❌ ПРИБЕРИ глобальний Content-Type!
+  // headers: {
+  //   "Content-Type": "application/json",
+  // },
 });
 
 baseApi.interceptors.request.use(
   (config) => {
     console.log("Request Sent:", config);
+
     if (config.url?.includes("login")) {
       return config;
     }
+
     const token = getItem("token");
     if (token) {
       config.headers = config.headers || {};
       config.headers["Authorization"] = `Bearer ${token}`;
     }
+
+    // ✅ Встанови Content-Type тільки якщо це НЕ FormData
+    if (!(config.data instanceof FormData)) {
+      config.headers["Content-Type"] = "application/json";
+    }
+    // Якщо це FormData, браузер сам встановить правильний Content-Type з boundary
+
     return config;
   },
   (error) => {

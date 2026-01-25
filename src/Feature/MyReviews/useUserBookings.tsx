@@ -4,29 +4,35 @@ import {
   getBookingsNotRatedByUser,
 } from "../../Api/apiBooking.tsx";
 import { Booking } from "../../Types/Booking.tsx";
+import {useSelector} from "react-redux";
+import {RootState} from "../../Store/store.tsx";
 
 export const useBookings = () => {
+  const userId = useSelector((state: RootState) => state.authorizedUser.authorizedUser?.id);
+
   const {
     data: bookings,
     isLoading,
     error,
-  }: { bookings: Booking[] } = useQuery<Booking[], Error>({
-    queryKey: ["userBookings"],
-    queryFn: getBookingsForOneUser,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
+  } = useQuery<Booking[], Error>({
+    queryKey: ["userBookings", userId],
+    queryFn: () => getBookingsForOneUser(),
+    enabled: !!userId,
     staleTime: 60000,
   });
+
   return { bookings: bookings ?? [], isLoading, error };
 };
 
 export const useGetBookingsForRoomsNotRatedByUser = () => {
+  const userId = useSelector((state: RootState) => state.authorizedUser.authorizedUser?.id);
+
   const {
     data: notRatedBookings,
     isLoading: areNotRatedBookingsLoading,
     error: notRatedBookingsError,
   } : { notRatedBookings: Booking[] } = useQuery<Booking[], Error>({
-    queryKey: ["notRatedRoomsBookings"],
+    queryKey: ["notRatedRoomsBookings", userId],
     queryFn: async () => await getBookingsNotRatedByUser(),
     refetchOnWindowFocus: false,
     refetchOnMount: false,

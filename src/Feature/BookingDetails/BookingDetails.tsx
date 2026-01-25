@@ -77,7 +77,7 @@ const BookingDetails = ({ room, reviewCount }) => {
           <div className="flex justify-between text-xs mt-1">
             <span>Guests</span>
             <span>
-              {capacity} {capacity === 1 ? "person" : "people"}
+              {capacity} {Number(capacity) === 1 ? "person" : "people"}
             </span>
           </div>
         </div>

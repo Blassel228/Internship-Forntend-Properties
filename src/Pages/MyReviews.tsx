@@ -25,10 +25,10 @@ const MyReviews = () => {
 
   const pastBookings = useMemo(() => {
     return (bookings || []).filter((booking) => {
+      console.log("Refunded" === bookingStatus.CONFIRMED);
       return booking.status === bookingStatus.CONFIRMED;
     });
   }, [bookings]);
-
   const notRatedBookingIds = useMemo(() => {
     return new Set(notRatedBookings?.map((b) => b.id));
   }, [notRatedBookings]);
@@ -39,7 +39,7 @@ const MyReviews = () => {
     );
   }, [pastBookings, notRatedBookingIds]);
 
-  let displayedBookings = bookings;
+  let displayedBookings = pastBookings;
   let areBookingsLoading = bookingsLoading || notRatedLoading;
   let error = bookingsError || notRatedError;
 
@@ -62,7 +62,7 @@ const MyReviews = () => {
           <ReviewsPanel
             isSelected={isSelected}
             handleSetSelected={handleSetSelected}
-            allReviewsCount={bookings.length}
+            allReviewsCount={pastBookings.length}
             writeReviewCount={notRatedBookings?.length || 0}
             propertyReviewsCount={ratedBookings.length}
           />

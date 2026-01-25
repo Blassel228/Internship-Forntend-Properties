@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import Input from "../../Components/Ui/Input.tsx";
 import Label from "../../Components/Ui/Label.tsx";
 import useLogin from "./useLogin.tsx";
+import routers from "../../Constants/routers.tsx";
 
-// ✅ Define type for your form data
 type LoginFormData = {
   username_or_email: string;
   password: string;
@@ -73,17 +73,15 @@ const LoginForm = () => {
             {errors.password?.message || "\u00A0"}
           </p>
         </div>
-
-        <p
-          className={`text-red-500 text-sm ${
-            loginError ? "visible" : "invisible"
-          }`}
-        >
-          {loginError &&
-            (loginError.response?.data?.error?.message ||
-              "Login failed. Please try again.")}
-        </p>
-
+        <div className="h-4 flex items-center">
+          <p
+            className={`text-red-500 text-sm mb-2 ${loginError ? "" : "hidden"}`}
+          >
+            {loginError &&
+              (loginError.response?.data?.error?.detail ||
+                "Login failed. Please try again.")}
+          </p>
+        </div>
         <button
           type="submit"
           disabled={loginStatus === "loading"}
@@ -95,10 +93,19 @@ const LoginForm = () => {
         <p className="text-center text-sm text-gray-600">
           Don't have an account?{" "}
           <Link
-            to="/register"
+            to={routers.register}
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             Register here
+          </Link>
+        </p>
+        <p className="text-center text-sm text-gray-600">
+          Don`t remember your password?{" "}
+          <Link
+            to={routers.forgotPassword}
+            className="font-medium text-indigo-600 hover:text-indigo-500"
+          >
+            Reset password here
           </Link>
         </p>
       </form>

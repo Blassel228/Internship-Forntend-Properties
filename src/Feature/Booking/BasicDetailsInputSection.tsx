@@ -1,8 +1,7 @@
 import Row from "../../Components/Ui/Row.tsx";
 import Column from "../../Components/Ui/Column.tsx";
-import React from "react"; // ✅ useState видалено — не потрібен
+import React from "react";
 import ContainerWithBorders from "../../Components/Ui/ContainerWithBorders.tsx";
-import CustomCheckbox from "./CustomCheckbox.tsx";
 import { Controller, useForm } from "react-hook-form";
 import useBookingParams from "../../Hooks/useSearchParams.tsx";
 import { calculateNights } from "../../Utils/helpers.tsx";
@@ -11,19 +10,16 @@ import { RootState } from "../../Store/store.tsx";
 import RequiredStar from "../../Components/Ui/RequiredStar.tsx";
 import PhoneInput from "react-phone-number-input";
 import { isValidPhoneNumber } from "libphonenumber-js";
-import { GuestCreateIn } from "../../Types/Guest.tsx";
-import { getItem } from "../../Utils/localStorage.tsx";
 import { User } from "../../Types/User.tsx";
 import { CreateCheckoutSessionRequest } from "../../Types/Payment.tsx";
 import {
-  useCreateCheckoutSessionWithoutToken,
   useCreateCheckoutSessionWithToken,
 } from "./useCreateCheckoutSession.tsx";
 import BookingInput from "./BookingInput.tsx";
-import CountrySelector from "../../Components/Ui/CountrySelect.tsx";
 import AppButton from "../../Components/Ui/AppButton.tsx";
 import PersonalDataFooter from "../../Components/Ui/PersonalDataFooter.tsx";
 import isEmail from "validator/lib/isEmail";
+import CustomCheckbox from "./CustomCheckbox.tsx";
 
 interface BasicDetailsInputSectionProps {
   room: {
@@ -52,9 +48,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       surname: user?.surname || "",
       email: user?.email || "",
       phone_number: user?.phone_number || "",
-      country: user?.country || "",
-      wantsEmailConfirmation: true,
-      mainGuest: "true",
       specialRequests: "",
     },
   });
@@ -68,26 +61,10 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
     isSuccess: creatingSuccess,
     isError: creatingErrorWithoutToken,
   } = useCreateCheckoutSessionWithToken();
-  const {
-    mutate: createCheckoutWithoutToken,
-    isPending: isWithoutTokenLoading,
-  } = useCreateCheckoutSessionWithoutToken();
 
-  const isBookingCreating = isWithTokenLoading || isWithoutTokenLoading;
+  const isBookingCreating = isWithTokenLoading;
 
   const onSubmit = (data) => {
-    const isMainGuest = data.mainGuest === "true";
-
-    const guestIn: GuestCreateIn = {
-      name: data.name.trim(),
-      surname: data.surname.trim(),
-      email: data.email.trim(),
-      phone: data.phone_number,
-      country: data.country,
-      whether_send_confirmation: data.wantsEmailConfirmation,
-      is_booking_for_me: isMainGuest,
-    };
-
     const request: CreateCheckoutSessionRequest = {
       room_id: room.id,
       price: nights * room.price,
@@ -95,15 +72,9 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       end_date: endDate,
       currency: "usd",
       special_requests: data.specialRequests?.trim() || null,
-      guest_data: guestIn,
     };
 
-    const token = getItem("token");
-    const mutateFn = token
-      ? createCheckoutWithToken
-      : createCheckoutWithoutToken;
-
-    mutateFn(request, {
+    createCheckoutWithToken(request, {
       onSuccess: (response) => {
         window.location.href = response.url;
       },
@@ -126,14 +97,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
       onSubmit={handleSubmit(onSubmit)}
     >
       <ContainerWithBorders className="basicDataSection bg-white">
-        <div>
-          <h1 className="font-bold text-xl">Enter your data</h1>
-          <p className="text-green-600 leading-7 text-[13px]">
-            Please enter your data in Latin, so the administration could
-            understand it.
-          </p>
-        </div>
-
         <div className="bg-amber-50 border-l-4 border-amber-400 p-3 rounded mb-6">
           <p className="text-sm text-amber-700">
             <strong>Important:</strong> Editing bookings is not available. If
@@ -154,6 +117,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
               id="name"
               placeholder="For example: John"
               error={!!errors.name}
+              disabled={true}
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
@@ -174,6 +138,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
               id="surname"
               placeholder="For example: Smith"
               error={!!errors.surname}
+              disabled={true}
               {...register("surname", { required: "Surname is required" })}
             />
             {errors.surname && (
@@ -194,6 +159,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
             type="email"
             id="email"
             error={!!errors.email}
+            disabled={true}
             {...register("email", {
               required: "Email is required",
               validate: (value) => {
@@ -239,6 +205,7 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
                 }`}
                 defaultCountry={user?.country || "GB"}
                 value={value}
+                disabled={true}
                 onChange={(phone) => {
                   onChange(phone || "");
                 }}
@@ -251,61 +218,6 @@ const BasicDetailsInputSection: React.FC<BasicDetailsInputSectionProps> = ({
               {errors.phone_number.message as string}
             </span>
           )}
-        </Column>
-
-        <Column className="w-[23rem]">
-          <label htmlFor="country">
-            Country
-            <RequiredStar />
-          </label>
-          <Controller
-            name="country"
-            control={control}
-            rules={{ required: "Country is required" }}
-            render={({ field: { onChange, value } }) => (
-              <CountrySelector
-                value={value}
-                onChange={(option) => onChange(option?.label || "")}
-              />
-            )}
-          />
-          {errors.country && (
-            <span className="text-red-500 text-sm mt-1">
-              {errors.country.message as string}
-            </span>
-          )}
-        </Column>
-
-        <Row>
-          <CustomCheckbox {...register("wantsEmailConfirmation")} />
-          <p className="text-xs ml-2 content-center">
-            Yes, I want to get an electronic confirmation to my Email address.
-          </p>
-        </Row>
-
-        <Column className="gap-2">
-          <h1 className="font-bold">Who are you booking for?</h1>
-          <Row>
-            <input
-              type="radio"
-              {...register("mainGuest")}
-              className="h-6 w-6"
-              value="true"
-              defaultChecked
-            />
-            <p className="text-xs content-center ml-2">I am the main guest</p>
-          </Row>
-          <Row>
-            <input
-              type="radio"
-              {...register("mainGuest")}
-              className="h-6 w-6"
-              value="false"
-            />
-            <p className="text-xs content-center ml-2">
-              This booking is not for me
-            </p>
-          </Row>
         </Column>
       </ContainerWithBorders>
 

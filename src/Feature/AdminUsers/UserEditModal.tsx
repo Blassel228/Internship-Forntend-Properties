@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useUpdateUser } from "../../Hooks/useUpdateUser.tsx";
-import useUpdateImage from "../../Hooks/useUpdateImage.tsx";
+import {useAdminCreateImage, useAdminUpdateImage} from "../../Hooks/useUpdateImage.tsx";
 import useCreateImage from "../../Hooks/useCreateImage.tsx";
 import { useForm } from "react-hook-form";
 import { User, UserUpdate } from "../../Types/User.tsx";
@@ -21,8 +21,8 @@ export const UserEditModal = ({
   const [selectedImageFile, setImageFile] = useState<File | null>(null);
 
   const { updateUser, isUserUpdating } = useUpdateUser();
-  const { mutate: updateImage, isPending: isImageUpdating } = useUpdateImage();
-  const { mutate: createImage, isPending: isImageCreating } = useCreateImage();
+  const { mutate: updateImage, isPending: isImageUpdating } = useAdminUpdateImage();
+  const { mutate: createImage, isPending: isImageCreating } = useAdminCreateImage();
 
   const isUpdating = isUserUpdating || isImageUpdating || isImageCreating;
 
@@ -44,6 +44,7 @@ export const UserEditModal = ({
 
   useEffect(() => {
     if (user) {
+      console.log("IMAGE: ", user.image)
       reset({
         username: user.username,
         email: user.email,
@@ -104,12 +105,14 @@ export const UserEditModal = ({
         onSuccess: () => onClose(),
       },
     );
-    if(selectedImageFile){
-        imageMutate(selectedImageFile, {
-        onError: () => {
-          alert("Failed to upload avatar. Please try again.");
-        },
-      });
+    if (selectedImageFile) {
+      imageMutate(
+        { file: selectedImageFile, userId: user.id },
+        {
+          onSuccess: () => onClose(),
+          onError: () => alert("Failed to upload avatar"),
+        }
+      );
     }
   };
 

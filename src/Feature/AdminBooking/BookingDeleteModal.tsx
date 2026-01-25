@@ -14,7 +14,7 @@ export const BookingDeleteModal = ({
   isOpen,
   onClose,
 }: BookingDeleteModalProps) => {
-  const { deleteBooking, isBookingDeleting, deleteBookingError } =
+  const { deleteBooking, isBookingDeleting, deleteBookingError, deletionSuccess } =
     useDeleteBooking();
 
   return (
@@ -27,7 +27,7 @@ export const BookingDeleteModal = ({
       }
       isDeleting={isBookingDeleting}
       deletionError={deleteBookingError}
-      deletionSuccess={false}
+      deletionSuccess={deletionSuccess}
       title={(booking) => `Delete Booking: ${booking?.id}`}
       itemName={(booking) => `Booking ${booking?.id}`}
       confirmationMessage="Are you sure you want to delete this booking from the database?"

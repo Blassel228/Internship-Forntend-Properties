@@ -9,6 +9,7 @@ import RoomImageCell from "../Components/Table/RoomImageCell";
 import TableColumn from "../Types/Table";
 import AdminRoomFilter from "../Feature/AdminRoom/Components/AdminRoomFilter.tsx";
 import Row from "../Components/Ui/Row.tsx";
+import Header from "../Components/Header/Header.tsx";
 
 function AdminRooms() {
   const [filters, setFilters] = useState<RoomFilters>({});
@@ -28,7 +29,10 @@ function AdminRooms() {
   const closeEditModal = () => setEditingRoom(null);
 
   const openDeleteModal = (room: Room) => setDeletingRoom(room);
-  const closeDeleteModal = () => setDeletingRoom(null);
+  const closeDeleteModal = () => {
+    console.log('closeDeleteModal called');
+    setDeletingRoom(null);
+  };
 
   const handleFilterSubmit = (newFilters: RoomFilters) => {
     setFilters(newFilters);
@@ -67,44 +71,47 @@ function AdminRooms() {
   const actionsWidth = "15%";
 
   return (
-    <div className="p-6 mt-36">
-      <Row className="gap-8">
-        <div className="w-3/4">
-          <DataTable
-            data={roomsWithFilters || []}
-            columns={columns}
-            headers={headers}
-            widths={widths}
-            isLoading={isLoading}
-            isError={isError}
-            error={error}
-            onEdit={openEditModal}
-            onDelete={openDeleteModal}
-            actionsWidth={actionsWidth}
-          />
-        </div>
-        <div className="w-1/4">
-          <AdminRoomFilter onFilterSubmit={handleFilterSubmit} />
-        </div>
-      </Row>
+    <>
+      <Header/>
+      <div className="p-6 mt-36">
+        <Row className="gap-8">
+          <div className="w-3/4">
+            <DataTable
+              data={roomsWithFilters || []}
+              columns={columns}
+              headers={headers}
+              widths={widths}
+              isLoading={isLoading}
+              isError={isError}
+              error={error}
+              onEdit={openEditModal}
+              onDelete={openDeleteModal}
+              actionsWidth={actionsWidth}
+            />
+          </div>
+          <div className="w-1/4">
+            <AdminRoomFilter onFilterSubmit={handleFilterSubmit} />
+          </div>
+        </Row>
 
-      <AdminRoomCreateModal
-        isOpen={isCreateModalOpen}
-        onClose={closeCreateModal}
-      />
+        <AdminRoomCreateModal
+          isOpen={isCreateModalOpen}
+          onClose={closeCreateModal}
+        />
 
-      <RoomEditModal
-        room={editingRoom}
-        isOpen={!!editingRoom}
-        onClose={closeEditModal}
-      />
+        <RoomEditModal
+          room={editingRoom}
+          isOpen={!!editingRoom}
+          onClose={closeEditModal}
+        />
 
-      <RoomDeleteModal
-        room={deletingRoom}
-        isOpen={!!deletingRoom}
-        onClose={closeDeleteModal}
-      />
-    </div>
+        <RoomDeleteModal
+          room={deletingRoom}
+          isOpen={!!deletingRoom}
+          onClose={closeDeleteModal}
+        />
+      </div>
+    </>
   );
 }
 

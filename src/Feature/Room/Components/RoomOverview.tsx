@@ -13,12 +13,17 @@ import { getReviewCount } from "../../../Api/apiReview.tsx";
 import useAverageRating from "../../../Hooks/useAverageRating.tsx";
 import RatingWithStar from "../../../Components/Ui/RatingWithStar.tsx";
 import NotRatedTag from "../../../Components/Ui/NotRatedTag.tsx";
+import useAuth from "../../../Hooks/useAuth.tsx";
 
 export const RoomOverview = ({ room }) => {
   const navigate = useNavigate();
   const { startDate, endDate, capacity } = useSearchParams();
   const [reviewCount, setReviewCount] = useState<number | null>(null);
   const { averageRating } = useAverageRating(room.id);
+
+  const { isAuthenticated } = useAuth();
+  const isUserAuthenticated = isAuthenticated();
+  console.log("isUserAuthenticated: ", isUserAuthenticated)
 
   useEffect(() => {
     const fetchReviewCount = async () => {
@@ -44,6 +49,12 @@ export const RoomOverview = ({ room }) => {
       { state: { room, reviewCount } },
     );
   };
+
+  const navigateToMainPage = () => {
+    navigate({
+      pathname: routers.register
+    })
+  }
 
   const imageSrc = room.image?.startsWith("data:image")
     ? room.image
@@ -82,7 +93,7 @@ export const RoomOverview = ({ room }) => {
                     <AdditionalRoomInfo>Jacuzzi available</AdditionalRoomInfo>
                   )}
                 </Row>
-              <AppButton className="py-2 px-4" onClick={handleNavigate}>
+              <AppButton className="py-2 px-4" onClick={isUserAuthenticated ? handleNavigate : navigateToMainPage}>
                 Make Booking
               </AppButton>
             </Row>
@@ -124,7 +135,7 @@ export const RoomOverview = ({ room }) => {
           </Row>
           <AppButton
             className="w-full sm:w-auto sm:h-[1rem] py-2 px-4"
-            onClick={handleNavigate}
+            onClick={isUserAuthenticated ? handleNavigate : navigateToMainPage}
           >
             Make Booking
           </AppButton>

@@ -20,7 +20,6 @@ export const BookingEditModal = ({
   const { setValue, reset } = useForm<UpdateBooking>({
     defaultValues: {
       user_id: booking?.user_id || "",
-      guest_id: booking?.guest_id || "",
       room_id: booking?.room_id || "",
       price: booking?.price || 0,
       start_date: booking?.start_date
@@ -38,7 +37,6 @@ export const BookingEditModal = ({
     if (booking) {
       reset({
         user_id: booking.user_id || "",
-        guest_id: booking.guest_id || "",
         room_id: booking.room_id || "",
         price: booking.price || 0,
         start_date: booking.start_date
@@ -78,12 +76,6 @@ export const BookingEditModal = ({
     {
       name: "user_id",
       label: "User ID",
-      type: "text",
-      required: false,
-    },
-    {
-      name: "guest_id",
-      label: "Guest ID",
       type: "text",
       required: false,
     },

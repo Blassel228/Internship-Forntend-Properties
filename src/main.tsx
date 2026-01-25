@@ -12,7 +12,6 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
-    <StrictMode>
       <BrowserRouter>
         <Provider store={store}>
           <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
@@ -20,6 +19,5 @@ createRoot(document.getElementById("root")!).render(
           </PersistGate>
         </Provider>
       </BrowserRouter>
-    </StrictMode>
   </QueryClientProvider>,
 );

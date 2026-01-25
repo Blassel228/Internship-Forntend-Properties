@@ -22,6 +22,9 @@ const authorizedUserSlice = createSlice({
     clearAuthorizedUser(state) {
       state.authorizedUser = null;
     },
+    setAuthorizedUserEmail(state, action){
+      state.authorizedUser.email = action.payload.email;
+    },
     setAuthorizedUserImage(state, action: PayloadAction<ImageUpdate>) {
       if (state.authorizedUser) {
         if (!state.authorizedUser.image) {
@@ -40,5 +43,7 @@ export const {
   setAuthorizedUser,
   clearAuthorizedUser,
   setAuthorizedUserImage,
+  setAuthorizedUserEmail,
+  updateAvatar
 } = authorizedUserSlice.actions;
 export default authorizedUserSlice.reducer;

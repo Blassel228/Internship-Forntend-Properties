@@ -18,11 +18,13 @@ import { stringToColor } from "../../../Utils/helpers.tsx";
 interface AvatarUploadModalProps {
   trigger: React.ReactNode;
   image?: string | null;
+  setBgColor: (color: string) => void;
 }
 
 export default function AvatarUploadModal({
   image,
   trigger,
+  setBgColor,
 }: AvatarUploadModalProps) {
   const user = useSelector(
     (root: RootState) => root.authorizedUser.authorizedUser,
@@ -85,6 +87,8 @@ export default function AvatarUploadModal({
     if (confirm("Are you sure you want to delete your avatar?")) {
       deleteImage(undefined, {
         onSuccess: () => {
+        const newColor = user.username ? stringToColor(user.username) : "#ccc";
+        setBgColor(newColor);
           setPreview(null);
           setSelectedFile(null);
           setOpen(false);

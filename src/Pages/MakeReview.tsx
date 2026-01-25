@@ -35,7 +35,7 @@ const MakeReview = () => {
   return (
     <>
       <Row className="pt-40 pb-20 min-h-screen justify-center">
-        <ReviewForm room={room} />
+        <ReviewForm />
       </Row>
     </>
   );

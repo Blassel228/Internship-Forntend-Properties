@@ -5,7 +5,7 @@ import { UserCreate } from "../../Types/User.tsx";
 function useCreateUser() {
   return useMutation({
     mutationFn: ({ user }: { user: UserCreate }) => createUser(user),
-    onError: (error: any, _, context) => {
+    onError: (error: any, _) => {
       if (error.response?.data?.error?.detail) {
         const fieldErrors = error.response.data.error.detail;
         return {

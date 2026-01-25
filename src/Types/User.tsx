@@ -13,6 +13,7 @@ export interface User {
   image_data?: string;
   birthdate?: string;
   image: ImageGet;
+  is_verified: boolean
 }
 
 export interface UserCreate {
