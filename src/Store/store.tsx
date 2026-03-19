@@ -12,7 +12,7 @@ const persistedUserReducer = persistReducer(persistConfig, authorizedUserSlice);
 
 const store = configureStore({
   reducer: {
-    user: persistedUserReducer,
+    authorizedUser: persistedUserReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -24,6 +24,5 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-export { store, persistor };
-
-export type RootState = ReturnType<typeof store.getState>;
+type RootState = ReturnType<typeof store.getState>;
+export { store, persistor, RootState };

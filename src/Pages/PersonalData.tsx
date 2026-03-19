@@ -1,0 +1,98 @@
+import React, { useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { RootState } from "../Types/RootState.tsx";
+import Row from "../Components/Ui/Row.tsx";
+import Column from "../Components/Ui/Column.tsx";
+import PersonalDataHeader from "../Feature/PersonalData/Components/PersonalDataHeader.tsx";
+import PersonalDataForm from "../Feature/PersonalData/Components/PersonalDataForm.tsx";
+import PersonalDataFooter from "../Components/Ui/PersonalDataFooter.tsx";
+import { User } from "../Types/User.tsx";
+import { useUpdateAuthorizedUser } from "../Feature/PersonalData/Hooks/useUpdateAuthorizedUser.tsx";
+
+export default function PersonalData() {
+  const { updateUser, isUserUpdating, userUpdateError, isError, isSuccess } =
+    useUpdateAuthorizedUser();
+  const user = useSelector(
+    (root: RootState) => root.authorizedUser.authorizedUser,
+  ) as User | null;
+
+  const [editingField, setEditingField] = useState<string | null>(null);
+  const [lastValidValues, setLastValidValues] = useState<any>(null);
+
+  const defaultBirthDate = user?.birthdate ? new Date(user.birthdate) : null;
+
+  const form = useForm({
+    defaultValues: {
+      name: user?.name ?? "",
+      username: user?.username ?? "",
+      surname: user?.surname ?? "",
+      email: user?.email ?? "",
+      phone_number: user?.phone_number ?? "",
+      country: user?.country ?? "",
+      day: defaultBirthDate ? defaultBirthDate.getDate() : undefined,
+      month: defaultBirthDate ? defaultBirthDate.getMonth() + 1 : undefined,
+      year: defaultBirthDate ? defaultBirthDate.getFullYear() : undefined,
+      sex: user?.sex ?? 0,
+    },
+  });
+
+  useEffect(() => {
+    if (!lastValidValues) {
+      const initialValues = form.getValues();
+      setLastValidValues(initialValues);
+    }
+  }, [form, lastValidValues]);
+
+  useEffect(() => {
+    if (isError && lastValidValues) {
+      form.reset(lastValidValues);
+    }
+  }, [isError, lastValidValues, form]);
+
+  const handleUpdateUser = (data: any) => {
+    updateUser(data);
+  };
+
+  useEffect(() => {
+    if (!isUserUpdating && !isError) {
+      const currentValues = form.getValues();
+      setLastValidValues(currentValues);
+    }
+  }, [isUserUpdating, isError, form]);
+
+  useEffect(() => {
+    console.log("ERROR", userUpdateError);
+  }, [userUpdateError]);
+
+  return (
+    <>
+      <Row className="settings-layout mt-36 justify-center content-center w-full">
+        <Column className="user-settings w-2/4">
+          <PersonalDataHeader
+            username={user?.username}
+            image_data={
+              user?.image?.image_data ? user.image.image_data : undefined
+            }
+          />
+          <FormProvider {...form}>
+            <PersonalDataForm
+              user={user}
+              editingField={editingField}
+              setEditingField={setEditingField}
+              updateUser={handleUpdateUser}
+              isPending={isUserUpdating}
+            />
+          </FormProvider>
+          <PersonalDataFooter
+            message={
+              isError && !isSuccess
+                ? userUpdateError?.response?.data?.error?.detail
+                : undefined
+            }
+          />
+        </Column>
+      </Row>
+    </>
+  );
+}

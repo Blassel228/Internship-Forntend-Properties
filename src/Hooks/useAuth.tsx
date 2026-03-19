@@ -5,25 +5,25 @@ import {
 import { loginGetToken, loginGetUserByToken } from "../Api/apiAuth.tsx";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Token } from "../Types/types.tsx";
-import { UserGet } from "../Types/types.tsx";
-import { removeItem, setItem } from "../Utils/localstorage.tsx";
+import {getItem, removeItem, setItem} from "../Utils/localstorage.tsx";
+import { Token } from "../Types/Token.tsx";
+import { User } from "../Types/User.tsx";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function useAuth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  async function login(
+    username_or_email: string,
+    password: string,
+  ): Promise<void> {
+    const response: Token = await loginGetToken(username_or_email, password);
+    const token = response.access_token;
 
-  async function login(username: string, password: string): Promise<void> {
-    try {
-      const response: Token = await loginGetToken(username, password);
-      const token = response.access_token;
-
-      const user: UserGet = await loginGetUserByToken(token);
-      setItem("token", token);
-      dispatch(setAuthorizedUser(user));
-    } catch (error) {
-      throw new Error(error.message || "Error logging in");
-    }
+    const user: User = await loginGetUserByToken(token);
+    setItem("token", token);
+    console.log("USER: ", user)
+    dispatch(setAuthorizedUser(user));
   }
 
   async function logout() {
@@ -32,5 +32,11 @@ export default function useAuth() {
     navigate("/login");
   }
 
-  return { login, logout };
+  function isAuthenticated() {
+    const token = getItem("token");
+    return !!token;
+  }
+
+  return { login, logout, isAuthenticated };
 }
+

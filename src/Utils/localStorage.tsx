@@ -7,5 +7,5 @@ export const setItem = (key: string, value: string): void => {
 };
 
 export const removeItem = (key: string): void => {
-  localStorage.removeItem(key);
+  localStorage.clear(key);
 };

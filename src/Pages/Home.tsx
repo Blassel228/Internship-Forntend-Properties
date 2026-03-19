@@ -1,15 +1,22 @@
-import FullHeader from "../Components/FullHeader.tsx";
-import ImageSection from "../Components/ImageSection.tsx";
-import PropertySection from "../Components/PropertySection.tsx";
-import PropertyListHeader from "../Components/PropertyListHeader.tsx";
+import ImageSection from "../Feature/Home/ImageSection.tsx";
 import React from "react";
+import CityCard from "../Feature/Home/CityCard.tsx";
+import ExclusiveBenefits from "../Feature/Home/ExclusiveBenefits.tsx";
+import SpecialDeals from "../Feature/Home/SpecialDeals.tsx";
+import SearchForm from "../Components/SearchForm/SearchForm.tsx";
+import ContactsAndLocation from "../Feature/Home/ContactsAndLocation.tsx";
 
 const HomePage = () => {
   return (
     <>
-      <FullHeader />
       <ImageSection />
-      <PropertySection />
+      <SearchForm />
+      <div className="mx-auto p-6 lg:w-[70%] sm:w-[90%]">
+        <CityCard />
+        <ExclusiveBenefits />
+        <SpecialDeals />
+        <ContactsAndLocation />
+      </div>
     </>
   );
 };
